@@ -1,26 +1,14 @@
-body {
-    background: url('Screenshot_24-1-2025_2581_thumbs.dreamstime.com.jpeg') no-repeat center center fixed;
-    background-size: cover;
-    color: #FADA5E;
-    font-family: 'Courier New', Courier, monospace;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    text-align: center;
-}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Special Message</title>
+    <title>Proposal Page</title>
     <style>
         body {
-            background-color: black;
-            color: #FADA5E; /* Yellowish font color */
+            background: url('https://as2.ftcdn.net/v2/jpg/02/99/95/45/1000_F_299954599_W13RyRyMcugCDfzUzIzVM4SrNVzg3tnQ.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #FADA5E;
             font-family: 'Courier New', Courier, monospace;
             display: flex;
             flex-direction: column;
@@ -30,84 +18,10 @@ body {
             margin: 0;
             text-align: center;
         }
-        img {
-            width: 200px;
-            margin-bottom: 20px;
-        }
-        .message {
-            font-size: 1.5rem;
-            width: 80%;
-            max-width: 600px;
-            white-space: pre-wrap;
-            border: 2px solid #FADA5E;
-            padding: 20px;
-            animation: typing 4s steps(40, end), blink 0.75s step-end infinite;
-            overflow: hidden; 
-            border-right: 2px solid #FADA5E;
-        }
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-        @keyframes blink {
-            50% { border-color: transparent }
-        }
-        .question {
-            margin-top: 20px;
-        }
-        .btn {
-            padding: 10px 20px;
-            color: white;
-            background-color: #FF6347; /* Tomato color for buttons */
-            border: none;
-            font-size: 1rem;
-            cursor: pointer;
-            margin: 10px;
-        }
     </style>
 </head>
 <body>
-    <img src="https://i.imgur.com/your-image.png" alt="Dark Rose">
-    <div class="message" id="message"></div>
-    <div class="question" id="question"></div>
-
-    <script>
-        const message = "Hey there,\n\nThere's something I've been wanting to ask for a while now...\n\nWill you go out with me? 💖";
-        const questions = [
-            { text: "Do you believe in love at first sight?", yes: "I do too!", no: "Maybe this is the first time then. 😊" },
-            { text: "Will you be the happiest person with me?", yes: "I'm so glad! 💕", no: "I’ll work harder for your happiness." },
-        ];
-        let idx = 0;
-
-        // Typing effect
-        function typeWriter(text, i = 0, cb = null) {
-            if (i < text.length) {
-                document.getElementById("message").textContent += text.charAt(i);
-                setTimeout(() => typeWriter(text, i + 1, cb), 100);
-            } else if (cb) {
-                cb();
-            }
-        }
-
-        // Display questions
-        function askQuestion() {
-            if (idx < questions.length) {
-                const q = questions[idx];
-                const questionDiv = document.getElementById("question");
-                questionDiv.innerHTML = `<p>${q.text}</p><button class="btn" onclick="handleResponse('yes')">Yes</button><button class="btn" onclick="handleResponse('no')">No</button>`;
-            }
-        }
-
-        function handleResponse(answer) {
-            const q = questions[idx];
-            document.getElementById("message").textContent += `\n\n${q[answer]}`;
-            document.getElementById("question").innerHTML = "";
-            idx++;
-            askQuestion();
-        }
-
-        // Start typing
-        typeWriter(message, 0, askQuestion);
-    </script>
+    <h1>Hello!</h1>
+    <p>This is your special message page.</p>
 </body>
 </html>
