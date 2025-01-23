@@ -18,13 +18,27 @@
             margin: 0;
             text-align: center;
         }
+
+        /* Hide the video but keep it playing */
+        iframe {
+            width: 0;
+            height: 0;
+            border: none;
+        }
     </style>
 </head>
 <body>
     <h1>Hello!</h1>
     <p>This is your special message page.</p>
-    
-    <!-- YouTube video embedded inside body -->
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/UFrg-IQS9Ac?si=7hgHdWAD7QrDg6fj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+    <!-- YouTube video embedded but hidden -->
+    <iframe src="https://www.youtube.com/embed/UFrg-IQS9Ac?autoplay=1&mute=1&loop=1&playlist=UFrg-IQS9Ac" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+    <!-- Autoplay background music -->
+    <audio autoplay loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
 </body>
 </html>
+
