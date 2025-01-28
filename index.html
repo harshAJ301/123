@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proposal Page</title>
+    <title>Will You Be My Date?</title>
     <style>
         body {
             background: url('https://thumbs.dreamstime.com/b/vintage-romantic-writing-paper-letters-background-old-paper-lines-red-color-red-rose-vintage-romantic-writing-127791760.jpg') no-repeat center center fixed;
@@ -18,23 +18,35 @@
             margin: 0;
             text-align: center;
         }
-        iframe {
-            display: none; /* Hide the audio player */
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #FADA5E;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #ffd700;
         }
     </style>
 </head>
 <body>
     <h1>Hello!</h1>
-    <p>This is your special message page.</p>
+    <p>I have a very important question for you...</p>
+    <button onclick="askForDate()">Click to Reveal</button>
 
-    <!-- Vocaroo Embed -->
-    <iframe 
-        src="https://vocaroo.com/embed/137OLcEe4fY5?autoplay=1" 
-        width="1" 
-        height="1" 
-        frameborder="0" 
-        allow="autoplay"></iframe>
+    <script>
+        function askForDate() {
+            const response = confirm("Will you go on a date with me? ❤️");
+            if (response) {
+                alert("Yay! I can't wait! 🥰");
+            } else {
+                alert("Oh no! But I hope you’ll think about it. 😊");
+            }
+        }
+    </script>
 </body>
 </html>
-
-
