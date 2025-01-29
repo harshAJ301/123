@@ -33,7 +33,7 @@
         button:hover {
             background-color: #ffd700;
         }
-        #question, #message {
+        #question, #message, #videoContainer {
             display: none;
         }
         iframe {
@@ -47,15 +47,17 @@
     <h1>Hi Sunshine ☀️</h1>
     <p id="introText"></p>
 
-    <!-- YouTube Embed -->
-    <iframe width="560" height="315" 
-        src="https://www.youtube.com/embed/UFrg-IQS9Ac?autoplay=1&mute=1" 
-        title="YouTube video player" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-        referrerpolicy="strict-origin-when-cross-origin" 
-        allowfullscreen>
-    </iframe>
+    <button onclick="playMusic()">🎵 Play Music</button>
+    <div id="videoContainer">
+        <iframe width="560" height="315" id="videoFrame" 
+            src="https://www.youtube.com/embed/UFrg-IQS9Ac?autoplay=1" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
 
     <div id="question">
         <p>Do you believe in love at first sight? 💘</p>
@@ -84,6 +86,11 @@
         }
 
         window.onload = typeText;
+
+        function playMusic() {
+            document.getElementById("videoContainer").style.display = "block";
+            document.getElementById("videoFrame").src = "https://www.youtube.com/embed/UFrg-IQS9Ac?autoplay=1";
+        }
 
         function askLoveQuestion(isYes) {
             let message = document.getElementById("message");
