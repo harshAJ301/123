@@ -53,6 +53,7 @@
     <script>
         function showQuestion() {
             document.getElementById("question").style.display = "block";
+            document.querySelector("button[onclick='showQuestion()']").style.display = "none"; // Hide the "Begin" button
         }
         
         function askLoveQuestion(isYes) {
@@ -67,4 +68,3 @@
     </script>
 </body>
 </html>
-
