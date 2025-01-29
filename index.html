@@ -6,8 +6,7 @@
     <title>For You, Sunshine</title>
     <style>
         body {
-            background: url('https://thumbs.dreamstime.com/b/vintage-romantic-writing-paper-letters-background-old-paper-lines-red-color-red-rose-vintage-romantic-writing-127791760.jpg') no-repeat center center fixed;
-            background-size: cover;
+            background: black;
             color: #FADA5E;
             font-family: 'Courier New', Courier, monospace;
             display: flex;
@@ -17,6 +16,7 @@
             height: 100vh;
             margin: 0;
             text-align: center;
+            padding: 20px;
         }
         button {
             font-size: 20px;
@@ -27,7 +27,7 @@
             cursor: pointer;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
             transition: background-color 0.3s ease;
-            margin-top: 10px;
+            margin-top: 20px;
         }
         button:hover {
             background-color: #ffd700;
@@ -36,16 +36,19 @@
 </head>
 <body>
     <h1>Hi Sunshine ☀️</h1>
-    <p>I want to say something. It might feel slightly eerie for you, but I know I’d regret it if I didn’t. So, I finally worked up the courage to put it into words.</p>
-    <button onclick="beginMessage()">Begin</button>
+    <p>🌟 I want to say something. It might feel slightly eerie for you, but I know I’d regret it if I didn’t. So, I finally worked up the courage to put it into words. 💖</p>
+    <p>Do you believe in love at first sight? 💘</p>
+    <button onclick="beginMessage()">💌 Begin</button>
+    <p id="message" style="margin-top: 20px;"></p>
 
     <script>
         function beginMessage() {
-            let response = confirm("Do you believe in love at first sight?");
+            let response = confirm("Do you believe in love at first sight? 💞");
+            let message = document.getElementById("message");
             if (response) {
-                alert("Well, that's the story of mine. When I first saw you in 9th grade, I didn’t like you—obviously, I didn’t know you much beyond your name. But when I truly got to know you, maybe around the end of 10th, I realized there was something special about you.\n\nWhen I got to know your sense of humor, your kindness, and so much more about who you are, I realized there’s something truly special about you. Over time, those little things grew into something I couldn’t ignore.\n\nSometimes, it’s hard to keep this inside, and I’ve been scared that saying it might change things between us. But I really like you. I know you might not feel the same way—maybe you even hate me—but I wanted to be honest because you mean so much to me.\n\nThank you for everything you’ve unknowingly added to my life. You’ve made it brighter in ways I can’t explain.\n\nAnd one last thing—Happy Birthday! 🎉 If you feel like yelling at me, laughing, or saying anything at all, just drop me a voice note… I’ll be waiting. 😊🎙️❤️\n\nLet’s end this with a note:\n\n\"Her beauty struck me much later, it’s true,\nBut first, I fell for the soul that shone through.\"");
+                message.innerHTML = "💕 Well, that's the story of mine. When I first saw you in 9th grade, I didn’t like you—obviously, I didn’t know you much beyond your name. But when I truly got to know you, maybe around the end of 10th, I realized there was something special about you. 💫<br><br> 😍 When I got to know your sense of humor, your kindness, and so much more about who you are, I realized there’s something truly special about you. Over time, those little things grew into something I couldn’t ignore. 💕<br><br> Sometimes, it’s hard to keep this inside, and I’ve been scared that saying it might change things between us. But I really like you. I know you might not feel the same way—maybe you even hate me—but I wanted to be honest because you mean so much to me. ❤️<br><br> 🌈 Thank you for everything you’ve unknowingly added to my life. You’ve made it brighter in ways I can’t explain. ✨<br><br> 🎉 And one last thing—Happy Birthday! 🎂 If you feel like yelling at me, laughing, or saying anything at all, just drop me a voice note… I’ll be waiting. 😊🎙️❤️<br><br> Let’s end this with a note:<br><br> <em>"Her beauty struck me much later, it’s true, <br>But first, I fell for the soul that shone through." 💖</em>";
             } else {
-                alert("Ab tho maan le, itne log apko propose kar chuke hain—I am also one of them! 😅");
+                message.innerHTML = "😅 Ab tho maan le, itne log apko propose kar chuke hain—I am also one of them! 💕";
             }
         }
     </script>
