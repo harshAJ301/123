@@ -1,4 +1,4 @@
-V<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +6,8 @@ V<!DOCTYPE html>
     <title>For You, Sunshine</title>
     <style>
         body {
-            background: white;
+            background: url('https://thumbs.dreamstime.com/b/vintage-roses-shabby-chic-background-old-scrapbook-paper-watercolor-style-69105141.jpg') no-repeat center center fixed;
+            background-size: cover;
             color: black;
             font-family: 'Courier New', Courier, monospace;
             display: flex;
@@ -35,26 +36,39 @@ V<!DOCTYPE html>
         #question, #message {
             display: none;
         }
+        iframe {
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
 <body>
     <h1>Hi Sunshine ☀️</h1>
     <p id="introText"></p>
-    <button id="beginButton" onclick="showQuestion()">💌 Begin</button>
-    
+
+    <!-- YouTube Embed -->
+    <iframe width="560" height="315" 
+        src="https://www.youtube.com/embed/UFrg-IQS9Ac?autoplay=1&mute=1" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        referrerpolicy="strict-origin-when-cross-origin" 
+        allowfullscreen>
+    </iframe>
+
     <div id="question">
         <p>Do you believe in love at first sight? 💘</p>
         <button onclick="askLoveQuestion(true)">Yes</button>
         <button onclick="askLoveQuestion(false)">No</button>
     </div>
-    
+
     <p id="message" style="margin-top: 20px;"></p>
 
     <script>
-        // Typewriter effect
-        let text = "🌟 I want to say something. It might feel slightly eerie for you, but I know I’d regret it if I didn’t. So, I finally worked up the courage to put it into words. 💖";
+        let text = "I want to say something. It might feel slightly eerie for you, but I know I’d regret it if I didn’t. So, I finally worked up the courage to put it into words.";
         let index = 0;
-        const speed = 100; // Speed of typing (in ms)
+        const speed = 50;
         let introTextElement = document.getElementById("introText");
 
         function typeText() {
@@ -62,24 +76,20 @@ V<!DOCTYPE html>
                 introTextElement.innerHTML += text.charAt(index);
                 index++;
                 setTimeout(typeText, speed);
+            } else {
+                setTimeout(() => {
+                    document.getElementById("question").style.display = "block";
+                }, 500);
             }
         }
 
-        // Call the typing effect on page load
         window.onload = typeText;
 
-        // Show question and hide the begin button
-        function showQuestion() {
-            document.getElementById("question").style.display = "block";
-            document.getElementById("beginButton").style.display = "none"; // Hide "Begin" button
-        }
-
-        // Answering the question
         function askLoveQuestion(isYes) {
             let message = document.getElementById("message");
             message.style.display = "block";
             if (isYes) {
-                message.innerHTML = "💕 Well, that's the story of mine. When I first saw you in 9th grade, I didn’t like you—obviously, I didn’t know you much beyond your name. But when I truly got to know you, maybe around the end of 10th, I realized there was something special about you. 💫<br><br> 😍 When I got to know your sense of humor, your kindness, and so much more about who you are, I realized there’s something truly special about you. Over time, those little things grew into something I couldn’t ignore. 💕<br><br> Sometimes, it’s hard to keep this inside, and I’ve been scared that saying it might change things between us. But I really like you. I know you might not feel the same way—maybe you even hate me—but I wanted to be honest because you mean so much to me. ❤️<br><br> 🌈 Thank you for everything you’ve unknowingly added to my life. You’ve made it brighter in ways I can’t explain. ✨<br><br> 🎉 And one last thing—Happy Birthday! 🎂 If you feel like yelling at me, laughing, or saying anything at all, just drop me a voice note… I’ll be waiting. 😊🎙️❤️<br><br> Let’s end this with a note:<br><br> <em>"Her beauty struck me much later, it’s true, <br>But first, I fell for the soul that shone through." 💖</em>";
+                message.innerHTML = "💕 Well, that's the story of mine. When I first saw you in 9th grade, I didn’t like you—obviously, I didn’t know you much beyond your name. But when I truly got to know you, maybe around the end of 10th, I realized there was something special about you. 💫<br><br> 😍 When I got to know your sense of humor, your kindness, and so much more about who you are, I realized there’s something truly special about you. Over time, those little things grew into something I couldn’t ignore. 💕<br><br> Sometimes, it’s hard to keep this inside, and I’ve been scared that saying it might change things between us. But I really like you. I know you might not feel the same way—maybe you even hate me—but I wanted to be honest because you mean so much to me. ❤️<br><br> 🌈 Thank you for everything you’ve unknowingly added to my life. You’ve made it brighter in ways I can’t explain. ✨<br><br> 🎉 And one last thing—Happy Birthday! 🎂 If you feel like yelling at me, laughing, or saying anything at all, just drop me a voice note… I’ll be waiting. 😊🎙️❤️<br><br> Let’s end this with a note:<br><br> <em>'Her beauty struck me much later, it’s true, <br>But first, I fell for the soul that shone through.' 💖</em>";
             } else {
                 message.innerHTML = "😅 Ab tho maan le, itne log apko propose kar chuke hain—I am also one of them! 💕";
             }
