@@ -40,7 +40,7 @@
 <body>
     <h1>Hi Sunshine ☀️</h1>
     <p>🌟 I want to say something. It might feel slightly eerie for you, but I know I’d regret it if I didn’t. So, I finally worked up the courage to put it into words. 💖</p>
-    <button onclick="showQuestion()">💌 Begin</button>
+    <button id="beginButton" onclick="showQuestion()">💌 Begin</button>
     
     <div id="question">
         <p>Do you believe in love at first sight? 💘</p>
@@ -53,7 +53,7 @@
     <script>
         function showQuestion() {
             document.getElementById("question").style.display = "block";
-            document.querySelector("button[onclick='showQuestion()']").style.display = "none"; // Hide the "Begin" button
+            document.getElementById("beginButton").style.display = "none"; // Now properly hides the "Begin" button
         }
         
         function askLoveQuestion(isYes) {
