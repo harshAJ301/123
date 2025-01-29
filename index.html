@@ -33,14 +33,13 @@
         button:hover {
             background-color: #ffd700;
         }
-        #question, #fullMessage, #hangoutQuestion {
+        #question, #message, #videoContainer {
             display: none;
         }
         iframe {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            opacity: 0;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
@@ -49,13 +48,16 @@
     <p id="introText"></p>
 
     <button onclick="begin()">💌 Begin</button>
-
-    <iframe id="videoFrame" 
-        src="https://www.youtube.com/embed/UFrg-IQS9Ac?autoplay=1" 
-        title="YouTube video player" 
-        frameborder="0" 
-        allow="autoplay">
-    </iframe>
+    <div id="videoContainer">
+        <iframe width="560" height="315" id="videoFrame" 
+            src="https://www.youtube.com/embed/UFrg-IQS9Ac?autoplay=1" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+        </iframe>
+    </div>
 
     <div id="question">
         <p>Do you believe in love at first sight? 💘</p>
@@ -63,96 +65,41 @@
         <button onclick="askLoveQuestion(false)">No</button>
     </div>
 
-    <p id="fullMessage"></p>
-
-    <div id="hangoutQuestion">
-        <p>If you're okay with it, maybe we could hang out sometime? 😊</p>
-        <button onclick="finalResponse(true)">Yes</button>
-        <button onclick="finalResponse(false)">No</button>
-    </div>
+    <p id="message" style="margin-top: 20px;"></p>
 
     <script>
+        let text = "I want to say something. It might feel slightly eerie for you, but I know I’d regret it if I didn’t. So, I finally worked up the courage to put it into words.";
+        let index = 0;
         const speed = 50;
         let introTextElement = document.getElementById("introText");
 
-        let introText = [
-            "Hi sunshine",
-            "",
-            "I want to say something. It might feel slightly eerie for you, but I know I’d regret it if I didn’t.",
-            "So, I finally worked up the courage to put it into words.",
-            "",
-            "Do you believe in love at first sight?",
-            "(Yes/No)"
-        ];
-
-        let fullTextYes = [
-            "Well, that wasn’t quite the case for me.",
-            "I first saw you in 9th grade.",
-            "Back then, I didn’t know much about you beyond your name, and honestly, I didn’t feel much either.",
-            "But by the end of 10th, things started to change.",
-            "",
-            "When I got to know your sense of humor, your kindness, and so much more about who you are,",
-            "I realized there’s something truly special about you.",
-            "Over time, those little things grew into something I couldn’t ignore.",
-            "",
-            "Sometimes, it’s hard to keep this inside, and I’ve been scared that saying it might change things between us.",
-            "But I really like you.",
-            "I know you might not feel the same way—maybe you even hate me—but I wanted to be honest because you mean so much to me.",
-            "",
-            "Thank you for everything you’ve unknowingly added to my life.",
-            "You’ve made it brighter in ways I can’t explain.",
-            "",
-            "If you're okay with it, maybe we could hang out sometime?",
-            "(Yes/No)",
-            "",
-            "And one last thing—happy birthday! 🎉",
-            "",
-            "If you feel like yelling at me, laughing, or saying anything at all, just drop me a voice note… I’ll be waiting. 😊🎙️❤️",
-            "",
-            "Let’s end this with a note:",
-            "",
-            "\"Her beauty struck me much later, it’s true,",
-            "But first, I fell for the soul that shone through.\" 💖"
-        ];
-
-        function typeText(lines, element, callback) {
-            let i = 0;
-            function typing() {
-                if (i < lines.length) {
-                    element.innerHTML += lines[i] + "<br><br>";
-                    i++;
-                    setTimeout(typing, speed * 5);
-                } else if (callback) {
-                    setTimeout(callback, 500);
-                }
+        function typeText() {
+            if (index < text.length) {
+                introTextElement.innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeText, speed);
+            } else {
+                setTimeout(() => {
+                    document.getElementById("question").style.display = "block";
+                }, 500);
             }
-            typing();
         }
 
-        window.onload = function() {
-            typeText(introText, introTextElement, () => {
-                document.getElementById("question").style.display = "block";
-            });
-        };
+        window.onload = typeText;
 
         function begin() {
-            document.getElementById("videoFrame").style.display = "block"; 
-            document.getElementById("question").style.display = "block";
+            document.getElementById("videoContainer").style.display = "block";
+            document.getElementById("videoFrame").src = "https://www.youtube.com/embed/UFrg-IQS9Ac?autoplay=1";
         }
 
         function askLoveQuestion(isYes) {
-            document.getElementById("question").style.display = "none";
-            let fullMessageElement = document.getElementById("fullMessage");
-            fullMessageElement.style.display = "block";
-            fullMessageElement.innerHTML = ""; 
-            typeText(fullTextYes, fullMessageElement, () => {
-                document.getElementById("hangoutQuestion").style.display = "block";
-            });
-        }
-
-        function finalResponse(isYes) {
-            let responseText = isYes ? "🥳 Yay! I’d love that. Let’s plan something soon!" : "😔 No worries, I understand. Just know that you're really special to me.";
-            alert(responseText);
+            let message = document.getElementById("message");
+            message.style.display = "block";
+            if (isYes) {
+                message.innerHTML = "💕 Well, that's the story of mine. When I first saw you in 9th grade, I didn’t like you—obviously, I didn’t know you much beyond your name. But when I truly got to know you, maybe around the end of 10th, I realized there was something special about you. 💫<br><br> 😍 When I got to know your sense of humor, your kindness, and so much more about who you are, I realized there’s something truly special about you. Over time, those little things grew into something I couldn’t ignore. 💕<br><br> Sometimes, it’s hard to keep this inside, and I’ve been scared that saying it might change things between us. But I really like you. I know you might not feel the same way—maybe you even hate me—but I wanted to be honest because you mean so much to me. ❤️<br><br> 🌈 Thank you for everything you’ve unknowingly added to my life. You’ve made it brighter in ways I can’t explain. ✨<br><br> 🎉 And one last thing—Happy Birthday! 🎂 If you feel like yelling at me, laughing, or saying anything at all, just drop me a voice note… I’ll be waiting. 😊🎙️❤️<br><br> Let’s end this with a note:<br><br> <em>'Her beauty struck me much later, it’s true, <br>But first, I fell for the soul that shone through.' 💖</em>";
+            } else {
+                message.innerHTML = "😅 Ab tho maan le, itne log apko propose kar chuke hain—I am also one of them! 💕";
+            }
         }
     </script>
 </body>
