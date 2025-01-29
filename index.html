@@ -6,7 +6,7 @@
     <title>For You, Sunshine</title>
     <style>
         body {
-            background: url('https://thumbs.dreamstime.com/b/vintage-roses-shabby-chic-background-old-scrapbook-paper-watercolor-style-69105141.jpg') no-repeat center center fixed;
+            background: url('https://thumbs.dreamstime.com/b/vintage-roses-shabby-chic-background-old-scrapbook-paper_watercolor-style-69105141.jpg') no-repeat center center fixed;
             background-size: cover;
             color: black;
             font-family: 'Courier New', Courier, monospace;
@@ -59,8 +59,8 @@
 
     <div id="question">
         <p id="loveQuestion"></p>
-        <button onclick="askLoveQuestion(true)">Yes</button>
-        <button onclick="askLoveQuestion(false)">No</button>
+        <button id="yesBtn" onclick="askLoveQuestion(true)" style="display: none;">Yes</button>
+        <button id="noBtn" onclick="askLoveQuestion(false)" style="display: none;">No</button>
     </div>
 
     <p id="message"></p>
@@ -90,6 +90,8 @@
                 () => {
                     typeText("Do you believe in love at first sight? 💘", document.getElementById("loveQuestion"), () => {
                         document.getElementById("question").style.display = "block";
+                        setTimeout(() => { document.getElementById("yesBtn").style.display = "inline"; }, 500);
+                        setTimeout(() => { document.getElementById("noBtn").style.display = "inline"; }, 1000);
                     });
                 }
             );
@@ -118,13 +120,4 @@
                 "Let’s end this with a note:<br><br>" +
                 "<em>'Her beauty struck me much later, it’s true, <br>But first, I fell for the soul that shone through.' 💖</em>";
 
-            messageElement.style.display = "block";
-            fullMessageElement.style.display = "block";
-            
-            typeText(firstText, messageElement, () => {
-                typeText(fullText, fullMessageElement);
-            });
-        }
-    </script>
-</body>
-</html>
+            messag
