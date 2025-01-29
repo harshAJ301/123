@@ -33,7 +33,7 @@
         button:hover {
             background-color: #ffd700;
         }
-        #question, #message, #fullMessage {
+        #question, #fullMessage, #hangoutQuestion {
             display: none;
         }
         iframe {
@@ -59,15 +59,29 @@
 
     <div id="question">
         <p>Do you believe in love at first sight? 💘</p>
-        <button onclick="askLoveQuestion(true)">Yes</button>
-        <button onclick="askLoveQuestion(false)">No</button>
+        <button onclick="askLoveQuestion()">Yes</button>
+        <button onclick="askLoveQuestion()">No</button>
     </div>
 
-    <p id="message" style="margin-top: 20px;"></p>
     <p id="fullMessage"></p>
+
+    <div id="hangoutQuestion">
+        <p>If you're okay with it, maybe we could hang out sometime? 😊</p>
+        <button onclick="finalResponse(true)">Yes</button>
+        <button onclick="finalResponse(false)">No</button>
+    </div>
 
     <script>
         let introText = "I want to say something. It might feel slightly eerie for you, but I know I’d regret it if I didn’t. So, I finally worked up the courage to put it into words.";
+        let fullText = "Well, that wasn’t quite the case for me. I first saw you in 9th grade. Back then, I didn’t know much about you beyond your name, and honestly, I didn’t feel much either. But by the end of 10th, things started to change.\n\n" +
+                       "When I got to know your sense of humor, your kindness, and so much more about who you are, I realized there’s something truly special about you. Over time, those little things grew into something I couldn’t ignore.\n\n" +
+                       "Sometimes, it’s hard to keep this inside, and I’ve been scared that saying it might change things between us. But I really like you. I know you might not feel the same way—maybe you even hate me—but I wanted to be honest because you mean so much to me.\n\n" +
+                       "Thank you for everything you’ve unknowingly added to my life. You’ve made it brighter in ways I can’t explain.\n\n" +
+                       "And one last thing—happy birthday! 🎉\n\n" +
+                       "If you feel like yelling at me, laughing, or saying anything at all, just drop me a voice note… I’ll be waiting. 😊🎙️❤️\n\n" +
+                       "Let’s end this with a note:\n\n" +
+                       "'Her beauty struck me much later, it’s true, \nBut first, I fell for the soul that shone through.' 💖";
+
         let index = 0;
         const speed = 50;
         let introTextElement = document.getElementById("introText");
@@ -97,16 +111,19 @@
             document.getElementById("question").style.display = "block";
         }
 
-        function askLoveQuestion(isYes) {
-            let messageElement = document.getElementById("message");
+        function askLoveQuestion() {
+            document.getElementById("question").style.display = "none";
             let fullMessageElement = document.getElementById("fullMessage");
-            let fullText = isYes 
-                ? "💕 Well, that's the story of mine. When I saw you in 9th grade, I didn’t like you—obviously, I didn’t know you much beyond your name. But when I truly got to know you, maybe around the end of 10th, I realized there was something special about you. 💫<br><br> 😍 When I got to know your sense of humor, your kindness, and so much more about who you are, I realized there’s something truly special about you. Over time, those little things grew into something I couldn’t ignore. 💕<br><br> Sometimes, it’s hard to keep this inside, and I’ve been scared that saying it might change things between us. But I really like you. I know you might not feel the same way—maybe you even hate me—but I wanted to be honest because you mean so much to me. ❤️<br><br> 🌈 Thank you for everything you’ve unknowingly added to my life. You’ve made it brighter in ways I can’t explain. ✨<br><br> 🎉 And one last thing—Happy Birthday! 🎂 If you feel like yelling at me, laughing, or saying anything at all, just drop me a voice note… I’ll be waiting. 😊🎙️❤️<br><br> Let’s end this with a note:<br><br> <em>'Her beauty struck me much later, it’s true, <br>But first, I fell for the soul that shone through.' 💖</em>" 
-                : "😅 Ab tho maan le, itne log apko propose kar chuke hain—I am also one of them! 💕";
-            
-            messageElement.style.display = "block";
             fullMessageElement.style.display = "block";
-            typeText(fullText, fullMessageElement);
+            fullMessageElement.innerHTML = ""; 
+            typeText(fullText, fullMessageElement, () => {
+                document.getElementById("hangoutQuestion").style.display = "block";
+            });
+        }
+
+        function finalResponse(isYes) {
+            let responseText = isYes ? "🥳 Yay! I’d love that. Let’s plan something soon!" : "😔 No worries, I understand. Just know that you're really special to me.";
+            alert(responseText);
         }
     </script>
 </body>
