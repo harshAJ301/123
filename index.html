@@ -72,34 +72,48 @@
     </div>
 
     <script>
-        let introText = "I want to say something. It might feel slightly eerie for you, but I know I’d regret it if I didn’t. So, I finally worked up the courage to put it into words.";
-
-        let fullText = "<p>Well, that wasn’t quite the case for me. I first saw you in 9th grade. Back then, I didn’t know much about you beyond your name, and honestly, I didn’t feel much either. But by the end of 10th, things started to change.</p>" +
-                       
-                       "<p>When I got to know your sense of humor, your kindness, and so much more about who you are, I realized there’s something truly special about you. Over time, those little things grew into something I couldn’t ignore.</p>" +
-
-                       "<p>Sometimes, it’s hard to keep this inside, and I’ve been scared that saying it might change things between us. But I really like you. I know you might not feel the same way—maybe you even hate me—but I wanted to be honest because you mean so much to me.</p>" +
-
-                       "<p>Thank you for everything you’ve unknowingly added to my life. You’ve made it brighter in ways I can’t explain.</p>" +
-
-                       "<p>And one last thing—happy birthday! 🎉</p>" +
-
-                       "<p>If you feel like yelling at me, laughing, or saying anything at all, just drop me a voice note… I’ll be waiting. 😊🎙️❤️</p>" +
-
-                       "<p>Let’s end this with a note:</p>" +
-
-                       "<p><em>\"Her beauty struck me much later, it’s true, <br>But first, I fell for the soul that shone through.\" 💖</em></p>";
-
         const speed = 50;
         let introTextElement = document.getElementById("introText");
 
-        function typeText(text, element, callback) {
+        let introText = [
+            "I want to say something.",
+            "It might feel slightly eerie for you,",
+            "but I know I’d regret it if I didn’t.",
+            "So, I finally worked up the courage to put it into words."
+        ];
+
+        let fullText = [
+            "Well, that wasn’t quite the case for me.",
+            "I first saw you in 9th grade.",
+            "Back then, I didn’t know much about you beyond your name,",
+            "and honestly, I didn’t feel much either.",
+            "But by the end of 10th, things started to change.",
+            "When I got to know your sense of humor, your kindness,",
+            "and so much more about who you are,",
+            "I realized there’s something truly special about you.",
+            "Over time, those little things grew into something I couldn’t ignore.",
+            "Sometimes, it’s hard to keep this inside,",
+            "and I’ve been scared that saying it might change things between us.",
+            "But I really like you.",
+            "I know you might not feel the same way—maybe you even hate me—",
+            "but I wanted to be honest because you mean so much to me.",
+            "Thank you for everything you’ve unknowingly added to my life.",
+            "You’ve made it brighter in ways I can’t explain.",
+            "And one last thing—happy birthday! 🎉",
+            "If you feel like yelling at me, laughing, or saying anything at all,",
+            "just drop me a voice note… I’ll be waiting. 😊🎙️❤️",
+            "Let’s end this with a note:",
+            "\"Her beauty struck me much later, it’s true,",
+            "But first, I fell for the soul that shone through.\" 💖"
+        ];
+
+        function typeText(lines, element, callback) {
             let i = 0;
             function typing() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
+                if (i < lines.length) {
+                    element.innerHTML += lines[i] + "<br>";
                     i++;
-                    setTimeout(typing, speed);
+                    setTimeout(typing, speed * 5);
                 } else if (callback) {
                     setTimeout(callback, 500);
                 }
