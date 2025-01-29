@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+V<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -39,7 +39,7 @@
 </head>
 <body>
     <h1>Hi Sunshine ☀️</h1>
-    <p>🌟 I want to say something. It might feel slightly eerie for you, but I know I’d regret it if I didn’t. So, I finally worked up the courage to put it into words. 💖</p>
+    <p id="introText"></p>
     <button id="beginButton" onclick="showQuestion()">💌 Begin</button>
     
     <div id="question">
@@ -51,11 +51,30 @@
     <p id="message" style="margin-top: 20px;"></p>
 
     <script>
+        // Typewriter effect
+        let text = "🌟 I want to say something. It might feel slightly eerie for you, but I know I’d regret it if I didn’t. So, I finally worked up the courage to put it into words. 💖";
+        let index = 0;
+        const speed = 100; // Speed of typing (in ms)
+        let introTextElement = document.getElementById("introText");
+
+        function typeText() {
+            if (index < text.length) {
+                introTextElement.innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeText, speed);
+            }
+        }
+
+        // Call the typing effect on page load
+        window.onload = typeText;
+
+        // Show question and hide the begin button
         function showQuestion() {
             document.getElementById("question").style.display = "block";
-            document.getElementById("beginButton").style.display = "none"; // Now properly hides the "Begin" button
+            document.getElementById("beginButton").style.display = "none"; // Hide "Begin" button
         }
-        
+
+        // Answering the question
         function askLoveQuestion(isYes) {
             let message = document.getElementById("message");
             message.style.display = "block";
