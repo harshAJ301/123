@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be My Date?</title>
+    <title>For You, Sunshine</title>
     <style>
         body {
             background: url('https://thumbs.dreamstime.com/b/vintage-romantic-writing-paper-letters-background-old-paper-lines-red-color-red-rose-vintage-romantic-writing-127791760.jpg') no-repeat center center fixed;
@@ -27,6 +27,7 @@
             cursor: pointer;
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
             transition: background-color 0.3s ease;
+            margin-top: 10px;
         }
         button:hover {
             background-color: #ffd700;
@@ -34,17 +35,17 @@
     </style>
 </head>
 <body>
-    <h1>Hello!</h1>
-    <p>I have a very important question for you...</p>
-    <button onclick="askForDate()">Click to Reveal</button>
+    <h1>Hi Sunshine ☀️</h1>
+    <p>I want to say something. It might feel slightly eerie for you, but I know I’d regret it if I didn’t. So, I finally worked up the courage to put it into words.</p>
+    <button onclick="beginMessage()">Begin</button>
 
     <script>
-        function askForDate() {
-            const response = confirm("Will you go on a date with me? ❤️");
+        function beginMessage() {
+            let response = confirm("Do you believe in love at first sight?");
             if (response) {
-                alert("Yay! I can't wait! 🥰");
+                alert("Well, that's the story of mine. When I first saw you in 9th grade, I didn’t like you—obviously, I didn’t know you much beyond your name. But when I truly got to know you, maybe around the end of 10th, I realized there was something special about you.\n\nWhen I got to know your sense of humor, your kindness, and so much more about who you are, I realized there’s something truly special about you. Over time, those little things grew into something I couldn’t ignore.\n\nSometimes, it’s hard to keep this inside, and I’ve been scared that saying it might change things between us. But I really like you. I know you might not feel the same way—maybe you even hate me—but I wanted to be honest because you mean so much to me.\n\nThank you for everything you’ve unknowingly added to my life. You’ve made it brighter in ways I can’t explain.\n\nAnd one last thing—Happy Birthday! 🎉 If you feel like yelling at me, laughing, or saying anything at all, just drop me a voice note… I’ll be waiting. 😊🎙️❤️\n\nLet’s end this with a note:\n\n\"Her beauty struck me much later, it’s true,\nBut first, I fell for the soul that shone through.\"");
             } else {
-                alert("Oh no! But I hope you’ll think about it. 😊");
+                alert("Ab tho maan le, itne log apko propose kar chuke hain—I am also one of them! 😅");
             }
         }
     </script>
