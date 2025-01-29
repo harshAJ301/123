@@ -78,33 +78,26 @@
         let introText = [
             "Hi sunshine",
             "",
-            "I want to say something.",
-            "It might feel slightly eerie for you,",
-            "but I know I’d regret it if I didn’t.",
+            "I want to say something. It might feel slightly eerie for you, but I know I’d regret it if I didn’t.",
             "So, I finally worked up the courage to put it into words.",
-            ""
+            "",
+            "Do you believe in love at first sight?",
+            "(Yes/No)"
         ];
 
         let fullTextYes = [
-            "Do you believe in love at first sight?",
-            "(Yes/No)",
-            "",
             "Well, that wasn’t quite the case for me.",
             "I first saw you in 9th grade.",
-            "Back then, I didn’t know much about you beyond your name,",
-            "and honestly, I didn’t feel much either.",
+            "Back then, I didn’t know much about you beyond your name, and honestly, I didn’t feel much either.",
             "But by the end of 10th, things started to change.",
             "",
-            "When I got to know your sense of humor,",
-            "your kindness, and so much more about who you are,",
+            "When I got to know your sense of humor, your kindness, and so much more about who you are,",
             "I realized there’s something truly special about you.",
             "Over time, those little things grew into something I couldn’t ignore.",
             "",
-            "Sometimes, it’s hard to keep this inside,",
-            "and I’ve been scared that saying it might change things between us.",
+            "Sometimes, it’s hard to keep this inside, and I’ve been scared that saying it might change things between us.",
             "But I really like you.",
-            "I know you might not feel the same way—maybe you even hate me—",
-            "but I wanted to be honest because you mean so much to me.",
+            "I know you might not feel the same way—maybe you even hate me—but I wanted to be honest because you mean so much to me.",
             "",
             "Thank you for everything you’ve unknowingly added to my life.",
             "You’ve made it brighter in ways I can’t explain.",
@@ -114,19 +107,12 @@
             "",
             "And one last thing—happy birthday! 🎉",
             "",
-            "If you feel like yelling at me, laughing, or saying anything at all,",
-            "just drop me a voice note… I’ll be waiting. 😊🎙️❤️",
+            "If you feel like yelling at me, laughing, or saying anything at all, just drop me a voice note… I’ll be waiting. 😊🎙️❤️",
             "",
             "Let’s end this with a note:",
             "",
             "\"Her beauty struck me much later, it’s true,",
             "But first, I fell for the soul that shone through.\" 💖"
-        ];
-
-        let fullTextNo = [
-            "Ab tho maan le,",
-            "itne log apko propose kar chuke hain—",
-            "I am also one of them! 💕"
         ];
 
         function typeText(lines, element, callback) {
@@ -159,10 +145,8 @@
             let fullMessageElement = document.getElementById("fullMessage");
             fullMessageElement.style.display = "block";
             fullMessageElement.innerHTML = ""; 
-            typeText(isYes ? fullTextYes : fullTextNo, fullMessageElement, () => {
-                if (isYes) {
-                    document.getElementById("hangoutQuestion").style.display = "block";
-                }
+            typeText(fullTextYes, fullMessageElement, () => {
+                document.getElementById("hangoutQuestion").style.display = "block";
             });
         }
 
