@@ -74,7 +74,11 @@
             element.innerHTML = "";
             function typing() {
                 if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
+                    if (text.charAt(i) === '\\n') {
+                        element.innerHTML += '<br><br>';
+                    } else {
+                        element.innerHTML += text.charAt(i);
+                    }
                     i++;
                     setTimeout(typing, speed);
                 } else if (callback) {
@@ -102,7 +106,7 @@
             let messageElement = document.getElementById("message");
             let fullMessageElement = document.getElementById("fullMessage");
             let fullText = isYes 
-                ? "💕 Well, that's the story of mine. When I saw you in 9th grade, I didn’t like you—obviously, I didn’t know you much beyond your name. But when I truly got to know you, maybe around the end of 10th, I realized there was something special about you. 💫<br><br> 😍 When I got to know your sense of humor, your kindness, and so much more about who you are, I realized there’s something truly special about you. Over time, those little things grew into something I couldn’t ignore. 💕<br><br> Sometimes, it’s hard to keep this inside, and I’ve been scared that saying it might change things between us. But I really like you. I know you might not feel the same way—maybe you even hate me—but I wanted to be honest because you mean so much to me. ❤️<br><br> 🌈 Thank you for everything you’ve unknowingly added to my life. You’ve made it brighter in ways I can’t explain. ✨<br><br> 🎉 And one last thing—Happy Birthday! 🎂 If you feel like yelling at me, laughing, or saying anything at all, just drop me a voice note… I’ll be waiting. 😊🎙️❤️<br><br> Let’s end this with a note:<br><br> <em>'Her beauty struck me much later, it’s true, <br>But first, I fell for the soul that shone through.' 💖</em>" 
+                ? `💕 Well, that's the story of mine. When I saw you in 9th grade, I didn’t like you—obviously, I didn’t know you much beyond your name. But when I truly got to know you, maybe around the end of 10th, I realized there was something special about you. 💫\n\n😍 When I got to know your sense of humor, your kindness, and so much more about who you are, I realized there’s something truly special about you. Over time, those little things grew into something I couldn’t ignore. 💕\n\nSometimes, it’s hard to keep this inside, and I’ve been scared that saying it might change things between us. But I really like you. I know you might not feel the same way—maybe you even hate me—but I wanted to be honest because you mean so much to me. ❤️\n\n🌈 Thank you for everything you’ve unknowingly added to my life. You’ve made it brighter in ways I can’t explain. ✨\n\n🎉 And one last thing—Happy Birthday! 🎂 If you feel like yelling at me, laughing, or saying anything at all, just drop me a voice note… I’ll be waiting. 😊🎙️❤️\n\nLet’s end this with a note:\n\n<em>'Her beauty struck me much later, it’s true, <br>But first, I fell for the soul that shone through.' 💖</em>`
                 : "😅 Ab tho maan le, itne log apko propose kar chuke hain—I am also one of them! 💕";
             
             messageElement.style.display = "block";
