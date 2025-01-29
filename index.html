@@ -33,13 +33,14 @@
         button:hover {
             background-color: #ffd700;
         }
-        #question, #message, #videoContainer {
+        #question, #message, #fullMessage {
             display: none;
         }
         iframe {
-            margin-top: 20px;
-            border-radius: 10px;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
         }
     </style>
 </head>
@@ -47,59 +48,82 @@
     <h1>Hi Sunshine ☀️</h1>
     <p id="introText"></p>
 
-    <button onclick="begin()">💌 Begin</button>
-    <div id="videoContainer">
-        <iframe width="560" height="315" id="videoFrame" 
-            src="https://www.youtube.com/embed/UFrg-IQS9Ac?autoplay=1" 
-            title="YouTube video player" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            referrerpolicy="strict-origin-when-cross-origin" 
-            allowfullscreen>
-        </iframe>
-    </div>
+    <button id="beginBtn" onclick="begin()">💌 Begin</button>
+
+    <iframe id="videoFrame" 
+        src="https://www.youtube.com/embed/UFrg-IQS9Ac?autoplay=1" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="autoplay">
+    </iframe>
 
     <div id="question">
-        <p>Do you believe in love at first sight? 💘</p>
+        <p id="loveQuestion"></p>
         <button onclick="askLoveQuestion(true)">Yes</button>
         <button onclick="askLoveQuestion(false)">No</button>
     </div>
 
-    <p id="message" style="margin-top: 20px;"></p>
+    <p id="message"></p>
+    <p id="fullMessage"></p>
 
     <script>
-        let text = "I want to say something. It might feel slightly eerie for you, but I know I’d regret it if I didn’t. So, I finally worked up the courage to put it into words.";
-        let index = 0;
         const speed = 50;
-        let introTextElement = document.getElementById("introText");
 
-        function typeText() {
-            if (index < text.length) {
-                introTextElement.innerHTML += text.charAt(index);
-                index++;
-                setTimeout(typeText, speed);
-            } else {
-                setTimeout(() => {
-                    document.getElementById("question").style.display = "block";
-                }, 500);
+        function typeText(text, element, callback) {
+            element.innerHTML = "";
+            let i = 0;
+            function typing() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typing, speed);
+                } else if (callback) {
+                    setTimeout(callback, 500);
+                }
             }
+            typing();
         }
 
-        window.onload = typeText;
+        window.onload = function() {
+            typeText("I want to say something. It might feel slightly eerie for you, but I know I’d regret it if I didn’t. So, I finally worked up the courage to put it into words.", 
+                document.getElementById("introText"), 
+                () => {
+                    typeText("Do you believe in love at first sight? 💘", document.getElementById("loveQuestion"), () => {
+                        document.getElementById("question").style.display = "block";
+                    });
+                }
+            );
+        };
 
         function begin() {
-            document.getElementById("videoContainer").style.display = "block";
-            document.getElementById("videoFrame").src = "https://www.youtube.com/embed/UFrg-IQS9Ac?autoplay=1";
+            document.getElementById("videoFrame").style.width = "1px"; 
+            document.getElementById("videoFrame").style.height = "1px"; 
+            document.getElementById("videoFrame").style.opacity = "0"; 
+            document.getElementById("beginBtn").style.display = "none"; // Hide Begin button
+            document.getElementById("question").style.display = "block";
         }
 
         function askLoveQuestion(isYes) {
-            let message = document.getElementById("message");
-            message.style.display = "block";
-            if (isYes) {
-                message.innerHTML = "💕 Well, that's the story of mine. When I first saw you in 9th grade, I didn’t like you—obviously, I didn’t know you much beyond your name. But when I truly got to know you, maybe around the end of 10th, I realized there was something special about you. 💫<br><br> 😍 When I got to know your sense of humor, your kindness, and so much more about who you are, I realized there’s something truly special about you. Over time, those little things grew into something I couldn’t ignore. 💕<br><br> Sometimes, it’s hard to keep this inside, and I’ve been scared that saying it might change things between us. But I really like you. I know you might not feel the same way—maybe you even hate me—but I wanted to be honest because you mean so much to me. ❤️<br><br> 🌈 Thank you for everything you’ve unknowingly added to my life. You’ve made it brighter in ways I can’t explain. ✨<br><br> 🎉 And one last thing—Happy Birthday! 🎂 If you feel like yelling at me, laughing, or saying anything at all, just drop me a voice note… I’ll be waiting. 😊🎙️❤️<br><br> Let’s end this with a note:<br><br> <em>'Her beauty struck me much later, it’s true, <br>But first, I fell for the soul that shone through.' 💖</em>";
-            } else {
-                message.innerHTML = "😅 Ab tho maan le, itne log apko propose kar chuke hain—I am also one of them! 💕";
-            }
+            let messageElement = document.getElementById("message");
+            let fullMessageElement = document.getElementById("fullMessage");
+
+            let firstText = isYes 
+                ? "💕 Well, that's the story of mine. When I saw you in 9th grade, I didn’t like you—obviously, I didn’t know you much beyond your name. But when I truly got to know you, maybe around the end of 10th, I realized there was something special about you. 💫" 
+                : "😅 Ab tho maan le, itne log apko propose kar chuke hain—I am also one of them! 💕";
+
+            let fullText = "😍 When I got to know your sense of humor, your kindness, and so much more about who you are, I realized there’s something truly special about you. Over time, those little things grew into something I couldn’t ignore. 💕<br><br>" +
+                "Sometimes, it’s hard to keep this inside, and I’ve been scared that saying it might change things between us. But I really like you. I know you might not feel the same way—maybe you even hate me—but I wanted to be honest because you mean so much to me. ❤️<br><br>" +
+                "🌈 Thank you for everything you’ve unknowingly added to my life. You’ve made it brighter in ways I can’t explain. ✨<br><br>" +
+                "🎉 And one last thing—Happy Birthday! 🎂 If you feel like yelling at me, laughing, or saying anything at all, just drop me a voice note… I’ll be waiting. 😊🎙️❤️<br><br>" +
+                "Let’s end this with a note:<br><br>" +
+                "<em>'Her beauty struck me much later, it’s true, <br>But first, I fell for the soul that shone through.' 💖</em>";
+
+            messageElement.style.display = "block";
+            fullMessageElement.style.display = "block";
+            
+            typeText(firstText, messageElement, () => {
+                typeText(fullText, fullMessageElement);
+            });
         }
     </script>
 </body>
