@@ -33,7 +33,7 @@
         button:hover {
             background-color: #ffd700;
         }
-        #question, #message, #fullMessage, #hangoutQuestion {
+        #question, #message, #fullMessage, #hangout {
             display: none;
         }
         iframe {
@@ -65,14 +65,12 @@
 
     <p id="message" style="margin-top: 20px;"></p>
     <p id="fullMessage"></p>
-    
-    <div id="hangoutQuestion">
-        <p>If you're okay with it, maybe we could hang out sometime? 😊</p>
+
+    <div id="hangout">
+        <p>If you're okay with it, maybe we could hang out sometime?</p>
         <button onclick="hangoutResponse(true)">Yes</button>
         <button onclick="hangoutResponse(false)">No</button>
     </div>
-    
-    <p id="hangoutMessage"></p>
 
     <script>
         const speed = 50;
@@ -120,6 +118,7 @@
             messageElement.style.display = "block";
             fullMessageElement.style.display = "block";
             fullMessageElement.innerHTML = "";
+            
             let paragraphs = fullText.split('\n\n');
             function typeParagraphs(index) {
                 if (index < paragraphs.length) {
@@ -127,20 +126,15 @@
                     fullMessageElement.appendChild(para);
                     typeText(paragraphs[index], para, () => typeParagraphs(index + 1));
                 } else {
-                    document.getElementById("hangoutQuestion").style.display = "block";
+                    document.getElementById("hangout").style.display = "block";
                 }
             }
             typeParagraphs(0);
         }
 
         function hangoutResponse(isYes) {
-            let hangoutMessage = document.getElementById("hangoutMessage");
-            hangoutMessage.innerHTML = isYes 
-                ? "That’s awesome! Let me know when you're free, and I’ll put something together soon. 😉✨" 
-                : "No worries at all! Your happiness matters the most. Maybe some other time. 😇💖";
-            hangoutMessage.style.display = "block";
+            document.title = isYes ? "Yay! Let's plan something! 😊" : "No worries! Maybe another time. 😌";
         }
     </script>
 </body>
 </html>
-
