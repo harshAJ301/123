@@ -68,13 +68,13 @@
 
     <script>
         const speed = 50;
-        
+
         function typeText(text, element, callback) {
             let i = 0;
             element.innerHTML = "";
             function typing() {
                 if (i < text.length) {
-                    if (text.charAt(i) === '\\n') {
+                    if (text.charAt(i) === '\n') {
                         element.innerHTML += '<br><br>';
                     } else {
                         element.innerHTML += text.charAt(i);
@@ -112,6 +112,9 @@
             messageElement.style.display = "block";
             fullMessageElement.style.display = "block";
             
+            // Clear any previous message before appending new ones
+            fullMessageElement.innerHTML = "";
+
             let paragraphs = fullText.split('\n\n');
             function typeParagraphs(index) {
                 if (index < paragraphs.length) {
