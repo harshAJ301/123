@@ -126,10 +126,28 @@
                     fullMessageElement.appendChild(para);
                     typeText(paragraphs[index], para, () => typeParagraphs(index + 1));
                 } else {
+                    // Show additional messages based on Yes/No
+                    let additionalMessage = isYes
+                        ? "👉 That’s awesome! Let me know when you're free, and I’ll put something together soon. 😉✨"
+                        : "👉 No worries at all! Your happiness matters the most. Maybe some other time. 😇💖";
+                    
+                    let additionalMessageElement = document.createElement('p');
+                    additionalMessageElement.innerHTML = additionalMessage;
+                    fullMessageElement.appendChild(additionalMessageElement);
+                    
                     document.getElementById("hangoutQuestion").style.display = "block";
                 }
             }
             typeParagraphs(0);
+        }
+
+        function askHangout(isYes) {
+            // You can add further functionality here for hangout response
+            if (isYes) {
+                alert("Awesome! Let's plan soon. 😊");
+            } else {
+                alert("No worries, maybe another time! 😊");
+            }
         }
     </script>
 </body>
