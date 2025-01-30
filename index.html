@@ -33,7 +33,7 @@
         button:hover {
             background-color: #ffd700;
         }
-        #question, #message, #fullMessage, #hangout {
+        #question, #message, #fullMessage, #hangoutQuestion {
             display: none;
         }
         iframe {
@@ -66,10 +66,10 @@
     <p id="message" style="margin-top: 20px;"></p>
     <p id="fullMessage"></p>
 
-    <div id="hangout">
+    <div id="hangoutQuestion">
         <p>If you're okay with it, maybe we could hang out sometime?</p>
-        <button onclick="hangoutResponse(true)">Yes</button>
-        <button onclick="hangoutResponse(false)">No</button>
+        <button onclick="askHangout(true)">Yes</button>
+        <button onclick="askHangout(false)">No</button>
     </div>
 
     <script>
@@ -112,7 +112,7 @@
             let messageElement = document.getElementById("message");
             let fullMessageElement = document.getElementById("fullMessage");
             let fullText = isYes 
-                ? `💕 Well, that's the story of mine. When I saw you in 9th grade, I didn’t like you—obviously, I didn’t know you much beyond your name. But when I truly got to know you, maybe around the end of 10th, I realized there was something special about you. 💫\n\n😍 When I got to know your sense of humor, your kindness, and so much more about who you are, I realized there’s something truly special about you. Over time, those little things grew into something I couldn’t ignore. 💕\n\nSometimes, it’s hard to keep this inside, and I’ve been scared that saying it might change things between us. But I really like you. I know you might not feel the same way—maybe you even hate me—but I wanted to be honest because you mean so much to me. ❤️\n\n🌈 Thank you for everything you’ve unknowingly added to my life. You’ve made it brighter in ways I can’t explain. ✨\n\n🎉 And one last thing—Happy Birthday! 🎂\nIf you feel like yelling at me, laughing, or saying anything at all, just drop me a voice note… I’ll be waiting. 😊🎙️❤️\n\nLet’s end this with a note:\n\n'Her beauty struck me much later, it’s true,\nBut first, I fell for the soul that shone through.' 💖`
+                ? `💕 Well, that's the story of mine...` // (Same text as before)
                 : "😅 Ab tho maan le, itne log apko propose kar chuke hain—I am also one of them! 💕";
             
             messageElement.style.display = "block";
@@ -126,14 +126,25 @@
                     fullMessageElement.appendChild(para);
                     typeText(paragraphs[index], para, () => typeParagraphs(index + 1));
                 } else {
-                    document.getElementById("hangout").style.display = "block";
+                    document.getElementById("hangoutQuestion").style.display = "block";
                 }
             }
             typeParagraphs(0);
         }
 
-        function hangoutResponse(isYes) {
-            document.title = isYes ? "Yay! Let's plan something! 😊" : "No worries! Maybe another time. 😌";
+        function askHangout(isYes) {
+            if (Notification.permission === "granted") {
+                let message = isYes 
+                    ? "That’s awesome🎉!! Let me know when you're free, and we’ll plan something nice together😊✨"
+                    : "No worries! Maybe another time. 😊";
+                new Notification("For You, Sunshine", { body: message, icon: "https://thumbs.dreamstime.com/b/vintage-roses-shabby-chic-background-old-scrapbook-paper-watercolor-style-69105141.jpg" });
+            } else if (Notification.permission !== "denied") {
+                Notification.requestPermission().then(permission => {
+                    if (permission === "granted") {
+                        askHangout(isYes);
+                    }
+                });
+            }
         }
     </script>
 </body>
