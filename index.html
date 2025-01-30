@@ -33,7 +33,7 @@
         button:hover {
             background-color: #ffd700;
         }
-        #question, #message, #fullMessage, #hangoutQuestion, #actionTab {
+        #question, #message, #fullMessage, #hangoutQuestion {
             display: none;
         }
         iframe {
@@ -65,16 +65,14 @@
 
     <p id="message" style="margin-top: 20px;"></p>
     <p id="fullMessage"></p>
-
+    
     <div id="hangoutQuestion">
-        <p>If you're okay with it, maybe we could hang out sometime?</p>
-        <button onclick="askHangout(true)">Yes</button>
-        <button onclick="askHangout(false)">No</button>
+        <p>If you're okay with it, maybe we could hang out sometime? 😊</p>
+        <button onclick="hangoutResponse(true)">Yes</button>
+        <button onclick="hangoutResponse(false)">No</button>
     </div>
-
-    <div id="actionTab">
-        <p id="hangoutMessage"></p>
-    </div>
+    
+    <p id="hangoutMessage"></p>
 
     <script>
         const speed = 50;
@@ -122,7 +120,6 @@
             messageElement.style.display = "block";
             fullMessageElement.style.display = "block";
             fullMessageElement.innerHTML = "";
-
             let paragraphs = fullText.split('\n\n');
             function typeParagraphs(index) {
                 if (index < paragraphs.length) {
@@ -136,18 +133,12 @@
             typeParagraphs(0);
         }
 
-        function askHangout(isYes) {
-            document.getElementById("actionTab").style.display = "block";  // Show action tab
-
-            let hangoutMessageElement = document.getElementById("hangoutMessage");
-
-            if (isYes) {
-                hangoutMessageElement.innerHTML = "👉 That’s awesome! Let me know when you're free, and I’ll put something together soon. 😉✨";
-                document.title = "👉 That’s awesome! Let me know when you're free! 😉✨";  // Change browser title
-            } else {
-                hangoutMessageElement.innerHTML = "👉 No worries at all! Your happiness matters the most. Maybe some other time. 😇💖";
-                document.title = "👉 No worries at all! Your happiness matters. 😇💖";  // Change browser title
-            }
+        function hangoutResponse(isYes) {
+            let hangoutMessage = document.getElementById("hangoutMessage");
+            hangoutMessage.innerHTML = isYes 
+                ? "That’s awesome! Let me know when you're free, and I’ll put something together soon. 😉✨" 
+                : "No worries at all! Your happiness matters the most. Maybe some other time. 😇💖";
+            hangoutMessage.style.display = "block";
         }
     </script>
 </body>
