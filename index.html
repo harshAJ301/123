@@ -33,7 +33,7 @@
         button:hover {
             background-color: #ffd700;
         }
-        #question, #message, #fullMessage, #hangoutQuestion {
+        #question, #message, #fullMessage, #hangoutQuestion, #hangoutResponse {
             display: none;
         }
         iframe {
@@ -70,6 +70,10 @@
         <p>If you're okay with it, maybe we could hang out sometime?</p>
         <button onclick="askHangout(true)">Yes</button>
         <button onclick="askHangout(false)">No</button>
+    </div>
+
+    <div id="hangoutResponse">
+        <p id="hangoutMessage"></p>
     </div>
 
     <script>
@@ -142,12 +146,16 @@
         }
 
         function askHangout(isYes) {
-            // You can add further functionality here for hangout response
+            let hangoutResponseElement = document.getElementById("hangoutResponse");
+            let hangoutMessageElement = document.getElementById("hangoutMessage");
+
             if (isYes) {
-                alert("Awesome! Let's plan soon. 😊");
+                hangoutMessageElement.innerHTML = "👉 That’s awesome! Let me know when you're free, and I’ll put something together soon. 😉✨";
             } else {
-                alert("No worries, maybe another time! 😊");
+                hangoutMessageElement.innerHTML = "👉 No worries at all! Your happiness matters the most. Maybe some other time. 😇💖";
             }
+
+            hangoutResponseElement.style.display = "block";
         }
     </script>
 </body>
