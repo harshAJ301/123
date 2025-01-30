@@ -33,7 +33,7 @@
         button:hover {
             background-color: #ffd700;
         }
-        #question, #message, #fullMessage, #hangoutQuestion, #hangoutResponse {
+        #question, #message, #fullMessage, #hangoutQuestion, #actionTab {
             display: none;
         }
         iframe {
@@ -72,7 +72,7 @@
         <button onclick="askHangout(false)">No</button>
     </div>
 
-    <div id="hangoutResponse">
+    <div id="actionTab">
         <p id="hangoutMessage"></p>
     </div>
 
@@ -130,15 +130,6 @@
                     fullMessageElement.appendChild(para);
                     typeText(paragraphs[index], para, () => typeParagraphs(index + 1));
                 } else {
-                    // Show additional messages based on Yes/No
-                    let additionalMessage = isYes
-                        ? "👉 That’s awesome! Let me know when you're free, and I’ll put something together soon. 😉✨"
-                        : "👉 No worries at all! Your happiness matters the most. Maybe some other time. 😇💖";
-                    
-                    let additionalMessageElement = document.createElement('p');
-                    additionalMessageElement.innerHTML = additionalMessage;
-                    fullMessageElement.appendChild(additionalMessageElement);
-                    
                     document.getElementById("hangoutQuestion").style.display = "block";
                 }
             }
@@ -146,7 +137,8 @@
         }
 
         function askHangout(isYes) {
-            let hangoutResponseElement = document.getElementById("hangoutResponse");
+            document.getElementById("actionTab").style.display = "block";  // Show action tab
+
             let hangoutMessageElement = document.getElementById("hangoutMessage");
 
             if (isYes) {
@@ -154,8 +146,6 @@
             } else {
                 hangoutMessageElement.innerHTML = "👉 No worries at all! Your happiness matters the most. Maybe some other time. 😇💖";
             }
-
-            hangoutResponseElement.style.display = "block";
         }
     </script>
 </body>
