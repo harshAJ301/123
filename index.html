@@ -37,41 +37,41 @@
             display: none;
         }
         iframe {
-            width: 560px;
-            height: 315px;
-            margin-top: 20px;
-            display: none;
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
         }
-        .bold {
+        #hangoutQuestion p {
             font-weight: bold;
             font-size: 1.2em;
-            color: #8B0000;
         }
     </style>
 </head>
 <body>
     <h1>Hi Sunshine ☀️</h1>
     <p id="introText"></p>
+
     <button onclick="begin()">💌 Begin</button>
-    
+
     <iframe id="videoFrame" 
         src="https://www.youtube.com/embed/UFrg-IQS9Ac?autoplay=1" 
         title="YouTube video player" 
         frameborder="0" 
         allow="autoplay">
     </iframe>
-    
+
     <div id="question">
         <p id="questionText"></p>
         <button onclick="askLoveQuestion(true)">Yes</button>
         <button onclick="askLoveQuestion(false)">No</button>
     </div>
-    
-    <p id="message"></p>
+
+    <p id="message" style="margin-top: 20px;"></p>
     <p id="fullMessage"></p>
-    
+
     <div id="hangoutQuestion">
-        <p class="bold">If you're okay with it, maybe we could hang out sometime? 😊</p>
+        <p>*If you're okay with it, maybe we could hang out sometime?*</p>
         <button onclick="hangoutResponse(true)">Yes</button>
         <button onclick="hangoutResponse(false)">No</button>
     </div>
@@ -85,7 +85,7 @@
             function typing() {
                 if (i < text.length) {
                     if (text.charAt(i) === '\n') {
-                        element.innerHTML += '<br><br>';
+                        element.innerHTML += '<br>';
                     } else {
                         element.innerHTML += text.charAt(i);
                     }
@@ -98,20 +98,31 @@
             typing();
         }
 
+        window.onload = function() {
+            let introText = "I want to say something. It might feel slightly eerie for you, but I know I’d regret it if I didn’t. So, I finally worked up the courage to put it into words.";
+            typeText(introText, document.getElementById("introText"), () => {
+                typeText("Do you believe in love at first sight? 💘", document.getElementById("questionText"), () => {
+                    document.getElementById("question").style.display = "block";
+                });
+            });
+        };
+
         function begin() {
-            document.getElementById("videoFrame").style.display = "block";
+            document.getElementById("videoFrame").style.display = "block"; 
             document.getElementById("question").style.display = "block";
         }
 
         function askLoveQuestion(isYes) {
+            let messageElement = document.getElementById("message");
             let fullMessageElement = document.getElementById("fullMessage");
             let fullText = isYes 
-                ? `💕 Well, that's the story of mine. When I saw you in 9th grade, I didn’t like you—obviously, I didn’t know you much beyond your name. But when I truly got to know you, maybe around the end of 10th, I realized there was something special about you. 💫\n\n😍 When I got to know your sense of humor, your kindness, and so much more about who you are, I realized there’s something truly special about you. Over time, those little things grew into something I couldn’t ignore. 💕\n\nSometimes, it’s hard to keep this inside, and I’ve been scared that saying it might change things between us. But I really like you. I know you might not feel the same way—maybe you even hate me—but I wanted to be honest because you mean so much to me. ❤️\n\n🌈 Thank you for everything you’ve unknowingly added to my life. You’ve made it brighter in ways I can’t explain. ✨\n\n🎉 And one last thing—Happy Birthday! 🎂<br>If you feel like yelling at me, laughing, or saying anything at all, just drop me a voice note… I’ll be waiting. 😊🎙️❤️\n\nLet’s end this with a note:\n\n'Her beauty struck me much later, it’s true,\nBut first, I fell for the soul that shone through.' 💖`
+                ? 💕 Well, that's the story of mine. When I saw you in 9th grade, I didn’t like you—obviously, I didn’t know you much beyond your name. But when I truly got to know you, maybe around the end of 10th, I realized there was something special about you. 💫\n\n😍 When I got to know your sense of humor, your kindness, and so much more about who you are, I realized there’s something truly special about you. Over time, those little things grew into something I couldn’t ignore. 💕\n\nSometimes, it’s hard to keep this inside, and I’ve been scared that saying it might change things between us. But I really like you. I know you might not feel the same way—maybe you even hate me—but I wanted to be honest because you mean so much to me. ❤️\n\n🌈 Thank you for everything you’ve unknowingly added to my life. You’ve made it brighter in ways I can’t explain. ✨\n\n🎉 And one last thing—Happy Birthday! 🎂  \nIf you feel like yelling at me, laughing, or saying anything at all, just drop me a voice note… I’ll be waiting. 😊🎙️❤️\n\nLet’s end this with a note:\n\n'Her beauty struck me much later, it’s true,\nBut first, I fell for the soul that shone through.' 💖
                 : "😅 Ab tho maan le, itne log apko propose kar chuke hain—I am also one of them! 💕";
             
+            messageElement.style.display = "block";
             fullMessageElement.style.display = "block";
             fullMessageElement.innerHTML = "";
-            
+
             let paragraphs = fullText.split('\n\n');
             function typeParagraphs(index) {
                 if (index < paragraphs.length) {
@@ -126,17 +137,21 @@
         }
 
         function hangoutResponse(isYes) {
-            let response = isYes 
+            let message = isYes 
                 ? "That’s awesome🎉!! Let me know when you're free, and we’ll plan something nice together😊✨"
-                : "No worries! I just wanted to ask. 😊";
-            
-            new Notification("Message", { body: response });
-        }
+                : "No worries! I completely understand. Just know that I appreciate you a lot. 💖";
 
-        if ("Notification" in window && Notification.permission !== "granted") {
-            Notification.requestPermission();
+            // Show the response in a notification bar (Action Tab)
+            if (Notification.permission === "granted") {
+                new Notification("💬", { body: message });
+            } else if (Notification.permission !== "denied") {
+                Notification.requestPermission().then(permission => {
+                    if (permission === "granted") {
+                        new Notification("💬", { body: message });
+                    }
+                });
+            }
         }
     </script>
 </body>
 </html>
-
