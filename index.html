@@ -41,7 +41,7 @@
             height: 170px;
             margin-top: 20px;
             border-radius: 10px;
-            display: none;
+            display: block;
         }
         #hangoutQuestion p {
             font-weight: bold;
@@ -53,14 +53,15 @@
     <h1>Hi Sunshine ☀️</h1>
     <p id="introText"></p>
 
-    <button onclick="begin()">💌 Begin</button>
-
     <iframe id="videoFrame" 
-        src="https://www.youtube.com/embed/UFrg-IQS9Ac?autoplay=1" 
+        src="https://www.youtube.com/embed/UFrg-IQS9Ac?autoplay=1&mute=1" 
         title="YouTube video player" 
         frameborder="0" 
-        allow="autoplay">
+        allow="autoplay"
+        allowfullscreen>
     </iframe>
+
+    <button onclick="begin()">💌 Begin</button>
 
     <div id="question">
         <p id="questionText"></p>
@@ -109,7 +110,6 @@
         };
 
         function begin() {
-            document.getElementById("videoFrame").style.display = "block"; 
             document.getElementById("question").style.display = "block";
         }
 
@@ -155,4 +155,3 @@
     </script>
 </body>
 </html>
-
