@@ -37,10 +37,11 @@
             display: none;
         }
         iframe {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            opacity: 0;
+            width: 300px;
+            height: 170px;
+            margin-top: 20px;
+            border-radius: 10px;
+            display: none;
         }
         #hangoutQuestion p {
             font-weight: bold;
@@ -141,7 +142,6 @@
                 ? "That’s awesome🎉!! Let me know when you're free, and we’ll plan something nice together😊✨"
                 : "No worries! I completely understand. Just know that I appreciate you a lot. 💖";
 
-            // Show the response in a notification bar (Action Tab)
             if (Notification.permission === "granted") {
                 new Notification("💬", { body: message });
             } else if (Notification.permission !== "denied") {
@@ -155,3 +155,4 @@
     </script>
 </body>
 </html>
+
