@@ -43,7 +43,7 @@
             margin-top: 20px;
             border-radius: 10px;
             overflow: hidden;
-            display: none; /* Hiding the video initially */
+            display: none; /* Initially hidden */
         }
         iframe {
             width: 100%;
@@ -60,7 +60,7 @@
 
     <div id="videoContainer">
         <iframe id="videoFrame" 
-            src="" 
+            src="https://www.youtube.com/embed/UFrg-IQS9Ac?enablejsapi=1" 
             title="YouTube video player" 
             allow="autoplay"
             allowfullscreen>
@@ -114,8 +114,12 @@
         };
 
         function begin() {
-            document.getElementById("videoContainer").style.display = "block"; 
-            document.getElementById("videoFrame").src = "https://www.youtube.com/embed/UFrg-IQS9Ac?autoplay=1&mute=0"; 
+            let videoContainer = document.getElementById("videoContainer");
+            let videoFrame = document.getElementById("videoFrame");
+
+            videoContainer.style.display = "block"; 
+            videoFrame.src += "&autoplay=1&mute=0"; // Autoplay and unmute
+
             document.getElementById("question").style.display = "block";
         }
 
