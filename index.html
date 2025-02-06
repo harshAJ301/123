@@ -49,6 +49,19 @@
             opacity: 0;
             pointer-events: none;
         }
+        .notification-bar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #FADA5E;
+            color: black;
+            font-size: 18px;
+            text-align: center;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            display: none;
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
@@ -76,6 +89,9 @@
         <button onclick="hangoutResponse(true)">Yes</button>
         <button onclick="hangoutResponse(false)">No</button>
     </div>
+
+    <!-- Notification bar -->
+    <div class="notification-bar" id="notificationBar"></div>
 
     <script>
         const speed = 50;
@@ -141,5 +157,18 @@
         }
 
         function hangoutResponse(isYes) {
+            let notificationBar = document.getElementById("notificationBar");
             let message = isYes 
-                ? "That’s awesome🎉!! Let me know when y
+                ? "That’s awesome🎉!! Let me know when you're free, and we’ll plan something nice together😊✨"
+                : "No worries! I completely understand. Just know that I appreciate you a lot. 💖";
+
+            notificationBar.innerText = message;
+            notificationBar.style.display = "block";
+
+            setTimeout(() => {
+                notificationBar.style.display = "none";
+            }, 5000); // Hide after 5 seconds
+        }
+    </script>
+</body>
+</html>
