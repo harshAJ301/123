@@ -36,6 +36,12 @@
         #question, #message, #fullMessage, #hangoutQuestion {
             display: none;
         }
+        #highlight {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FF4500;
+            margin-top: 20px;
+        }
         iframe {
             position: absolute;
             width: 1px;
@@ -66,7 +72,7 @@
     <p id="fullMessage"></p>
 
     <div id="hangoutQuestion">
-        <p>**If you're okay with it, maybe we could hang out sometime?**</p>
+        <p id="highlight">If you're okay with it, maybe we could hang out sometime?</p>
         <button onclick="hangoutResponse(true)">Yes</button>
         <button onclick="hangoutResponse(false)">No</button>
     </div>
@@ -136,20 +142,4 @@
 
         function hangoutResponse(isYes) {
             let message = isYes 
-                ? "That’s awesome🎉!! Let me know when you're free, and we’ll plan something nice together😊✨"
-                : "No worries! I completely understand. Just know that I appreciate you a lot. 💖";
-
-            // Show the response in a notification bar (Action Tab)
-            if (Notification.permission === "granted") {
-                new Notification("💬", { body: message });
-            } else if (Notification.permission !== "denied") {
-                Notification.requestPermission().then(permission => {
-                    if (permission === "granted") {
-                        new Notification("💬", { body: message });
-                    }
-                });
-            }
-        }
-    </script>
-</body>
-</html>
+                ? "That’s awesome🎉!! Let me know when y
