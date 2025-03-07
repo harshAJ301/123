@@ -1,1 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hey Princess! 👑</title>
+  <style>
+    body {
+      font-family: 'Comic Neue', cursive;
+      background: linear-gradient(45deg, #ffd700, #ffb6c1);
+      text-align: center;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 3rem;
+      color: #e75480;
+      text-shadow: 2px 2px #fff;
+      margin: 20px 0;
+    }
+    .emoji-box {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 20px;
+      margin: 20px auto;
+      max-width: 600px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    button {
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      background: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      margin: 10px;
+      transition: transform 0.3s;
+    }
+    button:hover {
+      transform: scale(1.1);
+      background: #ff1493;
+    }
+    #secret-message {
+      display: none;
+      font-size: 1.5rem;
+      margin-top: 30px;
+      animation: bounce 1s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <h1>Dear Princess 👑</h1>
+  
+  <div class="emoji-box">
+    <p>Let’s play a quick game! 🎮</p>
+    <p>Question 1: Do you believe in aliens? 👽</p>
+    <button onclick="nextQuestion()">Yes, they’re my friends</button>
+    <button onclick="nextQuestion()">No, but I believe in YOU</button>
+  </div>
 
+  <div class="emoji-box" id="q2" style="display: none;">
+    <p>Question 2: Would you rather…</p>
+    <button onclick="nextQuestion2()">Have infinite pizza 🍕</button>
+    <button onclick="nextQuestion2()">Have infinite WiFi 📶</button>
+  </div>
+
+  <div class="emoji-box" id="q3" style="display: none;">
+    <p>Final Question: Can I be your...</p>
+    <button onclick="showProposal()">Pizza/WiFi Supplier? 🛸</button>
+    <button onclick="showProposal()">Partner-in-Crime? 🦹‍♂️</button>
+  </div>
+
+  <div id="secret-message">
+    <p>Princess, let’s rule the world together! 🌍✨ <br> 
+    <button onclick="playSong()">🎵 Click for our anthem!</button></p>
+    <p>So... 👀</p>
+    <button onclick="finalProposal()">YES, LET’S DO IT! 🚀</button>
+  </div>
+
+  <!-- Hidden audio -->
+  <audio id="song" src="https://assets.mixkit.co/music/preview/mixkit-happy-pop-138.mp3"></audio>
+
+  <script>
+    function nextQuestion() {
+      document.getElementById("q2").style.display = "block";
+    }
+    function nextQuestion2() {
+      document.getElementById("q3").style.display = "block";
+    }
+    function showProposal() {
+      document.getElementById("secret-message").style.display = "block";
+    }
+    function playSong() {
+      document.getElementById("song").play();
+    }
+    function finalProposal() {
+      alert("Princess, you’re the WiFi to my pizza! Let’s make it official? 😎❤️");
+      // Add confetti effect here if needed!
+    }
+  </script>
+</body>
+  </html>
