@@ -1,30 +1,176 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To My Princess 👑</title>
   <style>
-    body { 
-      background: #ffafbd; 
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    * {
       margin: 0;
-      font-family: cursive;
+      padding: 0;
+      box-sizing: border-box;
     }
-    .note {
+    body {
+      font-family: 'Dancing Script', cursive;
+      background: linear-gradient(45deg, #1a1a1a, #4a4a4a);
+      color: #fff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    .parallax {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
       opacity: 0;
-      animation: fadeIn 2s forwards;
-      text-align: center;
-      color: white;
+      transform: translateY(50px);
+      transition: all 1s ease;
     }
-    @keyframes fadeIn { to { opacity: 1; } }
+    .visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .section {
+      max-width: 800px;
+      text-align: center;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      margin: 2rem auto;
+    }
+    h1 {
+      font-size: 4rem;
+      margin-bottom: 2rem;
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    }
+    .memory {
+      display: none;
+      margin: 2rem;
+      padding: 1rem;
+      border-left: 3px solid gold;
+      cursor: pointer;
+    }
+    .memory:hover {
+      background: rgba(255, 215, 0, 0.1);
+    }
+    #finale {
+      position: relative;
+      overflow: hidden;
+    }
+    .heart-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+    .heart {
+      position: absolute;
+      animation: float 5s linear infinite;
+      opacity: 0.7;
+    }
+    button {
+      padding: 1rem 3rem;
+      font-size: 1.5rem;
+      background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+      border: none;
+      border-radius: 50px;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    button:hover {
+      transform: scale(1.1);
+    }
+    @keyframes float {
+      from { transform: translateY(100vh) rotate(0deg); }
+      to { transform: translateY(-100vh) rotate(360deg); }
+    }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="note">
-    <h1>Princess,</h1>
-    <p>My heart skips a beat...<br>every time you blink. ❤️</p>
-    <button onclick="this.innerHTML='You’re my always 🥹'">Click if you felt it</button>
+  <!-- Section 1: Opening -->
+  <div class="parallax visible">
+    <div class="section">
+      <h1>Dear Princess,</h1>
+      <p style="font-size: 2rem;">This isn't just a website.<br>It's my heart, coded for you.</p>
+      <button onclick="revealMemory(1)">Open My Heart ❤️</button>
+    </div>
   </div>
+
+  <!-- Section 2: Memories -->
+  <div class="parallax" id="section2">
+    <div class="section">
+      <div class="memory" id="memory1" onclick="revealMemory(2)">
+        "Remember when we first talked? I stayed up all night replaying your voice in my head..."
+      </div>
+      <div class="memory" id="memory2" onclick="revealMemory(3)">
+        "Your laugh isn't just sound – it's the reason I believe in magic..."
+      </div>
+      <div class="memory" id="memory3" onclick="showFinale()">
+        "I don't need superpowers. You looking at me makes me invincible..."
+      </div>
+    </div>
+  </div>
+
+  <!-- Final Section -->
+  <div class="parallax" id="finale">
+    <div class="heart-container" id="hearts"></div>
+    <div class="section">
+      <h1>So Here's the Truth...</h1>
+      <p style="font-size: 2rem; margin: 2rem 0;">
+        You're not just my crush.<br>
+        You're my favorite 'what if' turned 'what could be'.<br>
+        My late-night thought. My first morning smile.
+      </p>
+      <button onclick="propose()">Be My Always? 🌟</button>
+    </div>
+  </div>
+
+  <script>
+    // Scroll animations
+    window.addEventListener('scroll', () => {
+      document.querySelectorAll('.parallax').forEach(el => {
+        if (el.getBoundingClientRect().top < window.innerHeight * 0.75) {
+          el.classList.add('visible');
+        }
+      });
+    });
+
+    // Interactive memories
+    let currentMemory = 0;
+    function revealMemory(num) {
+      if (num === 1) {
+        document.getElementById('section2').scrollIntoView({behavior: 'smooth'});
+        setTimeout(() => {
+          document.getElementById('memory1').style.display = 'block';
+          currentMemory = 1;
+        }, 1000);
+      } else if (num > currentMemory) {
+        document.getElementById(`memory${num}`).style.display = 'block';
+        currentMemory = num;
+      }
+    }
+
+    function showFinale() {
+      document.getElementById('finale').scrollIntoView({behavior: 'smooth'});
+      // Create floating hearts
+      for(let i=0; i<50; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.innerHTML = '❤️';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.animationDelay = Math.random() * 5 + 's';
+        document.getElementById('hearts').appendChild(heart);
+      }
+    }
+
+    function propose() {
+      alert("I promise to be the reason behind your smile, today and every day. Will you let me try? 💌");
+      // Add fireworks/confetti here
+    }
+  </script>
 </body>
-</html>
+  </html>
