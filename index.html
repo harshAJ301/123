@@ -1,180 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To My Princess: A Love Epic</title>
-  <style>
-    :root { --primary: #ff69b4; }
-    body {
-      font-family: 'Cormorant Garamond', serif;
-      background: #1a1a1a;
-      color: #fff;
-      line-height: 1.8;
-      overflow-x: hidden;
-    }
-    .chapter {
-      min-height: 100vh;
-      padding: 100px 15%;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 1.5s ease;
-      border-bottom: 1px solid rgba(255,105,180,0.3);
-    }
-    .visible { opacity: 1; transform: translateY(0); }
-    h1 { font-size: 4rem; color: var(--primary); margin-bottom: 50px; }
-    .memory-box {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 30px;
-      margin: 40px 0;
-      border-left: 5px solid var(--primary);
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .memory-box:hover { background: rgba(255, 255, 255, 0.1); }
-    #soundtrack {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: rgba(0,0,0,0.7);
-      padding: 10px;
-      border-radius: 10px;
-      z-index: 1000;
-    }
-    .hidden { display: none; }
-    .choices { margin-top: 50px; }
-    button.choice {
-      background: none;
-      border: 2px solid var(--primary);
-      color: var(--primary);
-      padding: 15px 30px;
-      margin: 10px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    button.choice:hover { background: var(--primary); color: #000; }
-    .heart-rain { position: fixed; pointer-events: none; }
-  </style>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Sharmishtha! 🎉</title>
+    <style>
+        body {
+            font-family: 'Comic Neue', cursive;
+            background: linear-gradient(45deg, #FF6B6B, #FF8E53);
+            text-align: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #fff;
+            text-shadow: 2px 2px #FF4757;
+            font-size: 3em;
+            animation: bounce 2s infinite;
+        }
+        .photo-frame {
+            width: 250px;
+            height: 250px;
+            border: 5px solid white;
+            border-radius: 50%;
+            margin: 20px auto;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+        }
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .message {
+            background: rgba(255,255,255,0.9);
+            padding: 20px;
+            border-radius: 20px;
+            margin: 20px 0;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            background: #2ED573;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.3s;
+            margin: 10px;
+        }
+        button:hover {
+            transform: scale(1.1);
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            pointer-events: none;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Official Spotify Embed (Replace TRACK_ID) -->
-  <div id="soundtrack">
-    <iframe src="https://open.spotify.com/embed/track/4uLU6hMCjMI75M1A2tKUQC" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
-  </div>
+    <div class="container">
+        <h1>Happy Birthday Sharmishtha! 🥳</h1>
+        
+        <div class="photo-frame">
+            <img src="https://placehold.co/250x250?text=🎂+Sharmishtha+🎂" alt="Sharmishtha">
+        </div>
 
-  <!-- Chapter 1 -->
-  <div class="chapter visible" id="chapter1">
-    <h1>Chapter 1: The First Earthquake</h1>
-    <div class="memory-box" onclick="reveal('memory1')">
-      "November 12th, 3:14 PM. You walked into the room, and my internal GPS malfunctioned..."
-    </div>
-    <div class="hidden" id="memory1">
-      <p>Scientists say love triggers the same neurons as survival instincts. That day, I understood why.</p>
-      <button class="choice" onclick="nextChapter(2)">Continue →</button>
-    </div>
-  </div>
+        <div class="message">
+            <p style="font-size: 1.2em;">Dear Virtual Behen,</p>
+            <p>Even though we've never met properly,<br>
+            Our Instagram chats are my guilty pleasure! 😜<br>
+            From school junior to forever friend,<br>
+            Let's make this birthday trend! 🚀</p>
+            
+            <button onclick="startParty()">Start Birthday Party! 🎈</button>
+        </div>
 
-  <!-- Chapter 2 -->
-  <div class="chapter" id="chapter2">
-    <h1>Chapter 2: 87 Failed Attempts</h1>
-    <div class="memory-box" onclick="reveal('memory2')">
-      "I drafted 87 texts to you. Deleted 86. The one I sent: 'Hey.' You replied: 'Hi 😊'..."
+        <div id="partySection" style="display: none;">
+            <h2>Time for Our First Meet? 😏</h2>
+            <p>Let's turn virtual wishes into real dishes! 🍔🍟</p>
+            <button onclick="askParty()">Treat Me or Beat Me? 🥳</button>
+        </div>
     </div>
-    <div class="hidden" id="memory2">
-      <p>That 'Hi' became my favorite Shakespearean sonnet.</p>
-      <button class="choice" onclick="nextChapter(3)">→</button>
-    </div>
-  </div>
 
-  <!-- Chapter 3 -->
-  <div class="chapter" id="chapter3">
-    <h1>Chapter 3: The Addiction</h1>
-    <div class="memory-box" onclick="reveal('memory3')">
-      "Your laugh is my nicotine. Your smile—my caffeine. Your voice—the oxygen I forgot I needed..."
-    </div>
-    <div class="hidden" id="memory3">
-      <p>I’ve become a love junkie. You’re my dealer.</p>
-      <button class="choice" onclick="nextChapter(4)">→</button>
-    </div>
-  </div>
+    <!-- Birthday Music -->
+    <audio id="birthdaySong" src="https://assets.mixkit.co/music/preview/mixkit-happy-birthday-balloon-129.mp3"></audio>
 
-  <!-- Chapter 4 -->
-  <div class="chapter" id="chapter4">
-    <h1>Chapter 4: The Fear</h1>
-    <div class="memory-box" onclick="reveal('memory4')">
-      "I practice your name in the mirror like a prayer. What if I stumble when it matters?..."
-    </div>
-    <div class="hidden" id="memory4">
-      <p>My hands shake writing this. Courage has never cost me so much.</p>
-      <button class="choice" onclick="nextChapter(5)">→</button>
-    </div>
-  </div>
+    <script>
+        function startParty() {
+            // Play music
+            const song = document.getElementById('birthdaySong');
+            song.play();
+            song.volume = 0.3;
 
-  <!-- Chapter 5: Finale -->
-  <div class="chapter" id="chapter5">
-    <h1>Chapter 5: The Leap</h1>
-    <div class="memory-box" style="font-size: 1.5rem;">
-      "Princess, I don’t want to be the ‘almost’ in your love story.<br><br>
-      Let’s rewrite this:<br>
-      <span style="font-size: 3rem;">You. Me. No End.</span>"
-    </div>
-    <div class="choices" style="margin-top: 100px;">
-      <button class="choice" onclick="celebrate()" style="font-size: 2rem;">YES 🌹</button>
-      <button class="choice" onclick="beg()" style="font-size: 2rem;">Not Yet 😢</button>
-    </div>
-  </div>
+            // Show party section
+            document.getElementById('partySection').style.display = 'block';
 
-  <script>
-    // Auto-scroll reveal
-    window.addEventListener('scroll', () => {
-      document.querySelectorAll('.chapter').forEach(chap => {
-        if (chap.getBoundingClientRect().top < window.innerHeight * 0.75) {
-          chap.classList.add('visible');
+            // Create confetti
+            createConfetti(50);
         }
-      });
-    });
 
-    // Story functions
-    function reveal(id) { 
-      document.getElementById(id).style.display = 'block'; 
-      createHearts(5); 
-    }
-    function nextChapter(num) { 
-      document.getElementById(`chapter${num}`).scrollIntoView({behavior: 'smooth'}); 
-      createHearts(10);
-    }
-    
-    function celebrate() {
-      createHearts(100);
-      alert("💌 To my forever co-author: Let’s burn libraries with our story.");
-    }
-    function beg() {
-      alert("I’ll rewrite this until my fingers bleed. Just say when. 🥺");
-    }
+        function askParty() {
+            createConfetti(100);
+            const answer = confirm("Sharmishtha, will you give me the birthday treat? 😇\n(Press OK for Yes, Cancel for Definitely Yes)");
+            if(answer) {
+                alert("Yay! 🎉 Let's plan our first meetup! 📅");
+            } else {
+                alert("Chal be, main tujhe treat dunga! 😂❤️");
+            }
+        }
 
-    // Heart animation
-    function createHearts(count) {
-      for(let i=0; i<count; i++) {
-        const heart = document.createElement('div');
-        heart.className = 'heart-rain';
-        heart.innerHTML = '❤️';
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animation = `fall ${Math.random()*3+2}s linear`;
-        heart.style.fontSize = Math.random()*20+10 + 'px';
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 5000);
-      }
-    }
+        function createConfetti(count) {
+            const colors = ['#FF6B6B', '#FFD93D', '#2ED573', '#1E90FF'];
+            for(let i = 0; i < count; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '-10px';
+                confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear`;
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 5000);
+            }
+        }
 
-    // CSS for hearts
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes fall {
-        to { transform: translateY(100vh) rotate(360deg); }
-      }
-    `;
-    document.head.appendChild(style);
-  </script>
+        // Add animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                to { transform: translateY(100vh) rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
-  </html>
+</html>
