@@ -3,174 +3,178 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To My Princess 👑</title>
+  <title>To My Princess: A Love Epic</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    :root { --primary: #ff69b4; }
     body {
-      font-family: 'Dancing Script', cursive;
-      background: linear-gradient(45deg, #1a1a1a, #4a4a4a);
+      font-family: 'Cormorant Garamond', serif;
+      background: #1a1a1a;
       color: #fff;
-      line-height: 1.6;
+      line-height: 1.8;
       overflow-x: hidden;
     }
-    .parallax {
+    .chapter {
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
+      padding: 100px 15%;
       opacity: 0;
       transform: translateY(50px);
-      transition: all 1s ease;
+      transition: all 1.5s ease;
+      border-bottom: 1px solid rgba(255,105,180,0.3);
     }
-    .visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .section {
-      max-width: 800px;
-      text-align: center;
-      padding: 2rem;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      backdrop-filter: blur(10px);
-      margin: 2rem auto;
-    }
-    h1 {
-      font-size: 4rem;
-      margin-bottom: 2rem;
-      text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-    }
-    .memory {
-      display: none;
-      margin: 2rem;
-      padding: 1rem;
-      border-left: 3px solid gold;
+    .visible { opacity: 1; transform: translateY(0); }
+    h1 { font-size: 4rem; color: var(--primary); margin-bottom: 50px; }
+    .memory-box {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      margin: 40px 0;
+      border-left: 5px solid var(--primary);
       cursor: pointer;
+      transition: 0.3s;
     }
-    .memory:hover {
-      background: rgba(255, 215, 0, 0.1);
+    .memory-box:hover { background: rgba(255, 255, 255, 0.1); }
+    #soundtrack {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0,0,0,0.7);
+      padding: 10px;
+      border-radius: 10px;
+      z-index: 1000;
     }
-    #finale {
-      position: relative;
-      overflow: hidden;
-    }
-    .heart-container {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-    }
-    .heart {
-      position: absolute;
-      animation: float 5s linear infinite;
-      opacity: 0.7;
-    }
-    button {
-      padding: 1rem 3rem;
-      font-size: 1.5rem;
-      background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
-      border: none;
-      border-radius: 50px;
-      color: white;
+    .hidden { display: none; }
+    .choices { margin-top: 50px; }
+    button.choice {
+      background: none;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      padding: 15px 30px;
+      margin: 10px;
       cursor: pointer;
-      transition: transform 0.3s;
+      transition: 0.3s;
     }
-    button:hover {
-      transform: scale(1.1);
-    }
-    @keyframes float {
-      from { transform: translateY(100vh) rotate(0deg); }
-      to { transform: translateY(-100vh) rotate(360deg); }
-    }
+    button.choice:hover { background: var(--primary); color: #000; }
+    .heart-rain { position: fixed; pointer-events: none; }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Section 1: Opening -->
-  <div class="parallax visible">
-    <div class="section">
-      <h1>Dear Princess,</h1>
-      <p style="font-size: 2rem;">This isn't just a website.<br>It's my heart, coded for you.</p>
-      <button onclick="revealMemory(1)">Open My Heart ❤️</button>
+  <!-- Official Spotify Embed (Replace TRACK_ID) -->
+  <div id="soundtrack">
+    <iframe src="https://open.spotify.com/embed/track/4uLU6hMCjMI75M1A2tKUQC" width="300" height="80" frameborder="0" allowtransparency="true"></iframe>
+  </div>
+
+  <!-- Chapter 1 -->
+  <div class="chapter visible" id="chapter1">
+    <h1>Chapter 1: The First Earthquake</h1>
+    <div class="memory-box" onclick="reveal('memory1')">
+      "November 12th, 3:14 PM. You walked into the room, and my internal GPS malfunctioned..."
+    </div>
+    <div class="hidden" id="memory1">
+      <p>Scientists say love triggers the same neurons as survival instincts. That day, I understood why.</p>
+      <button class="choice" onclick="nextChapter(2)">Continue →</button>
     </div>
   </div>
 
-  <!-- Section 2: Memories -->
-  <div class="parallax" id="section2">
-    <div class="section">
-      <div class="memory" id="memory1" onclick="revealMemory(2)">
-        "Remember when we first talked? I stayed up all night replaying your voice in my head..."
-      </div>
-      <div class="memory" id="memory2" onclick="revealMemory(3)">
-        "Your laugh isn't just sound – it's the reason I believe in magic..."
-      </div>
-      <div class="memory" id="memory3" onclick="showFinale()">
-        "I don't need superpowers. You looking at me makes me invincible..."
-      </div>
+  <!-- Chapter 2 -->
+  <div class="chapter" id="chapter2">
+    <h1>Chapter 2: 87 Failed Attempts</h1>
+    <div class="memory-box" onclick="reveal('memory2')">
+      "I drafted 87 texts to you. Deleted 86. The one I sent: 'Hey.' You replied: 'Hi 😊'..."
+    </div>
+    <div class="hidden" id="memory2">
+      <p>That 'Hi' became my favorite Shakespearean sonnet.</p>
+      <button class="choice" onclick="nextChapter(3)">→</button>
     </div>
   </div>
 
-  <!-- Final Section -->
-  <div class="parallax" id="finale">
-    <div class="heart-container" id="hearts"></div>
-    <div class="section">
-      <h1>So Here's the Truth...</h1>
-      <p style="font-size: 2rem; margin: 2rem 0;">
-        You're not just my crush.<br>
-        You're my favorite 'what if' turned 'what could be'.<br>
-        My late-night thought. My first morning smile.
-      </p>
-      <button onclick="propose()">Be My Always? 🌟</button>
+  <!-- Chapter 3 -->
+  <div class="chapter" id="chapter3">
+    <h1>Chapter 3: The Addiction</h1>
+    <div class="memory-box" onclick="reveal('memory3')">
+      "Your laugh is my nicotine. Your smile—my caffeine. Your voice—the oxygen I forgot I needed..."
+    </div>
+    <div class="hidden" id="memory3">
+      <p>I’ve become a love junkie. You’re my dealer.</p>
+      <button class="choice" onclick="nextChapter(4)">→</button>
+    </div>
+  </div>
+
+  <!-- Chapter 4 -->
+  <div class="chapter" id="chapter4">
+    <h1>Chapter 4: The Fear</h1>
+    <div class="memory-box" onclick="reveal('memory4')">
+      "I practice your name in the mirror like a prayer. What if I stumble when it matters?..."
+    </div>
+    <div class="hidden" id="memory4">
+      <p>My hands shake writing this. Courage has never cost me so much.</p>
+      <button class="choice" onclick="nextChapter(5)">→</button>
+    </div>
+  </div>
+
+  <!-- Chapter 5: Finale -->
+  <div class="chapter" id="chapter5">
+    <h1>Chapter 5: The Leap</h1>
+    <div class="memory-box" style="font-size: 1.5rem;">
+      "Princess, I don’t want to be the ‘almost’ in your love story.<br><br>
+      Let’s rewrite this:<br>
+      <span style="font-size: 3rem;">You. Me. No End.</span>"
+    </div>
+    <div class="choices" style="margin-top: 100px;">
+      <button class="choice" onclick="celebrate()" style="font-size: 2rem;">YES 🌹</button>
+      <button class="choice" onclick="beg()" style="font-size: 2rem;">Not Yet 😢</button>
     </div>
   </div>
 
   <script>
-    // Scroll animations
+    // Auto-scroll reveal
     window.addEventListener('scroll', () => {
-      document.querySelectorAll('.parallax').forEach(el => {
-        if (el.getBoundingClientRect().top < window.innerHeight * 0.75) {
-          el.classList.add('visible');
+      document.querySelectorAll('.chapter').forEach(chap => {
+        if (chap.getBoundingClientRect().top < window.innerHeight * 0.75) {
+          chap.classList.add('visible');
         }
       });
     });
 
-    // Interactive memories
-    let currentMemory = 0;
-    function revealMemory(num) {
-      if (num === 1) {
-        document.getElementById('section2').scrollIntoView({behavior: 'smooth'});
-        setTimeout(() => {
-          document.getElementById('memory1').style.display = 'block';
-          currentMemory = 1;
-        }, 1000);
-      } else if (num > currentMemory) {
-        document.getElementById(`memory${num}`).style.display = 'block';
-        currentMemory = num;
-      }
+    // Story functions
+    function reveal(id) { 
+      document.getElementById(id).style.display = 'block'; 
+      createHearts(5); 
+    }
+    function nextChapter(num) { 
+      document.getElementById(`chapter${num}`).scrollIntoView({behavior: 'smooth'}); 
+      createHearts(10);
+    }
+    
+    function celebrate() {
+      createHearts(100);
+      alert("💌 To my forever co-author: Let’s burn libraries with our story.");
+    }
+    function beg() {
+      alert("I’ll rewrite this until my fingers bleed. Just say when. 🥺");
     }
 
-    function showFinale() {
-      document.getElementById('finale').scrollIntoView({behavior: 'smooth'});
-      // Create floating hearts
-      for(let i=0; i<50; i++) {
+    // Heart animation
+    function createHearts(count) {
+      for(let i=0; i<count; i++) {
         const heart = document.createElement('div');
-        heart.className = 'heart';
+        heart.className = 'heart-rain';
         heart.innerHTML = '❤️';
         heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDelay = Math.random() * 5 + 's';
-        document.getElementById('hearts').appendChild(heart);
+        heart.style.animation = `fall ${Math.random()*3+2}s linear`;
+        heart.style.fontSize = Math.random()*20+10 + 'px';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
       }
     }
 
-    function propose() {
-      alert("I promise to be the reason behind your smile, today and every day. Will you let me try? 💌");
-      // Add fireworks/confetti here
-    }
+    // CSS for hearts
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fall {
+        to { transform: translateY(100vh) rotate(360deg); }
+      }
+    `;
+    document.head.appendChild(style);
   </script>
 </body>
   </html>
