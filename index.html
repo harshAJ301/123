@@ -3,88 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShopSphere - Premium Dropshipping</title>
+    <title>Premium Dropshipping Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@lottiefiles/lottie-player@1.5.7/dist/lottie-player.min.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            text-align: center;
+            background-color: #f9f9f9;
+            font-family: 'Arial', sans-serif;
         }
-        header {
-            background: black;
-            color: white;
-            padding: 20px;
-            font-size: 24px;
+        .hero {
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('https://source.unsplash.com/1600x900/?ecommerce') no-repeat center;
+            background-size: cover;
         }
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-        .product {
-            display: inline-block;
-            width: 30%;
-            margin: 20px;
-            padding: 15px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s;
-        }
-        .product:hover {
+        .product-card:hover {
             transform: scale(1.05);
+            transition: all 0.3s ease-in-out;
         }
-        .product img {
-            width: 100%;
-            border-radius: 8px;
-        }
-        .buy-btn {
+        canvas {
             display: block;
-            background: black;
-            color: white;
-            padding: 10px;
-            margin-top: 10px;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .buy-btn:hover {
-            background: #333;
+            width: 100%;
+            height: 300px;
         }
     </style>
 </head>
 <body>
-    <header>ShopSphere - Your Ultimate Dropshipping Store</header>
-    <div class="container">
-        <h2>Featured Products</h2>
-        <div class="product">
-            <img src="https://source.unsplash.com/300x200/?gadgets" alt="Gadget">
-            <h3>Smart LED Light</h3>
-            <p>$29.99</p>
-            <a href="#" class="buy-btn">Buy Now</a>
+    <nav class="p-5 bg-gray-900 text-white flex justify-between">
+        <h1 class="text-xl font-bold">YourPremiumStore</h1>
+        <ul class="flex space-x-6">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#shop">Shop</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <section class="hero">
+        <div class="text-center text-white">
+            <h2 class="text-4xl font-bold">Elevate Your Lifestyle</h2>
+            <p class="mt-4">Exclusive products at unbeatable prices</p>
+            <a href="#shop" class="bg-yellow-500 px-6 py-2 mt-4 inline-block rounded">Shop Now</a>
         </div>
-        <div class="product">
-            <img src="https://source.unsplash.com/300x200/?vase" alt="Vase">
-            <h3>Minimalist Vase</h3>
-            <p>$19.99</p>
-            <a href="#" class="buy-btn">Buy Now</a>
-        </div>
-        <div class="product">
-            <img src="https://source.unsplash.com/300x200/?kitchen" alt="Kitchen Organizer">
-            <h3>Kitchen Organizer</h3>
-            <p>$24.99</p>
-            <a href="#" class="buy-btn">Buy Now</a>
-        </div>
-    </div>
-</body>
-</html>
+    </section>
+    
+    <!-- 3D Model Section -->
+    <section class="p-10">
+        <h2 class="text-3xl font-bold text-center mb-6">Experience Our Products in 3D</h2>
+        <canvas id="three-canvas"></canvas>
+        <script>
+            let scene = new THREE.Scene();
+            let camera = new THREE.PerspectiveCamera(75, window.innerWidth / 300, 0.1, 1000);
+            let renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('three-canvas') });
+            renderer.setSize(window.innerWidth, 300);
+            document.body.appendChild(renderer.domElement);
 
-    <footer>
-        <p>&copy; 2024 ShopEase. All Rights Reserved.</p>
+            let geometry = new THREE.BoxGeometry();
+            let material = new THREE.MeshBasicMaterial({ color: 0x007bff });
+            let cube = new THREE.Mesh(geometry, material);
+            scene.add(cube);
+
+            camera.position.z = 5;
+            function animate() {
+                requestAnimationFrame(animate);
+                cube.rotation.x += 0.01;
+                cube.rotation.y += 0.01;
+                renderer.render(scene, camera);
+            }
+            animate();
+        </script>
+    </section>
+    
+    <section id="shop" class="p-10">
+        <h2 class="text-3xl font-bold text-center mb-6">Featured Products</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    let shopSection = document.querySelector("#shop .grid");
+                    for (let i = 1; i <= 50; i++) {
+                        let product = document.createElement("div");
+                        product.className = "product-card p-5 bg-white shadow-lg rounded";
+                        product.innerHTML = `
+                            <img src="https://source.unsplash.com/400x300/?product${i}" class="w-full h-40 object-cover rounded" alt="Product ${i}">
+                            <h3 class="text-xl font-bold mt-2">Product ${i}</h3>
+                            <p class="text-gray-600">$${(Math.random() * 100 + 10).toFixed(2)}</p>
+                            <button class="bg-blue-500 text-white px-4 py-2 mt-3 rounded">Buy Now</button>
+                        `;
+                        shopSection.appendChild(product);
+                    }
+                });
+            </script>
+        </div>
+    </section>
+    
+    <section class="p-10 text-center">
+        <h2 class="text-3xl font-bold">Our Commitment</h2>
+        <p class="mt-2">We provide high-quality, affordable products with fast shipping worldwide.</p>
+        <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_3vbOcw.json" background="transparent" speed="1" style="width: 300px; height: 300px; margin: auto;" loop autoplay></lottie-player>
+    </section>
+    
+    <footer class="bg-gray-900 text-white p-6 text-center">
+        <p>&copy; 2024 YourPremiumStore. All Rights Reserved.</p>
     </footer>
 </body>
 </html>
