@@ -3,149 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Sharmishtha! 🎉</title>
-    <style>
-        body {
-            font-family: 'Comic Neue', cursive;
-            background: linear-gradient(45deg, #FF6B6B, #FF8E53);
-            text-align: center;
-            padding: 20px;
-            overflow-x: hidden;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        h1 {
-            color: #fff;
-            text-shadow: 2px 2px #FF4757;
-            font-size: 3em;
-            animation: bounce 2s infinite;
-        }
-        .photo-frame {
-            width: 250px;
-            height: 250px;
-            border: 5px solid white;
-            border-radius: 50%;
-            margin: 20px auto;
-            overflow: hidden;
-            box-shadow: 0 0 20px rgba(0,0,0,0.3);
-        }
-        .photo-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .message {
-            background: rgba(255,255,255,0.9);
-            padding: 20px;
-            border-radius: 20px;
-            margin: 20px 0;
-            font-size: 1.2em;
-        }
-        button {
-            padding: 15px 30px;
-            font-size: 1.2em;
-            background: #2ED573;
-            color: white;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: transform 0.3s;
-            margin: 10px;
-        }
-        button:hover {
-            transform: scale(1.1);
-        }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            pointer-events: none;
-        }
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+    <title>YourShopisho - Home Products Store</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Happy Birthday Sharmishtha! 🥳</h1>
-        
-        <div class="photo-frame">
-            <img src="https://placehold.co/250x250?text=🎂+Sharmishtha+🎂" alt="Sharmishtha">
+    <header>
+        <nav>
+            <div class="logo">YourShopisho</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#shop">Shop</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="home">
+        <div class="hero">
+            <h1>Elevate Your Home with Modern Essentials</h1>
+            <p>Discover the latest in home decor, smart gadgets, and space-saving solutions.</p>
+            <a href="#shop" class="btn">Shop Now</a>
         </div>
+    </section>
 
-        <div class="message">
-            <p>Hey Sharmishtha,</p>
-            <p>It’s your special day, and I’m here to make it SPICY! 🌶️</p>
-            <p>From school junior to Instagram buddy, you’ve been the coolest virtual behen ever! 😎</p>
-            <p>Let’s celebrate like there’s no tomorrow! 🎉</p>
-            <p>Here’s to more laughs, more chats, and maybe even a real meetup someday! 😜</p>
-            <p>So, what do you say? Let’s party! 🕺💃</p>
+    <section id="shop">
+        <h2>Featured Products</h2>
+        <div class="product-grid">
+            <div class="product">
+                <img src="product1.jpg" alt="Smart LED Light">
+                <h3>Smart LED Light</h3>
+                <p>$29.99</p>
+                <a href="#" class="btn">Buy Now</a>
+            </div>
+            <div class="product">
+                <img src="product2.jpg" alt="Minimalist Vase">
+                <h3>Minimalist Vase</h3>
+                <p>$19.99</p>
+                <a href="#" class="btn">Buy Now</a>
+            </div>
+            <div class="product">
+                <img src="product3.jpg" alt="Kitchen Organizer">
+                <h3>Kitchen Organizer</h3>
+                <p>$24.99</p>
+                <a href="#" class="btn">Buy Now</a>
+            </div>
         </div>
-
-        <button onclick="startParty()">Start the Party! 🎈</button>
-
-        <div id="partySection" style="display: none;">
-            <h2>Party Time! 🥳</h2>
-            <p>Sharmishtha, it’s time to treat me! 🍕🍔</p>
-            <button onclick="askParty()">Treat or Beat? 😂</button>
-        </div>
-    </div>
-
-    <!-- Birthday Music -->
-    <audio id="birthdaySong" src="https://assets.mixkit.co/music/preview/mixkit-happy-birthday-balloon-129.mp3"></audio>
-
-    <script>
-        function startParty() {
-            // Play music
-            const song = document.getElementById('birthdaySong');
-            song.play();
-            song.volume = 0.3;
-
-            // Show party section
-            document.getElementById('partySection').style.display = 'block';
-
-            // Create confetti
-            createConfetti(50);
-        }
-
-        function askParty() {
-            createConfetti(100);
-            const answer = confirm("Sharmishtha, will you give me the birthday treat? 😇\n(Press OK for Yes, Cancel for Definitely Yes)");
-            if(answer) {
-                alert("Yay! 🎉 Let's plan our first meetup! 📅");
-            } else {
-                alert("Chal be, main tujhe treat dunga! 😂❤️");
-            }
-        }
-
-        function createConfetti(count) {
-            const colors = ['#FF6B6B', '#FFD93D', '#2ED573', '#1E90FF'];
-            for(let i = 0; i < count; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.top = '-10px';
-                confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear`;
-                document.body.appendChild(confetti);
-                
-                setTimeout(() => confetti.remove(), 5000);
-            }
-        }
-
-        // Add animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes fall {
-                to { transform: translateY(100vh) rotate(360deg); }
-            }
-        `;
-        document.head.appendChild(style);
-    </script>
+    </section>
+    
+    <section id="about">
+        <h2>About Us</h2>
+        <p>YourShopisho brings the best home essentials straight to your doorstep with a futuristic touch.</p>
+    </section>
+    
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: support@yourshopisho.com</p>
+    </section>
+    
+    <footer>
+        <p>&copy; 2024 YourShopisho. All Rights Reserved.</p>
+    </footer>
 </body>
 </html>
+
