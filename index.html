@@ -1,112 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GitHub Life Proposal</title>
+  <meta charset="UTF-8">
+  <title>Developer Declaration: Sanity Optional</title>
   <style>
     body {
-      background-color: #0d1117;
-      color: #c9d1d9;
-      font-family: monospace;
-      padding: 2rem;
+      background-color: #0f0f0f;
+      color: #00ff88;
+      font-family: "Courier New", monospace;
+      padding: 20px;
     }
-    .ascii {
-      white-space: pre;
-      font-size: 12px;
-      color: #58a6ff;
+    .terminal {
+      background-color: #111;
+      padding: 20px;
+      border: 1px solid #333;
+      border-radius: 10px;
+      max-width: 700px;
+      margin: auto;
+      white-space: pre-wrap;
     }
-    .question, .proposal, .realities {
-      margin-top: 2rem;
-    }
-    input, select, button {
-      background-color: #161b22;
-      color: #c9d1d9;
-      border: 1px solid #30363d;
-      padding: 0.5rem;
-      margin-top: 0.5rem;
+    input, button {
+      background: #000;
+      color: #0f0;
+      border: 1px solid #0f0;
+      padding: 10px;
+      margin-top: 10px;
       width: 100%;
       font-family: monospace;
     }
     button {
       cursor: pointer;
-      margin-top: 1rem;
-    }
-    .result {
-      margin-top: 2rem;
-      white-space: pre-line;
     }
   </style>
 </head>
 <body>
-  <div class="ascii">
-    _____ _ _   _    _      _          _ 
-   / ____(_) | | |  | |    | |        | |
-  | |  __ _| |_| |__| | ___| |__   ___| |
-  | | |_ | | __|  __  |/ _ \ '_ \ / _ \ |
-  | |__| | | |_| |  | |  __/ | | |  __/ |
-   \_____|_|\__|_|  |_|\___|_| |_|\___|_|
+  <div class="terminal" id="terminal">
+    [Booting up Developer Reality Check...]
+    Loading Git logs ██████████ 100%
+    
+    Enter your codename (e.g., 'Bugslayer007'):
   </div>
-
-  <h2>🌟 Welcome to My GitHub Odyssey! 🌟</h2>
-  <p>Where commits are many, but merge conflicts are inevitable...</p>
-
-  <div class="question">
-    <label>🔮 How am I REALLY feeling today?</label><br/>
-    <input id="mood" placeholder="One merge conflict away from becoming a goat farmer" />
-  </div>
-
-  <div class="question">
-    <label>1. Celebrate first-try compile with:</label><br/>
-    <input id="celebration" />
-    <label>2. Reaction to 'Just Google it':</label><br/>
-    <input id="reaction" />
-    <label>3. Midnight Anxiety Theme? (Y/N):</label><br/>
-    <input id="theme" />
-    <label>4. Truth behind 'Fixed stuff' commit:</label><br/>
-    <input id="commitTruth" />
-    <label>5. My GitHub graph as a movie title:</label><br/>
-    <input id="movieTitle" />
-  </div>
-
-  <button onclick="showResult()">Submit Proposal</button>
-
-  <div class="result" id="result"></div>
+  <input type="text" id="username" placeholder="Your dev codename..." />
+  <button onclick="start()">Initiate Chaos</button>
 
   <script>
-    function showResult() {
-      const mood = document.getElementById("mood").value || "Mystery Mood";
-      const celebration = document.getElementById("celebration").value || "A victory dance";
-      const reaction = document.getElementById("reaction").value || "🤡";
-      const theme = document.getElementById("theme").value || "Y";
-      const commitTruth = document.getElementById("commitTruth").value || "I renamed a file and cried";
-      const movieTitle = document.getElementById("movieTitle").value || "404: Code Not Found";
+    function start() {
+      const user = document.getElementById("username").value || "Anonymous";
+      const term = document.getElementById("terminal");
 
-      const result = `
-⚡ CURRENT DEV STATUS: ${mood.toUpperCase()} (Probably needs a 3AM debugging snack 🍕)
+      term.innerText = `
+Welcome, ${user}.
+Your commit history has been... reviewed. Results: deeply concerning.
 
-🔥 THE HARSH REALITIES OF MY GITHUB EXISTENCE:
-- 'git push --force' is my guilty pleasure (don't @ me)
-- When tests pass on the first try: Suspicion Level 1000 🕵️
-- Me reading my own code from 2 months ago: "Who wrote this garbage?... Oh wait"
-- That one green square on my GitHub activity chart that I protect with my life
-- My contributions graph tells the story of '${movieTitle}' (Box Office Flop)
+🧠 Profile Summary:
+- Sleep: Optional
+- Bugs: Eternal
+- Confidence: Faked
+- Coding Skill: Improving (copium detected)
+      
+🚩 Flags Raised:
+- 42 TODOs left in production
+- Last commit: 'final_final_v2_fixed_maybe.js'
+- StackOverflow: Open in 6 tabs
+- Coffee intake: LEGALLY DANGEROUS
 
-📢 OFFICIAL PROPOSAL:
-I, a humble (and slightly sleep-deprived) developer, hereby propose:
-- To continue pushing code like I know what I'm doing
-- To blame 'edge cases' for all bugs (it's never my fault)
-- To celebrate tiny wins (like when \`npm install\` actually works)
-- To pretend I understand Docker... until I actually do
-- To celebrate successful compilations with ${celebration}
-- To maintain my ${theme === "Y" ? "'Midnight Anxiety'" : "'Hopeful Daylight'"} IDE theme because it matches my soul
+🧪 Proposed Developer Life Contract:
+By clicking “ACCEPT”, you agree to:
+- Debug code you didn’t write at 2AM
+- Explain to PMs why “just add AI” isn’t an answer
+- Defend your dark theme until death
+- Commit nonsense and pretend it’s intentional
+- Celebrate every successful `npm install` like a festival
 
-🤔 Do you accept this journey of chaos, caffeine, and questionable commit messages?
+Do you accept this gloriously chaotic life?
 
-👉 Approve? (Y/N/I'll review after my 5th coffee)
+→ Press a button below to seal your fate.
+      `;
+
+      // Replace input with buttons
+      document.getElementById("username").style.display = "none";
+      const button = document.querySelector("button");
+      button.style.display = "none";
+
+      const yesBtn = document.createElement("button");
+      yesBtn.innerText = "✅ ACCEPT";
+      yesBtn.onclick = () => {
+        term.innerText += `
+
+🚀 Welcome to the madness, ${user}.
+May your semicolons align and your builds stay green.
+
+[MISSION: BEGIN]
 `;
+        yesBtn.style.display = "none";
+        noBtn.style.display = "none";
+      };
 
-      document.getElementById("result").textContent = result;
+      const noBtn = document.createElement("button");
+      noBtn.innerText = "❌ REJECT";
+      noBtn.onclick = () => {
+        term.innerText += `
+
+😤 Rejected the truth? That’s okay.
+We’ll force-push it to your life anyway.
+`;
+        yesBtn.style.display = "none";
+        noBtn.style.display = "none";
+      };
+
+      document.body.appendChild(yesBtn);
+      document.body.appendChild(noBtn);
     }
   </script>
 </body>
