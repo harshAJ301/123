@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For You, Sunshine</title>
+    <title>For You, </title>
     <style>
         body {
             background: url('https://thumbs.dreamstime.com/b/vintage-roses-shabby-chic-background-old-scrapbook-paper-watercolor-style-69105141.jpg') no-repeat center center fixed;
@@ -49,7 +49,7 @@
     </style>
 </head>
 <body>
-    <h1>Hi Sunshine ☀️</h1>
+    <h1>Hi </h1>
     <p id="introText"></p>
 
     <button onclick="begin()">💌 Begin</button>
@@ -99,9 +99,9 @@
         }
 
         window.onload = function() {
-            let introText = "I want to say something. It might feel slightly eerie for you, but I know I’d regret it if I didn’t. So, I finally worked up the courage to put it into words.";
+            let introText = "s.";
             typeText(introText, document.getElementById("introText"), () => {
-                typeText("Do you believe in love at first sight? 💘", document.getElementById("questionText"), () => {
+                typeText("Do you believe ? 💘", document.getElementById("questionText"), () => {
                     document.getElementById("question").style.display = "block";
                 });
             });
@@ -116,8 +116,8 @@
             let messageElement = document.getElementById("message");
             let fullMessageElement = document.getElementById("fullMessage");
             let fullText = isYes 
-                ? 💕 Well, that's the story of mine. When I saw you in 9th grade, I didn’t like you—obviously, I didn’t know you much beyond your name. But when I truly got to know you, maybe around the end of 10th, I realized there was something special about you. 💫\n\n😍 When I got to know your sense of humor, your kindness, and so much more about who you are, I realized there’s something truly special about you. Over time, those little things grew into something I couldn’t ignore. 💕\n\nSometimes, it’s hard to keep this inside, and I’ve been scared that saying it might change things between us. But I really like you. I know you might not feel the same way—maybe you even hate me—but I wanted to be honest because you mean so much to me. ❤️\n\n🌈 Thank you for everything you’ve unknowingly added to my life. You’ve made it brighter in ways I can’t explain. ✨\n\n🎉 And one last thing—Happy Birthday! 🎂  \nIf you feel like yelling at me, laughing, or saying anything at all, just drop me a voice note… I’ll be waiting. 😊🎙️❤️\n\nLet’s end this with a note:\n\n'Her beauty struck me much later, it’s true,\nBut first, I fell for the soul that shone through.' 💖
-                : "😅 Ab tho maan le, itne log apko propose kar chuke hain—I am also one of them! 💕";
+                ? 💕 Wegh.' 💖
+                : "😅 Aem! 💕";
             
             messageElement.style.display = "block";
             fullMessageElement.style.display = "block";
@@ -138,8 +138,8 @@
 
         function hangoutResponse(isYes) {
             let message = isYes 
-                ? "That’s awesome🎉!! Let me know when you're free, and we’ll plan something nice together😊✨"
-                : "No worries! I completely understand. Just know that I appreciate you a lot. 💖";
+                ? "Ter😊✨"
+                : "Not. 💖";
 
             // Show the response in a notification bar (Action Tab)
             if (Notification.permission === "granted") {
