@@ -1,116 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Developer Declaration: Sanity Optional</title>
-  <style>
-    body {
-      background-color: #0f0f0f;
-      color: #00ff88;
-      font-family: "Courier New", monospace;
-      padding: 20px;
-    }
-    .terminal {
-      background-color: #111;
-      padding: 20px;
-      border: 1px solid #333;
-      border-radius: 10px;
-      max-width: 700px;
-      margin: auto;
-      white-space: pre-wrap;
-    }
-    input, button {
-      background: #000;
-      color: #0f0;
-      border: 1px solid #0f0;
-      padding: 10px;
-      margin-top: 10px;
-      width: 100%;
-      font-family: monospace;
-    }
-    button {
-      cursor: pointer;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You, Sunshine</title>
+    <style>
+        body {
+            background: url('https://thumbs.dreamstime.com/b/vintage-roses-shabby-chic-background-old-scrapbook-paper-watercolor-style-69105141.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: black;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            padding: 20px;
+        }
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            background-color: #FADA5E;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #ffd700;
+        }
+        #question, #message, #fullMessage, #hangoutQuestion {
+            display: none;
+        }
+        iframe {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+        }
+        #hangoutQuestion p {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    </style>
 </head>
 <body>
-  <div class="terminal" id="terminal">
-    [Booting up Developer Reality Check...]
-    Loading Git logs ██████████ 100%
-    
-    Enter your codename (e.g., 'Bugslayer007'):
-  </div>
-  <input type="text" id="username" placeholder="Your dev codename..." />
-  <button onclick="start()">Initiate Chaos</button>
+    <h1>Hi Sunshine ☀️</h1>
+    <p id="introText"></p>
 
-  <script>
-    function start() {
-      const user = document.getElementById("username").value || "Anonymous";
-      const term = document.getElementById("terminal");
+    <button onclick="begin()">💌 Begin</button>
 
-      term.innerText = `
-Welcome, ${user}.
-Your commit history has been... reviewed. Results: deeply concerning.
+    <iframe id="videoFrame" 
+        src="https://www.youtube.com/embed/UFrg-IQS9Ac?autoplay=1" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="autoplay">
+    </iframe>
 
-🧠 Profile Summary:
-- Sleep: Optional
-- Bugs: Eternal
-- Confidence: Faked
-- Coding Skill: Improving (copium detected)
-      
-🚩 Flags Raised:
-- 42 TODOs left in production
-- Last commit: 'final_final_v2_fixed_maybe.js'
-- StackOverflow: Open in 6 tabs
-- Coffee intake: LEGALLY DANGEROUS
+    <div id="question">
+        <p id="questionText"></p>
+        <button onclick="askLoveQuestion(true)">Yes</button>
+        <button onclick="askLoveQuestion(false)">No</button>
+    </div>
 
-🧪 Proposed Developer Life Contract:
-By clicking “ACCEPT”, you agree to:
-- Debug code you didn’t write at 2AM
-- Explain to PMs why “just add AI” isn’t an answer
-- Defend your dark theme until death
-- Commit nonsense and pretend it’s intentional
-- Celebrate every successful `npm install` like a festival
+    <p id="message" style="margin-top: 20px;"></p>
+    <p id="fullMessage"></p>
 
-Do you accept this gloriously chaotic life?
+    <div id="hangoutQuestion">
+        <p>*If you're okay with it, maybe we could hang out sometime?*</p>
+        <button onclick="hangoutResponse(true)">Yes</button>
+        <button onclick="hangoutResponse(false)">No</button>
+    </div>
 
-→ Press a button below to seal your fate.
-      `;
+    <script>
+        const speed = 50;
 
-      // Replace input with buttons
-      document.getElementById("username").style.display = "none";
-      const button = document.querySelector("button");
-      button.style.display = "none";
+        function typeText(text, element, callback) {
+            let i = 0;
+            element.innerHTML = "";
+            function typing() {
+                if (i < text.length) {
+                    if (text.charAt(i) === '\n') {
+                        element.innerHTML += '<br>';
+                    } else {
+                        element.innerHTML += text.charAt(i);
+                    }
+                    i++;
+                    setTimeout(typing, speed);
+                } else if (callback) {
+                    setTimeout(callback, 500);
+                }
+            }
+            typing();
+        }
 
-      const yesBtn = document.createElement("button");
-      yesBtn.innerText = "✅ ACCEPT";
-      yesBtn.onclick = () => {
-        term.innerText += `
+        window.onload = function() {
+            let introText = "I want to say something. It might feel slightly eerie for you, but I know I’d regret it if I didn’t. So, I finally worked up the courage to put it into words.";
+            typeText(introText, document.getElementById("introText"), () => {
+                typeText("Do you believe in love at first sight? 💘", document.getElementById("questionText"), () => {
+                    document.getElementById("question").style.display = "block";
+                });
+            });
+        };
 
-🚀 Welcome to the madness, ${user}.
-May your semicolons align and your builds stay green.
+        function begin() {
+            document.getElementById("videoFrame").style.display = "block"; 
+            document.getElementById("question").style.display = "block";
+        }
 
-[MISSION: BEGIN]
-`;
-        yesBtn.style.display = "none";
-        noBtn.style.display = "none";
-      };
+        function askLoveQuestion(isYes) {
+            let messageElement = document.getElementById("message");
+            let fullMessageElement = document.getElementById("fullMessage");
+            let fullText = isYes 
+                ? 💕 Well, that's the story of mine. When I saw you in 9th grade, I didn’t like you—obviously, I didn’t know you much beyond your name. But when I truly got to know you, maybe around the end of 10th, I realized there was something special about you. 💫\n\n😍 When I got to know your sense of humor, your kindness, and so much more about who you are, I realized there’s something truly special about you. Over time, those little things grew into something I couldn’t ignore. 💕\n\nSometimes, it’s hard to keep this inside, and I’ve been scared that saying it might change things between us. But I really like you. I know you might not feel the same way—maybe you even hate me—but I wanted to be honest because you mean so much to me. ❤️\n\n🌈 Thank you for everything you’ve unknowingly added to my life. You’ve made it brighter in ways I can’t explain. ✨\n\n🎉 And one last thing—Happy Birthday! 🎂  \nIf you feel like yelling at me, laughing, or saying anything at all, just drop me a voice note… I’ll be waiting. 😊🎙️❤️\n\nLet’s end this with a note:\n\n'Her beauty struck me much later, it’s true,\nBut first, I fell for the soul that shone through.' 💖
+                : "😅 Ab tho maan le, itne log apko propose kar chuke hain—I am also one of them! 💕";
+            
+            messageElement.style.display = "block";
+            fullMessageElement.style.display = "block";
+            fullMessageElement.innerHTML = "";
 
-      const noBtn = document.createElement("button");
-      noBtn.innerText = "❌ REJECT";
-      noBtn.onclick = () => {
-        term.innerText += `
+            let paragraphs = fullText.split('\n\n');
+            function typeParagraphs(index) {
+                if (index < paragraphs.length) {
+                    let para = document.createElement('p');
+                    fullMessageElement.appendChild(para);
+                    typeText(paragraphs[index], para, () => typeParagraphs(index + 1));
+                } else {
+                    document.getElementById("hangoutQuestion").style.display = "block";
+                }
+            }
+            typeParagraphs(0);
+        }
 
-😤 Rejected the truth? That’s okay.
-We’ll force-push it to your life anyway.
-`;
-        yesBtn.style.display = "none";
-        noBtn.style.display = "none";
-      };
+        function hangoutResponse(isYes) {
+            let message = isYes 
+                ? "That’s awesome🎉!! Let me know when you're free, and we’ll plan something nice together😊✨"
+                : "No worries! I completely understand. Just know that I appreciate you a lot. 💖";
 
-      document.body.appendChild(yesBtn);
-      document.body.appendChild(noBtn);
-    }
-  </script>
+            // Show the response in a notification bar (Action Tab)
+            if (Notification.permission === "granted") {
+                new Notification("💬", { body: message });
+            } else if (Notification.permission !== "denied") {
+                Notification.requestPermission().then(permission => {
+                    if (permission === "granted") {
+                        new Notification("💬", { body: message });
+                    }
+                });
+            }
+        }
+    </script>
 </body>
 </html>
