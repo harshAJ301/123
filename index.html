@@ -4,69 +4,86 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>🎉 Birthday</title>
+
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+  <!-- PAGE 1 : LANDING -->
   <section class="screen active" id="page-1">
     <div class="center">
-      <h1>Hey 👋</h1>
-      <p class="sub">Tap to start</p>
+      <h1 class="hero glow">Hey 👋</h1>
+      <p class="sub">Something fun is waiting</p>
       <button class="btn" onclick="goToPage(2)">START</button>
     </div>
   </section>
 
+  <!-- PAGE 2 : COUNTDOWN -->
   <section class="screen" id="page-2">
     <div class="center">
-      <h1 id="countdown">5</h1>
+      <h1 id="countdown" class="hero glow">5</h1>
     </div>
   </section>
 
+  <!-- PAGE 3 : MINI GAME 1 -->
   <section class="screen" id="page-3">
     <div class="center">
-      <p>Tap the cake 10 times</p>
+      <p class="sub">Tap the cake 10 times (no cheating 👀)</p>
       <div id="cake">🎂</div>
       <p id="counter">0 / 10</p>
       <button class="btn hidden" id="tapNext" onclick="goToPage(4)">Continue</button>
     </div>
   </section>
 
+  <!-- PAGE 4 : QUIZ -->
   <section class="screen" id="page-4">
     <div class="center">
-      <p id="quiz-question"></p>
+      <p id="quiz-question" class="sub"></p>
       <div id="quiz-options"></div>
     </div>
   </section>
 
+  <!-- PAGE 5 : FAKE ERROR -->
   <section class="screen" id="page-5">
     <div class="center">
-      <h1 id="error-text">404</h1>
-      <p id="error-sub">Birthday not found</p>
+      <h1 id="error-text" class="hero glow">404</h1>
+      <p id="error-sub" class="sub">Birthday not found</p>
     </div>
   </section>
 
+  <!-- PAGE 6 : MINI STORY -->
   <section class="screen" id="page-6">
     <div class="center">
-      <p id="story"></p>
+      <p id="story" class="sub"></p>
       <button class="btn" onclick="goToPage(7)">Final level</button>
     </div>
   </section>
 
+  <!-- PAGE 7 : SURPRISE BUTTON -->
   <section class="screen" id="page-7">
     <div class="center">
-      <p>Do NOT press the button.</p>
+      <p class="sub">Do NOT press the button.<br>This is your last warning.</p>
       <button class="btn danger" onclick="buttonPressed()">PRESS</button>
-      <p id="buttonResult"></p>
+      <p id="buttonResult" class="sub"></p>
       <button class="btn hidden" id="lastBtn" onclick="goToPage(8)">Last thing</button>
     </div>
   </section>
 
+  <!-- PAGE 8 : FINAL -->
   <section class="screen" id="page-8">
     <div class="center">
-      <h1>Happy Birthday 🎉</h1>
+      <h1 class="hero glow">Happy Birthday 🎉</h1>
+      <p class="sub">Hope today feels as good as it should</p>
+      <img 
+        src="https://media.giphy.com/media/3o7abB06u9bNzA8lu8/giphy.gif" 
+        alt="Birthday GIF" 
+        width="220"
+      >
     </div>
   </section>
 
+  <!-- JS -->
   <script src="script.js"></script>
 </body>
 </html>
