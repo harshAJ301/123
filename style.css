@@ -5,8 +5,13 @@
 
 body {
   margin: 0;
-  background: radial-gradient(circle at top, #1b2735, #090a0f);
-  color: white;
+  background: radial-gradient(
+    circle at top,
+    #ffd6e8,
+    #f8b4c6,
+    #f3a0b5
+  );
+  color: #2b2b2b;
   overflow: hidden;
 }
 
