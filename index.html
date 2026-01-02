@@ -1,157 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For You, </title>
-    <style>
-        body {
-            background: url('https://thumbs.dreamstime.com/b/vintage-roses-shabby-chic-background-old-scrapbook-paper-watercolor-style-69105141.jpg') no-repeat center center fixed;
-            background-size: cover;
-            color: black;
-            font-family: 'Courier New', Courier, monospace;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            text-align: center;
-            padding: 20px;
-        }
-        button {
-            font-size: 20px;
-            padding: 10px 20px;
-            background-color: #FADA5E;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-            transition: background-color 0.3s ease;
-            margin-top: 20px;
-        }
-        button:hover {
-            background-color: #ffd700;
-        }
-        #question, #message, #fullMessage, #hangoutQuestion {
-            display: none;
-        }
-        iframe {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            opacity: 0;
-        }
-        #hangoutQuestion p {
-            font-weight: bold;
-            font-size: 1.2em;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🎉 Birthday</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>a </h1>
-    <p id="introText"></p>
 
-    <button onclick="begin()">💌 Begin</button>
-
-    <iframe id="videoFrame" 
-        src="https://www.youtube.com/embed/UFrg-IQS9Ac?autoplay=1" 
-        title="YouTube video player" 
-        frameborder="0" 
-        allow="autoplay">
-    </iframe>
-
-    <div id="question">
-        <p id="questionText"></p>
-        <button onclick="askLoveQuestion(true)">Yes</button>
-        <button onclick="askLoveQuestion(false)">No</button>
+  <section class="screen active" id="page-1">
+    <div class="center">
+      <h1>Hey 👋</h1>
+      <p class="sub">Tap to start</p>
+      <button class="btn" onclick="goToPage(2)">START</button>
     </div>
+  </section>
 
-    <p id="message" style="margin-top: 20px;"></p>
-    <p id="fullMessage"></p>
-
-    <div id="hangoutQuestion">
-        <p>*If you're okay with it, maybe we could hang out sometime?*</p>
-        <button onclick="hangoutResponse(true)">Yes</button>
-        <button onclick="hangoutResponse(false)">No</button>
+  <section class="screen" id="page-2">
+    <div class="center">
+      <h1 id="countdown">5</h1>
     </div>
+  </section>
 
-    <script>
-        const speed = 50;
+  <section class="screen" id="page-3">
+    <div class="center">
+      <p>Tap the cake 10 times</p>
+      <div id="cake">🎂</div>
+      <p id="counter">0 / 10</p>
+      <button class="btn hidden" id="tapNext" onclick="goToPage(4)">Continue</button>
+    </div>
+  </section>
 
-        function typeText(text, element, callback) {
-            let i = 0;
-            element.innerHTML = "";
-            function typing() {
-                if (i < text.length) {
-                    if (text.charAt(i) === '\n') {
-                        element.innerHTML += '<br>';
-                    } else {
-                        element.innerHTML += text.charAt(i);
-                    }
-                    i++;
-                    setTimeout(typing, speed);
-                } else if (callback) {
-                    setTimeout(callback, 500);
-                }
-            }
-            typing();
-        }
+  <section class="screen" id="page-4">
+    <div class="center">
+      <p id="quiz-question"></p>
+      <div id="quiz-options"></div>
+    </div>
+  </section>
 
-        window.onload = function() {
-            let introText = "s.";
-            typeText(introText, document.getElementById("introText"), () => {
-                typeText("Do you believe ? 💘", document.getElementById("questionText"), () => {
-                    document.getElementById("question").style.display = "block";
-                });
-            });
-        };
+  <section class="screen" id="page-5">
+    <div class="center">
+      <h1 id="error-text">404</h1>
+      <p id="error-sub">Birthday not found</p>
+    </div>
+  </section>
 
-        function begin() {
-            document.getElementById("videoFrame").style.display = "block"; 
-            document.getElementById("question").style.display = "block";
-        }
+  <section class="screen" id="page-6">
+    <div class="center">
+      <p id="story"></p>
+      <button class="btn" onclick="goToPage(7)">Final level</button>
+    </div>
+  </section>
 
-        function askLoveQuestion(isYes) {
-            let messageElement = document.getElementById("message");
-            let fullMessageElement = document.getElementById("fullMessage");
-            let fullText = isYes 
-                ? 💕 Wegh.' 💖
-                : "😅 Aem! 💕";
-            
-            messageElement.style.display = "block";
-            fullMessageElement.style.display = "block";
-            fullMessageElement.innerHTML = "";
+  <section class="screen" id="page-7">
+    <div class="center">
+      <p>Do NOT press the button.</p>
+      <button class="btn danger" onclick="buttonPressed()">PRESS</button>
+      <p id="buttonResult"></p>
+      <button class="btn hidden" id="lastBtn" onclick="goToPage(8)">Last thing</button>
+    </div>
+  </section>
 
-            let paragraphs = fullText.split('\n\n');
-            function typeParagraphs(index) {
-                if (index < paragraphs.length) {
-                    let para = document.createElement('p');
-                    fullMessageElement.appendChild(para);
-                    typeText(paragraphs[index], para, () => typeParagraphs(index + 1));
-                } else {
-                    document.getElementById("hangoutQuestion").style.display = "block";
-                }
-            }
-            typeParagraphs(0);
-        }
+  <section class="screen" id="page-8">
+    <div class="center">
+      <h1>Happy Birthday 🎉</h1>
+    </div>
+  </section>
 
-        function hangoutResponse(isYes) {
-            let message = isYes 
-                ? "Ter😊✨"
-                : "Not. 💖";
-
-            // Show the response in a notification bar (Action Tab)
-            if (Notification.permission === "granted") {
-                new Notification("💬", { body: message });
-            } else if (Notification.permission !== "denied") {
-                Notification.requestPermission().then(permission => {
-                    if (permission === "granted") {
-                        new Notification("💬", { body: message });
-                    }
-                });
-            }
-        }
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
