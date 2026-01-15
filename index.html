@@ -3,24 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday! 🎂</title>
+    <title>Ultimate Birthday Experience 🎂</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Visual Effects Container -->
+    <div class="visual-effects">
+        <div class="bg-container"></div>
+        <div class="parallax-layer layer-1"></div>
+        <div class="parallax-layer layer-2"></div>
+        <div class="parallax-layer layer-3"></div>
+    </div>
+
+    <!-- Global Timer & Score -->
+    <div class="global-hud">
+        <div class="timer-container">
+            <i class="fas fa-clock"></i>
+            <span id="total-timer">05:00</span>
+        </div>
+        <div class="score-container">
+            <i class="fas fa-star"></i>
+            <span id="total-score">0</span>
+            <div class="chaos-meter">
+                <div class="chaos-fill" id="chaos-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Music Controls -->
+    <div class="music-controls glass-effect">
+        <button onclick="toggleMusic()" class="pulse-glow" id="music-btn">
+            <i class="fas fa-music"></i> <span>🎵 ON</span>
+        </button>
+        <button onclick="toggleEffects()" id="fx-btn">
+            <i class="fas fa-magic"></i> <span>✨ FX</span>
+        </button>
+        <button onclick="toggleChaos()" id="chaos-btn">
+            <i class="fas fa-fire"></i> <span>🔥 Normal</span>
+        </button>
+    </div>
+
     <!-- PAGE 1: Landing -->
     <div class="page active" id="page1">
-        <div class="gradient-bg"></div>
-        <h1 class="main-title">Hey 👋</h1>
-        <p class="subtitle">Ready for your upgrade?</p>
-        <button class="glow-btn" onclick="nextPage()">
-            START <i class="fas fa-arrow-right"></i>
+        <div class="particles-container" id="particles1"></div>
+        <h1 class="main-title neon-text glitch" data-text="BIRTHDAY.EXE">BIRTHDAY.EXE</h1>
+        <p class="subtitle cyber-text">System: Ready for maximum fun</p>
+        
+        <button class="cyber-button bounce-in" onclick="startExperience()" onmouseenter="createExplosion(event.clientX, event.clientY, '#ff6b8b')">
+            <span class="cyber-text">LAUNCH PARTY MODE</span>
+            <span class="cyber-glitch">LAUNCH PARTY MODE</span>
+            <div class="cyber-sparkle">✨</div>
         </button>
-        <div class="floating">
-            <div class="balloon">🎈</div>
-            <div class="balloon">🎈</div>
-            <div class="confetti">✨</div>
-            <div class="confetti">✨</div>
+        
+        <div class="hint">🎮 Pro tip: Click everything!</div>
+        
+        <div class="floating-icons">
+            <div class="icon">🎂</div>
+            <div class="icon">🎁</div>
+            <div class="icon">🎈</div>
+            <div class="icon">✨</div>
         </div>
     </div>
 
@@ -28,103 +71,376 @@
     <div class="page" id="page2">
         <div class="countdown-container">
             <div class="countdown-number" id="countdown">5</div>
+            <div class="countdown-label">Initiating celebration protocol</div>
         </div>
-        <div class="cake-hidden" id="hidden-cake">🎂</div>
+        <div class="explosion-container" id="explosion1"></div>
     </div>
 
-    <!-- PAGE 3: Tap Game -->
+    <!-- PAGE 3: Tap Challenge -->
     <div class="page" id="page3">
-        <h2>Tap the cake 10 times<br><small>(no cheating 👀)</small></h2>
-        <div class="game-container">
-            <div class="cake-game" id="tap-cake" onclick="tapCake()">
-                🎂
-            </div>
-            <div class="counter">Taps: <span id="tap-count">0</span>/10</div>
+        <div class="game-header">
+            <h2><i class="fas fa-bolt"></i> SPEED CHALLENGE</h2>
+            <div class="game-timer">Time: <span id="game-timer">10</span>s</div>
         </div>
-        <button class="next-btn" onclick="nextPage()" id="continue-btn" disabled>
-            Continue <i class="fas fa-lock"></i>
+        
+        <div class="game-instruction">
+            Tap the cake <span class="highlight">FAST</span>!<br>
+            <small>Goal: 15 taps before time runs out</small>
+        </div>
+        
+        <div class="game-arena">
+            <div class="cake-target" id="tap-cake" onclick="tapCake()" 
+                 onmouseenter="this.style.transform = 'scale(1.1)'"
+                 onmouseleave="this.style.transform = 'scale(1)'">
+                🎂
+                <div class="cake-sparkle">✨</div>
+            </div>
+            <div class="game-stats">
+                <div class="stat">
+                    <i class="fas fa-hand-point-up"></i>
+                    <span id="tap-count">0</span>/15
+                </div>
+                <div class="stat">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span id="tap-speed">0</span> taps/s
+                </div>
+            </div>
+        </div>
+        
+        <div class="game-feedback" id="tap-feedback"></div>
+        <button class="next-btn hidden" onclick="nextPage()" id="continue-btn">
+            Continue <i class="fas fa-arrow-right"></i>
         </button>
     </div>
 
     <!-- PAGE 4: Quiz -->
     <div class="page" id="page4">
-        <h2>Birthday Quiz</h2>
-        <div class="quiz-container">
-            <div class="question" id="question1">
-                <p>Why is today acting so special?</p>
-                <button onclick="selectAnswer(1, 3)">Monday energy 😐</button>
-                <button onclick="selectAnswer(1, 2)">Random drama</button>
-                <button onclick="selectAnswer(1, 1)" class="correct">Someone's birthday 😌</button>
-            </div>
-            <div class="question hidden" id="question2">
-                <p>What should be illegal today?</p>
-                <button onclick="selectAnswer(2, 1)">Stress</button>
-                <button onclick="selectAnswer(2, 2)">Studying</button>
-                <button onclick="selectAnswer(2, 3)" class="correct">Saying "act your age"</button>
-            </div>
-            <div id="quiz-response"></div>
+        <div class="quiz-header">
+            <h2><i class="fas fa-brain"></i> BIRTHDAY IQ TEST</h2>
+            <div class="quiz-progress">Question <span id="current-q">1</span>/3</div>
         </div>
-        <button class="next-btn hidden" onclick="nextPage()" id="quiz-next">Next</button>
+        
+        <div class="quiz-card glass-effect">
+            <div class="question active" id="question1">
+                <p class="question-text">What's today's special power?</p>
+                <div class="options">
+                    <button class="option" onclick="selectAnswer(1, 1)">
+                        <span class="emoji">😴</span> Unlimited naps
+                    </button>
+                    <button class="option" onclick="selectAnswer(1, 2)">
+                        <span class="emoji">👑</span> Being the main character
+                    </button>
+                    <button class="option correct" onclick="selectAnswer(1, 3)">
+                        <span class="emoji">🎂</span> Cake immunity
+                    </button>
+                    <button class="option" onclick="selectAnswer(1, 4)">
+                        <span class="emoji">📧</span> Ignoring emails legally
+                    </button>
+                </div>
+            </div>
+            
+            <div class="question" id="question2">
+                <p class="question-text">What's the birthday dress code?</p>
+                <div class="options">
+                    <button class="option" onclick="selectAnswer(2, 1)">
+                        <span class="emoji">👔</span> Formal wear
+                    </button>
+                    <button class="option correct" onclick="selectAnswer(2, 2)">
+                        <span class="emoji">🩳</span> Pajamas all day
+                    </button>
+                    <button class="option" onclick="selectAnswer(2, 3)">
+                        <span class="emoji">👗</span> Instagram outfit
+                    </button>
+                    <button class="option" onclick="selectAnswer(2, 4)">
+                        <span class="emoji">🎭</span> Fancy disguise
+                    </button>
+                </div>
+            </div>
+            
+            <div class="question" id="question3">
+                <p class="question-text">Essential birthday supplies?</p>
+                <div class="options">
+                    <button class="option" onclick="selectAnswer(3, 1)">
+                        <span class="emoji">📅</span> Calendar reminder
+                    </button>
+                    <button class="option" onclick="selectAnswer(3, 2)">
+                        <span class="emoji">💼</span> Work laptop
+                    </button>
+                    <button class="option" onclick="selectAnswer(3, 3)">
+                        <span class="emoji">🧹</span> Cleaning supplies
+                    </button>
+                    <button class="option correct" onclick="selectAnswer(3, 4)">
+                        <span class="emoji">🎉</span> Confetti cannon
+                    </button>
+                </div>
+            </div>
+            
+            <div class="quiz-feedback" id="quiz-feedback"></div>
+        </div>
+        
+        <button class="next-btn hidden" onclick="nextPage()" id="quiz-next">
+            Next Challenge <i class="fas fa-gamepad"></i>
+        </button>
     </div>
 
-    <!-- PAGE 5: Fake 404 -->
+    <!-- PAGE 5: Fake Error -->
     <div class="page" id="page5">
-        <div class="error-screen">
-            <h1 class="error-code">404</h1>
-            <p class="error-text">Birthday not found</p>
-            <div class="loading">
-                <div class="loading-bar"></div>
+        <div class="error-screen glitch-effect">
+            <div class="error-code-container">
+                <h1 class="error-code glitch" data-text="404">404</h1>
+                <div class="error-subtitle">Birthday_not_found.dll</div>
             </div>
-            <p class="just-kidding hidden" id="jk">Just kidding 😄<br>Obviously it's your birthday 🎉</p>
+            
+            <div class="terminal">
+                <div class="terminal-line">$ searching_for_birthday.exe...</div>
+                <div class="terminal-line">$ scanning_system...</div>
+                <div class="terminal-line">$ found: cake.exe</div>
+                <div class="terminal-line">$ found: party.dll</div>
+                <div class="terminal-line">$ found: fun_registry.key</div>
+                <div class="terminal-line">$ error: birthday_too_awesome</div>
+                <div class="terminal-line">$ rebooting_with_celebration...</div>
+            </div>
+            
+            <div class="loading-container">
+                <div class="loading-text">Loading celebration...</div>
+                <div class="loading-bar">
+                    <div class="loading-fill" id="loading-fill"></div>
+                </div>
+            </div>
+            
+            <div class="surprise-message hidden" id="surprise-msg">
+                <h2 class="neon-text">🎉 GOTCHA! 🎉</h2>
+                <p>Birthday found! Proceeding with maximum fun...</p>
+            </div>
         </div>
     </div>
 
     <!-- PAGE 6: Story -->
     <div class="page" id="page6">
-        <h2>Birthday Story</h2>
-        <div class="story-container">
-            <p id="story-line-1" class="story-line">Once upon a time,</p>
-            <p id="story-line-2" class="story-line hidden">today woke up feeling important.</p>
-            <p id="story-line-3" class="story-line hidden">No work.</p>
-            <p id="story-line-4" class="story-line hidden">No stress.</p>
-            <p id="story-line-5" class="story-line hidden">Just cake and vibes.</p>
-            <p id="story-line-6" class="story-line hidden">Suspicious... but acceptable.</p>
+        <div class="story-container glass-effect">
+            <div class="story-header">
+                <h2><i class="fas fa-book-open"></i> THE BIRTHDAY SAGA</h2>
+                <div class="story-controls">
+                    <button onclick="skipStory()" class="skip-btn">
+                        <i class="fas fa-forward"></i> Skip
+                    </button>
+                </div>
+            </div>
+            
+            <div class="story-content">
+                <div class="story-line active" id="line1">
+                    <span class="story-icon">📖</span>
+                    <p>Once upon a time in a galaxy very, very close...</p>
+                </div>
+                <div class="story-line" id="line2">
+                    <span class="story-icon">🌅</span>
+                    <p>A special day woke up feeling EXTRA important.</p>
+                </div>
+                <div class="story-line" id="line3">
+                    <span class="story-icon">🚫</span>
+                    <p>It declared: "No work today. No stress. No problems."</p>
+                </div>
+                <div class="story-line" id="line4">
+                    <span class="story-icon">🎂</span>
+                    <p>"Only cake. Only vibes. Only good times."</p>
+                </div>
+                <div class="story-line" id="line5">
+                    <span class="story-icon">🤔</span>
+                    <p>The universe paused, then responded:</p>
+                </div>
+                <div class="story-line" id="line6">
+                    <span class="story-icon">✨</span>
+                    <p class="highlight-text">"Suspicious... but ACCEPTED."</p>
+                </div>
+            </div>
+            
+            <div class="story-nav">
+                <button onclick="prevLine()" class="nav-btn">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <button onclick="nextLine()" class="nav-btn primary">
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
         </div>
-        <button class="next-btn" onclick="nextPage()" id="story-next">Final level</button>
+        
+        <div class="story-illustrations">
+            <div class="illustration" id="illust1">🎨</div>
+            <div class="illustration" id="illust2">🖼️</div>
+        </div>
     </div>
 
-    <!-- PAGE 7: Don't Press Button -->
+    <!-- PAGE 7: Button Challenge -->
     <div class="page" id="page7">
-        <h2>Do NOT press the button.</h2>
-        <p class="warning">This is your last warning.</p>
-        <div class="danger-zone">
-            <button class="danger-btn" id="trap-button" onclick="pressButton()">
-                PRESS
-            </button>
+        <div class="challenge-header">
+            <h2 class="warning-text"><i class="fas fa-exclamation-triangle"></i> FINAL WARNING</h2>
+            <p class="challenge-subtitle">Do NOT interact with the button below</p>
         </div>
-        <p class="result hidden" id="button-result">I knew it 😄<br>self-control = 0</p>
-        <button class="next-btn hidden" onclick="nextPage()" id="button-next">Last thing</button>
+        
+        <div class="warning-messages">
+            <div class="warning-message slide-top">
+                <i class="fas fa-lock"></i> System secured
+            </div>
+            <div class="warning-message slide-top">
+                <i class="fas fa-shield-alt"></i> Willpower test active
+            </div>
+            <div class="warning-message slide-top">
+                <i class="fas fa-ban"></i> Button interaction prohibited
+            </div>
+        </div>
+        
+        <div class="danger-zone">
+            <div class="danger-sign">
+                <div class="sign-text">⚠️ DANGER ZONE ⚠️</div>
+                <div class="sign-subtext">Trespassers will face confetti</div>
+            </div>
+            
+            <button class="trap-button" id="trap-button" onclick="pressButton()"
+                    onmouseenter="buttonHover()"
+                    ontouchstart="buttonHover()">
+                <div class="button-glow"></div>
+                <div class="button-text">DO NOT PRESS</div>
+                <div class="button-subtext">Seriously, don't</div>
+            </button>
+            
+            <div class="button-stats">
+                <div class="stat">
+                    <i class="fas fa-user-shield"></i>
+                    <span id="resistance">100%</span> willpower
+                </div>
+                <div class="stat">
+                    <i class="fas fa-clock"></i>
+                    <span id="temptation-time">0</span>s resisting
+                </div>
+            </div>
+        </div>
+        
+        <div class="trap-feedback hidden" id="trap-feedback">
+            <h2 class="neon-text">I KNEW IT! 😈</h2>
+            <p>Willpower level: <span id="willpower-level">0%</span></p>
+            <p class="funny-quote">"Curiosity filled the room with confetti"</p>
+        </div>
+        
+        <button class="next-btn hidden" onclick="nextPage()" id="trap-next">
+            Final Celebration <i class="fas fa-fireworks"></i>
+        </button>
     </div>
 
-    <!-- PAGE 8: Final -->
+    <!-- PAGE 8: Final Celebration -->
     <div class="page" id="page8">
-        <h2>Make a wish! 🎂</h2>
-        <p>Blow out the candles</p>
-        <div class="final-cake">
-            <div class="candle" onclick="blowCandle(1)">🔥</div>
-            <div class="candle" onclick="blowCandle(2)">🔥</div>
-            <div class="candle" onclick="blowCandle(3)">🔥</div>
-            <div class="cake-final">🎂</div>
-        </div>
-        <div class="final-message hidden" id="final-message">
-            <h1>Happy Birthday! 🎉</h1>
-            <p class="made-by">Made with <i class="fas fa-heart"></i> for your 18th</p>
+        <div class="celebration-container">
+            <div class="celebration-header">
+                <h1 class="celebration-title">
+                    <span class="title-part">HAPPY</span>
+                    <span class="title-part">18TH</span>
+                    <span class="title-part">BIRTHDAY!</span>
+                </h1>
+                <div class="celebration-subtitle">Level Up Complete 🚀</div>
+            </div>
+            
+            <div class="virtual-cake">
+                <div class="cake-platform">
+                    <div class="cake-body">
+                        🎂
+                        <div class="cake-layer"></div>
+                        <div class="cake-layer"></div>
+                        <div class="cake-layer"></div>
+                    </div>
+                </div>
+                
+                <div class="candles-container">
+                    <div class="candle active" id="candle1" onclick="blowCandle(1)">🔥</div>
+                    <div class="candle active" id="candle2" onclick="blowCandle(2)">🔥</div>
+                    <div class="candle active" id="candle3" onclick="blowCandle(3)">🔥</div>
+                    <div class="candle active" id="candle4" onclick="blowCandle(4)">🔥</div>
+                    <div class="candle active" id="candle5" onclick="blowCandle(5)">🔥</div>
+                    <div class="candle active" id="candle6" onclick="blowCandle(6)">🔥</div>
+                    <div class="candle active" id="candle7" onclick="blowCandle(7)">🔥</div>
+                    <div class="candle active" id="candle8" onclick="blowCandle(8)">🔥</div>
+                </div>
+            </div>
+            
+            <div class="celebration-instruction">
+                <p><i class="fas fa-mouse-pointer"></i> Click candles to blow them out</p>
+                <p><i class="fas fa-keyboard"></i> Press SPACE for big blow</p>
+            </div>
+            
+            <div class="final-stats glass-effect">
+                <h3><i class="fas fa-trophy"></i> BIRTHDAY ACHIEVEMENTS</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">⚡</div>
+                        <div class="stat-value" id="final-speed">0</div>
+                        <div class="stat-label">Taps/Sec</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-value" id="final-score">0</div>
+                        <div class="stat-label">Total Score</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⏱️</div>
+                        <div class="stat-value" id="final-time">0:00</div>
+                        <div class="stat-label">Completion Time</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🔥</div>
+                        <div class="stat-value" id="chaos-level">0%</div>
+                        <div class="stat-label">Chaos Level</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="final-message hidden" id="final-celebration">
+                <div class="message-content">
+                    <h2 class="neon-text">🎉 CELEBRATION COMPLETE! 🎉</h2>
+                    <p class="personal-message">
+                        You survived the ultimate birthday experience!<br>
+                        May your 18th year be as awesome as this website.
+                    </p>
+                    <div class="signature">
+                        Made with <i class="fas fa-heart" style="color:#ff6b8b"></i> 
+                        for your special day
+                    </div>
+                </div>
+                
+                <div class="share-section">
+                    <button onclick="shareResults()" class="share-btn">
+                        <i class="fas fa-share-alt"></i> Share Results
+                    </button>
+                    <button onclick="playAgain()" class="play-btn">
+                        <i class="fas fa-redo"></i> Play Again
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
+
+    <!-- Background Music -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="https://assets.mixkit.co/music/preview/mixkit-happy-day-583.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Sound Effects -->
+    <audio id="pop-sound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-balloon-pop-2928.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="confetti-sound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3" type="audio/mpeg">
+    </audio>
+    
+    <audio id="click-sound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3" type="audio/mpeg">
+    </audio>
 
     <!-- Confetti Canvas -->
     <canvas id="confetti-canvas"></canvas>
 
+    <!-- Floating Elements Container -->
+    <div id="floating-container"></div>
+
+    <!-- JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
