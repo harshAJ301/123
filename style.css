@@ -1,104 +1,385 @@
 * {
-  box-sizing: border-box;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-  margin: 0;
-  background: radial-gradient(
-    circle at top,
-    #ffd6e8,
-    #f8b4c6,
-    #f3a0b5
-  );
-  color: #2b2b2b;
-  overflow: hidden;
+    background: #000;
+    color: white;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
 }
 
-/* screens */
-.screen {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  transform: scale(0.96);
-  transition: opacity 1s ease, transform 1s ease;
+/* Pages */
+.page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
 }
 
-.screen.active {
-  opacity: 1;
-  transform: scale(1);
+.page.active {
+    opacity: 1;
+    pointer-events: all;
 }
 
-/* layout */
-.center {
-  text-align: center;
-  padding: 20px;
-  max-width: 90%;
+/* Gradient Background */
+.gradient-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ff6b8b 0%, #a882dd 100%);
+    z-index: -1;
 }
 
-/* BIG HERO TEXT */
-.hero {
-  font-size: 4.5rem;
-  font-weight: 900;
-  line-height: 1.1;
+/* Page 1: Landing */
+.main-title {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    animation: float 3s ease-in-out infinite;
 }
 
-.sub {
-  font-size: 1.2rem;
-  opacity: 0.75;
-  margin-top: 15px;
+.subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    opacity: 0.8;
 }
 
-/* glow */
-.glow {
-  text-shadow: 0 0 30px rgba(255,255,255,0.35);
+.glow-btn {
+    background: white;
+    color: #ff6b8b;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.3rem;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
 }
 
-/* buttons */
-.btn {
-  margin-top: 30px;
-  padding: 14px 30px;
-  font-size: 1rem;
-  border-radius: 30px;
-  border: none;
-  cursor: pointer;
-  background: white;
-  color: black;
+.glow-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
 }
 
-.btn.danger {
-  background: #ff4d4d;
-  color: white;
+/* Floating elements */
+.floating {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.balloon, .confetti {
+    position: absolute;
+    font-size: 2rem;
+    animation: float 6s ease-in-out infinite;
+}
+
+.balloon:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+.balloon:nth-child(2) { top: 60%; left: 80%; animation-delay: 1s; }
+.confetti:nth-child(3) { top: 40%; left: 20%; animation-delay: 0.5s; }
+.confetti:nth-child(4) { top: 80%; left: 70%; animation-delay: 1.5s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(10deg); }
+}
+
+/* Page 2: Countdown */
+.countdown-container {
+    text-align: center;
+}
+
+.countdown-number {
+    font-size: 10rem;
+    font-weight: bold;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.cake-hidden {
+    font-size: 0;
+    transition: all 0.5s;
+}
+
+.cake-hidden.show {
+    font-size: 8rem;
+    animation: bounce 1s;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-30px); }
+}
+
+/* Page 3: Tap Game */
+.game-container {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.cake-game {
+    font-size: 8rem;
+    cursor: pointer;
+    transition: all 0.1s;
+    display: inline-block;
+}
+
+.cake-game:active {
+    transform: scale(0.9);
+}
+
+.counter {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+.next-btn {
+    margin-top: 2rem;
+    padding: 12px 30px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid white;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+}
+
+.next-btn:not(:disabled):hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.next-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Page 4: Quiz */
+.quiz-container {
+    max-width: 500px;
+    width: 100%;
+}
+
+.question {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.question p {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+.question button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.question button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.question button.correct {
+    border-color: #4CAF50;
 }
 
 .hidden {
-  display: none;
+    display: none !important;
 }
 
-/* cake */
-#cake {
-  font-size: 6rem;
-  cursor: pointer;
-  transition: transform 0.1s ease;
+/* Page 5: 404 Error */
+.error-screen {
+    text-align: center;
 }
 
-#cake:active {
-  transform: scale(0.9) rotate(-5deg);
+.error-code {
+    font-size: 8rem;
+    color: #ff6b8b;
 }
 
-#counter {
-  font-size: 1.5rem;
-  margin-top: 10px;
+.error-text {
+    font-size: 2rem;
+    margin-bottom: 2rem;
 }
 
-/* subtle light overlay */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 60%);
-  pointer-events: none;
+.loading {
+    width: 300px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    margin: 2rem auto;
+    overflow: hidden;
+}
+
+.loading-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff6b8b, #a882dd);
+    transition: width 2s;
+}
+
+.just-kidding {
+    font-size: 2rem;
+    margin-top: 2rem;
+    animation: colorChange 2s infinite;
+}
+
+@keyframes colorChange {
+    0%, 100% { color: white; }
+    50% { color: #ff6b8b; }
+}
+
+/* Page 6: Story */
+.story-container {
+    max-width: 600px;
+    margin: 2rem 0;
+}
+
+.story-line {
+    font-size: 1.8rem;
+    margin: 1rem 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s;
+}
+
+.story-line.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Page 7: Danger Button */
+.warning {
+    font-size: 1.2rem;
+    color: #ffcc00;
+    margin: 1rem 0;
+}
+
+.danger-zone {
+    margin: 3rem 0;
+}
+
+.danger-btn {
+    font-size: 2.5rem;
+    padding: 20px 60px;
+    background: linear-gradient(45deg, #ff3366, #ff0066);
+    border: none;
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: bold;
+    box-shadow: 0 0 30px rgba(255, 51, 102, 0.5);
+}
+
+.danger-btn:active {
+    transform: scale(0.95);
+}
+
+.result {
+    font-size: 1.5rem;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+/* Page 8: Final */
+.final-cake {
+    position: relative;
+    margin: 3rem 0;
+    font-size: 5rem;
+}
+
+.cake-final {
+    font-size: 8rem;
+}
+
+.candle {
+    position: absolute;
+    font-size: 2rem;
+    cursor: pointer;
+    animation: flicker 0.5s infinite alternate;
+    top: -50px;
+}
+
+.candle:nth-child(1) { left: 30%; }
+.candle:nth-child(2) { left: 50%; }
+.candle:nth-child(3) { left: 70%; }
+
+.candle.blown {
+    opacity: 0;
+    transform: scale(0);
+    animation: none;
+}
+
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.final-message {
+    text-align: center;
+    animation: fadeIn 2s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.made-by {
+    margin-top: 2rem;
+    opacity: 0.7;
+}
+
+/* Confetti Canvas */
+#confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main-title { font-size: 3rem; }
+    .countdown-number { font-size: 6rem; }
+    .cake-game { font-size: 6rem; }
+    .error-code { font-size: 5rem; }
+    .final-cake { font-size: 4rem; }
 }
