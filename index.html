@@ -32,19 +32,35 @@
         </div>
     </div>
 
-    <!-- Music Controls -->
-    <div class="music-controls glass-effect">
-        <button onclick="toggleMusic()" class="pulse-glow" id="music-btn">
-            <i class="fas fa-music"></i> <span>🎵 ON</span>
-        </button>
-        <button onclick="toggleEffects()" id="fx-btn">
-            <i class="fas fa-magic"></i> <span>✨ FX</span>
-        </button>
-        <button onclick="toggleChaos()" id="chaos-btn">
-            <i class="fas fa-fire"></i> <span>🔥 Normal</span>
-        </button>
-    </div>
+   <!-- Replace the entire audio section (around line ~660) with: -->
+<!-- Sound System -->
+<audio id="bg-music" loop preload="auto">
+    <source src="https://assets.mixkit.co/music/preview/mixkit-happy-day-583.mp3" type="audio/mpeg">
+</audio>
 
+<audio id="pop-sound" preload="auto">
+    <source src="https://assets.mixkit.co/sfx/preview/mixkit-balloon-pop-2928.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="confetti-sound" preload="auto">
+    <source src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="click-sound" preload="auto">
+    <source src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="cracker-sound" preload="auto">
+    <source src="https://assets.mixkit.co/sfx/preview/mixkit-bonus-extra-in-a-video-game-2046.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="sparkle-sound" preload="auto">
+    <source src="https://assets.mixkit.co/sfx/preview/mixkit-magic-sparkle-sound-3091.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="whoosh-sound" preload="auto">
+    <source src="https://assets.mixkit.co/sfx/preview/mixkit-whoosh-flash-1100.mp3" type="audio/mpeg">
+</audio>
     <!-- PAGE 1: Landing -->
     <div class="page active" id="page1">
         <div class="particles-container" id="particles1"></div>
