@@ -1,89 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>🎉 Birthday</title>
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday! 🎂</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-
-  <!-- PAGE 1 : LANDING -->
-  <section class="screen active" id="page-1">
-    <div class="center">
-      <h1 class="hero glow">Hey 👋</h1>
-      <p class="sub">Something fun is waiting</p>
-      <button class="btn" onclick="goToPage(2)">START</button>
+    <!-- PAGE 1: Landing -->
+    <div class="page active" id="page1">
+        <div class="gradient-bg"></div>
+        <h1 class="main-title">Hey 👋</h1>
+        <p class="subtitle">Ready for your upgrade?</p>
+        <button class="glow-btn" onclick="nextPage()">
+            START <i class="fas fa-arrow-right"></i>
+        </button>
+        <div class="floating">
+            <div class="balloon">🎈</div>
+            <div class="balloon">🎈</div>
+            <div class="confetti">✨</div>
+            <div class="confetti">✨</div>
+        </div>
     </div>
-  </section>
 
-  <!-- PAGE 2 : COUNTDOWN -->
-  <section class="screen" id="page-2">
-    <div class="center">
-      <h1 id="countdown" class="hero glow">5</h1>
+    <!-- PAGE 2: Countdown -->
+    <div class="page" id="page2">
+        <div class="countdown-container">
+            <div class="countdown-number" id="countdown">5</div>
+        </div>
+        <div class="cake-hidden" id="hidden-cake">🎂</div>
     </div>
-  </section>
 
-  <!-- PAGE 3 : MINI GAME 1 -->
-  <section class="screen" id="page-3">
-    <div class="center">
-      <p class="sub">Tap the cake 10 times (no cheating 👀)</p>
-      <div id="cake">🎂</div>
-      <p id="counter">0 / 10</p>
-      <button class="btn hidden" id="tapNext" onclick="goToPage(4)">Continue</button>
+    <!-- PAGE 3: Tap Game -->
+    <div class="page" id="page3">
+        <h2>Tap the cake 10 times<br><small>(no cheating 👀)</small></h2>
+        <div class="game-container">
+            <div class="cake-game" id="tap-cake" onclick="tapCake()">
+                🎂
+            </div>
+            <div class="counter">Taps: <span id="tap-count">0</span>/10</div>
+        </div>
+        <button class="next-btn" onclick="nextPage()" id="continue-btn" disabled>
+            Continue <i class="fas fa-lock"></i>
+        </button>
     </div>
-  </section>
 
-  <!-- PAGE 4 : QUIZ -->
-  <section class="screen" id="page-4">
-    <div class="center">
-      <p id="quiz-question" class="sub"></p>
-      <div id="quiz-options"></div>
+    <!-- PAGE 4: Quiz -->
+    <div class="page" id="page4">
+        <h2>Birthday Quiz</h2>
+        <div class="quiz-container">
+            <div class="question" id="question1">
+                <p>Why is today acting so special?</p>
+                <button onclick="selectAnswer(1, 3)">Monday energy 😐</button>
+                <button onclick="selectAnswer(1, 2)">Random drama</button>
+                <button onclick="selectAnswer(1, 1)" class="correct">Someone's birthday 😌</button>
+            </div>
+            <div class="question hidden" id="question2">
+                <p>What should be illegal today?</p>
+                <button onclick="selectAnswer(2, 1)">Stress</button>
+                <button onclick="selectAnswer(2, 2)">Studying</button>
+                <button onclick="selectAnswer(2, 3)" class="correct">Saying "act your age"</button>
+            </div>
+            <div id="quiz-response"></div>
+        </div>
+        <button class="next-btn hidden" onclick="nextPage()" id="quiz-next">Next</button>
     </div>
-  </section>
 
-  <!-- PAGE 5 : FAKE ERROR -->
-  <section class="screen" id="page-5">
-    <div class="center">
-      <h1 id="error-text" class="hero glow">404</h1>
-      <p id="error-sub" class="sub">Birthday not found</p>
+    <!-- PAGE 5: Fake 404 -->
+    <div class="page" id="page5">
+        <div class="error-screen">
+            <h1 class="error-code">404</h1>
+            <p class="error-text">Birthday not found</p>
+            <div class="loading">
+                <div class="loading-bar"></div>
+            </div>
+            <p class="just-kidding hidden" id="jk">Just kidding 😄<br>Obviously it's your birthday 🎉</p>
+        </div>
     </div>
-  </section>
 
-  <!-- PAGE 6 : MINI STORY -->
-  <section class="screen" id="page-6">
-    <div class="center">
-      <p id="story" class="sub"></p>
-      <button class="btn" onclick="goToPage(7)">Final level</button>
+    <!-- PAGE 6: Story -->
+    <div class="page" id="page6">
+        <h2>Birthday Story</h2>
+        <div class="story-container">
+            <p id="story-line-1" class="story-line">Once upon a time,</p>
+            <p id="story-line-2" class="story-line hidden">today woke up feeling important.</p>
+            <p id="story-line-3" class="story-line hidden">No work.</p>
+            <p id="story-line-4" class="story-line hidden">No stress.</p>
+            <p id="story-line-5" class="story-line hidden">Just cake and vibes.</p>
+            <p id="story-line-6" class="story-line hidden">Suspicious... but acceptable.</p>
+        </div>
+        <button class="next-btn" onclick="nextPage()" id="story-next">Final level</button>
     </div>
-  </section>
 
-  <!-- PAGE 7 : SURPRISE BUTTON -->
-  <section class="screen" id="page-7">
-    <div class="center">
-      <p class="sub">Do NOT press the button.<br>This is your last warning.</p>
-      <button class="btn danger" onclick="buttonPressed()">PRESS</button>
-      <p id="buttonResult" class="sub"></p>
-      <button class="btn hidden" id="lastBtn" onclick="goToPage(8)">Last thing</button>
+    <!-- PAGE 7: Don't Press Button -->
+    <div class="page" id="page7">
+        <h2>Do NOT press the button.</h2>
+        <p class="warning">This is your last warning.</p>
+        <div class="danger-zone">
+            <button class="danger-btn" id="trap-button" onclick="pressButton()">
+                PRESS
+            </button>
+        </div>
+        <p class="result hidden" id="button-result">I knew it 😄<br>self-control = 0</p>
+        <button class="next-btn hidden" onclick="nextPage()" id="button-next">Last thing</button>
     </div>
-  </section>
 
-  <!-- PAGE 8 : FINAL -->
-  <section class="screen" id="page-8">
-    <div class="center">
-      <h1 class="hero glow">Happy Birthday 🎉</h1>
-      <p class="sub">Hope today feels as good as it should</p>
-      <img 
-        src="https://media.giphy.com/media/3o7abB06u9bNzA8lu8/giphy.gif" 
-        alt="Birthday GIF" 
-        width="220"
-      >
+    <!-- PAGE 8: Final -->
+    <div class="page" id="page8">
+        <h2>Make a wish! 🎂</h2>
+        <p>Blow out the candles</p>
+        <div class="final-cake">
+            <div class="candle" onclick="blowCandle(1)">🔥</div>
+            <div class="candle" onclick="blowCandle(2)">🔥</div>
+            <div class="candle" onclick="blowCandle(3)">🔥</div>
+            <div class="cake-final">🎂</div>
+        </div>
+        <div class="final-message hidden" id="final-message">
+            <h1>Happy Birthday! 🎉</h1>
+            <p class="made-by">Made with <i class="fas fa-heart"></i> for your 18th</p>
+        </div>
     </div>
-  </section>
 
-  <!-- JS -->
-  <script src="script.js"></script>
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <script src="script.js"></script>
 </body>
 </html>
