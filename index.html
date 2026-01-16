@@ -3,413 +3,531 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎉 Happy Birthday! - Ultimate Celebration</title>
+    <title>🎂 Private Birthday Surprise</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Password Screen */
+        .password-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            padding: 20px;
+            transition: opacity 0.5s ease;
+        }
+        
+        .password-container {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            max-width: 500px;
+            width: 90%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        .password-title {
+            font-size: 2.5rem;
+            color: #ff6b8b;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .password-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+        
+        .password-hint {
+            background: rgba(255, 107, 139, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 4px solid #ff6b8b;
+            text-align: left;
+        }
+        
+        .password-hint h3 {
+            color: #ff6b8b;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .password-input-group {
+            margin-bottom: 25px;
+        }
+        
+        .password-label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            color: #ffd166;
+        }
+        
+        .password-input {
+            width: 100%;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            color: white;
+            font-size: 1.1rem;
+            text-align: center;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .password-input:focus {
+            outline: none;
+            border-color: #ff6b8b;
+            box-shadow: 0 0 20px rgba(255, 107, 139, 0.3);
+        }
+        
+        .password-btn {
+            background: linear-gradient(45deg, #ff6b8b, #a882dd);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .password-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 107, 139, 0.3);
+        }
+        
+        .password-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .password-error {
+            color: #ff6b8b;
+            margin-top: 15px;
+            min-height: 25px;
+            font-weight: 600;
+            display: none;
+        }
+        
+        .password-error.show {
+            display: block;
+            animation: shake 0.5s ease;
+        }
+        
+        .attempts-counter {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        .birthday-gift {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+        
+        .lock-icon {
+            font-size: 3rem;
+            color: #ff6b8b;
+            margin-bottom: 20px;
+            animation: lockGlow 2s infinite;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes lockGlow {
+            0%, 100% { 
+                filter: drop-shadow(0 0 10px rgba(255, 107, 139, 0.5));
+            }
+            50% { 
+                filter: drop-shadow(0 0 20px rgba(255, 107, 139, 0.8));
+            }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        /* Floating elements */
+        .password-floating {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.3;
+            animation: floatAround 20s infinite linear;
+        }
+        
+        @keyframes floatAround {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(100px, -50px) rotate(90deg); }
+            50% { transform: translate(0, -100px) rotate(180deg); }
+            75% { transform: translate(-100px, -50px) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+        
+        /* Hide main content initially */
+        .main-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .main-content.show {
+            display: block;
+            opacity: 1;
+        }
+        
+        /* Responsive */
+        @media (max-width: 600px) {
+            .password-container {
+                padding: 30px 20px;
+            }
+            
+            .password-title {
+                font-size: 2rem;
+            }
+            
+            .birthday-gift {
+                font-size: 3rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Background Elements -->
-    <div class="bg-animation"></div>
-    <div class="floating-container"></div>
-    
-    <!-- Control Panel -->
-    <div class="control-panel">
-        <button id="music-toggle" class="control-btn">
-            <i class="fas fa-music"></i> <span>Music: ON</span>
-        </button>
-        <button id="fx-toggle" class="control-btn">
-            <i class="fas fa-magic"></i> <span>FX: ON</span>
-        </button>
-        <div class="score-display">
-            <i class="fas fa-star"></i> <span id="score">0</span>
+    <!-- Password Screen -->
+    <div class="password-screen" id="password-screen">
+        <div class="birthday-gift">🎁</div>
+        <div class="lock-icon">
+            <i class="fas fa-lock"></i>
         </div>
+        
+        <div class="password-container">
+            <h1 class="password-title">
+                <i class="fas fa-key"></i>
+                PRIVATE BIRTHDAY SURPRISE
+                <i class="fas fa-key"></i>
+            </h1>
+            
+            <p class="password-subtitle">
+                This content is protected. Enter the secret password to continue.
+            </p>
+            
+            <div class="password-hint">
+                <h3><i class="fas fa-lightbulb"></i> HINT:</h3>
+                <p>The password is the birthday person's name (all lowercase)</p>
+                <p style="margin-top: 8px; font-size: 0.9em; opacity: 0.8;">
+                    <i class="fas fa-info-circle"></i> Hint: It starts with 'j' and ends with 'a'
+                </p>
+            </div>
+            
+            <div class="password-input-group">
+                <label class="password-label">Enter Password:</label>
+                <input type="password" 
+                       class="password-input" 
+                       id="password-input"
+                       placeholder="Type the secret word..."
+                       autocomplete="off"
+                       maxlength="20">
+            </div>
+            
+            <button class="password-btn" id="password-submit">
+                <i class="fas fa-unlock"></i>
+                UNLOCK SURPRISE
+            </button>
+            
+            <div class="password-error" id="password-error">
+                ❌ Incorrect password! Try again.
+            </div>
+            
+            <div class="attempts-counter" id="attempts-counter">
+                Attempts: <span id="attempt-count">0</span>/5
+            </div>
+        </div>
+        
+        <!-- Floating elements -->
+        <div class="password-floating" style="top: 20%; left: 10%;">🎂</div>
+        <div class="password-floating" style="top: 60%; right: 10%;">🎈</div>
+        <div class="password-floating" style="bottom: 20%; left: 20%;">✨</div>
+        <div class="password-floating" style="top: 30%; right: 20%;">🎉</div>
     </div>
 
-    <!-- Main Container -->
-    <div class="container">
+    <!-- Main Website Content (Will be shown after password) -->
+    <div class="main-content" id="main-content">
+        <!-- Your existing website content goes here -->
+        <!-- Copy all the HTML from previous version starting from control-panel -->
+        
+        <!-- Control Panel -->
+        <div class="control-panel">
+            <button id="music-toggle" class="control-btn">
+                <i class="fas fa-music"></i> <span>Music: ON</span>
+            </button>
+            <button id="fx-toggle" class="control-btn">
+                <i class="fas fa-magic"></i> <span>FX: ON</span>
+            </button>
+            <div class="score-display">
+                <i class="fas fa-star"></i> <span id="score">0</span>
+            </div>
+        </div>
+
         <!-- Page 1: Welcome -->
-        <div class="page active" id="page1">
+        <section class="page active" id="page1">
             <div class="welcome-content">
-                <div class="title-container">
-                    <h1 class="main-title glitch" data-text="LEVEL 18 UNLOCKED">LEVEL 18 UNLOCKED</h1>
-                    <div class="subtitle">Celebration Protocol: Activated</div>
+                <h1 class="main-title">HAPPY BIRTHDAY</h1>
+                <div class="name-highlight">
+                    <span class="name-text">JENISHA</span>
+                    <div class="age-badge">18</div>
                 </div>
+                <p class="subtitle">Welcome to your exclusive birthday experience!</p>
                 
-                <div class="birthday-person">
-                    <div class="name-badge">
-                        <div class="confetti-emoji">🎊</div>
-                        <h2>HAPPY BIRTHDAY</h2>
-                        <h1 class="friend-name">JENISHA!</h1>
-                        <div class="confetti-emoji">🎊</div>
-                    </div>
-                    <div class="age-bubble">18</div>
-                </div>
+                <button class="start-btn" id="start-btn">
+                    <span class="btn-text">START CELEBRATION</span>
+                    <i class="fas fa-play"></i>
+                </button>
                 
-                <div class="start-section">
-                    <p class="tagline">Ready for the ultimate birthday experience?</p>
-                    <button class="start-btn" id="start-btn">
-                        <span class="btn-text">LAUNCH CELEBRATION</span>
-                        <div class="btn-sparkle">✨</div>
-                    </button>
-                    <p class="hint">🎮 Pro tip: Click everything!</p>
-                </div>
-                
-                <div class="floating-emojis">
-                    <div class="emoji">🎂</div>
-                    <div class="emoji">🎁</div>
-                    <div class="emoji">🎈</div>
-                    <div class="emoji">✨</div>
-                </div>
+                <div class="hint">🎮 Click everything! 🎮</div>
             </div>
-        </div>
-
-        <!-- Page 2: Countdown -->
-        <div class="page" id="page2">
-            <div class="countdown-screen">
-                <div class="countdown-text">CELEBRATION IN...</div>
-                <div class="countdown-numbers">
-                    <div class="count-digit">5</div>
-                    <div class="count-digit">4</div>
-                    <div class="count-digit">3</div>
-                    <div class="count-digit">2</div>
-                    <div class="count-digit">1</div>
-                </div>
-                <div class="go-text hidden">LET'S GO! 🚀</div>
+            
+            <div class="floating-elements">
+                <div class="floating-emoji">🎂</div>
+                <div class="floating-emoji">🎁</div>
+                <div class="floating-emoji">🎈</div>
             </div>
-        </div>
+        </section>
 
-        <!-- Page 3: Balloon Pop -->
-        <div class="page" id="page3">
-            <div class="game-screen">
+        <!-- Page 2: Balloon Pop -->
+        <section class="page" id="page2">
+            <div class="game-container">
                 <div class="game-header">
-                    <h2><i class="fas fa-gamepad"></i> BALLOON POP FRENZY</h2>
+                    <h2><i class="fas fa-gamepad"></i> BALLOON POP</h2>
                     <div class="game-stats">
-                        <div class="stat">
-                            <i class="fas fa-bullseye"></i>
-                            <span id="pop-count">0</span>/20
-                        </div>
-                        <div class="timer">Time: <span id="pop-timer">30</span>s</div>
+                        <span>Popped: <span id="pop-count">0</span>/15</span>
+                        <span>Time: <span id="game-timer">30</span>s</span>
                     </div>
+                </div>
+                
+                <div class="game-area" id="balloon-area">
+                    <!-- Balloons will appear here -->
                 </div>
                 
                 <div class="game-instruction">
-                    POP 20 balloons before time runs out!<br>
-                    <small>Each pop = 10 points</small>
-                </div>
-                
-                <div class="balloon-area" id="balloon-container">
-                    <!-- Balloons will be generated here -->
+                    Click balloons to pop them!<br>
+                    <small>Goal: Pop 15 balloons in 30 seconds</small>
                 </div>
                 
                 <div class="game-feedback" id="pop-feedback"></div>
                 
-                <button class="next-btn hidden" id="pop-next">
-                    Next Challenge <i class="fas fa-arrow-right"></i>
-                </button>
+                <button class="next-btn" id="next-btn1">Next Challenge</button>
             </div>
-        </div>
+        </section>
 
-        <!-- Page 4: Cake Decoration -->
-        <div class="page" id="page4">
-            <div class="game-screen">
+        <!-- Page 3: Cake Maker -->
+        <section class="page" id="page3">
+            <div class="game-container">
                 <div class="game-header">
-                    <h2><i class="fas fa-palette"></i> DESIGN YOUR CAKE</h2>
-                    <div class="game-stats">
-                        <div class="stat">
-                            <i class="fas fa-star"></i>
-                            Creativity: <span id="creativity-score">0</span>%
-                        </div>
-                    </div>
+                    <h2><i class="fas fa-birthday-cake"></i> CAKE DESIGNER</h2>
                 </div>
                 
                 <div class="cake-builder">
-                    <div class="cake-base" id="cake-display">
-                        <div class="cake-layer base"></div>
-                        <div class="cake-layer middle"></div>
-                        <div class="cake-layer top"></div>
-                        <div class="candles"></div>
-                        <div class="sprinkles"></div>
+                    <div class="cake-preview" id="cake-preview">
+                        <div class="cake-layer" style="background: #ff6b8b;"></div>
+                        <div class="cake-layer" style="background: #ff8fa3;"></div>
+                        <div class="cake-layer" style="background: #ffd166;"></div>
+                        <div class="candle">🕯️</div>
+                        <div class="candle">🕯️</div>
+                        <div class="candle">🕯️</div>
                     </div>
                     
-                    <div class="customization-panel">
-                        <div class="customization-title">CUSTOMIZE</div>
-                        <div class="customization-options">
-                            <button class="custom-btn" data-type="flavor">
-                                <i class="fas fa-ice-cream"></i> Flavor
-                            </button>
-                            <button class="custom-btn" data-type="frosting">
-                                <i class="fas fa-spray-can"></i> Frosting
-                            </button>
-                            <button class="custom-btn" data-type="topping">
-                                <i class="fas fa-candy-cane"></i> Toppings
-                            </button>
-                            <button class="custom-btn" data-type="candles">
-                                <i class="fas fa-fire"></i> Candles
-                            </button>
+                    <div class="customization">
+                        <div class="color-picker">
+                            <div class="color-option" data-color="#ff6b8b" style="background: #ff6b8b;"></div>
+                            <div class="color-option" data-color="#a882dd" style="background: #a882dd;"></div>
+                            <div class="color-option" data-color="#ffd166" style="background: #ffd166;"></div>
+                            <div class="color-option" data-color="#06d6a0" style="background: #06d6a0;"></div>
                         </div>
                         
-                        <div class="color-picker hidden" id="color-picker">
-                            <div class="color-option" style="background: #ff6b8b;"></div>
-                            <div class="color-option" style="background: #a882dd;"></div>
-                            <div class="color-option" style="background: #ffd166;"></div>
-                            <div class="color-option" style="background: #06d6a0;"></div>
-                            <div class="color-option" style="background: #ff8fa3;"></div>
+                        <div class="custom-buttons">
+                            <button class="custom-btn" data-layer="1">Layer 1</button>
+                            <button class="custom-btn" data-layer="2">Layer 2</button>
+                            <button class="custom-btn" data-layer="3">Layer 3</button>
+                            <button class="custom-btn" id="add-candle">Add Candle</button>
                         </div>
                     </div>
                 </div>
                 
-                <div class="cake-instruction">
-                    Design your perfect birthday cake!<br>
-                    <small>Click customization options to decorate</small>
-                </div>
-                
-                <button class="next-btn" id="cake-next">
-                    Looks Delicious! Next <i class="fas fa-arrow-right"></i>
-                </button>
+                <button class="next-btn" id="next-btn2">Looks Delicious!</button>
             </div>
-        </div>
+        </section>
 
-        <!-- Page 5: Memory Game -->
-        <div class="page" id="page5">
-            <div class="game-screen">
+        <!-- Page 4: Memory Game -->
+        <section class="page" id="page4">
+            <div class="game-container">
                 <div class="game-header">
-                    <h2><i class="fas fa-brain"></i> BIRTHDAY MEMORY TEST</h2>
+                    <h2><i class="fas fa-brain"></i> MEMORY TEST</h2>
                     <div class="game-stats">
-                        <div class="stat">
-                            <i class="fas fa-check-circle"></i>
-                            Matches: <span id="match-count">0</span>/8
-                        </div>
-                        <div class="stat">
-                            <i class="fas fa-redo"></i>
-                            Moves: <span id="move-count">0</span>
-                        </div>
+                        <span>Matches: <span id="match-count">0</span>/6</span>
+                        <span>Moves: <span id="move-count">0</span></span>
                     </div>
-                </div>
-                
-                <div class="game-instruction">
-                    Find all the matching birthday pairs!<br>
-                    <small>Brain still works? Let's find out!</small>
                 </div>
                 
                 <div class="memory-grid" id="memory-grid">
-                    <!-- Cards will be generated here -->
+                    <!-- Cards will appear here -->
                 </div>
                 
-                <div class="game-feedback" id="memory-feedback"></div>
+                <div class="game-instruction">
+                    Find all matching pairs!<br>
+                    <small>Test your birthday memory skills</small>
+                </div>
                 
-                <button class="next-btn hidden" id="memory-next">
-                    Memory Master! Next <i class="fas fa-arrow-right"></i>
+                <button class="next-btn" id="next-btn3">Next Challenge</button>
+            </div>
+        </section>
+
+        <!-- Page 5: Final Celebration -->
+        <section class="page" id="page5">
+            <div class="celebration-container">
+                <h1 class="celebration-title">🎉 CELEBRATION TIME! 🎉</h1>
+                
+                <div class="celebration-actions">
+                    <button class="celebration-btn" id="confetti-btn">
+                        <i class="fas fa-fireworks"></i> Launch Confetti
+                    </button>
+                    <button class="celebration-btn" id="dance-btn">
+                        <i class="fas fa-music"></i> Birthday Dance
+                    </button>
+                    <button class="celebration-btn" id="cake-btn">
+                        <i class="fas fa-birthday-cake"></i> Virtual Cake
+                    </button>
+                </div>
+                
+                <div class="final-score">
+                    <h3>YOUR SCORE</h3>
+                    <div class="score-number" id="final-score">0</div>
+                </div>
+                
+                <button class="final-reveal-btn" id="final-reveal">
+                    REVEAL MESSAGE <i class="fas fa-gift"></i>
                 </button>
             </div>
-        </div>
+        </section>
 
-        <!-- Page 6: Party Quiz -->
-        <div class="page" id="page6">
-            <div class="game-screen">
-                <div class="game-header">
-                    <h2><i class="fas fa-question-circle"></i> BIRTHDAY TRIVIA</h2>
-                    <div class="game-stats">
-                        <div class="stat">
-                            <i class="fas fa-trophy"></i>
-                            Score: <span id="quiz-score">0</span>/5
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="quiz-container">
-                    <div class="question-card active" id="q1">
-                        <div class="question-number">Question 1/5</div>
-                        <p class="question-text">What's the legal cake-to-person ratio on birthdays?</p>
-                        <div class="options">
-                            <button class="option-btn">1 slice per person</button>
-                            <button class="option-btn correct">The whole cake is mine</button>
-                            <button class="option-btn">Cake? What cake?</button>
-                            <button class="option-btn">I'm on a diet 😭</button>
-                        </div>
+        <!-- Page 6: Final Message -->
+        <section class="page" id="page6">
+            <div class="message-container">
+                <div class="message-content">
+                    <h1 class="message-title">🎂 HAPPY BIRTHDAY JENISHA! 🎂</h1>
+                    
+                    <div class="birthday-wish">
+                        <p class="wish-line">May every wish come true ✨</p>
+                        <p class="wish-line">and I'm grateful to have a friend like <span class="highlight">me</span> 😂😂</p>
                     </div>
                     
-                    <div class="question-card" id="q2">
-                        <div class="question-number">Question 2/5</div>
-                        <p class="question-text">Best birthday party activity?</p>
-                        <div class="options">
-                            <button class="option-btn">Netflix & chill</button>
-                            <button class="option-btn">Board games</button>
-                            <button class="option-btn correct">Everything free today</button>
-                            <button class="option-btn">Sleeping</button>
-                        </div>
-                    </div>
-                    
-                    <div class="question-card" id="q3">
-                        <div class="question-number">Question 3/5</div>
-                        <p class="question-text">Acceptable birthday wake-up time?</p>
-                        <div class="options">
-                            <button class="option-btn">6 AM - early bird</button>
-                            <button class="option-btn correct">Whenever I want 😴</button>
-                            <button class="option-btn">No sleeping allowed!</button>
-                            <button class="option-btn">What's sleep?</button>
-                        </div>
-                    </div>
-                    
-                    <div class="question-card" id="q4">
-                        <div class="question-number">Question 4/5</div>
-                        <p class="question-text">Birthday outfit requirement?</p>
-                        <div class="options">
-                            <button class="option-btn">Formal wear</button>
-                            <button class="option-btn">Matching set</button>
-                            <button class="option-btn correct">Pajamas all day</button>
-                            <button class="option-btn">Birthday suit 😳</button>
-                        </div>
-                    </div>
-                    
-                    <div class="question-card" id="q5">
-                        <div class="question-number">Question 5/5</div>
-                        <p class="question-text">Birthday wish guarantee?</p>
-                        <div class="options">
-                            <button class="option-btn">100% guaranteed</button>
-                            <button class="option-btn">Depends on stars</button>
-                            <button class="option-btn correct">Cake makes it true</button>
-                            <button class="option-btn">No guarantees 😅</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="quiz-feedback" id="quiz-feedback"></div>
-                
-                <button class="next-btn hidden" id="quiz-next">
-                    Trivia Champion! Next <i class="fas fa-arrow-right"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Page 7: Celebration -->
-        <div class="page" id="page7">
-            <div class="celebration-screen">
-                <div class="celebration-header">
-                    <h1 class="celebration-title">GRAND FINALE</h1>
-                    <div class="celebration-subtitle">Time for the big celebration!</div>
-                </div>
-                
-                <div class="interactive-celebration">
-                    <div class="celebration-item" id="confetti-cannon">
-                        <div class="item-icon">🎉</div>
-                        <div class="item-label">Confetti Cannon</div>
-                        <button class="item-btn" onclick="launchConfetti()">FIRE!</button>
-                    </div>
-                    
-                    <div class="celebration-item" id="dance-floor">
-                        <div class="item-icon">💃</div>
-                        <div class="item-label">Dance Floor</div>
-                        <button class="item-btn" onclick="startDance()">DANCE!</button>
-                    </div>
-                    
-                    <div class="celebration-item" id="cake-cutting">
-                        <div class="item-icon">🎂</div>
-                        <div class="item-label">Virtual Cake</div>
-                        <button class="item-btn" onclick="cutCake()">CUT!</button>
-                    </div>
-                </div>
-                
-                <div class="celebration-stats">
-                    <div class="final-score">
-                        <h3>TOTAL SCORE</h3>
-                        <div class="score-number" id="final-score">0</div>
-                    </div>
-                    <div class="achievements">
-                        <h3>ACHIEVEMENTS UNLOCKED</h3>
-                        <div class="achievement-list">
-                            <div class="achievement"><i class="fas fa-medal"></i> Balloon Popper</div>
-                            <div class="achievement"><i class="fas fa-medal"></i> Cake Designer</div>
-                            <div class="achievement"><i class="fas fa-medal"></i> Memory Master</div>
-                            <div class="achievement"><i class="fas fa-medal"></i> Quiz Champion</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <button class="final-btn" id="final-reveal">
-                    REVEAL FINAL MESSAGE <i class="fas fa-gift"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Page 8: Final Message -->
-        <div class="page" id="page8">
-            <div class="final-message-screen">
-                <div class="message-container">
-                    <div class="message-header">
-                        <h1 class="message-title">🎂 HAPPY BIRTHDAY JENISHA! 🎂</h1>
-                        <div class="message-subtitle">You completed the ultimate celebration!</div>
-                    </div>
-                    
-                    <div class="personal-message">
-                        <div class="message-bubble">
-                            <p class="message-text">May every wish come true ✨</p>
-                            <p class="message-text">and I'm grateful to have a friend like <span class="highlight">me</span> 😂😂</p>
+                    <div class="party-question">
+                        <h3><i class="fas fa-question"></i> IMPORTANT QUESTION:</h3>
+                        <p class="question">Waise birthday party ka kya scene hai? 👀</p>
+                        
+                        <div class="pending-note">
+                            <p><i class="fas fa-history"></i> Previous 2 years ki party abhi bhi pending hai 😭</p>
+                            <p><i class="fas fa-calendar"></i> Iss saal compensate karne ka plan hai...</p>
                         </div>
                         
-                        <div class="party-question">
-                            <h3><i class="fas fa-question"></i> IMPORTANT QUESTION:</h3>
-                            <p class="question">Waise birthday party ka kya scene hai? 👀</p>
-                            
-                            <div class="pending-note">
-                                <p><i class="fas fa-history"></i> Previous 2 years ki party abhi bhi pending hai 😭</p>
-                                <p><i class="fas fa-calendar"></i> Iss saal compensate karne ka plan hai...</p>
-                            </div>
-                            
-                            <p class="follow-up">...ya phir next year bhi add kar dein? 😄</p>
-                        </div>
-                        
-                        <div class="closing-note">
-                            <p>Hope you have the absolute best day ever!</p>
-                            <p class="signature">- Your awesome friend who made this website 🎉</p>
-                        </div>
+                        <p class="follow-up">...ya phir next year bhi add kar dein? 😄</p>
                     </div>
                     
-                    <div class="message-actions">
-                        <button class="action-btn share" onclick="shareCelebration()">
-                            <i class="fas fa-share"></i> Share Celebration
-                        </button>
-                        <button class="action-btn replay" onclick="restartExperience()">
-                            <i class="fas fa-redo"></i> Play Again
-                        </button>
-                        <button class="action-btn extra" onclick="showEasterEgg()">
-                            <i class="fas fa-egg"></i> Easter Egg
-                        </button>
+                    <div class="closing-note">
+                        <p>Have the absolute best day ever! 🥳</p>
+                        <p class="signature">- Made with ❤️ for your 18th</p>
                     </div>
-                    
-                    <div class="fireworks-display" id="fireworks"></div>
+                </div>
+                
+                <div class="message-actions">
+                    <button class="action-btn" id="share-btn">
+                        <i class="fas fa-share"></i> Share
+                    </button>
+                    <button class="action-btn" id="play-again-btn">
+                        <i class="fas fa-redo"></i> Play Again
+                    </button>
                 </div>
             </div>
-        </div>
+            
+            <div class="fireworks-area" id="fireworks"></div>
+        </section>
+
+        <!-- Confetti Canvas -->
+        <canvas id="confetti-canvas"></canvas>
+        
+        <!-- Audio -->
+        <audio id="bg-music" loop>
+            <source src="https://assets.mixkit.co/music/preview/mixkit-happy-day-583.mp3" type="audio/mpeg">
+        </audio>
+        
+        <audio id="pop-sound">
+            <source src="https://assets.mixkit.co/sfx/preview/mixkit-balloon-pop-2928.mp3" type="audio/mpeg">
+        </audio>
+        
+        <audio id="click-sound">
+            <source src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3" type="audio/mpeg">
+        </audio>
+        
+        <audio id="celebration-sound">
+            <source src="https://assets.mixkit.co/sfx/preview/mixkit-party-horn-sound-2927.mp3" type="audio/mpeg">
+        </audio>
     </div>
-
-    <!-- Audio Elements -->
-    <audio id="bg-music" loop>
-        <source src="https://assets.mixkit.co/music/preview/mixkit-happy-day-583.mp3" type="audio/mpeg">
-    </audio>
-    
-    <audio id="pop-sound">
-        <source src="https://assets.mixkit.co/sfx/preview/mixkit-balloon-pop-2928.mp3" type="audio/mpeg">
-    </audio>
-    
-    <audio id="confetti-sound">
-        <source src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3" type="audio/mpeg">
-    </audio>
-    
-    <audio id="click-sound">
-        <source src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3" type="audio/mpeg">
-    </audio>
-    
-    <audio id="success-sound">
-        <source src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3" type="audio/mpeg">
-    </audio>
-    
-    <audio id="celebrate-sound">
-        <source src="https://assets.mixkit.co/sfx/preview/mixkit-party-horn-sound-2927.mp3" type="audio/mpeg">
-    </audio>
-
-    <!-- Confetti Canvas -->
-    <canvas id="confetti-canvas"></canvas>
 
     <script src="script.js"></script>
 </body>
