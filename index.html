@@ -3,2078 +3,2803 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy 18th Birthday Jenisha! 🎉</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <title>🎂 HAPPY 18TH BIRTHDAY JENISHA! 🎉</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
+        /* ===== BIRTHDAY THEME COLORS ===== */
+        :root {
+            --hot-pink: #ff00aa;
+            --pink: #ff66b2;
+            --light-pink: #ff99cc;
+            --pastel-pink: #ffcce6;
+            --purple: #cc66ff;
+            --gold: #ffcc00;
+            --cyan: #00ffff;
+            --blue: #3399ff;
+            --green: #33ff99;
+            --yellow: #ffff66;
+            --bg-gradient: linear-gradient(135deg, #ff0066 0%, #ff00aa 25%, #cc66ff 50%, #3399ff 75%, #00ffff 100%);
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --shadow: 0 10px 40px rgba(255, 0, 170, 0.3);
+            --shadow-lg: 0 20px 60px rgba(255, 0, 170, 0.5);
+        }
+
+        /* ===== RESET & BASE ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
         }
-        
-        :root {
-            --hot-pink: #ff00aa;
-            --gold: #ffcc00;
-            --cyan: #00ffff;
-            --purple: #cc66ff;
-            --dark-bg: #0a0a20;
-        }
-        
+
         body {
-            background-color: var(--dark-bg);
+            font-family: 'Poppins', sans-serif;
+            background: var(--bg-gradient);
             color: white;
             min-height: 100vh;
             overflow-x: hidden;
-            transition: opacity 0.5s ease;
+            position: relative;
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
         }
-        
-        /* Page container */
-        .page {
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* ===== BIRTHDAY BACKGROUND ELEMENTS ===== */
+        .birthday-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .birthday-element {
+            position: absolute;
+            font-size: 2.5rem;
+            animation: floatBirthday 20s infinite linear;
+            filter: drop-shadow(0 0 10px currentColor);
+            opacity: 0.7;
+        }
+
+        @keyframes floatBirthday {
+            0% { 
+                transform: translate(0, 0) rotate(0deg) scale(1); 
+                opacity: 0.7;
+            }
+            25% { 
+                transform: translate(100vw, 25vh) rotate(90deg) scale(1.2);
+                opacity: 1;
+            }
+            50% { 
+                transform: translate(50vw, 75vh) rotate(180deg) scale(1);
+                opacity: 0.7;
+            }
+            75% { 
+                transform: translate(-100vw, 50vh) rotate(270deg) scale(1.2);
+                opacity: 1;
+            }
+            100% { 
+                transform: translate(0, 0) rotate(360deg) scale(1);
+                opacity: 0.7;
+            }
+        }
+
+        /* ===== PASSWORD SCREEN ===== */
+        .password-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background: linear-gradient(45deg, rgba(255, 0, 170, 0.9), rgba(204, 102, 255, 0.9));
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px;
-            opacity: 0;
-            pointer-events: none;
+            z-index: 10000;
             transition: opacity 0.5s ease;
-            z-index: 1;
         }
-        
-        .page.active {
+
+        .password-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 60px 50px;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            border: 3px solid var(--glass-border);
+            box-shadow: var(--shadow-lg), inset 0 0 100px rgba(255, 255, 255, 0.1);
+            animation: neonGlow 2s infinite alternate;
+        }
+
+        @keyframes neonGlow {
+            0% { 
+                box-shadow: 
+                    0 0 30px var(--hot-pink),
+                    inset 0 0 50px rgba(255, 255, 255, 0.1),
+                    var(--shadow-lg);
+            }
+            100% { 
+                box-shadow: 
+                    0 0 60px var(--cyan),
+                    inset 0 0 80px rgba(255, 255, 255, 0.2),
+                    var(--shadow-lg);
+            }
+        }
+
+        .birthday-icon {
+            font-size: 6rem;
+            margin-bottom: 30px;
+            animation: bounce 2s infinite, spin 4s infinite linear;
+            filter: drop-shadow(0 0 20px var(--gold));
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-30px) scale(1.1); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .password-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px var(--gold);
+        }
+
+        .password-subtitle {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            text-shadow: 0 0 10px white;
+        }
+
+        .password-hint {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 2px solid var(--gold);
+            backdrop-filter: blur(10px);
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 25px;
+            font-size: 1.5rem;
+            background: rgba(255, 255, 255, 0.9);
+            border: 3px solid var(--hot-pink);
+            border-radius: 15px;
+            color: #333;
+            text-align: center;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            margin: 20px 0;
+            font-weight: 600;
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: var(--cyan);
+            box-shadow: 0 0 40px var(--cyan);
+            transform: scale(1.02);
+        }
+
+        .password-btn {
+            background: linear-gradient(45deg, var(--hot-pink), var(--purple));
+            border: none;
+            padding: 25px 60px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            border-radius: 15px;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            position: relative;
+            overflow: hidden;
+            text-shadow: 0 0 10px white;
+        }
+
+        .password-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 0, 170, 0.4);
+        }
+
+        .password-btn:active {
+            transform: translateY(-2px);
+        }
+
+        .password-error {
+            color: var(--cyan);
+            margin-top: 20px;
+            font-weight: 600;
+            min-height: 30px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 1.2rem;
+            text-shadow: 0 0 10px var(--cyan);
+        }
+
+        .password-error.show {
             opacity: 1;
-            pointer-events: all;
         }
-        
-        /* Control Panel */
+
+        /* ===== CONTROL PANEL ===== */
         .control-panel {
             position: fixed;
             top: 20px;
             right: 20px;
             display: flex;
             gap: 15px;
+            align-items: center;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 12px 20px;
-            border-radius: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 0, 170, 0.2);
+            backdrop-filter: blur(20px);
+            padding: 15px 25px;
+            border-radius: 50px;
+            border: 2px solid var(--glass-border);
         }
-        
-        .toggle-btn {
-            background: transparent;
-            border: none;
+
+        @media (max-width: 768px) {
+            .control-panel {
+                flex-direction: column;
+                padding: 10px 15px;
+                top: 10px;
+                right: 10px;
+            }
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid var(--glass-border);
             color: white;
-            font-size: 1.5rem;
+            padding: 10px 20px;
+            border-radius: 25px;
             cursor: pointer;
-            transition: transform 0.3s;
-        }
-        
-        .toggle-btn:hover {
-            transform: scale(1.1);
-        }
-        
-        .toggle-btn.active {
-            color: var(--cyan);
-            text-shadow: 0 0 10px var(--cyan);
-        }
-        
-        .score-display {
             font-weight: 600;
-            color: var(--gold);
             display: flex;
             align-items: center;
             gap: 8px;
-            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            text-shadow: 0 0 5px white;
         }
-        
-        /* Page 1: Password Screen */
-        #page1 {
-            background: linear-gradient(135deg, var(--hot-pink), #ff66cc, #ff00aa);
+
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 0, 170, 0.3);
         }
-        
-        .password-container {
+
+        .score-display {
+            background: linear-gradient(45deg, var(--hot-pink), var(--purple));
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: var(--shadow);
+            text-shadow: 0 0 10px white;
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main-content {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .main-content.show {
+            display: block;
+            opacity: 1;
+        }
+
+        /* ===== PAGES ===== */
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding: 120px 20px 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page.active {
+            display: block;
+            animation: pageEnter 0.8s ease;
+        }
+
+        @keyframes pageEnter {
+            from { 
+                opacity: 0;
+                transform: translateY(100px) scale(0.95);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== PAGE 1: WELCOME ===== */
+        .welcome-container {
             text-align: center;
-            max-width: 600px;
-            width: 90%;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .welcome-title {
+            font-size: 5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--hot-pink), var(--gold), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            line-height: 1.2;
+            text-shadow: 0 0 50px rgba(255, 0, 170, 0.5);
+            animation: titlePulse 3s infinite alternate;
+        }
+
+        @keyframes titlePulse {
+            0% { 
+                background: linear-gradient(45deg, var(--hot-pink), var(--gold), var(--cyan));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            100% { 
+                background: linear-gradient(45deg, var(--cyan), var(--gold), var(--hot-pink));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+
+        .birthday-hero {
+            margin: 50px 0;
+            position: relative;
             padding: 40px;
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 3px solid var(--glass-border);
+            box-shadow: var(--shadow);
         }
-        
-        .gift-icon {
-            font-size: 8rem;
-            margin-bottom: 20px;
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-30px); }
-        }
-        
-        .title {
-            font-family: 'Dancing Script', cursive;
-            font-size: 3.5rem;
-            margin-bottom: 15px;
-            color: white;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
-        }
-        
-        .subtitle {
-            font-size: 1.4rem;
-            margin-bottom: 30px;
-            color: white;
-        }
-        
-        .hint {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 25px;
-            font-size: 1.1rem;
-        }
-        
-        .password-input {
-            width: 100%;
-            padding: 15px 20px;
-            font-size: 1.2rem;
-            border: 2px solid var(--hot-pink);
-            border-radius: 50px;
-            margin-bottom: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            text-align: center;
-            outline: none;
-        }
-        
-        .password-input:focus {
-            box-shadow: 0 0 15px var(--hot-pink);
-        }
-        
-        .unlock-btn {
-            background: linear-gradient(to right, var(--hot-pink), var(--purple));
-            color: white;
-            border: none;
-            padding: 18px 40px;
-            font-size: 1.3rem;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 600;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-            width: 100%;
-        }
-        
-        .unlock-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(255, 0, 170, 0.4);
-        }
-        
-        .error-message {
-            color: #ff6666;
-            margin-bottom: 15px;
-            min-height: 25px;
-            font-weight: 600;
-        }
-        
-        .attempt-counter {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        /* Floating emojis */
-        .floating-emoji {
-            position: absolute;
-            font-size: 2rem;
-            opacity: 0.7;
-            z-index: 0;
-        }
-        
-        /* Page 2: Welcome Page */
-        #page2 {
-            background: linear-gradient(45deg, #0a0a20, #1a0a2a, #0a0a20);
-            animation: gradientShift 8s infinite alternate;
-        }
-        
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 100% 50%; }
-        }
-        
-        .name-display {
-            font-family: 'Dancing Script', cursive;
-            font-size: 5rem;
+
+        .hero-name {
+            font-size: 6rem;
+            font-weight: 900;
             color: var(--gold);
-            text-shadow: 0 0 30px var(--gold);
-            margin: 20px 0;
-            position: relative;
+            margin-bottom: 20px;
+            text-shadow: 
+                0 0 30px var(--gold),
+                0 0 60px var(--hot-pink),
+                0 0 90px var(--cyan);
+            animation: nameGlow 2s infinite alternate;
         }
-        
-        .age-badge {
+
+        @keyframes nameGlow {
+            0% { 
+                text-shadow: 
+                    0 0 20px var(--gold),
+                    0 0 40px var(--hot-pink),
+                    0 0 60px var(--cyan);
+            }
+            100% { 
+                text-shadow: 
+                    0 0 40px var(--cyan),
+                    0 0 80px var(--hot-pink),
+                    0 0 120px var(--gold);
+            }
+        }
+
+        .hero-age {
             position: absolute;
-            top: -20px;
-            right: -40px;
-            background: var(--cyan);
-            color: var(--dark-bg);
-            width: 60px;
-            height: 60px;
+            top: -30px;
+            right: 50%;
+            transform: translateX(200px);
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, var(--hot-pink), var(--purple));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: white;
+            box-shadow: 0 0 40px var(--hot-pink);
+            animation: ageBounce 3s infinite ease-in-out;
+        }
+
+        @keyframes ageBounce {
+            0%, 100% { transform: translateX(200px) translateY(0) rotate(0deg); }
+            50% { transform: translateX(200px) translateY(-30px) rotate(180deg); }
+        }
+
+        .welcome-subtitle {
             font-size: 2rem;
-            font-weight: 700;
-            box-shadow: 0 0 20px var(--cyan);
-            animation: float 3s infinite ease-in-out;
+            color: white;
+            margin: 40px 0;
+            line-height: 1.6;
+            text-shadow: 0 0 10px white;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
         }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-        
-        .shine-btn {
-            background: linear-gradient(to right, var(--gold), #ff9900);
-            color: var(--dark-bg);
+
+        .start-btn {
+            background: linear-gradient(45deg, var(--hot-pink), var(--purple), var(--cyan));
             border: none;
-            padding: 18px 40px;
-            font-size: 1.5rem;
-            border-radius: 50px;
+            padding: 30px 70px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+            border-radius: 20px;
             cursor: pointer;
-            margin-top: 40px;
-            font-weight: 700;
+            margin: 50px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
             position: relative;
             overflow: hidden;
-            transition: all 0.3s;
+            text-shadow: 0 0 10px white;
         }
-        
-        .shine-btn::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -60%;
-            width: 20%;
-            height: 200%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: rotate(30deg);
-            transition: all 0.5s;
+
+        .start-btn:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 30px 80px rgba(255, 0, 170, 0.6);
+            background: linear-gradient(45deg, var(--cyan), var(--purple), var(--hot-pink));
         }
-        
-        .shine-btn:hover::after {
-            left: 140%;
-        }
-        
-        .shine-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(255, 204, 0, 0.4);
-        }
-        
-        /* Page 3: Cake Smash Game */
-        #page3 {
-            background: linear-gradient(135deg, #1a0a2a, #0a0a20);
-        }
-        
-        .game-container {
+
+        /* ===== PAGE 2: CAKE SMASH ===== */
+        .cake-smash-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(30px);
+            border-radius: 30px;
+            padding: 50px;
+            border: 3px solid var(--glass-border);
+            box-shadow: var(--shadow-lg);
+            max-width: 1000px;
+            margin: 0 auto;
             text-align: center;
-            max-width: 800px;
-            width: 90%;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
         }
-        
+
         .game-title {
-            font-family: 'Dancing Script', cursive;
             font-size: 3rem;
-            margin-bottom: 30px;
-            color: var(--cyan);
+            color: var(--gold);
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            text-shadow: 0 0 20px var(--gold);
         }
-        
+
+        .game-instruction {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 25px;
+            margin: 30px 0;
+            border-left: 5px solid var(--hot-pink);
+            font-size: 1.3rem;
+            line-height: 1.8;
+            backdrop-filter: blur(10px);
+        }
+
         .cake-container {
+            width: 100%;
+            height: 400px;
+            margin: 40px auto;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 3px solid var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cake {
             position: relative;
             width: 300px;
             height: 300px;
-            margin: 30px auto;
+            transition: all 0.3s ease;
             cursor: pointer;
         }
-        
-        .cake {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: center;
-        }
-        
+
         .cake-layer {
+            position: absolute;
+            border-radius: 20px;
+            box-shadow: 
+                inset 0 -30px 50px rgba(139, 69, 19, 0.4),
+                0 30px 80px rgba(0, 0, 0, 0.3);
+        }
+
+        .layer-1 {
+            width: 300px;
+            height: 100px;
+            bottom: 0;
+            left: 0;
+            background: linear-gradient(45deg, #8b4513, #a0522d);
+            z-index: 1;
+        }
+
+        .layer-2 {
+            width: 250px;
+            height: 90px;
+            bottom: 100px;
+            left: 25px;
+            background: linear-gradient(45deg, var(--hot-pink), var(--pink));
+            z-index: 2;
+        }
+
+        .layer-3 {
             width: 200px;
-            border-radius: 10px;
-        }
-        
-        .layer-bottom {
             height: 80px;
-            background: #8B4513;
-            box-shadow: inset 0 -10px 10px rgba(0, 0, 0, 0.3);
+            bottom: 190px;
+            left: 50px;
+            background: linear-gradient(45deg, var(--gold), #ffed99);
+            z-index: 3;
         }
-        
-        .layer-middle {
-            height: 70px;
-            width: 170px;
-            background: var(--hot-pink);
-            box-shadow: inset 0 -8px 8px rgba(0, 0, 0, 0.2);
-        }
-        
-        .layer-top {
-            height: 60px;
-            width: 140px;
-            background: var(--gold);
-            box-shadow: inset 0 -6px 6px rgba(0, 0, 0, 0.2);
-        }
-        
-        .candle {
+
+        .cake-candle {
             position: absolute;
-            top: 20px;
-            width: 10px;
-            height: 60px;
-            background: white;
-            border-radius: 5px;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 15px;
+            height: 80px;
+            background: linear-gradient(45deg, var(--cyan), var(--blue));
+            border-radius: 8px;
+            z-index: 4;
         }
-        
-        .flame {
+
+        .cake-flame {
             position: absolute;
-            top: -20px;
-            left: -5px;
-            width: 20px;
-            height: 40px;
-            background: #ff9900;
+            top: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 50px;
+            background: linear-gradient(45deg, #ffcc00, #ff6600);
             border-radius: 50% 50% 20% 20%;
-            box-shadow: 0 0 20px #ff9900, 0 0 40px #ff5500;
-            animation: flicker 0.5s infinite alternate;
+            animation: flame 1s infinite alternate;
+            filter: blur(2px);
+            z-index: 5;
         }
-        
-        @keyframes flicker {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.1); }
+
+        @keyframes flame {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.2); }
         }
-        
+
         .tap-counter {
-            font-size: 2rem;
+            font-size: 2.5rem;
+            margin: 30px 0;
             color: var(--cyan);
-            margin: 20px 0;
+            font-weight: 800;
+            text-shadow: 0 0 20px var(--cyan);
+            background: rgba(0, 255, 255, 0.2);
+            padding: 20px 40px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
+        .game-feedback {
+            font-size: 2rem;
+            margin: 30px 0;
+            min-height: 80px;
             font-weight: 700;
+            color: var(--gold);
+            text-shadow: 0 0 20px var(--gold);
+            background: rgba(255, 204, 0, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
         }
-        
-        .instructions {
+
+        /* ===== PAGE 3: MEMORY MATCH ===== */
+        .game-container {
             background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 20px;
-            font-size: 1.2rem;
+            backdrop-filter: blur(30px);
+            border-radius: 30px;
+            padding: 50px;
+            border: 3px solid var(--glass-border);
+            box-shadow: var(--shadow-lg);
+            max-width: 1000px;
+            margin: 0 auto;
         }
-        
-        /* Page 4: Memory Match Game */
-        .memory-grid {
+
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid var(--glass-border);
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .game-stats {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px 25px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 600;
+            box-shadow: var(--shadow);
+            min-width: 150px;
+        }
+
+        .stat-value {
+            color: var(--gold);
+            font-size: 2rem;
+            font-weight: 800;
+            text-shadow: 0 0 10px var(--gold);
+        }
+
+        #memory-area {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            max-width: 600px;
-            margin: 30px auto;
+            gap: 20px;
+            min-height: 500px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 25px;
+            margin: 40px 0;
+            border: 3px dashed var(--purple);
         }
-        
+
+        @media (max-width: 768px) {
+            #memory-area {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #memory-area {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         .memory-card {
-            width: 100px;
-            height: 100px;
-            perspective: 1000px;
+            aspect-ratio: 1;
+            background: linear-gradient(45deg, var(--hot-pink), var(--purple));
+            border-radius: 15px;
             cursor: pointer;
-        }
-        
-        .card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            transition: transform 0.6s;
             transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            box-shadow: 0 10px 25px rgba(255, 0, 170, 0.3);
         }
-        
-        .memory-card.flipped .card-inner {
-            transform: rotateY(180deg);
-        }
-        
-        .card-front, .card-back {
+
+        .memory-card .front,
+        .memory-card .back {
             position: absolute;
             width: 100%;
             height: 100%;
             backface-visibility: hidden;
-            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
+            border-radius: 15px;
+            font-size: 2.5rem;
         }
-        
-        .card-front {
-            background: linear-gradient(135deg, var(--purple), var(--hot-pink));
+
+        .memory-card .front {
+            background: linear-gradient(45deg, var(--hot-pink), var(--purple));
+            color: white;
+        }
+
+        .memory-card .back {
+            background: white;
+            color: #333;
             transform: rotateY(180deg);
         }
-        
-        .card-back {
-            background: linear-gradient(135deg, #333366, #222244);
-            border: 2px solid rgba(255, 255, 255, 0.1);
+
+        .memory-card.flipped {
+            transform: rotateY(180deg);
         }
-        
-        .game-stats {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin: 30px 0;
-            font-size: 1.3rem;
+
+        .memory-card.matched {
+            animation: matchCelebrate 1s;
+            cursor: default;
+            box-shadow: 0 0 40px var(--cyan);
         }
-        
-        .stat {
+
+        @keyframes matchCelebrate {
+            0%, 100% { transform: scale(1) rotateY(180deg); }
+            50% { transform: scale(1.2) rotateY(180deg); }
+        }
+
+        /* ===== PAGE 4: BIRTHDAY QUIZ ===== */
+        #quiz-area {
+            min-height: 500px;
+            padding: 40px;
             background: rgba(255, 255, 255, 0.1);
-            padding: 15px 25px;
-            border-radius: 10px;
-            min-width: 150px;
+            border-radius: 30px;
+            margin: 40px 0;
+            border: 3px dashed var(--gold);
+            backdrop-filter: blur(20px);
         }
-        
-        .stat-value {
+
+        .question-card {
+            display: none;
+            animation: slideInQuiz 0.5s ease;
+        }
+
+        .question-card.active {
+            display: block;
+        }
+
+        @keyframes slideInQuiz {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .question-number {
+            font-size: 1.5rem;
+            color: var(--cyan);
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-shadow: 0 0 10px var(--cyan);
+        }
+
+        .question-text {
             font-size: 2rem;
-            font-weight: 700;
-            color: var(--cyan);
-        }
-        
-        /* Page 5: Birthday Quiz */
-        .quiz-container {
-            max-width: 800px;
-            width: 90%;
-            text-align: center;
-        }
-        
-        .question {
-            font-size: 1.8rem;
             margin-bottom: 40px;
-            color: var(--cyan);
-        }
-        
-        .options-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        
-        @media (max-width: 768px) {
-            .options-container {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .option {
+            line-height: 1.4;
+            color: white;
+            text-shadow: 0 0 10px white;
             background: rgba(255, 255, 255, 0.1);
-            padding: 25px;
+            padding: 30px;
+            border-radius: 20px;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .option-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 3px solid var(--glass-border);
+            color: white;
+            padding: 20px 25px;
             border-radius: 15px;
             cursor: pointer;
-            transition: all 0.3s;
-            border: 2px solid transparent;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
             text-align: left;
-            position: relative;
-            padding-left: 70px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            backdrop-filter: blur(10px);
         }
-        
-        .option:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-5px);
+
+        .option-btn:hover {
+            background: rgba(255, 0, 170, 0.3);
+            border-color: var(--hot-pink);
+            transform: translateX(10px);
+            box-shadow: 0 10px 25px rgba(255, 0, 170, 0.3);
         }
-        
-        .option.selected {
+
+        .option-btn.selected {
+            background: rgba(255, 0, 170, 0.4);
             border-color: var(--cyan);
-            background: rgba(0, 255, 255, 0.1);
+            color: var(--cyan);
+            transform: scale(1.02);
+            box-shadow: 0 0 30px var(--cyan);
         }
-        
+
         .option-letter {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--purple);
+            background: linear-gradient(45deg, var(--hot-pink), var(--purple));
+            color: white;
             width: 40px;
             height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
+            font-weight: 800;
             font-size: 1.3rem;
+            flex-shrink: 0;
         }
-        
-        .quiz-feedback {
-            min-height: 60px;
-            font-size: 1.3rem;
-            margin-top: 20px;
-            color: var(--gold);
-        }
-        
-        /* Page 6: Dance Party Game */
+
+        /* ===== PAGE 5: DANCE PARTY (FIXED) ===== */
         .dance-container {
-            text-align: center;
-            max-width: 800px;
-            width: 90%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(30px);
+            border-radius: 30px;
+            padding: 50px;
+            border: 3px solid var(--glass-border);
+            box-shadow: var(--shadow-lg);
+            max-width: 1000px;
+            margin: 0 auto;
         }
-        
+
+        #party-area {
+            height: 500px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+            margin: 40px 0;
+            border: 3px dashed var(--cyan);
+            backdrop-filter: blur(20px);
+        }
+
         .dance-floor {
+            position: absolute;
+            width: 90%;
+            height: 350px;
+            background: linear-gradient(45deg, rgba(255, 0, 170, 0.2), rgba(0, 255, 255, 0.2));
+            border-radius: 25px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             display: grid;
             grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(4, 1fr);
             gap: 15px;
-            max-width: 500px;
-            margin: 30px auto;
+            padding: 30px;
         }
-        
+
+        @media (max-width: 768px) {
+            .dance-floor {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(6, 1fr);
+                gap: 10px;
+                padding: 20px;
+            }
+        }
+
         .dance-tile {
-            width: 120px;
-            height: 120px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
-            transition: all 0.2s;
+            font-size: 2.5rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+            user-select: none;
         }
-        
+
         .dance-tile.active {
-            background: var(--hot-pink);
-            box-shadow: 0 0 20px var(--hot-pink);
-            transform: scale(1.1);
+            background: linear-gradient(45deg, var(--hot-pink), var(--cyan));
+            color: white;
+            transform: scale(1.15);
+            box-shadow: 0 0 40px var(--cyan);
         }
-        
-        .dance-instructions {
-            margin: 30px 0;
-            font-size: 1.3rem;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 15px;
-        }
-        
+
         .key-hint {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             margin-top: 20px;
+            flex-wrap: wrap;
         }
-        
+
         .key {
             background: rgba(255, 255, 255, 0.2);
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 12px 25px;
+            border-radius: 10px;
             font-weight: 700;
             min-width: 60px;
+            text-align: center;
+            border: 2px solid var(--glass-border);
+            font-size: 1.2rem;
         }
-        
-        /* Page 7: Birthday Display */
-        #page7 {
-            background: linear-gradient(135deg, rgba(255, 0, 170, 0.1), rgba(204, 102, 255, 0.1));
-            backdrop-filter: blur(20px);
-        }
-        
-        .glass-card {
+
+        /* ===== PAGE 6: BIRTHDAY DISPLAY ===== */
+        .birthday-display {
+            text-align: center;
+            padding: 80px 20px;
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            padding: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            max-width: 800px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border-radius: 40px;
+            backdrop-filter: blur(30px);
+            border: 3px solid var(--glass-border);
+            margin: 0 auto;
+            max-width: 1000px;
         }
-        
-        /* Page 8: 404 Error Joke */
-        .error-joke {
-            text-align: center;
-            max-width: 800px;
-            width: 90%;
+
+        .birthday-message {
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--hot-pink), var(--gold), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 50px;
+            animation: birthdayGlow 2s infinite alternate;
+            text-shadow: 0 0 50px rgba(255, 0, 170, 0.5);
         }
-        
-        .error-404 {
-            font-size: 8rem;
-            font-weight: 700;
+
+        @keyframes birthdayGlow {
+            0% { 
+                background: linear-gradient(45deg, var(--hot-pink), var(--gold), var(--cyan));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            100% { 
+                background: linear-gradient(45deg, var(--cyan), var(--gold), var(--hot-pink));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        }
+
+        /* ===== PAGE 7: 404 ERROR JOKE ===== */
+        .error-joke-container {
+            text-align: center;
+            padding: 80px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(30px);
+            border-radius: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            border: 3px solid var(--glass-border);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .error-code {
+            font-size: 10rem;
+            font-weight: 900;
             color: var(--hot-pink);
             margin-bottom: 30px;
-            text-shadow: 5px 5px 0 var(--purple);
+            text-shadow: 
+                5px 5px 0 var(--cyan),
+                -5px -5px 0 var(--gold);
         }
-        
-        /* Page 9: Surprise Button */
-        #page9 {
-            background: linear-gradient(135deg, #ff0000, #990000);
-        }
-        
-        .danger-container {
-            text-align: center;
-            max-width: 700px;
-            width: 90%;
-        }
-        
-        .danger-title {
-            font-size: 3rem;
-            margin-bottom: 40px;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-        }
-        
-        .danger-button {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: radial-gradient(circle, #ff0000, #990000);
-            border: none;
+
+        .error-message {
+            font-size: 2.5rem;
             color: white;
-            font-size: 2.5rem;
-            font-weight: 700;
-            cursor: pointer;
-            box-shadow: 0 0 50px #ff0000;
-            animation: pulse 1.5s infinite;
-            margin: 30px 0;
-            transition: all 0.3s;
+            margin-bottom: 50px;
+            opacity: 0.9;
+            text-shadow: 0 0 20px white;
         }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); box-shadow: 0 0 50px #ff0000; }
-            50% { transform: scale(1.05); box-shadow: 0 0 80px #ff0000; }
-            100% { transform: scale(1); box-shadow: 0 0 50px #ff0000; }
-        }
-        
-        .danger-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 100px #ff0000;
-        }
-        
-        .danger-button:active {
-            transform: scale(0.9);
-        }
-        
-        /* Page 10: Final Message */
-        .message-container {
-            max-width: 800px;
-            width: 90%;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            text-align: center;
-        }
-        
-        .message-content {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 40px;
-            border-radius: 20px;
-            text-align: left;
-            margin: 30px 0;
-            font-size: 1.2rem;
-            line-height: 1.8;
-        }
-        
-        .message-line {
-            margin-bottom: 20px;
-        }
-        
-        .signature {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.5rem;
+
+        .joke-message {
+            font-size: 3rem;
             color: var(--gold);
-            margin-top: 30px;
+            font-weight: 700;
+            margin: 50px 0;
+            line-height: 1.4;
+            opacity: 0;
+            animation: fadeInUp 0.5s ease 1.5s forwards;
+            text-shadow: 0 0 30px var(--gold);
         }
-        
-        /* Navigation Buttons */
-        .nav-buttons {
-            position: fixed;
-            bottom: 30px;
-            left: 0;
-            width: 100%;
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(20px); }
+        }
+
+        /* ===== PAGE 8: SURPRISE BUTTON ===== */
+        .surprise-container {
+            text-align: center;
+            padding: 80px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(30px);
+            border-radius: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            border: 3px solid var(--glass-border);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .surprise-title {
+            font-size: 3rem;
+            color: var(--cyan);
+            margin-bottom: 50px;
+            font-weight: 700;
+            text-shadow: 0 0 30px var(--cyan);
+        }
+
+        .danger-button {
+            background: linear-gradient(45deg, #ff0066, #ff00aa);
+            border: none;
+            padding: 30px 80px;
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: white;
+            border-radius: 30px;
+            cursor: pointer;
+            margin: 60px auto;
             display: flex;
+            align-items: center;
             justify-content: center;
             gap: 30px;
-            z-index: 100;
+            transition: all 0.3s ease;
+            box-shadow: 
+                0 30px 80px rgba(255, 0, 170, 0.5),
+                inset 0 0 50px rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            text-shadow: 0 0 20px white;
+            animation: buttonPulse 2s infinite alternate;
         }
-        
-        .nav-btn {
+
+        @keyframes buttonPulse {
+            0% { transform: scale(1); box-shadow: 0 20px 60px rgba(255, 0, 170, 0.5); }
+            100% { transform: scale(1.05); box-shadow: 0 30px 90px rgba(255, 0, 170, 0.7); }
+        }
+
+        .danger-button:hover {
+            transform: scale(1.1);
+            box-shadow: 
+                0 40px 100px rgba(255, 0, 170, 0.7),
+                inset 0 0 80px rgba(255, 255, 255, 0.5);
+            background: linear-gradient(45deg, #ff00aa, #ff0066);
+        }
+
+        .danger-button:active {
+            transform: scale(0.95);
+        }
+
+        .surprise-feedback {
+            font-size: 2.5rem;
+            margin: 50px 0;
+            min-height: 120px;
+            color: var(--gold);
+            font-weight: 900;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            text-shadow: 0 0 30px var(--gold);
+        }
+
+        .surprise-feedback.show {
+            opacity: 1;
+        }
+
+        /* ===== PAGE 9: FINAL MESSAGE ===== */
+        .final-message-container {
+            max-width: 1000px;
+            margin: 0 auto;
             background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(30px);
+            border-radius: 40px;
+            padding: 60px;
+            border: 3px solid var(--glass-border);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .message-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .message-title {
+            font-size: 3.5rem;
+            color: var(--hot-pink);
+            margin-bottom: 20px;
+            font-weight: 900;
+            text-shadow: 0 0 40px var(--hot-pink);
+        }
+
+        .message-subtitle {
+            font-size: 1.6rem;
+            color: var(--cyan);
+            opacity: 0.9;
+            text-shadow: 0 0 20px var(--cyan);
+        }
+
+        .message-content {
+            font-size: 1.6rem;
+            line-height: 1.8;
             color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 1.2rem;
-            font-weight: 600;
-            transition: all 0.3s;
+            text-shadow: 0 0 10px white;
+        }
+
+        .message-line {
+            margin: 30px 0;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            border-left: 8px solid var(--hot-pink);
+            animation: fadeInUp 0.8s ease;
             backdrop-filter: blur(10px);
         }
-        
-        .nav-btn:hover:not(:disabled) {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-5px);
+
+        .highlight {
+            color: var(--gold);
+            font-weight: 800;
+            text-shadow: 0 0 20px var(--gold);
+            font-size: 2rem;
         }
-        
+
+        .signature {
+            text-align: right;
+            font-style: italic;
+            font-size: 1.8rem;
+            color: var(--cyan);
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 3px solid rgba(0, 255, 255, 0.3);
+            text-shadow: 0 0 20px var(--cyan);
+        }
+
+        /* ===== NAVIGATION BUTTONS ===== */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 50px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            padding: 20px 40px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 10px white;
+            min-width: 180px;
+            justify-content: center;
+        }
+
+        .nav-btn.prev {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .nav-btn.next {
+            background: linear-gradient(45deg, var(--hot-pink), var(--purple));
+            color: white;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
         .nav-btn:disabled {
-            opacity: 0.3;
+            opacity: 0.5;
             cursor: not-allowed;
         }
-        
-        .next-btn {
-            background: linear-gradient(to right, var(--hot-pink), var(--purple));
-            border: none;
-        }
-        
-        /* Confetti */
-        .confetti {
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background-color: var(--cyan);
-            top: -10px;
-            z-index: 1000;
-        }
-        
-        /* Cake Explosion Effect */
-        .cake-piece {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            background-color: var(--gold);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 1001;
-        }
-        
-        /* Cake Smash Overlay */
-        .cake-overlay {
+
+        /* ===== CONFETTI CANVAS ===== */
+        #confetti-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* ===== CAKE BLAST OVERLAY ===== */
+        .cake-blast-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 0, 170, 0.9);
+            z-index: 9998;
+            display: none;
             justify-content: center;
             align-items: center;
-            z-index: 2000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s;
+            flex-direction: column;
         }
-        
-        .cake-overlay.active {
-            opacity: 1;
-            pointer-events: all;
+
+        .cake-blast-overlay.active {
+            display: flex;
+            animation: blastIn 0.5s ease;
         }
-        
-        .cake-smash-text {
+
+        @keyframes blastIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .blast-text {
             font-size: 5rem;
-            color: var(--cyan);
-            text-shadow: 0 0 30px var(--cyan);
-            font-weight: 700;
-            animation: pulse 1s infinite;
+            color: white;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 0 0 50px var(--gold);
+            animation: blastText 1s infinite alternate;
         }
-        
-        /* Responsive */
+
+        @keyframes blastText {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 1200px) {
+            .welcome-title { font-size: 4rem; }
+            .hero-name { font-size: 5rem; }
+            .birthday-message { font-size: 3.5rem; }
+            .error-code { font-size: 8rem; }
+            .message-title { font-size: 3rem; }
+        }
+
         @media (max-width: 768px) {
-            .title {
-                font-size: 2.5rem;
+            .page { padding: 100px 15px 80px; }
+            .welcome-title { font-size: 3rem; }
+            .hero-name { font-size: 4rem; }
+            .hero-age { 
+                width: 60px; 
+                height: 60px; 
+                font-size: 2rem; 
+                transform: translateX(150px); 
             }
-            
-            .name-display {
-                font-size: 3.5rem;
+            .welcome-subtitle { font-size: 1.6rem; }
+            .game-title { font-size: 2.5rem; }
+            .birthday-message { font-size: 2.8rem; }
+            .error-code { font-size: 6rem; }
+            .surprise-title { font-size: 2.5rem; }
+            .danger-button { 
+                padding: 25px 50px; 
+                font-size: 2rem; 
             }
-            
-            .age-badge {
-                width: 50px;
-                height: 50px;
-                font-size: 1.5rem;
-                right: -30px;
-                top: -15px;
+            .message-title { font-size: 2.5rem; }
+            .message-content { font-size: 1.4rem; }
+            .nav-btn { padding: 15px 30px; font-size: 1.1rem; }
+            .cake-container { height: 300px; }
+            .cake { width: 250px; height: 250px; }
+        }
+
+        @media (max-width: 480px) {
+            .welcome-title { font-size: 2.5rem; }
+            .hero-name { font-size: 3rem; }
+            .hero-age { 
+                width: 50px; 
+                height: 50px; 
+                font-size: 1.8rem; 
+                transform: translateX(100px); 
+                top: -20px;
             }
-            
-            .game-title {
-                font-size: 2.5rem;
+            .birthday-message { font-size: 2.2rem; }
+            .error-code { font-size: 5rem; }
+            .joke-message { font-size: 2.2rem; }
+            .surprise-title { font-size: 2rem; }
+            .danger-button { 
+                padding: 20px 40px; 
+                font-size: 1.8rem; 
             }
-            
-            .memory-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 10px;
-            }
-            
-            .memory-card {
-                width: 80px;
-                height: 80px;
-            }
-            
-            .dance-tile {
-                width: 90px;
-                height: 90px;
-            }
-            
-            .error-404 {
-                font-size: 5rem;
-            }
-            
-            .control-panel {
-                top: 10px;
-                right: 10px;
-                padding: 8px 15px;
-            }
-            
-            .nav-buttons {
-                bottom: 15px;
-                gap: 15px;
-            }
-            
-            .nav-btn {
-                padding: 12px 20px;
-                font-size: 1rem;
-            }
+            .game-title { font-size: 2rem; }
+            .game-instruction { font-size: 1.1rem; padding: 20px; }
+            .password-title { font-size: 3rem; }
+            .password-container { padding: 40px 30px; }
+            .birthday-icon { font-size: 5rem; }
+            .nav-buttons { flex-direction: column; }
+            .nav-btn { width: 100%; }
         }
     </style>
 </head>
 <body>
-    <!-- Control Panel -->
-    <div class="control-panel">
-        <button class="toggle-btn" id="musicToggle">
-            <i class="fas fa-music"></i>
-        </button>
-        <button class="toggle-btn" id="soundToggle">
-            <i class="fas fa-volume-up"></i>
-        </button>
-        <div class="score-display">
-            <i class="fas fa-star"></i>
-            <span id="score">0</span>
+    <!-- Birthday Background Elements -->
+    <div class="birthday-bg" id="birthday-bg"></div>
+
+    <!-- Full Screen Cake Blast Overlay -->
+    <div class="cake-blast-overlay" id="cake-blast-overlay">
+        <div class="blast-text">🎂 CAKE SMASH! 🎉</div>
+        <div style="font-size: 2.5rem; color: var(--gold); text-shadow: 0 0 30px var(--gold);">
+            Happy Birthday Jenisha! 🥳
         </div>
     </div>
-    
-    <!-- Page 1: Password Screen -->
-    <div class="page active" id="page1">
+
+    <!-- Password Screen -->
+    <div class="password-screen" id="password-screen">
+        <div class="birthday-icon">🎁</div>
         <div class="password-container">
-            <div class="gift-icon">🎁</div>
-            <h1 class="title">Happy Birthday Jenisha! 🎉</h1>
-            <p class="subtitle">You've unlocked a secret birthday website! ✨</p>
+            <h1 class="password-title">Happy Birthday Jenisha! 🎉</h1>
+            <p class="password-subtitle">You've unlocked a secret birthday website! ✨</p>
             
-            <div class="hint">
-                <p>It's your name! (all lowercase) Starts with 'j', ends with 'a', 7 letters</p>
+            <p style="font-size: 1.2rem; color: var(--cyan); margin-bottom: 20px;">
+                <i class="fas fa-lock"></i> Enter the secret password to access your birthday surprise!
+            </p>
+            
+            <div class="password-hint">
+                <p><strong>🔑 Password Hint:</strong> It's your name! (all lowercase)</p>
+                <p><em>✨ Starts with 'j', ends with 'a', has 7 magical letters ✨</em></p>
             </div>
             
-            <input type="text" class="password-input" id="passwordInput" placeholder="Enter password" autocomplete="off">
+            <input type="password" 
+                   class="password-input" 
+                   id="password-input"
+                   placeholder="🎂 Type your name here..."
+                   autocomplete="off"
+                   maxlength="20">
             
-            <button class="unlock-btn" id="unlockBtn">UNLOCK BIRTHDAY MAGIC 🪄</button>
+            <button class="password-btn" id="password-submit">
+                <i class="fas fa-gift"></i>
+                UNLOCK BIRTHDAY MAGIC 🪄
+            </button>
             
-            <div class="error-message" id="errorMessage"></div>
+            <div class="password-error" id="password-error">
+                ❌ Oops! That's not right. Try again! 🎈
+            </div>
             
-            <div class="attempt-counter">Attempts: <span id="attemptCount">0</span>/5</div>
+            <div style="margin-top: 30px;">
+                <i class="fas fa-redo"></i> Attempts: <span id="attempt-count">0</span>/5
+            </div>
         </div>
     </div>
-    
-    <!-- Page 2: Welcome Page -->
-    <div class="page" id="page2">
-        <h1 class="title">🎉 WELCOME TO YOUR 18TH BIRTHDAY! 🎉</h1>
-        
-        <div class="name-display">
-            JENISHA
-            <div class="age-badge">18</div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="main-content">
+        <!-- Control Panel -->
+        <div class="control-panel">
+            <button id="music-toggle" class="control-btn">
+                <i class="fas fa-music"></i> <span>MUSIC: ON</span>
+            </button>
+            <button id="sound-toggle" class="control-btn">
+                <i class="fas fa-volume-up"></i> <span>SOUND: ON</span>
+            </button>
+            <div class="score-display">
+                <i class="fas fa-crown"></i> <span id="global-score">500</span>
+            </div>
         </div>
-        
-        <p class="subtitle" style="font-size: 1.8rem; max-width: 800px; text-align: center;">
-            🎂 Get ready for the most EPIC birthday celebration ever! ✨
-        </p>
-        
-        <button class="shine-btn" id="startAdventure">🚀 START BIRTHDAY ADVENTURE</button>
-        
-        <p class="hint" style="margin-top: 30px; max-width: 600px;">
-            Complete all games to unlock the ultimate birthday surprise!
-        </p>
-    </div>
-    
-    <!-- Page 3: Cake Smash Game -->
-    <div class="page" id="page3">
-        <div class="game-container">
-            <h1 class="game-title">🎂 CAKE SMASH CHALLENGE! 🎂</h1>
-            
-            <div class="cake-container" id="cakeContainer">
-                <div class="cake">
-                    <div class="cake-layer layer-bottom"></div>
-                    <div class="cake-layer layer-middle"></div>
-                    <div class="cake-layer layer-top"></div>
-                    <div class="candle">
-                        <div class="flame"></div>
+
+        <!-- Confetti Canvas -->
+        <canvas id="confetti-canvas"></canvas>
+
+        <!-- Page 1: Welcome -->
+        <section class="page active" id="page1">
+            <div class="container">
+                <div class="welcome-container">
+                    <h1 class="welcome-title">🎉 WELCOME TO YOUR 18TH BIRTHDAY! 🎉</h1>
+                    
+                    <div class="birthday-hero">
+                        <div class="hero-name">JENISHA</div>
+                        <div class="hero-age">18</div>
+                    </div>
+                    
+                    <p class="welcome-subtitle">
+                        🎂 Get ready for the most EPIC birthday celebration ever!<br>
+                        ✨ Games, surprises, and lots of birthday magic await! ✨
+                    </p>
+                    
+                    <button class="start-btn" id="start-btn">
+                        <i class="fas fa-play-circle"></i>
+                        🚀 START BIRTHDAY ADVENTURE
+                    </button>
+                    
+                    <p style="font-size: 1.3rem; color: var(--cyan); margin-top: 40px;">
+                        <i class="fas fa-star"></i> Complete all games to unlock the ultimate birthday surprise!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 2: Cake Smash Game -->
+        <section class="page" id="page2">
+            <div class="container">
+                <div class="cake-smash-container">
+                    <h2 class="game-title">
+                        <i class="fas fa-birthday-cake"></i>
+                        🎂 CAKE SMASH CHALLENGE! 🎂
+                    </h2>
+                    
+                    <div class="game-instruction">
+                        <p><strong>🎮 HOW TO PLAY:</strong></p>
+                        <p>👉 TAP the birthday cake 5 times!</p>
+                        <p>💥 Watch it get crazier with each tap!</p>
+                        <p>🎉 On the 5th tap - FULL SCREEN CAKE BLAST! 🎉</p>
+                        <p>🏆 Earn 1000 points for the epic smash!</p>
+                    </div>
+                    
+                    <div class="tap-counter">
+                        👆 TAPS: <span id="tap-count">0</span>/5
+                    </div>
+                    
+                    <div class="cake-container" id="cake-container">
+                        <div class="cake" id="birthday-cake">
+                            <div class="cake-layer layer-1"></div>
+                            <div class="cake-layer layer-2"></div>
+                            <div class="cake-layer layer-3"></div>
+                            <div class="cake-candle"></div>
+                            <div class="cake-flame"></div>
+                        </div>
+                    </div>
+                    
+                    <p style="font-size: 1.8rem; color: var(--light-pink); margin: 20px 0;">
+                        🎯 TAP THE CAKE ABOVE! 👆
+                    </p>
+                    
+                    <div class="game-feedback" id="cake-feedback">
+                        🎂 Ready? TAP the cake to begin! 🎂
+                    </div>
+                    
+                    <div class="nav-buttons">
+                        <button class="nav-btn prev" onclick="goToPage(1)">
+                            <i class="fas fa-arrow-left"></i> BACK
+                        </button>
+                        <button class="nav-btn next" id="cake-next" disabled onclick="goToPage(3)">
+                            NEXT GAME <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
                 </div>
             </div>
-            
-            <div class="tap-counter" id="tapCounter">TAPS: 0/5</div>
-            
-            <div class="instructions">
-                <p>Tap the cake 5 times to smash it! 🎂</p>
-                <p id="tapFeedback">Ready to smash! 👆</p>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Cake Smash Overlay -->
-    <div class="cake-overlay" id="cakeOverlay">
-        <div class="cake-smash-text">🎂 CAKE SMASH! 🎉</div>
-    </div>
-    
-    <!-- Page 4: Memory Match Game -->
-    <div class="page" id="page4">
-        <div class="game-container">
-            <h1 class="game-title">🧠 BIRTHDAY MEMORY CHALLENGE! 🎴</h1>
-            
-            <div class="game-stats">
-                <div class="stat">
-                    <div>Matches</div>
-                    <div class="stat-value" id="matchCount">0/6</div>
-                </div>
-                <div class="stat">
-                    <div>Score</div>
-                    <div class="stat-value" id="memoryScore">0</div>
-                </div>
-                <div class="stat">
-                    <div>Moves</div>
-                    <div class="stat-value" id="moveCount">0</div>
-                </div>
-            </div>
-            
-            <div class="memory-grid" id="memoryGrid">
-                <!-- Memory cards will be generated here -->
-            </div>
-            
-            <div class="instructions">
-                <p>Find all 6 matching pairs of birthday emojis!</p>
-                <p>Click on a card to flip it and find its match.</p>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Page 5: Birthday Quiz -->
-    <div class="page" id="page5">
-        <div class="quiz-container">
-            <h1 class="game-title">❓ BIRTHDAY PERSONALITY QUIZ! 🎯</h1>
-            
-            <div class="question" id="quizQuestion">What's your favorite type of cake?</div>
-            
-            <div class="options-container" id="quizOptions">
-                <!-- Quiz options will be generated here -->
-            </div>
-            
-            <div class="quiz-feedback" id="quizFeedback"></div>
-        </div>
-    </div>
-    
-    <!-- Page 6: Dance Party Game -->
-    <div class="page" id="page6">
-        <div class="dance-container">
-            <h1 class="game-title">💃 BIRTHDAY DANCE PARTY! 🎶</h1>
-            
-            <div class="game-stats">
-                <div class="stat">
-                    <div>Streak</div>
-                    <div class="stat-value" id="streakCount">0</div>
-                </div>
-                <div class="stat">
-                    <div>Score</div>
-                    <div class="stat-value" id="danceScore">0</div>
-                </div>
-                <div class="stat">
-                    <div>Steps</div>
-                    <div class="stat-value" id="stepCount">0/30</div>
+        </section>
+
+        <!-- Page 3: Memory Match Game -->
+        <section class="page" id="page3">
+            <div class="container">
+                <div class="game-container">
+                    <div class="game-header">
+                        <h2 class="game-title">
+                            <i class="fas fa-brain"></i>
+                            🧠 BIRTHDAY MEMORY CHALLENGE! 🎴
+                        </h2>
+                        <div class="game-stats">
+                            <div class="stat">
+                                <i class="fas fa-layer-group"></i>
+                                Matches: <span class="stat-value" id="memory-matches">0</span>/6
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-star"></i>
+                                Score: <span class="stat-value" id="memory-score">0</span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-redo"></i>
+                                Moves: <span class="stat-value" id="memory-moves">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="game-instruction">
+                        <p><strong>🎮 HOW TO PLAY:</strong></p>
+                        <p>🎴 Find matching pairs of birthday emojis!</p>
+                        <p>🧠 Test your memory skills!</p>
+                        <p>🎯 Each match = 100 points + reveals birthday message!</p>
+                        <p>🏆 Match all 6 pairs to win 500 bonus points!</p>
+                    </div>
+                    
+                    <div id="memory-area">
+                        <!-- Memory cards will be generated here -->
+                    </div>
+                    
+                    <div class="game-feedback" id="memory-feedback">
+                        🎉 Click START to begin the memory challenge!
+                    </div>
+                    
+                    <div class="nav-buttons">
+                        <button class="nav-btn prev" onclick="goToPage(2)">
+                            <i class="fas fa-arrow-left"></i> BACK
+                        </button>
+                        <button class="nav-btn" id="memory-start">🚀 START GAME</button>
+                        <button class="nav-btn next" id="memory-next" disabled onclick="goToPage(4)">
+                            NEXT GAME <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
-            
-            <div class="dance-floor" id="danceFloor">
-                <!-- Dance tiles will be generated here -->
-            </div>
-            
-            <div class="dance-instructions">
-                <p>Watch the tiles light up, then press the matching arrow keys!</p>
-                <p>Complete 30 steps to finish the dance.</p>
-                
-                <div class="key-hint">
-                    <div class="key">↑</div>
-                    <div class="key">↓</div>
-                    <div class="key">←</div>
-                    <div class="key">→</div>
+        </section>
+
+        <!-- Page 4: Birthday Quiz -->
+        <section class="page" id="page4">
+            <div class="container">
+                <div class="game-container">
+                    <div class="game-header">
+                        <h2 class="game-title">
+                            <i class="fas fa-question-circle"></i>
+                            ❓ BIRTHDAY PERSONALITY QUIZ! 🎯
+                        </h2>
+                        <div class="game-stats">
+                            <div class="stat">
+                                <i class="fas fa-check-circle"></i>
+                                Questions: <span class="stat-value" id="quiz-current">1</span>/5
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-star"></i>
+                                Score: <span class="stat-value" id="quiz-score">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="game-instruction">
+                        <p><strong>🎮 HOW TO PLAY:</strong></p>
+                        <p>❓ Answer 5 fun birthday questions about YOU!</p>
+                        <p>😄 No right/wrong - just your preferences!</p>
+                        <p>🎁 Each answer = 100 points!</p>
+                        <p>🎂 Complete all for 500 bonus points!</p>
+                    </div>
+                    
+                    <div id="quiz-area">
+                        <!-- Questions will be loaded by JavaScript -->
+                    </div>
+                    
+                    <div class="game-feedback" id="quiz-feedback">
+                        🎯 Choose your answer to get started!
+                    </div>
+                    
+                    <div class="nav-buttons">
+                        <button class="nav-btn prev" onclick="goToPage(3)">
+                            <i class="fas fa-arrow-left"></i> BACK
+                        </button>
+                        <button class="nav-btn" id="quiz-next-btn" disabled>➡️ NEXT QUESTION</button>
+                        <button class="nav-btn next" id="quiz-next" disabled onclick="goToPage(5)">
+                            DANCE PARTY <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    
-    <!-- Page 7: Birthday Display -->
-    <div class="page" id="page7">
-        <div class="glass-card">
-            <h1 class="title">🎂 HAPPY 18TH BIRTHDAY JENISHA! 🎉</h1>
-            <p class="subtitle" style="font-size: 2rem; margin-top: 30px;">
-                🏆 YOU COMPLETED ALL BIRTHDAY CHALLENGES! 🏆
-            </p>
-            
-            <button class="shine-btn" id="continueToSurprises" style="margin-top: 50px;">
-                🎁 CONTINUE TO SURPRISES 🎁
-            </button>
-        </div>
-    </div>
-    
-    <!-- Page 8: 404 Error Joke -->
-    <div class="page" id="page8">
-        <div class="error-joke">
-            <div class="error-404">404</div>
-            <p style="font-size: 2.5rem; margin-bottom: 40px;">🎂 Birthday not found 🎂</p>
-            
-            <div id="jokeReveal" style="font-size: 2rem; min-height: 100px;"></div>
-        </div>
-    </div>
-    
-    <!-- Page 9: Surprise Button -->
-    <div class="page" id="page9">
-        <div class="danger-container">
-            <h1 class="danger-title">⚠️ Don't press the button... 😶</h1>
-            
-            <button class="danger-button" id="dangerButton">🎯 PRESS ME 😄</button>
-            
-            <div id="buttonMessage" style="font-size: 2rem; min-height: 80px; margin-top: 30px;"></div>
-            
-            <div id="finalMessageBtn" style="display: none; margin-top: 30px;">
-                <button class="shine-btn">🎉 VIEW FINAL MESSAGE 🎉</button>
+        </section>
+
+        <!-- Page 5: Dance Party (FIXED) -->
+        <section class="page" id="page5">
+            <div class="container">
+                <div class="dance-container">
+                    <div class="game-header">
+                        <h2 class="game-title">
+                            <i class="fas fa-music"></i>
+                            💃 BIRTHDAY DANCE PARTY! 🎶
+                        </h2>
+                        <div class="game-stats">
+                            <div class="stat">
+                                <i class="fas fa-fire"></i>
+                                Streak: <span class="stat-value" id="dance-streak">0</span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-star"></i>
+                                Score: <span class="stat-value" id="dance-score">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="game-instruction">
+                        <p><strong>🎮 HOW TO PLAY:</strong></p>
+                        <p>💃 Press arrow keys when tiles light up!</p>
+                        <p>🎵 Follow the birthday beat!</p>
+                        <p>🔥 Keep the streak for bonus points!</p>
+                        <p>🎉 Complete 30 steps = VICTORY DANCE!</p>
+                        
+                        <div class="key-hint">
+                            <div class="key">↑</div>
+                            <div class="key">↓</div>
+                            <div class="key">←</div>
+                            <div class="key">→</div>
+                        </div>
+                    </div>
+                    
+                    <div id="party-area">
+                        <div class="dance-floor" id="dance-floor">
+                            <!-- Dance tiles will be generated here -->
+                        </div>
+                    </div>
+                    
+                    <div class="game-feedback" id="dance-feedback">
+                        🎵 Get ready to dance! Click START! 🎵
+                    </div>
+                    
+                    <div class="nav-buttons">
+                        <button class="nav-btn prev" onclick="goToPage(4)">
+                            <i class="fas fa-arrow-left"></i> BACK
+                        </button>
+                        <button class="nav-btn" id="dance-start">🎶 START DANCE PARTY</button>
+                        <button class="nav-btn next" id="dance-next" onclick="goToPage(6)">
+                            SEE SURPRISE <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    
-    <!-- Page 10: Final Message -->
-    <div class="page" id="page10">
-        <div class="message-container">
-            <h1 class="title">🎂 A Special Birthday Message 💌</h1>
-            <p class="subtitle" style="font-size: 1.8rem; margin-top: 10px;">
-                For Jenisha on her magical 18th birthday ✨
-            </p>
-            
-            <div class="message-content">
-                <div class="message-line">🎉 <strong>HAPPY 18TH BIRTHDAY, JENISHA!</strong> 🎉</div>
-                
-                <div class="message-line">Welcome to adulthood! You're officially an adult now (well, almost!).</div>
-                
-                <div class="message-line">I'm so grateful to have a friend like me 😂😂 (just kidding, couldn't resist!).</div>
-                
-                <div class="message-line"><strong>Important question time 👀</strong> - When are we actually celebrating? The suspense is killing me!</div>
-                
-                <div class="message-line">I have pending parties to plan, and your 18th is at the top of my list!</div>
-                
-                <div class="message-line">Wishing you the most amazing year ahead filled with joy, success, and lots of cake! 🍰</div>
+        </section>
+
+        <!-- Page 6: Birthday Display -->
+        <section class="page" id="page6">
+            <div class="container">
+                <div class="birthday-display">
+                    <h1 class="birthday-message">🎂 HAPPY 18TH BIRTHDAY JENISHA! 🎉</h1>
+                    <p style="font-size: 2.2rem; color: var(--gold); margin: 50px 0; text-shadow: 0 0 30px var(--gold);">
+                        🏆 YOU COMPLETED ALL BIRTHDAY CHALLENGES! 🏆<br>
+                        ✨ Now for the FINAL SURPRISES... ✨
+                    </p>
+                    <button class="start-btn" onclick="goToPage(7)">
+                        <i class="fas fa-gift"></i>
+                        🎁 CONTINUE TO SURPRISES 🎁
+                    </button>
+                </div>
             </div>
-            
-            <div class="signature">Made with ❤️ & 😂 for your special 18th</div>
-        </div>
+        </section>
+
+        <!-- Page 7: 404 Error Joke -->
+        <section class="page" id="page7">
+            <div class="container">
+                <div class="error-joke-container">
+                    <div class="error-code" id="error-code">404</div>
+                    <div class="error-message" id="error-message">🎂 Birthday not found 🎂</div>
+                    
+                    <div class="joke-message" id="joke-message">
+                        Just kidding 😄<br>
+                        Obviously it's your birthday! 🎉
+                    </div>
+                    
+                    <button class="start-btn" id="error-continue" onclick="goToPage(8)">
+                        Continue to Final Surprise →
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 8: Surprise Button -->
+        <section class="page" id="page8">
+            <div class="container">
+                <div class="surprise-container">
+                    <h2 class="surprise-title">⚠️ Don't press the button... 😶</h2>
+                    
+                    <button class="danger-button" id="danger-button">
+                        <i class="fas fa-hand-pointer"></i>
+                        🎯 PRESS ME 😄
+                    </button>
+                    
+                    <div class="surprise-feedback" id="surprise-feedback">
+                        I knew it 😂<br>
+                        Couldn't resist!
+                    </div>
+                    
+                    <button class="start-btn" id="final-page-btn" onclick="goToPage(9)">
+                        🎉 VIEW FINAL MESSAGE 🎉
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Page 9: Final Message -->
+        <section class="page" id="page9">
+            <div class="container">
+                <div class="final-message-container">
+                    <div class="message-header">
+                        <h1 class="message-title">🎂 A Special Birthday Message 💌</h1>
+                        <p class="message-subtitle">For Jenisha on her magical 18th birthday ✨</p>
+                    </div>
+                    
+                    <div class="message-content">
+                        <div class="message-line">
+                            🎉 <span class="highlight">HAPPY 18TH BIRTHDAY, JENISHA!</span> 🎉
+                        </div>
+                        
+                        <div class="message-line">
+                            Welcome to adulthood! 🎉<br>
+                            May every wish you blow on those candles come true ✨<br>
+                            And may this year be filled with amazing adventures!
+                        </div>
+                        
+                        <div class="message-line">
+                            <span class="highlight">I'm grateful to have a friend like me 😂😂</span><br>
+                            (Just kidding! Couldn't resist the meme!)
+                        </div>
+                        
+                        <div class="message-line">
+                            <strong>🎯 Important question time 👀</strong><br>
+                            Waise birthday party ka kya scene hai?<br>
+                            Previous 2 years ki party abhi bhi pending hai 😭
+                        </div>
+                        
+                        <div class="message-line">
+                            Iss saal compensate karne ka plan hai…<br>
+                            ya phir next year bhi add kar dein? 😄
+                        </div>
+                        
+                        <div class="message-line">
+                            Have the absolute best day ever!<br>
+                            Eat lots of cake 🎂, enjoy every moment,<br>
+                            and make awesome memories 🥳
+                        </div>
+                    </div>
+                    
+                    <div class="signature">
+                        Made with ❤️ & 😂 for your special 18th<br>
+                        <span style="font-size: 1.5rem; color: var(--gold);">P.S. Hope you enjoyed your birthday surprise! 🎁</span>
+                    </div>
+                    
+                    <div class="nav-buttons" style="margin-top: 60px;">
+                        <button class="nav-btn prev" onclick="goToPage(8)">
+                            <i class="fas fa-arrow-left"></i> BACK
+                        </button>
+                        <button class="nav-btn" onclick="createConfetti(1000)">
+                            <i class="fas fa-fireworks"></i> CELEBRATE
+                        </button>
+                        <button class="nav-btn next" onclick="goToPage(1)">
+                            🔁 PLAY AGAIN
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Audio Elements -->
+        <audio id="bg-music" loop>
+            <source src="https://assets.mixkit.co/music/preview/mixkit-happy-birthday-to-you-443.mp3" type="audio/mpeg">
+        </audio>
+        
+        <audio id="pop-sound">
+            <source src="https://assets.mixkit.co/sfx/preview/mixkit-balloon-pop-2928.mp3" type="audio/mpeg">
+        </audio>
+        
+        <audio id="click-sound">
+            <source src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3" type="audio/mpeg">
+        </audio>
+        
+        <audio id="success-sound">
+            <source src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3" type="audio/mpeg">
+        </audio>
+        
+        <audio id="celebration-sound">
+            <source src="https://assets.mixkit.co/sfx/preview/mixkit-party-horn-sound-2927.mp3" type="audio/mpeg">
+        </audio>
+        
+        <audio id="cake-smash-sound">
+            <source src="https://assets.mixkit.co/sfx/preview/mixkit-ice-cream-truck-horn-1956.mp3" type="audio/mpeg">
+        </audio>
+        
+        <audio id="dance-beat">
+            <source src="https://assets.mixkit.co/music/preview/mixkit-game-show-suspense-waiting-667.mp3" type="audio/mpeg">
+        </audio>
     </div>
-    
-    <!-- Navigation Buttons -->
-    <div class="nav-buttons">
-        <button class="nav-btn" id="prevBtn" disabled>← Back</button>
-        <button class="nav-btn next-btn" id="nextBtn" disabled>Next →</button>
-    </div>
-    
-    <!-- Audio Elements -->
-    <audio id="backgroundMusic" loop>
-        <source src="https://assets.mixkit.co/music/preview/mixkit-happy-birthday-to-you-443.mp3" type="audio/mpeg">
-    </audio>
-    
-    <audio id="confettiSound">
-        <source src="https://assets.mixkit.co/sfx/preview/mixkit-party-horn-sound-2927.mp3" type="audio/mpeg">
-    </audio>
-    
-    <audio id="tapSound">
-        <source src="https://assets.mixkit.co/sfx/preview/mixkit-retro-game-emergency-alarm-1000.mp3" type="audio/mpeg">
-    </audio>
-    
-    <audio id="matchSound">
-        <source src="https://assets.mixkit.co/sfx/preview/mixkit-winning-chimes-2015.mp3" type="audio/mpeg">
-    </audio>
-    
-    <audio id="danceSound">
-        <source src="https://assets.mixkit.co/music/preview/mixkit-game-show-suspense-waiting-667.mp3" type="audio/mpeg">
-    </audio>
-    
+
     <script>
-        // Global Variables
+        // ===== GLOBAL VARIABLES =====
+        let totalScore = 500; // Starting bonus
         let currentPage = 1;
-        let totalPages = 10;
-        let score = 500; // Starting bonus
-        let attempts = 0;
-        let maxAttempts = 5;
         let musicEnabled = true;
         let soundEnabled = true;
-        
-        // Password validation
-        const correctPassword = "jenisha";
-        
-        // Game State
-        let cakeTaps = 0;
+        let attempts = 0;
+        let maxAttempts = 5;
+
+        // Cake Smash Game
+        let tapCount = 0;
+        let cakeSmashed = false;
+
+        // Memory Match Game
         let memoryMatches = 0;
         let memoryMoves = 0;
-        let memoryScore = 0;
-        let quizAnswers = 0;
-        let quizCompleted = false;
-        let danceCompleted = false;
-        let allGamesCompleted = false;
-        
-        // DOM Elements
-        const pages = document.querySelectorAll('.page');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const scoreDisplay = document.getElementById('score');
-        const musicToggle = document.getElementById('musicToggle');
-        const soundToggle = document.getElementById('soundToggle');
-        const backgroundMusic = document.getElementById('backgroundMusic');
-        
-        // Initialize the website
-        function init() {
-            // Set up event listeners
-            document.getElementById('unlockBtn').addEventListener('click', checkPassword);
-            document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+        let memoryGameActive = false;
+        let firstCard = null;
+        let secondCard = null;
+        let canFlip = true;
+
+        // Quiz Game
+        let currentQuestion = 1;
+        let totalQuestions = 5;
+        let quizScore = 0;
+        let quizAnswers = {};
+
+        // Dance Party Game (FIXED)
+        let danceScore = 0;
+        let danceStreak = 0;
+        let danceSteps = 0;
+        let maxDanceSteps = 30;
+        let danceGameActive = false;
+        let danceSequence = [];
+        let playerSequence = [];
+        let sequenceStep = 0;
+        let isPlayingSequence = false;
+
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create birthday background elements
+            createBirthdayBackground();
+            
+            // Initialize password system
+            document.getElementById('password-submit').addEventListener('click', checkPassword);
+            document.getElementById('password-input').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') checkPassword();
             });
-            
-            document.getElementById('startAdventure').addEventListener('click', function() {
-                navigateTo(3);
-            });
-            
-            document.getElementById('continueToSurprises').addEventListener('click', function() {
-                navigateTo(8);
-            });
-            
-            prevBtn.addEventListener('click', goToPrevPage);
-            nextBtn.addEventListener('click', goToNextPage);
-            
-            // Audio controls
-            musicToggle.addEventListener('click', toggleMusic);
-            soundToggle.addEventListener('click', toggleSound);
-            
-            // Start with music playing (at low volume)
-            backgroundMusic.volume = 0.2;
-            if (musicEnabled) {
-                backgroundMusic.play().catch(e => console.log("Autoplay blocked"));
-            }
-            
-            // Update score display
-            updateScoreDisplay();
-            
-            // Create floating emojis on page 1
-            createFloatingEmojis();
             
             // Initialize games
             initCakeGame();
             initMemoryGame();
             initQuizGame();
             initDanceGame();
-            initSurpriseButton();
             
-            // Initialize navigation
-            updateNavigation();
-        }
-        
-        // Password validation function
-        function checkPassword() {
-            const passwordInput = document.getElementById('passwordInput');
-            const errorMessage = document.getElementById('errorMessage');
-            const attemptCount = document.getElementById('attemptCount');
-            const password = passwordInput.value.trim().toLowerCase();
+            // Start button
+            document.getElementById('start-btn').addEventListener('click', function() {
+                playSound('celebration-sound');
+                goToPage(2);
+            });
             
-            if (password === correctPassword) {
-                // Success - navigate to page 2
-                createConfetti(100);
-                playSound('confettiSound');
+            // Music/Sound toggles
+            document.getElementById('music-toggle').addEventListener('click', toggleMusic);
+            document.getElementById('sound-toggle').addEventListener('click', toggleSound);
+            
+            // Surprise Button
+            document.getElementById('danger-button').addEventListener('click', surpriseButtonClicked);
+            document.getElementById('final-page-btn').style.display = 'none';
+            
+            // 404 Error Page
+            document.getElementById('joke-message').style.display = 'none';
+            document.getElementById('error-continue').style.display = 'none';
+            
+            // Update score display
+            updateGlobalScore();
+            
+            // Start background music
+            const bgMusic = document.getElementById('bg-music');
+            bgMusic.volume = 0.1;
+            bgMusic.play().catch(e => {
+                console.log("Autoplay blocked. User interaction required.");
+            });
+        });
+
+        // ===== CREATE BIRTHDAY BACKGROUND =====
+        function createBirthdayBackground() {
+            const bg = document.getElementById('birthday-bg');
+            const elements = ['🎈', '🎉', '✨', '🥳', '🎁', '🎂', '🎊', '🎀', '🧁', '🍰'];
+            
+            for (let i = 0; i < 30; i++) {
+                const element = document.createElement('div');
+                element.className = 'birthday-element';
+                element.innerHTML = elements[Math.floor(Math.random() * elements.length)];
                 
-                // Fade out password screen
-                document.getElementById('page1').style.opacity = '0';
+                // Random position
+                element.style.left = `${Math.random() * 100}%`;
+                element.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation delay
+                element.style.animationDelay = `${Math.random() * 10}s`;
+                
+                // Random size
+                const size = Math.random() * 1.5 + 1;
+                element.style.fontSize = `${size}rem`;
+                
+                // Random color
+                const colors = ['var(--hot-pink)', 'var(--gold)', 'var(--cyan)', 'var(--purple)', 'var(--pink)'];
+                element.style.color = colors[Math.floor(Math.random() * colors.length)];
+                
+                bg.appendChild(element);
+            }
+        }
+
+        // ===== PASSWORD SYSTEM =====
+        function checkPassword() {
+            const passwordInput = document.getElementById('password-input');
+            const errorMsg = document.getElementById('password-error');
+            const attemptCount = document.getElementById('attempt-count');
+            const enteredPassword = passwordInput.value.toLowerCase().trim();
+            
+            attempts++;
+            attemptCount.textContent = attempts;
+            
+            if (enteredPassword === "jenisha") {
+                // Correct password
+                playSound('success-sound', 0.7);
+                errorMsg.classList.remove('show');
+                
+                // Create confetti
+                createConfetti(200);
+                
+                // Update button
+                const submitBtn = document.getElementById('password-submit');
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> 🎉 ACCESS GRANTED! 🎉';
+                submitBtn.style.background = 'linear-gradient(45deg, var(--cyan), var(--blue))';
+                
+                // Unlock website
                 setTimeout(() => {
-                    navigateTo(2);
-                }, 500);
+                    document.getElementById('password-screen').style.opacity = '0';
+                    setTimeout(() => {
+                        document.getElementById('password-screen').style.display = 'none';
+                        document.getElementById('main-content').classList.add('show');
+                        
+                        // Play celebration sound
+                        playSound('celebration-sound', 0.8);
+                    }, 500);
+                }, 1500);
             } else {
                 // Wrong password
-                attempts++;
-                attemptCount.textContent = attempts;
+                playSound('pop-sound');
+                errorMsg.classList.add('show');
+                passwordInput.value = '';
+                passwordInput.focus();
                 
+                // Shake animation
+                passwordInput.style.animation = 'none';
+                setTimeout(() => {
+                    passwordInput.style.animation = 'shake 0.5s ease';
+                }, 10);
+                
+                // Limit attempts
                 if (attempts >= maxAttempts) {
-                    errorMessage.textContent = "Too many attempts! Refresh the page to try again.";
-                    document.getElementById('unlockBtn').disabled = true;
-                    passwordInput.disabled = true;
-                } else {
-                    errorMessage.textContent = "Wrong password! Hint: It's your name (7 letters, starts with j, ends with a)";
-                    passwordInput.value = '';
-                    passwordInput.focus();
-                    
-                    // Shake animation
-                    passwordInput.style.animation = 'none';
-                    setTimeout(() => {
-                        passwordInput.style.animation = 'shake 0.5s';
-                    }, 10);
+                    document.getElementById('password-submit').disabled = true;
+                    document.getElementById('password-input').disabled = true;
+                    errorMsg.textContent = '❌ Too many attempts! Refresh page. 🎈';
                 }
             }
         }
-        
-        // Navigation functions
-        function goToPrevPage() {
-            if (currentPage > 1) {
-                navigateTo(currentPage - 1);
-            }
-        }
-        
-        function goToNextPage() {
-            // Check if current game is completed before allowing navigation
-            let canProceed = true;
+
+        // ===== PAGE NAVIGATION =====
+        function goToPage(pageNum) {
+            if (pageNum < 1 || pageNum > 9) return;
             
-            if (currentPage === 3 && cakeTaps < 5) {
-                alert("Complete the cake smash challenge first! Tap the cake 5 times.");
-                canProceed = false;
-            }
-            
-            if (currentPage === 4 && memoryMatches < 6) {
-                alert("Complete the memory game first! Find all 6 pairs.");
-                canProceed = false;
-            }
-            
-            if (currentPage === 5 && !quizCompleted) {
-                alert("Complete the quiz first! Answer all 5 questions.");
-                canProceed = false;
-            }
-            
-            if (currentPage === 6 && !danceCompleted) {
-                alert("Complete the dance party first! Finish 30 steps.");
-                canProceed = false;
-            }
-            
-            if (canProceed && currentPage < totalPages) {
-                navigateTo(currentPage + 1);
-            }
-        }
-        
-        function navigateTo(pageNumber) {
             // Hide current page
-            pages[currentPage - 1].classList.remove('active');
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
             
             // Show new page
-            pages[pageNumber - 1].classList.add('active');
+            currentPage = pageNum;
+            document.getElementById(`page${pageNum}`).classList.add('active');
             
-            // Update current page
-            currentPage = pageNumber;
+            // Play click sound
+            playSound('click-sound');
             
-            // Update navigation buttons
-            updateNavigation();
+            // Scroll to top
+            window.scrollTo(0, 0);
             
-            // Special page initialization
-            if (pageNumber === 8) {
-                startErrorJoke();
-            }
-            
-            if (pageNumber === 9 && allGamesCompleted) {
-                // Show final message button if all games are completed
-                document.getElementById('finalMessageBtn').style.display = 'block';
-                document.getElementById('finalMessageBtn').addEventListener('click', function() {
-                    navigateTo(10);
-                });
-            }
-            
-            // Play page transition sound if enabled
-            if (soundEnabled && pageNumber > 1) {
-                playSound('tapSound');
+            // Special handling for specific pages
+            if (pageNum === 7) {
+                start404Animation();
             }
         }
-        
-        function updateNavigation() {
-            // Update previous button
-            prevBtn.disabled = currentPage === 1;
+
+        // ===== PAGE 2: CAKE SMASH GAME =====
+        function initCakeGame() {
+            const cake = document.getElementById('birthday-cake');
+            const feedback = document.getElementById('cake-feedback');
+            const nextBtn = document.getElementById('cake-next');
             
-            // Update next button
-            if (currentPage === 1) {
-                nextBtn.disabled = true;
-            } else if (currentPage === 7) {
-                nextBtn.disabled = false;
-                nextBtn.textContent = "Next →";
-            } else if (currentPage === totalPages) {
-                nextBtn.disabled = true;
-            } else {
-                nextBtn.disabled = false;
-                nextBtn.textContent = "Next →";
-            }
-            
-            // Hide navigation on password screen
-            if (currentPage === 1) {
-                document.querySelector('.nav-buttons').style.opacity = '0';
-            } else {
-                document.querySelector('.nav-buttons').style.opacity = '1';
-            }
-        }
-        
-        // Score system
-        function addPoints(points) {
-            score += points;
-            updateScoreDisplay();
-            
-            // Visual feedback for points
-            const pointsPopup = document.createElement('div');
-            pointsPopup.textContent = `+${points}`;
-            pointsPopup.style.position = 'fixed';
-            pointsPopup.style.top = '80px';
-            pointsPopup.style.right = '180px';
-            pointsPopup.style.color = '#00ff00';
-            pointsPopup.style.fontSize = '1.5rem';
-            pointsPopup.style.fontWeight = 'bold';
-            pointsPopup.style.zIndex = '10000';
-            pointsPopup.style.textShadow = '0 0 10px #00ff00';
-            document.body.appendChild(pointsPopup);
-            
-            // Animate the points popup
-            let opacity = 1;
-            let pos = 80;
-            const fadeInterval = setInterval(() => {
-                opacity -= 0.05;
-                pos -= 2;
-                pointsPopup.style.opacity = opacity;
-                pointsPopup.style.top = `${pos}px`;
+            cake.addEventListener('click', function() {
+                if (cakeSmashed) return;
                 
-                if (opacity <= 0) {
-                    clearInterval(fadeInterval);
-                    document.body.removeChild(pointsPopup);
+                tapCount++;
+                document.getElementById('tap-count').textContent = tapCount;
+                
+                // Different effects based on tap count
+                switch(tapCount) {
+                    case 1:
+                        cake.style.transform = 'scale(0.95)';
+                        feedback.innerHTML = "🎯 One tap! Getting started!";
+                        playSound('click-sound');
+                        break;
+                    case 2:
+                        cake.style.transform = 'scale(0.9) rotate(5deg)';
+                        feedback.innerHTML = "💥 Two taps! Cake is wobbling!";
+                        playSound('click-sound');
+                        break;
+                    case 3:
+                        cake.style.transform = 'scale(0.85) rotate(-10deg)';
+                        feedback.innerHTML = "🎉 Three! Cracks appearing!";
+                        playSound('pop-sound');
+                        break;
+                    case 4:
+                        cake.style.transform = 'scale(0.8) rotate(15deg)';
+                        feedback.innerHTML = "🚀 Four! Almost there! Get ready!";
+                        playSound('pop-sound');
+                        break;
+                    case 5:
+                        // CAKE SMASH - FULL SCREEN BLAST!
+                        cakeSmashed = true;
+                        cake.style.opacity = '0';
+                        feedback.innerHTML = "🎊🎊🎊 CAKE SMASH! 🎊🎊🎊";
+                        
+                        // Show full screen blast overlay
+                        const overlay = document.getElementById('cake-blast-overlay');
+                        overlay.classList.add('active');
+                        
+                        // Add points
+                        addToScore(1000);
+                        nextBtn.disabled = false;
+                        
+                        // Play celebration sounds
+                        playSound('cake-smash-sound', 0.8);
+                        playSound('celebration-sound', 0.7);
+                        
+                        // Create cake explosion
+                        createCakeExplosion();
+                        createConfetti(200);
+                        
+                        // Hide overlay after 3 seconds
+                        setTimeout(() => {
+                            overlay.classList.remove('active');
+                        }, 3000);
+                        break;
                 }
-            }, 50);
+            });
         }
-        
-        function updateScoreDisplay() {
-            scoreDisplay.textContent = score;
-        }
-        
-        // Audio controls
-        function toggleMusic() {
-            musicEnabled = !musicEnabled;
-            musicToggle.classList.toggle('active', musicEnabled);
-            
-            if (musicEnabled) {
-                backgroundMusic.play().catch(e => console.log("Playback failed"));
-                backgroundMusic.volume = 0.2;
-            } else {
-                backgroundMusic.pause();
+
+        function createCakeExplosion() {
+            // Create 150 cake pieces
+            for (let i = 0; i < 150; i++) {
+                setTimeout(() => {
+                    const piece = document.createElement('div');
+                    piece.style.position = 'fixed';
+                    piece.style.width = '40px';
+                    piece.style.height = '40px';
+                    piece.style.borderRadius = '50%';
+                    piece.style.pointerEvents = 'none';
+                    piece.style.zIndex = '10000';
+                    
+                    // Start from center
+                    const centerX = window.innerWidth / 2;
+                    const centerY = window.innerHeight / 2;
+                    
+                    // Random explosion direction
+                    const angle = Math.random() * Math.PI * 2;
+                    const distance = Math.random() * 500 + 300;
+                    const tx = Math.cos(angle) * distance;
+                    const ty = Math.sin(angle) * distance;
+                    
+                    piece.style.left = `${centerX}px`;
+                    piece.style.top = `${centerY}px`;
+                    
+                    // Random cake color
+                    const colors = ['#ffcc00', '#ff66b2', '#ff00aa', '#cc66ff', '#00ffff'];
+                    piece.style.background = `linear-gradient(45deg, ${colors[Math.floor(Math.random() * colors.length)]}, ${colors[Math.floor(Math.random() * colors.length)]})`;
+                    
+                    document.body.appendChild(piece);
+                    
+                    // Animate
+                    piece.animate([
+                        { 
+                            transform: 'translate(0, 0) scale(1) rotate(0deg)', 
+                            opacity: 1 
+                        },
+                        { 
+                            transform: `translate(${tx}px, ${ty}px) scale(0) rotate(720deg)`, 
+                            opacity: 0 
+                        }
+                    ], {
+                        duration: Math.random() * 1500 + 1000,
+                        easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)'
+                    }).onfinish = () => {
+                        if (piece.parentNode) piece.remove();
+                    };
+                }, i * 10);
             }
         }
-        
-        function toggleSound() {
-            soundEnabled = !soundEnabled;
-            soundToggle.classList.toggle('active', soundEnabled);
+
+        // ===== PAGE 3: MEMORY MATCH GAME =====
+        function initMemoryGame() {
+            const memoryArea = document.getElementById('memory-area');
+            const startBtn = document.getElementById('memory-start');
+            const feedback = document.getElementById('memory-feedback');
+            
+            // Create card pairs
+            const emojis = ['🎂', '🎁', '🎈', '🎊', '🥳', '🎉'];
+            const cards = [...emojis, ...emojis];
+            
+            // Shuffle cards
+            for (let i = cards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [cards[i], cards[j]] = [cards[j], cards[i]];
+            }
+            
+            // Create card elements
+            cards.forEach((emoji, index) => {
+                const card = document.createElement('div');
+                card.className = 'memory-card';
+                card.dataset.emoji = emoji;
+                card.dataset.index = index;
+                
+                const front = document.createElement('div');
+                front.className = 'front';
+                front.innerHTML = '❓';
+                
+                const back = document.createElement('div');
+                back.className = 'back';
+                back.innerHTML = emoji;
+                
+                card.appendChild(front);
+                card.appendChild(back);
+                
+                card.addEventListener('click', () => flipCard(card));
+                memoryArea.appendChild(card);
+            });
+            
+            startBtn.addEventListener('click', startMemoryGame);
         }
-        
-        function playSound(soundId) {
+
+        function startMemoryGame() {
+            if (memoryGameActive) return;
+            
+            memoryGameActive = true;
+            memoryMatches = 0;
+            memoryMoves = 0;
+            firstCard = null;
+            secondCard = null;
+            canFlip = true;
+            
+            const startBtn = document.getElementById('memory-start');
+            const feedback = document.getElementById('memory-feedback');
+            
+            startBtn.disabled = true;
+            startBtn.innerHTML = '<i class="fas fa-gamepad"></i> GAME RUNNING...';
+            feedback.innerHTML = '🎴 Find matching pairs!';
+            
+            // Reset all cards
+            document.querySelectorAll('.memory-card').forEach(card => {
+                card.classList.remove('flipped', 'matched');
+            });
+            
+            // Update UI
+            updateMemoryUI();
+        }
+
+        function flipCard(card) {
+            if (!memoryGameActive || !canFlip || card.classList.contains('flipped') || card.classList.contains('matched')) {
+                return;
+            }
+            
+            card.classList.add('flipped');
+            playSound('click-sound');
+            
+            if (!firstCard) {
+                firstCard = card;
+            } else {
+                secondCard = card;
+                canFlip = false;
+                memoryMoves++;
+                
+                setTimeout(checkMatch, 600);
+            }
+        }
+
+        function checkMatch() {
+            if (firstCard.dataset.emoji === secondCard.dataset.emoji) {
+                // Match found
+                firstCard.classList.add('matched');
+                secondCard.classList.add('matched');
+                memoryMatches++;
+                
+                const feedback = document.getElementById('memory-feedback');
+                feedback.innerHTML = `🎉 Match found! ${6 - memoryMatches} pairs left!`;
+                playSound('success-sound');
+                
+                // Add points
+                addToScore(100);
+                
+                if (memoryMatches === 6) {
+                    winMemoryGame();
+                }
+            } else {
+                // No match
+                firstCard.classList.remove('flipped');
+                secondCard.classList.remove('flipped');
+                playSound('pop-sound');
+            }
+            
+            firstCard = null;
+            secondCard = null;
+            canFlip = true;
+            updateMemoryUI();
+        }
+
+        function updateMemoryUI() {
+            document.getElementById('memory-matches').textContent = memoryMatches;
+            document.getElementById('memory-moves').textContent = memoryMoves;
+            document.getElementById('memory-score').textContent = memoryMatches * 100;
+        }
+
+        function winMemoryGame() {
+            memoryGameActive = false;
+            
+            const startBtn = document.getElementById('memory-start');
+            const feedback = document.getElementById('memory-feedback');
+            const nextBtn = document.getElementById('memory-next');
+            
+            startBtn.disabled = false;
+            startBtn.innerHTML = '<i class="fas fa-redo"></i> PLAY AGAIN';
+            nextBtn.disabled = false;
+            
+            // Bonus points
+            const bonus = 500;
+            addToScore(bonus);
+            
+            feedback.innerHTML = `🏆 PERFECT! All pairs matched!<br>+${bonus} bonus points!`;
+            
+            // Celebration
+            playSound('celebration-sound');
+            createConfetti(150);
+        }
+
+        // ===== PAGE 4: BIRTHDAY QUIZ =====
+        function initQuizGame() {
+            const quizArea = document.getElementById('quiz-area');
+            const questions = [
+                {
+                    question: "🎂 If Jenisha could have ANY birthday cake in the world, what would it MOST likely be?",
+                    options: [
+                        "A) Chocolate overload (never fails 😌)",
+                        "B) Classic vanilla (simple & clean)",
+                        "C) Red velvet (because it looks cool 😄)",
+                        "D) Surprise cake (dealer's choice 👀)"
+                    ]
+                },
+                {
+                    question: "🎁 What's the ULTIMATE 18th birthday gift for Jenisha?",
+                    options: [
+                        "A) A stack of good fictional books 📚✨",
+                        "B) A surprise trip / outing 🧳",
+                        "C) Clothes + glow-up vibes 😎",
+                        "D) Cash (honesty wins 💸😂)"
+                    ]
+                },
+                {
+                    question: "🦸‍♀️ Birthday Superpower (for today only) - Choose ONE:",
+                    options: [
+                        "A) Teleportation (no more being late!)",
+                        "B) Mind reading (finally know what people really think!)",
+                        "C) Time control (pause, rewind, skip boring moments)",
+                        "D) Unlimited cupcakes forever 🧁😋"
+                    ]
+                },
+                {
+                    question: "😌 Birthday Mood Check - Pick your birthday energy:",
+                    options: [
+                        "A) Full party mode 🕺🎶",
+                        "B) Chill + close people only ☕",
+                        "C) Eat + sleep + repeat 😴",
+                        "D) Anything as long as cake is there 😂"
+                    ]
+                },
+                {
+                    question: "👀 IMPORTANT QUESTION: So... birthday party kab?",
+                    options: [
+                        "A) Aaj hi 🎉 (Today itself!)",
+                        "B) Weekend pe 😄 (On weekend!)",
+                        "C) Baad mein pakka 😅 (Later for sure!)",
+                        "D) Still deciding 🤷‍♀️ (Figuring it out!)"
+                    ]
+                }
+            ];
+            
+            // Create question cards
+            questions.forEach((q, index) => {
+                const questionCard = document.createElement('div');
+                questionCard.className = 'question-card';
+                questionCard.id = `question-${index + 1}`;
+                
+                questionCard.innerHTML = `
+                    <div class="question-number">Question ${index + 1} of ${questions.length}</div>
+                    <h3 class="question-text">${q.question}</h3>
+                    <div class="options-grid">
+                        ${q.options.map((option, i) => `
+                            <button class="option-btn" onclick="selectAnswer(${index + 1}, ${i + 1})">
+                                <span class="option-letter">${String.fromCharCode(65 + i)}</span>
+                                <span>${option.substring(3)}</span>
+                            </button>
+                        `).join('')}
+                    </div>
+                `;
+                
+                quizArea.appendChild(questionCard);
+            });
+            
+            // Show first question
+            document.getElementById('question-1').classList.add('active');
+            
+            // Initialize quiz buttons
+            document.getElementById('quiz-next-btn').addEventListener('click', nextQuestion);
+        }
+
+        function selectAnswer(questionNum, answerNum) {
+            if (quizAnswers[questionNum]) return;
+            
+            // Store answer
+            quizAnswers[questionNum] = answerNum;
+            
+            // Visual feedback
+            const questionCard = document.getElementById(`question-${questionNum}`);
+            questionCard.querySelectorAll('.option-btn').forEach((btn, index) => {
+                btn.classList.remove('selected');
+                if (index + 1 === answerNum) {
+                    btn.classList.add('selected');
+                }
+            });
+            
+            // Add points
+            quizScore += 100;
+            addToScore(100);
+            document.getElementById('quiz-score').textContent = quizScore;
+            
+            // Show response
+            const feedback = document.getElementById('quiz-feedback');
+            const responses = [
+                "🎂 Great cake choice!",
+                "🎁 Perfect gift selection!",
+                "⚡ Superpower activated!",
+                "😌 Mood registered!",
+                "📅 Party timing noted!"
+            ];
+            
+            feedback.innerHTML = responses[questionNum - 1];
+            playSound('click-sound');
+            
+            // Enable next button
+            document.getElementById('quiz-next-btn').disabled = false;
+            
+            // Check if quiz is complete
+            if (Object.keys(quizAnswers).length === totalQuestions) {
+                completeQuiz();
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < totalQuestions) {
+                // Hide current question
+                document.getElementById(`question-${currentQuestion}`).classList.remove('active');
+                
+                // Show next question
+                currentQuestion++;
+                document.getElementById(`question-${currentQuestion}`).classList.add('active');
+                document.getElementById('quiz-current').textContent = currentQuestion;
+                
+                // Reset next button if not answered yet
+                if (!quizAnswers[currentQuestion]) {
+                    document.getElementById('quiz-next-btn').disabled = true;
+                }
+                
+                // Update feedback
+                document.getElementById('quiz-feedback').innerHTML = '🎯 Choose your answer!';
+            }
+        }
+
+        function completeQuiz() {
+            document.getElementById('quiz-next').disabled = false;
+            document.getElementById('quiz-next-btn').style.display = 'none';
+            
+            const feedback = document.getElementById('quiz-feedback');
+            feedback.innerHTML = `🎉 QUIZ COMPLETE! Final score: ${quizScore}<br>You know yourself best! 😄`;
+            
+            // Bonus for completing all questions
+            const bonus = 500;
+            quizScore += bonus;
+            addToScore(bonus);
+            
+            playSound('success-sound');
+            createConfetti(150);
+        }
+
+        // ===== PAGE 5: DANCE PARTY (FIXED) =====
+        function initDanceGame() {
+            const danceFloor = document.getElementById('dance-floor');
+            const startBtn = document.getElementById('dance-start');
+            const feedback = document.getElementById('dance-feedback');
+            
+            // Create 12 dance tiles with arrows
+            const arrows = ['↑', '↓', '←', '→', '↑', '↓', '←', '→', '↑', '↓', '←', '→'];
+            
+            arrows.forEach((arrow, index) => {
+                const tile = document.createElement('div');
+                tile.className = 'dance-tile';
+                tile.dataset.index = index;
+                tile.dataset.direction = arrow;
+                tile.textContent = arrow;
+                danceFloor.appendChild(tile);
+            });
+            
+            startBtn.addEventListener('click', startDanceGame);
+            
+            // Add keyboard event listener for arrow keys
+            document.addEventListener('keydown', handleDanceKeyPress);
+        }
+
+        function startDanceGame() {
+            if (danceGameActive) return;
+            
+            danceGameActive = true;
+            danceScore = 0;
+            danceStreak = 0;
+            danceSteps = 0;
+            danceSequence = [];
+            playerSequence = [];
+            sequenceStep = 0;
+            isPlayingSequence = false;
+            
+            const startBtn = document.getElementById('dance-start');
+            const feedback = document.getElementById('dance-feedback');
+            
+            startBtn.disabled = true;
+            startBtn.innerHTML = '<i class="fas fa-dancing"></i> DANCING...';
+            feedback.innerHTML = '🎵 Get ready! Follow the arrows!';
+            
+            // Update UI
+            updateDanceUI();
+            
+            // Start dance sequence
+            setTimeout(() => {
+                playNextDanceStep();
+            }, 1000);
+            
+            // Play dance music
+            const danceMusic = document.getElementById('dance-beat');
+            danceMusic.volume = 0.3;
+            danceMusic.play();
+        }
+
+        function playNextDanceStep() {
+            if (!danceGameActive || danceSteps >= maxDanceSteps) {
+                endDanceGame();
+                return;
+            }
+            
+            isPlayingSequence = true;
+            
+            // Generate random direction
+            const directions = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
+            const randomDirection = directions[Math.floor(Math.random() * directions.length)];
+            
+            // Map direction to tile index
+            let tileIndex;
+            switch(randomDirection) {
+                case 'ArrowUp': tileIndex = [0, 4, 8]; break;
+                case 'ArrowDown': tileIndex = [1, 5, 9]; break;
+                case 'ArrowLeft': tileIndex = [2, 6, 10]; break;
+                case 'ArrowRight': tileIndex = [3, 7, 11]; break;
+            }
+            
+            // Add to sequence
+            danceSequence.push({
+                direction: randomDirection,
+                tileIndices: tileIndex,
+                step: danceSteps
+            });
+            
+            // Highlight tiles
+            highlightDanceTiles(tileIndex);
+            
+            // Play sound
+            playSound('click-sound');
+            
+            // Wait for player input
+            isPlayingSequence = false;
+        }
+
+        function highlightDanceTiles(indices) {
+            const tiles = document.querySelectorAll('.dance-tile');
+            
+            // Reset all tiles
+            tiles.forEach(tile => tile.classList.remove('active'));
+            
+            // Highlight target tiles
+            indices.forEach(index => {
+                if (tiles[index]) {
+                    tiles[index].classList.add('active');
+                    
+                    // Remove highlight after delay
+                    setTimeout(() => {
+                        tiles[index].classList.remove('active');
+                    }, 800);
+                }
+            });
+        }
+
+        function handleDanceKeyPress(e) {
+            if (!danceGameActive || isPlayingSequence || danceSequence.length === 0) return;
+            
+            const currentStep = danceSequence[sequenceStep];
+            const feedback = document.getElementById('dance-feedback');
+            
+            if (currentStep && e.key === currentStep.direction) {
+                // Correct input
+                danceStreak++;
+                danceScore += 100 + (danceStreak * 10);
+                danceSteps++;
+                sequenceStep++;
+                
+                // Update UI
+                updateDanceUI();
+                
+                // Visual feedback
+                highlightDanceTiles(currentStep.tileIndices);
+                feedback.innerHTML = `🎯 PERFECT! Streak: ${danceStreak}x`;
+                
+                // Play sound
+                playSound('success-sound');
+                
+                // Add points
+                addToScore(100);
+                
+                // Check if step is complete
+                if (danceSteps < maxDanceSteps) {
+                    setTimeout(() => {
+                        playNextDanceStep();
+                    }, 500);
+                } else {
+                    endDanceGame();
+                }
+            } else if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+                // Wrong input
+                danceStreak = 0;
+                feedback.innerHTML = '💥 Missed! Try to match the timing!';
+                playSound('pop-sound');
+                updateDanceUI();
+            }
+        }
+
+        function updateDanceUI() {
+            document.getElementById('dance-score').textContent = danceScore;
+            document.getElementById('dance-streak').textContent = danceStreak;
+            document.getElementById('dance-feedback').innerHTML = 
+                `Steps: ${danceSteps}/${maxDanceSteps} | Streak: ${danceStreak}x`;
+        }
+
+        function endDanceGame() {
+            danceGameActive = false;
+            isPlayingSequence = false;
+            
+            const startBtn = document.getElementById('dance-start');
+            const feedback = document.getElementById('dance-feedback');
+            
+            startBtn.disabled = false;
+            startBtn.innerHTML = '<i class="fas fa-redo"></i> DANCE AGAIN';
+            
+            // Calculate bonus
+            const bonus = danceStreak * 200;
+            danceScore += bonus;
+            
+            feedback.innerHTML = `🎉 DANCE PARTY COMPLETE!<br>Final score: ${danceScore}<br>+${bonus} streak bonus!`;
+            
+            // Stop dance music
+            const danceMusic = document.getElementById('dance-beat');
+            danceMusic.pause();
+            danceMusic.currentTime = 0;
+            
+            // Celebration
+            playSound('celebration-sound');
+            createConfetti(200);
+            
+            // Make all tiles dance
+            const tiles = document.querySelectorAll('.dance-tile');
+            tiles.forEach(tile => {
+                tile.classList.add('active');
+            });
+        }
+
+        // ===== PAGE 7: 404 ERROR JOKE =====
+        function start404Animation() {
+            const jokeMessage = document.getElementById('joke-message');
+            const continueBtn = document.getElementById('error-continue');
+            
+            // Reset states
+            jokeMessage.style.display = 'none';
+            jokeMessage.style.opacity = '0';
+            continueBtn.style.display = 'none';
+            
+            // Animation sequence
+            setTimeout(() => {
+                const errorCode = document.getElementById('error-code');
+                const errorMessage = document.getElementById('error-message');
+                
+                // Glitch effect
+                errorCode.style.animation = 'none';
+                setTimeout(() => {
+                    errorCode.style.animation = 'glitchError 1s 3';
+                }, 10);
+                
+                setTimeout(() => {
+                    errorMessage.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        errorMessage.textContent = "Just kidding! 😄";
+                        errorMessage.style.opacity = '1';
+                        
+                        setTimeout(() => {
+                            jokeMessage.style.display = 'block';
+                            setTimeout(() => {
+                                jokeMessage.style.opacity = '1';
+                                
+                                setTimeout(() => {
+                                    continueBtn.style.display = 'block';
+                                    playSound('success-sound');
+                                }, 500);
+                            }, 10);
+                        }, 500);
+                    }, 300);
+                }, 1500);
+            }, 1000);
+        }
+
+        // ===== PAGE 8: SURPRISE BUTTON =====
+        function surpriseButtonClicked() {
+            const button = document.getElementById('danger-button');
+            const feedback = document.getElementById('surprise-feedback');
+            const finalBtn = document.getElementById('final-page-btn');
+            
+            // Hide button with animation
+            button.style.transform = 'scale(0) rotate(180deg)';
+            button.style.opacity = '0';
+            button.disabled = true;
+            
+            // Show feedback
+            setTimeout(() => {
+                feedback.classList.add('show');
+                playSound('celebration-sound', 0.8);
+                
+                // Create massive confetti
+                createConfetti(1500);
+                
+                // Show final button after 2 seconds
+                setTimeout(() => {
+                    finalBtn.style.display = 'block';
+                }, 2000);
+            }, 500);
+        }
+
+        // ===== UTILITY FUNCTIONS =====
+        function playSound(soundId, volume = 0.5) {
             if (!soundEnabled) return;
             
             const sound = document.getElementById(soundId);
             if (sound) {
                 sound.currentTime = 0;
-                sound.volume = 0.3;
-                sound.play().catch(e => console.log("Sound playback failed"));
+                sound.volume = volume;
+                sound.play().catch(e => {
+                    // Ignore autoplay errors
+                });
             }
         }
-        
-        // Floating emojis for page 1
-        function createFloatingEmojis() {
-            const emojis = ['🎂', '🎁', '🎈', '🎉', '🥳', '✨', '🎊', '🍰'];
-            const container = document.getElementById('page1');
+
+        function addToScore(points) {
+            totalScore += points;
+            updateGlobalScore();
             
-            for (let i = 0; i < 20; i++) {
-                const emoji = document.createElement('div');
-                emoji.className = 'floating-emoji';
-                emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-                emoji.style.left = `${Math.random() * 100}%`;
-                emoji.style.top = `${Math.random() * 100}%`;
-                emoji.style.fontSize = `${Math.random() * 2 + 1.5}rem`;
-                emoji.style.animation = `float ${Math.random() * 10 + 10}s infinite ease-in-out`;
-                emoji.style.animationDelay = `${Math.random() * 5}s`;
-                container.appendChild(emoji);
-            }
+            // Animate score update
+            const scoreDisplay = document.getElementById('global-score');
+            scoreDisplay.style.transform = 'scale(1.3)';
+            scoreDisplay.style.color = 'var(--gold)';
+            
+            setTimeout(() => {
+                scoreDisplay.style.transform = 'scale(1)';
+                scoreDisplay.style.color = '';
+            }, 300);
         }
-        
-        // Confetti effect
-        function createConfetti(count) {
-            const colors = [var('--hot-pink'), var('--gold'), var('--cyan'), var('--purple')];
+
+        function updateGlobalScore() {
+            document.getElementById('global-score').textContent = totalScore;
+        }
+
+        function toggleMusic() {
+            const musicBtn = document.getElementById('music-toggle');
+            const bgMusic = document.getElementById('bg-music');
+            
+            if (musicEnabled) {
+                bgMusic.pause();
+                musicBtn.innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: OFF</span>';
+            } else {
+                bgMusic.volume = 0.2;
+                bgMusic.play();
+                musicBtn.innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: ON</span>';
+            }
+            musicEnabled = !musicEnabled;
+            playSound('click-sound');
+        }
+
+        function toggleSound() {
+            const soundBtn = document.getElementById('sound-toggle');
+            soundEnabled = !soundEnabled;
+            soundBtn.innerHTML = `<i class="fas fa-volume-up"></i> <span>SOUND: ${soundEnabled ? 'ON' : 'OFF'}</span>`;
+            playSound('click-sound');
+        }
+
+        // ===== CONFETTI EFFECT =====
+        function createConfetti(count = 100) {
+            const canvas = document.getElementById('confetti-canvas');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            const particles = [];
+            const colors = ['#ff00aa', '#ffcc00', '#00ffff', '#cc66ff', '#ff66b2', '#33ff99'];
             
             for (let i = 0; i < count; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = `${Math.random() * 100}%`;
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.width = `${Math.random() * 10 + 5}px`;
-                confetti.style.height = `${Math.random() * 10 + 5}px`;
-                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
-                
-                document.body.appendChild(confetti);
-                
-                // Animation
-                const animation = confetti.animate([
-                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
-                    { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 720}deg)`, opacity: 0 }
-                ], {
-                    duration: Math.random() * 3000 + 2000,
-                    easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)'
-                });
-                
-                // Remove after animation
-                animation.onfinish = () => {
-                    document.body.removeChild(confetti);
-                };
-            }
-        }
-        
-        // Cake smash game
-        function initCakeGame() {
-            const cakeContainer = document.getElementById('cakeContainer');
-            const tapCounter = document.getElementById('tapCounter');
-            const tapFeedback = document.getElementById('tapFeedback');
-            
-            cakeContainer.addEventListener('click', function() {
-                if (cakeTaps >= 5) return;
-                
-                cakeTaps++;
-                tapCounter.textContent = `TAPS: ${cakeTaps}/5`;
-                
-                // Shake the cake
-                cakeContainer.style.animation = 'none';
-                setTimeout(() => {
-                    cakeContainer.style.animation = 'shake 0.5s';
-                }, 10);
-                
-                // Update feedback message
-                const messages = [
-                    "Keep going! 👆",
-                    "Almost there! 🎂",
-                    "One more! 💥",
-                    "Get ready to smash! 🚀"
-                ];
-                
-                if (cakeTaps < 5) {
-                    tapFeedback.textContent = messages[cakeTaps - 1] || "Tap tap! 👆";
-                }
-                
-                // Play tap sound
-                playSound('tapSound');
-                
-                // Add points for each tap
-                addPoints(50);
-                
-                // On 5th tap, explode the cake
-                if (cakeTaps === 5) {
-                    // Enable next button
-                    nextBtn.disabled = false;
-                    
-                    // Show cake smash overlay
-                    const overlay = document.getElementById('cakeOverlay');
-                    overlay.classList.add('active');
-                    
-                    // Create cake pieces explosion
-                    createCakeExplosion();
-                    
-                    // Play celebration sound
-                    playSound('confettiSound');
-                    
-                    // Add completion points
-                    setTimeout(() => {
-                        addPoints(1000);
-                        tapFeedback.textContent = "🎉 CAKE SMASHED! 🎉";
-                        
-                        // Hide overlay after 2 seconds
-                        setTimeout(() => {
-                            overlay.classList.remove('active');
-                        }, 2000);
-                    }, 500);
-                }
-            });
-        }
-        
-        function createCakeExplosion() {
-            // Create 200 cake pieces
-            for (let i = 0; i < 200; i++) {
-                const piece = document.createElement('div');
-                piece.className = 'cake-piece';
-                
-                // Random position around the cake
-                const angle = Math.random() * Math.PI * 2;
-                const distance = Math.random() * 200 + 100;
-                const startX = window.innerWidth / 2;
-                const startY = window.innerHeight / 2;
-                
-                piece.style.left = `${startX}px`;
-                piece.style.top = `${startY}px`;
-                
-                // Random color (cake colors)
-                const colors = ['#8B4513', '#ff00aa', '#ffcc00', '#ffffff'];
-                piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                
-                // Random shape
-                if (Math.random() > 0.5) {
-                    piece.style.borderRadius = '50%';
-                } else {
-                    piece.style.width = `${Math.random() * 20 + 10}px`;
-                    piece.style.height = `${Math.random() * 10 + 5}px`;
-                }
-                
-                document.body.appendChild(piece);
-                
-                // Animate the piece
-                const endX = startX + Math.cos(angle) * distance;
-                const endY = startY + Math.sin(angle) * distance;
-                
-                const animation = piece.animate([
-                    { transform: 'translate(0, 0) scale(1)', opacity: 1 },
-                    { transform: `translate(${endX - startX}px, ${endY - startY}px) scale(0)`, opacity: 0 }
-                ], {
-                    duration: Math.random() * 1000 + 1000,
-                    easing: 'cubic-bezier(0.215, 0.61, 0.355, 1)'
-                });
-                
-                // Remove after animation
-                animation.onfinish = () => {
-                    if (piece.parentNode) {
-                        document.body.removeChild(piece);
-                    }
-                };
-            }
-        }
-        
-        // Memory Match game
-        function initMemoryGame() {
-            const memoryGrid = document.getElementById('memoryGrid');
-            const matchCount = document.getElementById('matchCount');
-            const memoryScoreDisplay = document.getElementById('memoryScore');
-            const moveCount = document.getElementById('moveCount');
-            
-            // Emojis for the game
-            const emojis = ['🎂', '🎁', '🎈', '🎊', '🥳', '🎉'];
-            let cards = [...emojis, ...emojis]; // Create pairs
-            
-            // Shuffle the cards
-            cards = cards.sort(() => Math.random() - 0.5);
-            
-            // Game state
-            let flippedCards = [];
-            let matchedPairs = 0;
-            let moves = 0;
-            
-            // Create the card elements
-            memoryGrid.innerHTML = '';
-            cards.forEach((emoji, index) => {
-                const card = document.createElement('div');
-                card.className = 'memory-card';
-                card.dataset.index = index;
-                card.dataset.emoji = emoji;
-                
-                card.innerHTML = `
-                    <div class="card-inner">
-                        <div class="card-front">${emoji}</div>
-                        <div class="card-back">?</div>
-                    </div>
-                `;
-                
-                card.addEventListener('click', function() {
-                    if (flippedCards.length >= 2 || card.classList.contains('flipped') || card.classList.contains('matched')) {
-                        return;
-                    }
-                    
-                    // Flip the card
-                    card.classList.add('flipped');
-                    flippedCards.push(card);
-                    
-                    // Play flip sound
-                    playSound('tapSound');
-                    
-                    // Check for match when two cards are flipped
-                    if (flippedCards.length === 2) {
-                        moves++;
-                        moveCount.textContent = moves;
-                        
-                        const card1 = flippedCards[0];
-                        const card2 = flippedCards[1];
-                        
-                        if (card1.dataset.emoji === card2.dataset.emoji) {
-                            // Match found
-                            setTimeout(() => {
-                                card1.classList.add('matched');
-                                card2.classList.add('matched');
-                                
-                                // Add match effect
-                                card1.style.boxShadow = '0 0 20px var(--cyan)';
-                                card2.style.boxShadow = '0 0 20px var(--cyan)';
-                                
-                                matchedPairs++;
-                                matchCount.textContent = `${matchedPairs}/6`;
-                                
-                                // Add points
-                                addPoints(100);
-                                memoryScore += 100;
-                                memoryScoreDisplay.textContent = memoryScore;
-                                
-                                // Play match sound
-                                playSound('matchSound');
-                                
-                                // Check if game is complete
-                                if (matchedPairs === 6) {
-                                    setTimeout(() => {
-                                        // Add completion bonus
-                                        addPoints(500);
-                                        memoryScore += 500;
-                                        memoryScoreDisplay.textContent = memoryScore;
-                                        
-                                        // Create confetti
-                                        createConfetti(100);
-                                        playSound('confettiSound');
-                                        
-                                        // Enable next button
-                                        nextBtn.disabled = false;
-                                        
-                                        // Update game state
-                                        memoryMatches = 6;
-                                    }, 500);
-                                }
-                                
-                                flippedCards = [];
-                            }, 500);
-                        } else {
-                            // No match - flip cards back
-                            setTimeout(() => {
-                                card1.classList.remove('flipped');
-                                card2.classList.remove('flipped');
-                                flippedCards = [];
-                            }, 1000);
-                        }
-                    }
-                });
-                
-                memoryGrid.appendChild(card);
-            });
-        }
-        
-        // Birthday Quiz game
-        function initQuizGame() {
-            const quizQuestion = document.getElementById('quizQuestion');
-            const quizOptions = document.getElementById('quizOptions');
-            const quizFeedback = document.getElementById('quizFeedback');
-            
-            const questions = [
-                {
-                    question: "What's your favorite type of cake?",
-                    options: [
-                        "Chocolate (Classic choice!)",
-                        "Vanilla (Simple & elegant!)",
-                        "Red Velvet (Fancy & delicious!)",
-                        "Surprise me! (I love all cake!)"
-                    ]
-                },
-                {
-                    question: "What's your ultimate birthday gift?",
-                    options: [
-                        "Books (Knowledge is power!)",
-                        "Trip (Adventure awaits!)",
-                        "Clothes (Fashion forward!)",
-                        "Cash (Practical & perfect!)"
-                    ]
-                },
-                {
-                    question: "If you could have any superpower for your birthday?",
-                    options: [
-                        "Teleportation (Travel anywhere instantly!)",
-                        "Mind reading (Know what everyone's thinking!)",
-                        "Time control (Relive the best moments!)",
-                        "Unlimited cupcakes (The tastiest power!)"
-                    ]
-                },
-                {
-                    question: "What's your ideal birthday mood?",
-                    options: [
-                        "Big party with all my friends!",
-                        "Chill day with close ones",
-                        "Sleep all day (Rest is best!)",
-                        "Anything with cake involved!"
-                    ]
-                },
-                {
-                    question: "When should we actually celebrate?",
-                    options: [
-                        "Today, obviously!",
-                        "This weekend",
-                        "Later, when I'm ready",
-                        "I'm still deciding..."
-                    ]
-                }
-            ];
-            
-            let currentQuestion = 0;
-            let selectedOptions = [];
-            
-            // Display the first question
-            displayQuestion(currentQuestion);
-            
-            function displayQuestion(index) {
-                const question = questions[index];
-                quizQuestion.textContent = question.question;
-                quizOptions.innerHTML = '';
-                quizFeedback.textContent = '';
-                
-                // Create option elements
-                const letters = ['A', 'B', 'C', 'D'];
-                question.options.forEach((option, i) => {
-                    const optionElement = document.createElement('div');
-                    optionElement.className = 'option';
-                    if (selectedOptions[index] === i) {
-                        optionElement.classList.add('selected');
-                    }
-                    
-                    optionElement.innerHTML = `
-                        <div class="option-letter">${letters[i]}</div>
-                        <div class="option-text">${option}</div>
-                    `;
-                    
-                    optionElement.addEventListener('click', () => {
-                        // Select this option
-                        selectedOptions[index] = i;
-                        
-                        // Update display
-                        document.querySelectorAll('.option').forEach(opt => {
-                            opt.classList.remove('selected');
-                        });
-                        optionElement.classList.add('selected');
-                        
-                        // Play selection sound
-                        playSound('tapSound');
-                        
-                        // Add points for answering
-                        if (quizAnswers <= index) {
-                            addPoints(100);
-                            quizAnswers++;
-                        }
-                        
-                        // Show feedback after a short delay
-                        setTimeout(() => {
-                            const feedbacks = [
-                                "Great choice! 🎂",
-                                "Interesting pick! 🎁",
-                                "Love that answer! 🎈",
-                                "Excellent selection! 🎉"
-                            ];
-                            quizFeedback.textContent = feedbacks[Math.floor(Math.random() * feedbacks.length)];
-                            
-                            // Move to next question after a delay if not the last question
-                            if (index < questions.length - 1) {
-                                setTimeout(() => {
-                                    displayQuestion(index + 1);
-                                }, 1500);
-                            } else {
-                                // Last question answered - complete the quiz
-                                setTimeout(() => {
-                                    quizCompleted = true;
-                                    addPoints(500); // Completion bonus
-                                    quizFeedback.textContent = "🎉 Quiz completed! You've earned bonus points! 🎉";
-                                    nextBtn.disabled = false;
-                                }, 1000);
-                            }
-                        }, 500);
-                    });
-                    
-                    quizOptions.appendChild(optionElement);
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    size: Math.random() * 12 + 3,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    speed: Math.random() * 3 + 1,
+                    rotation: Math.random() * 360,
+                    rotationSpeed: Math.random() * 10 - 5,
+                    shape: Math.random() > 0.5 ? 'circle' : 'rect'
                 });
             }
-        }
-        
-        // Dance Party game
-        function initDanceGame() {
-            const danceFloor = document.getElementById('danceFloor');
-            const streakCount = document.getElementById('streakCount');
-            const danceScoreDisplay = document.getElementById('danceScore');
-            const stepCount = document.getElementById('stepCount');
             
-            // Create dance tiles
-            const arrows = ['↑', '↓', '←', '→'];
-            const tileCount = 12;
-            
-            for (let i = 0; i < tileCount; i++) {
-                const tile = document.createElement('div');
-                tile.className = 'dance-tile';
-                tile.textContent = arrows[i % 4];
-                danceFloor.appendChild(tile);
-            }
-            
-            // Game state
-            let sequence = [];
-            let playerSequence = [];
-            let step = 0;
-            let streak = 0;
-            let danceScore = 0;
-            let isPlaying = false;
-            
-            // Start the game
-            startNewRound();
-            
-            function startNewRound() {
-                if (step >= 30) {
-                    danceCompleted = true;
-                    // Add completion bonus
-                    addPoints(500);
-                    danceScore += 500;
-                    danceScoreDisplay.textContent = danceScore;
-                    
-                    // Celebration
-                    createConfetti(100);
-                    playSound('confettiSound');
-                    
-                    // Enable next button
-                    nextBtn.disabled = false;
-                    
-                    // Make all tiles dance
-                    document.querySelectorAll('.dance-tile').forEach(tile => {
-                        tile.style.animation = 'pulse 0.5s infinite';
-                        tile.classList.add('active');
-                    });
-                    
-                    return;
-                }
+            let animationId;
+            function animateConfetti() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
                 
-                // Add a new arrow to the sequence
-                const newArrow = Math.floor(Math.random() * 4);
-                sequence.push(newArrow);
+                let particlesAlive = 0;
                 
-                // Reset player sequence
-                playerSequence = [];
-                
-                // Play the sequence
-                playSequence();
-            }
-            
-            function playSequence() {
-                isPlaying = true;
-                let i = 0;
-                
-                const playNext = () => {
-                    if (i < sequence.length) {
-                        // Highlight the corresponding tile
-                        const arrowIndex = sequence[i];
-                        const tiles = document.querySelectorAll('.dance-tile');
-                        const tile = tiles[arrowIndex + Math.floor(i / 4) * 4];
-                        
-                        tile.classList.add('active');
-                        playSound('tapSound');
-                        
-                        setTimeout(() => {
-                            tile.classList.remove('active');
-                            i++;
-                            setTimeout(playNext, 300);
-                        }, 500);
+                particles.forEach(particle => {
+                    particle.y += particle.speed;
+                    particle.x += Math.sin(particle.y * 0.01) * 1.5;
+                    particle.rotation += particle.rotationSpeed;
+                    
+                    ctx.save();
+                    ctx.translate(particle.x, particle.y);
+                    ctx.rotate(particle.rotation * Math.PI / 180);
+                    ctx.fillStyle = particle.color;
+                    
+                    if (particle.shape === 'circle') {
+                        ctx.beginPath();
+                        ctx.arc(0, 0, particle.size/2, 0, Math.PI * 2);
+                        ctx.fill();
                     } else {
-                        isPlaying = false;
-                        // Wait for player input
-                        setTimeout(() => {
-                            // Player can now input
-                            document.addEventListener('keydown', handleKeyPress);
-                        }, 500);
+                        ctx.fillRect(-particle.size/2, -particle.size/2, particle.size, particle.size);
                     }
-                };
-                
-                playNext();
-            }
-            
-            function handleKeyPress(e) {
-                if (isPlaying) return;
-                
-                // Map arrow keys to indices
-                let keyIndex = -1;
-                if (e.key === 'ArrowUp') keyIndex = 0;
-                else if (e.key === 'ArrowDown') keyIndex = 1;
-                else if (e.key === 'ArrowLeft') keyIndex = 2;
-                else if (e.key === 'ArrowRight') keyIndex = 3;
-                else return;
-                
-                // Add to player sequence
-                playerSequence.push(keyIndex);
-                
-                // Highlight the tile
-                const tiles = document.querySelectorAll('.dance-tile');
-                const tileIndex = keyIndex + Math.floor((playerSequence.length - 1) / 4) * 4;
-                if (tileIndex < tiles.length) {
-                    const tile = tiles[tileIndex];
-                    tile.classList.add('active');
-                    playSound('tapSound');
                     
-                    setTimeout(() => {
-                        tile.classList.remove('active');
-                    }, 300);
-                }
-                
-                // Check if the input matches the sequence
-                if (playerSequence[playerSequence.length - 1] !== sequence[playerSequence.length - 1]) {
-                    // Wrong input - reset streak
-                    streak = 0;
-                    streakCount.textContent = streak;
+                    ctx.restore();
                     
-                    // Reset the round
-                    document.removeEventListener('keydown', handleKeyPress);
-                    setTimeout(() => {
-                        alert("Oops! Wrong move. Try again!");
-                        playerSequence = [];
-                        playSequence();
-                    }, 500);
-                } else {
-                    // Correct input
-                    streak++;
-                    streakCount.textContent = streak;
-                    
-                    // Add points based on streak
-                    const points = 100 + (streak * 10);
-                    addPoints(points);
-                    danceScore += points;
-                    danceScoreDisplay.textContent = danceScore;
-                    
-                    // Check if the player completed the sequence
-                    if (playerSequence.length === sequence.length) {
-                        // Sequence completed
-                        step++;
-                        stepCount.textContent = `${step}/30`;
-                        
-                        document.removeEventListener('keydown', handleKeyPress);
-                        setTimeout(startNewRound, 1000);
-                    }
-                }
-            }
-            
-            // Start background music for dance game
-            const danceMusic = document.getElementById('danceSound');
-            danceMusic.loop = true;
-            danceMusic.volume = 0.2;
-            
-            // Play music when on the dance page
-            const observer = new MutationObserver(function(mutations) {
-                mutations.forEach(function(mutation) {
-                    if (mutation.target.id === 'page6' && mutation.target.classList.contains('active')) {
-                        if (musicEnabled && !danceCompleted) {
-                            danceMusic.play().catch(e => console.log("Dance music playback failed"));
-                        }
-                    } else {
-                        danceMusic.pause();
+                    if (particle.y < canvas.height) {
+                        particlesAlive++;
                     }
                 });
-            });
-            
-            observer.observe(document.getElementById('page6'), { attributes: true, attributeFilter: ['class'] });
-        }
-        
-        // 404 Error Joke
-        function startErrorJoke() {
-            const jokeReveal = document.getElementById('jokeReveal');
-            
-            // First show the error message
-            jokeReveal.textContent = "🎂 Birthday not found 🎂";
-            
-            // After 1 second, glitch effect and reveal joke
-            setTimeout(() => {
-                // Create glitch effect
-                jokeReveal.style.animation = 'none';
-                setTimeout(() => {
-                    jokeReveal.style.animation = 'glitch 0.3s';
-                }, 10);
                 
-                // Change text after glitch
-                setTimeout(() => {
-                    jokeReveal.innerHTML = "Just kidding 😄<br>Obviously it's your birthday! 🎉";
-                    
-                    // Create confetti
-                    createConfetti(50);
-                    playSound('confettiSound');
-                    
-                    // Show continue button
-                    setTimeout(() => {
-                        const continueBtn = document.createElement('button');
-                        continueBtn.className = 'shine-btn';
-                        continueBtn.textContent = "Continue to Final Surprise →";
-                        continueBtn.style.marginTop = '40px';
-                        continueBtn.addEventListener('click', function() {
-                            navigateTo(9);
-                        });
-                        jokeReveal.parentNode.appendChild(continueBtn);
-                    }, 1000);
-                }, 500);
-            }, 1000);
-        }
-        
-        // Surprise Button
-        function initSurpriseButton() {
-            const dangerButton = document.getElementById('dangerButton');
-            const buttonMessage = document.getElementById('buttonMessage');
-            
-            dangerButton.addEventListener('click', function() {
-                // Play sound
-                playSound('confettiSound');
-                
-                // Button disappears with rotation
-                dangerButton.style.transition = 'all 0.5s';
-                dangerButton.style.transform = 'rotate(720deg) scale(0)';
-                dangerButton.style.opacity = '0';
-                
-                // Show message
-                setTimeout(() => {
-                    buttonMessage.textContent = "I knew it 😂 Couldn't resist!";
-                    
-                    // Create massive confetti explosion
-                    createConfetti(300);
-                    
-                    // Show final message button after delay
-                    setTimeout(() => {
-                        document.getElementById('finalMessageBtn').style.display = 'block';
-                        document.getElementById('finalMessageBtn').addEventListener('click', function() {
-                            navigateTo(10);
-                        });
-                    }, 1500);
-                }, 500);
-            });
-        }
-        
-        // CSS for shake animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes shake {
-                0%, 100% { transform: translateX(0); }
-                10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
-                20%, 40%, 60%, 80% { transform: translateX(10px); }
+                if (particlesAlive > 0) {
+                    animationId = requestAnimationFrame(animateConfetti);
+                } else {
+                    cancelAnimationFrame(animationId);
+                }
             }
             
-            @keyframes glitch {
-                0% { transform: translate(0); }
-                20% { transform: translate(-5px, 5px); }
-                40% { transform: translate(-5px, -5px); }
-                60% { transform: translate(5px, 5px); }
-                80% { transform: translate(5px, -5px); }
-                100% { transform: translate(0); }
-            }
-        `;
-        document.head.appendChild(style);
-        
-        // Get CSS variable value
-        function var(variable) {
-            return getComputedStyle(document.documentElement).getPropertyValue(variable);
+            animateConfetti();
         }
-        
-        // Initialize the website when DOM is loaded
-        document.addEventListener('DOMContentLoaded', init);
+
+        // ===== WINDOW RESIZE =====
+        window.addEventListener('resize', () => {
+            const canvas = document.getElementById('confetti-canvas');
+            if (canvas) {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+        });
     </script>
 </body>
 </html>
