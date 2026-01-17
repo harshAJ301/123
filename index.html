@@ -3,27 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎮 Birthday Arcade - Jenisha's 18th!</title>
-    <link rel="stylesheet" href="style.css">
+    <title>🎂 Happy 18th Birthday Jenisha! 🎉</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
-        /* ===== CRITICAL STYLES ===== */
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --primary-pink: #ff6b8b;
+            --light-pink: #ff8fa3;
+            --pastel-pink: #ffd6e0;
+            --purple: #a882dd;
+            --light-purple: #c19ee0;
+            --pastel-purple: #e6d7ff;
+            --gold: #ffd166;
+            --light-gold: #ffe5a5;
+            --cyan: #06d6a0;
+            --light-cyan: #8bf0d5;
+            --blue: #118ab2;
+            --white: #ffffff;
+            --bg-gradient: linear-gradient(135deg, #fff5f7 0%, #f8f4ff 100%);
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --shadow: 0 8px 32px rgba(255, 107, 139, 0.15);
+            --shadow-lg: 0 20px 60px rgba(255, 107, 139, 0.25);
+        }
+
+        /* ===== RESET & BASE ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Poppins', sans-serif;
-            background: #0a0a0a;
-            color: white;
+            background: var(--bg-gradient);
+            color: #333;
             min-height: 100vh;
             overflow-x: hidden;
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><text x="8" y="24" font-size="20">🎯</text></svg>'), auto;
+            position: relative;
         }
-        
+
+        /* ===== ANIMATED BACKGROUND ===== */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 107, 139, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(168, 130, 221, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(255, 209, 102, 0.05) 0%, transparent 50%);
+            animation: bgFloat 20s infinite ease-in-out;
+        }
+
+        @keyframes bgFloat {
+            0%, 100% { transform: translate(0, 0); }
+            33% { transform: translate(30px, 20px); }
+            66% { transform: translate(-20px, -30px); }
+        }
+
         /* ===== PASSWORD SCREEN ===== */
         .password-screen {
             position: fixed;
@@ -31,7 +72,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            background: var(--bg-gradient);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -39,195 +80,171 @@
             z-index: 10000;
             transition: opacity 0.5s ease;
         }
-        
+
         .password-container {
-            background: rgba(20, 20, 40, 0.95);
-            border-radius: 25px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
             padding: 50px 40px;
             width: 90%;
             max-width: 500px;
             text-align: center;
-            border: 3px solid #ff6b8b;
-            box-shadow: 
-                0 0 50px rgba(255, 107, 139, 0.5),
-                inset 0 0 30px rgba(255, 255, 255, 0.1);
-            animation: passwordGlow 2s infinite alternate;
-            backdrop-filter: blur(10px);
+            border: 2px solid var(--glass-border);
+            box-shadow: var(--shadow-lg);
+            animation: float 3s infinite ease-in-out;
         }
-        
-        @keyframes passwordGlow {
-            0% { box-shadow: 0 0 30px rgba(255, 107, 139, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.1); }
-            100% { box-shadow: 0 0 60px rgba(255, 107, 139, 0.8), inset 0 0 30px rgba(255, 255, 255, 0.2); }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
-        
+
         .password-title {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 1.8rem;
-            color: #ffd166;
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(255, 209, 102, 0.5);
+            font-size: 2.2rem;
+            color: var(--primary-pink);
+            margin-bottom: 15px;
+            font-weight: 800;
         }
-        
+
         .password-subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
+            font-size: 1.1rem;
+            color: var(--purple);
             margin-bottom: 30px;
-            color: #a882dd;
+            opacity: 0.8;
         }
-        
-        .password-input-group {
-            margin: 25px 0;
-        }
-        
-        .password-input {
-            width: 100%;
-            padding: 20px;
-            font-size: 1.3rem;
-            background: rgba(0, 0, 0, 0.5);
-            border: 3px solid #06d6a0;
-            border-radius: 15px;
-            color: white;
-            text-align: center;
-            letter-spacing: 2px;
-            font-family: 'Press Start 2P', cursive;
-            transition: all 0.3s ease;
-        }
-        
-        .password-input:focus {
-            outline: none;
-            border-color: #ff6b8b;
-            box-shadow: 0 0 30px rgba(255, 107, 139, 0.5);
-            transform: scale(1.02);
-        }
-        
-        .password-btn {
-            background: linear-gradient(45deg, #ff6b8b, #a882dd);
-            border: none;
-            padding: 20px 40px;
-            font-size: 1.3rem;
-            font-family: 'Press Start 2P', cursive;
-            color: white;
-            border-radius: 15px;
-            cursor: pointer;
-            margin-top: 20px;
-            width: 100%;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .password-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 107, 139, 0.4);
-        }
-        
-        .password-btn:active {
-            transform: translateY(-2px);
-        }
-        
+
         .password-hint {
             background: rgba(255, 107, 139, 0.1);
             padding: 15px;
-            border-radius: 10px;
+            border-radius: 12px;
             margin: 20px 0;
-            border-left: 4px solid #ff6b8b;
+            border-left: 4px solid var(--primary-pink);
             text-align: left;
         }
-        
+
+        .password-input {
+            width: 100%;
+            padding: 18px;
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid var(--light-pink);
+            border-radius: 12px;
+            color: #333;
+            text-align: center;
+            transition: all 0.3s ease;
+            margin: 20px 0;
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: var(--purple);
+            box-shadow: 0 0 0 3px rgba(168, 130, 221, 0.3);
+        }
+
+        .password-btn {
+            background: linear-gradient(45deg, var(--primary-pink), var(--purple));
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .password-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
         .password-error {
-            color: #ff6b8b;
+            color: var(--primary-pink);
             margin-top: 15px;
-            font-weight: bold;
+            font-weight: 600;
             min-height: 25px;
             opacity: 0;
             transition: opacity 0.3s;
         }
-        
+
         .password-error.show {
             opacity: 1;
-            animation: shake 0.5s ease;
         }
-        
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
-        }
-        
-        .birthday-gift {
-            font-size: 5rem;
+
+        .birthday-icon {
+            font-size: 4rem;
             margin-bottom: 20px;
-            animation: bounce 2s infinite, rotate 4s infinite linear;
+            animation: bounce 2s infinite;
         }
-        
+
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-30px); }
+            50% { transform: translateY(-20px); }
         }
-        
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
+
         /* ===== MAIN CONTENT ===== */
         .main-content {
             display: none;
             opacity: 0;
             transition: opacity 0.5s ease;
         }
-        
+
         .main-content.show {
             display: block;
             opacity: 1;
         }
-        
-        /* ===== GLOBAL CONTROLS ===== */
-        .global-controls {
+
+        /* ===== CONTROL PANEL ===== */
+        .control-panel {
             position: fixed;
             top: 20px;
             right: 20px;
             display: flex;
-            gap: 15px;
+            gap: 12px;
+            align-items: center;
             z-index: 1000;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 15px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.1);
         }
-        
+
         .control-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 12px 20px;
-            border-radius: 15px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            color: #333;
+            padding: 10px 18px;
+            border-radius: 20px;
             cursor: pointer;
             font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             transition: all 0.3s ease;
+            font-size: 0.9rem;
         }
-        
+
         .control-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.95);
+            transform: translateY(-2px);
         }
-        
+
         .score-display {
-            background: linear-gradient(45deg, #ff6b8b, #a882dd);
-            padding: 12px 25px;
-            border-radius: 15px;
-            font-weight: 800;
-            font-size: 1.3rem;
+            background: linear-gradient(45deg, var(--primary-pink), var(--purple));
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: white;
             display: flex;
             align-items: center;
-            gap: 10px;
-            box-shadow: 0 5px 20px rgba(255, 107, 139, 0.3);
+            gap: 8px;
+            box-shadow: var(--shadow);
         }
-        
+
         /* ===== PAGES ===== */
         .page {
             display: none;
@@ -236,533 +253,457 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .page.active {
             display: block;
-            animation: pageEnter 0.5s ease;
+            animation: fadeIn 0.5s ease;
         }
-        
-        @keyframes pageEnter {
-            from { 
-                opacity: 0;
-                transform: translateY(50px) scale(0.95);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        
-        /* ===== PAGE 1: WELCOME ===== */
-        .welcome-container {
+
+        .container {
             max-width: 1200px;
             margin: 0 auto;
-            text-align: center;
-            position: relative;
-            z-index: 2;
         }
-        
-        .main-title {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 4rem;
-            background: linear-gradient(45deg, #ff6b8b, #ffd166, #a882dd);
+
+        /* ===== PAGE 1: WELCOME ===== */
+        .welcome-container {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .welcome-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--primary-pink), var(--purple));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             margin-bottom: 20px;
-            text-shadow: 0 0 50px rgba(255, 107, 139, 0.5);
-            animation: titleGlow 3s infinite alternate;
+            line-height: 1.2;
         }
-        
-        @keyframes titleGlow {
-            0% { 
-                text-shadow: 
-                    0 0 20px rgba(255, 107, 139, 0.5),
-                    0 0 40px rgba(255, 107, 139, 0.3),
-                    0 0 60px rgba(255, 107, 139, 0.1);
-            }
-            100% { 
-                text-shadow: 
-                    0 0 30px rgba(255, 107, 139, 0.8),
-                    0 0 60px rgba(255, 107, 139, 0.5),
-                    0 0 90px rgba(255, 107, 139, 0.2);
-            }
-        }
-        
+
         .birthday-hero {
+            margin: 40px 0;
             position: relative;
-            margin: 50px 0;
         }
-        
+
         .hero-name {
-            font-size: 6rem;
+            font-size: 4rem;
             font-weight: 900;
-            color: #ffd166;
-            text-shadow: 
-                0 0 20px #ffd166,
-                0 0 40px #ff6b8b,
-                0 0 60px #a882dd;
+            color: var(--primary-pink);
             margin-bottom: 10px;
-            animation: heroPulse 2s infinite;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
-        
-        @keyframes heroPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        
+
         .hero-age {
             position: absolute;
             top: -20px;
-            right: 30%;
-            font-size: 3rem;
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(45deg, #ff6b8b, #a882dd);
+            right: 50%;
+            transform: translateX(150px);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--gold), var(--light-gold));
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 1.8rem;
             font-weight: 900;
-            box-shadow: 0 0 30px #ff6b8b;
-            animation: ageFloat 3s infinite ease-in-out;
+            color: #333;
+            box-shadow: var(--shadow);
+            animation: spin 3s infinite linear;
         }
-        
-        @keyframes ageFloat {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
+
+        @keyframes spin {
+            from { transform: translateX(150px) rotate(0deg); }
+            to { transform: translateX(150px) rotate(360deg); }
         }
-        
+
         .welcome-subtitle {
-            font-size: 1.8rem;
-            color: #a882dd;
+            font-size: 1.4rem;
+            color: var(--purple);
             margin: 30px 0;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
             line-height: 1.6;
+            opacity: 0.9;
         }
-        
-        .start-game-btn {
-            background: linear-gradient(45deg, #ff6b8b, #a882dd, #06d6a0);
+
+        .start-btn {
+            background: linear-gradient(45deg, var(--primary-pink), var(--purple));
             border: none;
-            padding: 25px 60px;
-            font-size: 1.8rem;
-            font-weight: 800;
+            padding: 22px 50px;
+            font-size: 1.4rem;
+            font-weight: 700;
             color: white;
-            border-radius: 25px;
+            border-radius: 16px;
             cursor: pointer;
-            margin: 50px auto;
+            margin: 40px auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(255, 107, 139, 0.4);
+            box-shadow: var(--shadow);
         }
-        
-        .start-game-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.7s;
+
+        .start-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: var(--shadow-lg);
         }
-        
-        .start-game-btn:hover::before {
-            left: 100%;
+
+        .hint {
+            font-size: 1rem;
+            color: var(--blue);
+            margin-top: 20px;
+            opacity: 0.8;
         }
-        
-        .start-game-btn:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 20px 60px rgba(255, 107, 139, 0.6);
-        }
-        
-        .game-hint {
-            font-size: 1.2rem;
-            color: #ffd166;
-            margin-top: 30px;
-            opacity: 0.9;
-            animation: hintPulse 3s infinite;
-        }
-        
-        @keyframes hintPulse {
-            0%, 100% { opacity: 0.7; }
-            50% { opacity: 1; }
-        }
-        
-        /* Floating background elements */
-        .floating-bg {
+
+        /* ===== FLOATING ELEMENTS ===== */
+        .floating-elements {
             position: fixed;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 1;
+            z-index: -1;
         }
-        
+
         .floating-element {
             position: absolute;
-            font-size: 3rem;
-            opacity: 0.3;
-            filter: drop-shadow(0 0 10px currentColor);
-            animation: floatElement 20s infinite linear;
+            font-size: 2rem;
+            opacity: 0.2;
+            animation: floatAround 20s infinite linear;
         }
-        
-        @keyframes floatElement {
+
+        @keyframes floatAround {
             0% { transform: translate(0, 0) rotate(0deg); }
-            25% { transform: translate(100px, -150px) rotate(90deg); }
-            50% { transform: translate(0, -300px) rotate(180deg); }
-            75% { transform: translate(-100px, -150px) rotate(270deg); }
+            25% { transform: translate(100px, -50px) rotate(90deg); }
+            50% { transform: translate(0, -100px) rotate(180deg); }
+            75% { transform: translate(-100px, -50px) rotate(270deg); }
             100% { transform: translate(0, 0) rotate(360deg); }
         }
-        
+
         /* ===== GAME CONTAINERS ===== */
         .game-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: rgba(20, 20, 40, 0.9);
-            border-radius: 30px;
-            padding: 40px;
-            border: 4px solid #ff6b8b;
-            box-shadow: 
-                0 0 50px rgba(255, 107, 139, 0.3),
-                inset 0 0 30px rgba(255, 255, 255, 0.05);
-            position: relative;
-            overflow: hidden;
+            background: var(--glass-bg);
             backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 40px;
+            border: 2px solid var(--glass-border);
+            box-shadow: var(--shadow);
+            max-width: 1000px;
+            margin: 0 auto;
         }
-        
-        .game-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, #ff6b8b, #ffd166, #a882dd, #06d6a0);
-            animation: borderFlow 3s infinite linear;
-        }
-        
-        @keyframes borderFlow {
-            0% { background-position: 0% 0%; }
-            100% { background-position: 200% 0%; }
-        }
-        
+
         .game-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             padding-bottom: 20px;
-            border-bottom: 3px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 2px solid var(--glass-border);
         }
-        
+
         .game-title {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 2rem;
-            color: #ffd166;
+            font-size: 1.8rem;
+            color: var(--primary-pink);
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 12px;
+            font-weight: 700;
         }
-        
+
         .game-stats {
             display: flex;
-            gap: 30px;
-            font-size: 1.3rem;
-            font-weight: 700;
+            gap: 20px;
+            align-items: center;
         }
-        
+
         .stat {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px 25px;
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 12px 20px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            min-width: 150px;
-            justify-content: center;
+            gap: 8px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
         }
-        
+
         .stat-value {
-            color: #06d6a0;
-            font-size: 1.5rem;
-        }
-        
-        .game-instruction {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 25px;
-            border-radius: 20px;
-            margin: 30px 0;
-            border-left: 5px solid #a882dd;
+            color: var(--purple);
             font-size: 1.2rem;
-            line-height: 1.8;
+            font-weight: 800;
         }
-        
-        .instruction-icon {
-            color: #ffd166;
-            margin-right: 10px;
-            font-size: 1.5rem;
+
+        .game-instruction {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 16px;
+            margin: 20px 0;
+            border-left: 4px solid var(--cyan);
         }
-        
-        /* ===== GAME 1: CAKE DEFENSE ===== */
-        #game1-area {
-            height: 500px;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 20px;
-            position: relative;
-            overflow: hidden;
+
+        .game-feedback {
+            text-align: center;
+            font-size: 1.3rem;
+            margin: 20px 0;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        /* ===== GAME 1: BALLOON POP ===== */
+        #balloon-area {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            min-height: 400px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
             margin: 30px 0;
-            border: 3px solid #ffd166;
+            border: 2px dashed var(--light-pink);
         }
-        
-        #cake {
-            position: absolute;
-            width: 150px;
-            height: 150px;
-            background: linear-gradient(45deg, #ff6b8b, #ff8fa3);
-            border-radius: 50%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            z-index: 10;
-            box-shadow: 
-                0 0 50px rgba(255, 107, 139, 0.5),
-                inset 0 0 30px rgba(255, 255, 255, 0.2);
-            animation: cakeFloat 3s infinite ease-in-out;
-        }
-        
-        @keyframes cakeFloat {
-            0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
-            25% { transform: translate(-50%, -52%) rotate(5deg); }
-            75% { transform: translate(-50%, -48%) rotate(-5deg); }
-        }
-        
-        .enemy {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
+
+        .balloon {
+            width: 80px;
+            height: 100px;
+            background: var(--primary-pink);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            position: relative;
             cursor: pointer;
-            transition: transform 0.1s;
-            z-index: 5;
+            animation: balloonFloat 3s infinite ease-in-out;
+            transition: transform 0.2s;
+            justify-self: center;
+            align-self: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
-        
-        .enemy:hover {
-            transform: scale(1.2);
-        }
-        
-        .shield-line {
+
+        .balloon::before {
+            content: '';
             position: absolute;
-            width: 220px;
-            height: 220px;
-            border: 3px dashed #06d6a0;
-            border-radius: 50%;
-            top: 50%;
+            bottom: -20px;
             left: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 30px;
+            background: white;
             opacity: 0.5;
         }
-        
-        /* ===== GAME 2: GIFT STACKER ===== */
-        #game2-area {
-            height: 500px;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 20px;
-            position: relative;
-            overflow: hidden;
-            margin: 30px 0;
-            border: 3px solid #a882dd;
-        }
-        
-        .stack-area {
-            position: absolute;
-            bottom: 50px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
-            height: 400px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            overflow: hidden;
-        }
-        
-        .falling-gift {
-            position: absolute;
-            padding: 15px 25px;
-            font-size: 1.8rem;
-            border-radius: 10px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform 0.2s;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        
-        .falling-gift:hover {
+
+        .balloon:hover {
             transform: scale(1.1);
         }
-        
-        .stacked-gift {
-            position: absolute;
-            padding: 15px 25px;
-            font-size: 1.8rem;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+
+        .balloon.popped {
+            animation: balloonPop 0.3s forwards;
         }
-        
-        .stack-controls {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 30px;
+
+        .balloon.gift {
+            background: linear-gradient(45deg, var(--purple), var(--light-purple));
         }
-        
-        .stack-btn {
-            padding: 20px 40px;
-            font-size: 1.5rem;
-            font-weight: 700;
-            border: none;
-            border-radius: 15px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
+
+        .balloon.bomb {
+            background: linear-gradient(45deg, #666, #999);
+        }
+
+        .balloon.confetti {
+            background: linear-gradient(45deg, var(--gold), var(--cyan));
+        }
+
+        @keyframes balloonFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes balloonPop {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(0); opacity: 0; }
+        }
+
+        /* ===== GAME 2: MEMORY MATCH ===== */
+        #memory-area {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
             gap: 15px;
-            transition: all 0.3s ease;
-        }
-        
-        #move-left {
-            background: linear-gradient(45deg, #ff6b8b, #ff8fa3);
-            color: white;
-        }
-        
-        #move-right {
-            background: linear-gradient(45deg, #a882dd, #c19ee0);
-            color: white;
-        }
-        
-        #drop-gift {
-            background: linear-gradient(45deg, #06d6a0, #118ab2);
-            color: white;
-        }
-        
-        .stack-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        /* ===== GAME 3: PARTY PHOTOGRAPHER ===== */
-        #game3-area {
-            height: 500px;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 20px;
-            position: relative;
-            overflow: hidden;
+            min-height: 400px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
             margin: 30px 0;
-            border: 3px solid #06d6a0;
+            border: 2px dashed var(--light-purple);
         }
-        
-        .photo-frame {
-            position: absolute;
-            width: 300px;
-            height: 400px;
-            background: white;
-            border-radius: 20px;
-            top: 50px;
-            left: 50%;
-            transform: translateX(-50%);
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-        }
-        
-        .guest {
-            position: absolute;
-            font-size: 4rem;
-            animation: guestPose 2s infinite alternate;
+
+        .memory-card {
+            aspect-ratio: 1;
+            background: linear-gradient(45deg, var(--primary-pink), var(--purple));
+            border-radius: 12px;
             cursor: pointer;
-            filter: drop-shadow(0 0 10px currentColor);
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            position: relative;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
         }
-        
-        @keyframes guestPose {
-            0% { transform: scale(1) rotate(0deg); }
-            100% { transform: scale(1.1) rotate(5deg); }
-        }
-        
-        .capture-btn {
+
+        .memory-card .front,
+        .memory-card .back {
             position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(45deg, #ff6b8b, #a882dd);
-            border: none;
-            border-radius: 50%;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(255, 107, 139, 0.4);
-        }
-        
-        .capture-btn:hover {
-            transform: translateX(-50%) scale(1.1);
-            box-shadow: 0 15px 40px rgba(255, 107, 139, 0.6);
-        }
-        
-        .capture-btn:active {
-            transform: translateX(-50%) scale(0.95);
-        }
-        
-        .flash {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
             height: 100%;
-            background: white;
-            opacity: 0;
-            pointer-events: none;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-size: 2rem;
         }
-        
-        /* ===== GAME 4: DANCE FLOOR ===== */
-        #game4-area {
+
+        .memory-card .front {
+            background: linear-gradient(45deg, var(--primary-pink), var(--purple));
+            color: white;
+        }
+
+        .memory-card .back {
+            background: white;
+            color: #333;
+            transform: rotateY(180deg);
+        }
+
+        .memory-card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .memory-card.matched {
+            animation: matchGlow 1s;
+            cursor: default;
+        }
+
+        @keyframes matchGlow {
+            0%, 100% { box-shadow: 0 0 10px var(--cyan); }
+            50% { box-shadow: 0 0 30px var(--cyan); }
+        }
+
+        /* ===== GAME 3: BIRTHDAY QUIZ ===== */
+        #quiz-area {
+            min-height: 400px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
+            margin: 30px 0;
+            border: 2px dashed var(--gold);
+        }
+
+        .question-card {
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+
+        .question-card.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .question-number {
+            font-size: 1.2rem;
+            color: var(--cyan);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .question-text {
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            line-height: 1.4;
+            color: #333;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .option-btn {
+            background: white;
+            border: 2px solid var(--glass-border);
+            color: #333;
+            padding: 18px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .option-btn:hover {
+            background: rgba(255, 107, 139, 0.1);
+            border-color: var(--primary-pink);
+            transform: translateX(5px);
+        }
+
+        .option-btn.selected {
+            background: rgba(255, 107, 139, 0.15);
+            border-color: var(--primary-pink);
+            color: var(--primary-pink);
+        }
+
+        .option-letter {
+            background: var(--primary-pink);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .quiz-feedback {
+            text-align: center;
+            font-size: 1.4rem;
+            margin: 20px 0;
+            min-height: 60px;
+            color: var(--purple);
+            font-weight: 600;
+        }
+
+        /* ===== PARTY DANCE ===== */
+        #party-area {
             height: 500px;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 16px;
             position: relative;
             overflow: hidden;
             margin: 30px 0;
-            border: 3px solid #ff6b8b;
+            border: 2px dashed var(--cyan);
         }
-        
+
         .dance-floor {
             position: absolute;
             width: 80%;
             height: 300px;
-            background: linear-gradient(45deg, #1a1a2e, #16213e);
-            border-radius: 20px;
+            background: linear-gradient(45deg, rgba(255, 107, 139, 0.1), rgba(168, 130, 221, 0.1));
+            border-radius: 16px;
             top: 50px;
             left: 50%;
             transform: translateX(-50%);
@@ -772,256 +713,153 @@
             gap: 10px;
             padding: 20px;
         }
-        
+
         .dance-tile {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
+            font-size: 2rem;
             transition: all 0.2s ease;
-            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
         }
-        
+
         .dance-tile.active {
-            background: linear-gradient(45deg, #ff6b8b, #a882dd);
+            background: linear-gradient(45deg, var(--primary-pink), var(--purple));
+            color: white;
             transform: scale(1.1);
-            box-shadow: 0 0 30px currentColor;
+            box-shadow: 0 0 20px var(--primary-pink);
         }
-        
-        .arrow-indicator {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 4rem;
-            color: #ffd166;
-            animation: arrowPulse 1s infinite;
-        }
-        
-        @keyframes arrowPulse {
-            0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
-            50% { opacity: 0.7; transform: translateX(-50%) scale(1.2); }
-        }
-        
-        /* ===== GAME FEEDBACK ===== */
-        .game-feedback {
+
+        /* ===== BIRTHDAY DISPLAY ===== */
+        .birthday-display {
             text-align: center;
-            font-size: 1.8rem;
-            margin: 30px 0;
-            min-height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
+            padding: 60px 20px;
         }
-        
-        .feedback-success {
-            color: #06d6a0;
-            text-shadow: 0 0 10px rgba(6, 214, 160, 0.5);
-        }
-        
-        .feedback-error {
-            color: #ff6b8b;
-            text-shadow: 0 0 10px rgba(255, 107, 139, 0.5);
-        }
-        
-        /* ===== NAVIGATION BUTTONS ===== */
-        .game-nav {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 40px;
-        }
-        
-        .nav-btn {
-            padding: 20px 40px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-prev {
-            background: linear-gradient(45deg, #666, #999);
-            color: white;
-        }
-        
-        .nav-next {
-            background: linear-gradient(45deg, #ff6b8b, #a882dd);
-            color: white;
-        }
-        
-        .nav-btn:hover:not(:disabled) {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .nav-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        
-        /* ===== FINAL CELEBRATION ===== */
-        .celebration-container {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 50px;
-            background: rgba(20, 20, 40, 0.95);
-            border-radius: 30px;
-            border: 4px solid #ffd166;
-            box-shadow: 0 0 60px rgba(255, 209, 102, 0.4);
-        }
-        
-        .celebration-title {
-            font-family: 'Press Start 2P', cursive;
+
+        .birthday-message {
             font-size: 3rem;
-            color: #ffd166;
-            margin-bottom: 30px;
-            animation: celebrationGlow 2s infinite alternate;
-        }
-        
-        @keyframes celebrationGlow {
-            0% { text-shadow: 0 0 20px rgba(255, 209, 102, 0.5); }
-            100% { text-shadow: 0 0 40px rgba(255, 209, 102, 0.8); }
-        }
-        
-        .total-score {
-            font-size: 8rem;
             font-weight: 900;
-            background: linear-gradient(45deg, #ff6b8b, #ffd166, #a882dd, #06d6a0);
+            background: linear-gradient(45deg, var(--primary-pink), var(--purple), var(--gold));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin: 40px 0;
-            text-shadow: 0 0 30px rgba(255, 107, 139, 0.3);
+            margin-bottom: 30px;
+            animation: glow 2s infinite alternate;
         }
-        
-        .celebration-actions {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin: 40px 0;
-            flex-wrap: wrap;
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px rgba(255, 107, 139, 0.3); }
+            to { text-shadow: 0 0 20px rgba(255, 107, 139, 0.6); }
         }
-        
-        .celebration-btn {
-            padding: 25px 40px;
-            font-size: 1.5rem;
-            font-weight: 700;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            transition: all 0.3s ease;
-            min-width: 250px;
-            justify-content: center;
-        }
-        
-        #fireworks-btn {
-            background: linear-gradient(45deg, #ff6b8b, #ff8fa3);
-            color: white;
-        }
-        
-        #music-btn {
-            background: linear-gradient(45deg, #a882dd, #c19ee0);
-            color: white;
-        }
-        
-        #message-btn {
-            background: linear-gradient(45deg, #06d6a0, #118ab2);
-            color: white;
-        }
-        
-        .celebration-btn:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-        
+
         /* ===== FINAL MESSAGE ===== */
-        .message-container {
+        .final-message-container {
             max-width: 800px;
             margin: 0 auto;
-            background: rgba(20, 20, 40, 0.95);
-            border-radius: 30px;
-            padding: 60px;
-            border: 4px solid #a882dd;
-            box-shadow: 0 0 60px rgba(168, 130, 221, 0.4);
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 50px;
+            border: 2px solid var(--glass-border);
+            box-shadow: var(--shadow);
         }
-        
-        .message-title {
-            font-family: 'Press Start 2P', cursive;
-            font-size: 2.5rem;
-            color: #a882dd;
+
+        .message-header {
             text-align: center;
             margin-bottom: 40px;
-            text-shadow: 0 0 20px rgba(168, 130, 221, 0.5);
         }
-        
+
+        .message-title {
+            font-size: 2.5rem;
+            color: var(--primary-pink);
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .message-subtitle {
+            font-size: 1.2rem;
+            color: var(--purple);
+            opacity: 0.8;
+        }
+
         .message-content {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             line-height: 1.8;
-            color: rgba(255, 255, 255, 0.9);
+            color: #333;
         }
-        
+
         .message-line {
             margin: 25px 0;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            border-left: 5px solid;
-            animation: lineAppear 0.5s ease;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 16px;
+            border-left: 4px solid var(--primary-pink);
+            animation: fadeInUp 0.5s ease;
         }
-        
-        @keyframes lineAppear {
-            from { 
-                opacity: 0;
-                transform: translateX(-20px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateX(0);
-            }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        
-        .message-line:nth-child(odd) {
-            border-left-color: #ff6b8b;
-        }
-        
-        .message-line:nth-child(even) {
-            border-left-color: #06d6a0;
-        }
-        
+
         .highlight {
-            color: #ffd166;
-            font-weight: 800;
-            text-shadow: 0 0 10px rgba(255, 209, 102, 0.5);
+            color: var(--primary-pink);
+            font-weight: 700;
         }
-        
+
         .signature {
             text-align: right;
             font-style: italic;
-            font-size: 1.6rem;
-            color: #a882dd;
+            font-size: 1.4rem;
+            color: var(--purple);
             margin-top: 40px;
             padding-top: 20px;
             border-top: 2px solid rgba(168, 130, 221, 0.3);
         }
-        
-        /* ===== AUDIO ===== */
-        audio {
-            display: none;
+
+        /* ===== NAVIGATION BUTTONS ===== */
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
         }
-        
-        /* ===== CONFETTI CANVAS ===== */
+
+        .nav-btn {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn.prev {
+            background: rgba(0, 0, 0, 0.1);
+            color: #333;
+        }
+
+        .nav-btn.next {
+            background: linear-gradient(45deg, var(--primary-pink), var(--purple));
+            color: white;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* ===== CONFETTI ===== */
         #confetti-canvas {
             position: fixed;
             top: 0;
@@ -1029,89 +867,77 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 999;
+            z-index: 9999;
         }
-        
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 1024px) {
-            .main-title { font-size: 3rem; }
-            .hero-name { font-size: 4rem; }
-            .game-title { font-size: 1.5rem; }
-            .total-score { font-size: 6rem; }
-        }
-        
+
+        /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 768px) {
-            .main-title { font-size: 2.5rem; }
+            .welcome-title { font-size: 2.5rem; }
             .hero-name { font-size: 3rem; }
-            .game-container { padding: 20px; }
+            .hero-age { transform: translateX(100px); }
             .game-header { flex-direction: column; gap: 20px; }
             .game-stats { flex-wrap: wrap; justify-content: center; }
             .stat { min-width: 120px; }
-            .celebration-btn { min-width: 200px; }
-            .global-controls { top: 10px; right: 10px; flex-direction: column; }
+            #balloon-area { grid-template-columns: repeat(3, 1fr); }
+            #memory-area { grid-template-columns: repeat(3, 1fr); }
+            .birthday-message { font-size: 2.5rem; }
+            .control-panel { top: 10px; right: 10px; flex-direction: column; }
+            .final-message-container { padding: 30px 20px; }
         }
-        
+
         @media (max-width: 480px) {
             .page { padding: 80px 15px 30px; }
-            .main-title { font-size: 1.8rem; }
+            .welcome-title { font-size: 2rem; }
             .hero-name { font-size: 2.5rem; }
-            .hero-age { font-size: 2rem; width: 60px; height: 60px; }
-            .start-game-btn { padding: 20px 30px; font-size: 1.5rem; }
-            .game-title { font-size: 1.2rem; gap: 10px; }
-            .message-container { padding: 30px 20px; }
-            .message-title { font-size: 1.8rem; }
+            .start-btn { padding: 18px 30px; font-size: 1.2rem; }
+            #balloon-area { grid-template-columns: repeat(2, 1fr); }
+            #memory-area { grid-template-columns: repeat(2, 1fr); }
+            .birthday-message { font-size: 2rem; }
+            .message-title { font-size: 2rem; }
+            .message-content { font-size: 1.1rem; }
         }
-        
-        /* ===== UTILITY ===== */
-        .hidden {
-            display: none !important;
-        }
-        
-        .text-center {
-            text-align: center;
-        }
-        
+
+        /* ===== UTILITY CLASSES ===== */
+        .hidden { display: none !important; }
+        .text-center { text-align: center; }
         .mt-20 { margin-top: 20px; }
         .mt-30 { margin-top: 30px; }
-        .mt-40 { margin-top: 40px; }
         .mb-20 { margin-bottom: 20px; }
-        .mb-30 { margin-bottom: 30px; }
-        .mb-40 { margin-bottom: 40px; }
     </style>
 </head>
 <body>
+    <!-- Animated Background -->
+    <div class="bg-animation"></div>
+
     <!-- Password Screen -->
     <div class="password-screen" id="password-screen">
-        <div class="birthday-gift">🎁</div>
-        
+        <div class="birthday-icon">🎁</div>
         <div class="password-container">
-            <h1 class="password-title">🎮 BIRTHDAY ARCADE 🎮</h1>
-            <p class="password-subtitle">Enter the secret password to unlock the party!</p>
+            <h1 class="password-title">Welcome to Jenisha's Birthday!</h1>
+            <p class="password-subtitle">Enter the birthday girl's name to continue</p>
             
             <div class="password-hint">
-                <p><strong>🔑 Hint:</strong> It's the birthday girl's name (all lowercase)</p>
-                <p><em>💡 Starts with 'j', ends with 'a', has 7 letters</em></p>
+                <p><strong>Hint:</strong> It's the birthday girl's name (all lowercase)</p>
+                <p><em>Starts with 'j', ends with 'a', 7 letters</em></p>
             </div>
             
-            <div class="password-input-group">
-                <input type="password" 
-                       class="password-input" 
-                       id="password-input"
-                       placeholder="Type password here..."
-                       autocomplete="off"
-                       maxlength="20">
-            </div>
+            <input type="password" 
+                   class="password-input" 
+                   id="password-input"
+                   placeholder="Type password here..."
+                   autocomplete="off"
+                   maxlength="20">
             
             <button class="password-btn" id="password-submit">
                 <i class="fas fa-unlock-alt"></i>
-                UNLOCK ARCADE
+                UNLOCK BIRTHDAY SURPRISE
             </button>
             
             <div class="password-error" id="password-error">
                 ❌ Wrong password! Try again.
             </div>
             
-            <div class="attempts-counter mt-20" id="attempts-counter">
+            <div class="mt-20">
                 Attempts: <span id="attempt-count">0</span>/5
             </div>
         </div>
@@ -1119,8 +945,8 @@
 
     <!-- Main Content -->
     <div class="main-content" id="main-content">
-        <!-- Global Controls -->
-        <div class="global-controls">
+        <!-- Control Panel -->
+        <div class="control-panel">
             <button id="music-toggle" class="control-btn">
                 <i class="fas fa-music"></i> <span>MUSIC: ON</span>
             </button>
@@ -1128,20 +954,17 @@
                 <i class="fas fa-volume-up"></i> <span>SOUND: ON</span>
             </button>
             <div class="score-display">
-                <i class="fas fa-trophy"></i> <span id="global-score">0</span>
+                <i class="fas fa-gift"></i> <span id="global-score">0</span>
             </div>
         </div>
 
-        <!-- Floating Background Elements -->
-        <div class="floating-bg" id="floating-bg">
-            <div class="floating-element" style="top: 10%; left: 5%; animation-delay: 0s;">🎂</div>
-            <div class="floating-element" style="top: 20%; right: 10%; animation-delay: 2s;">🎁</div>
-            <div class="floating-element" style="top: 40%; left: 15%; animation-delay: 4s;">🎈</div>
-            <div class="floating-element" style="top: 60%; right: 15%; animation-delay: 6s;">✨</div>
-            <div class="floating-element" style="top: 80%; left: 10%; animation-delay: 8s;">🎮</div>
-            <div class="floating-element" style="top: 30%; right: 5%; animation-delay: 10s;">🎉</div>
-            <div class="floating-element" style="top: 70%; right: 20%; animation-delay: 12s;">🥳</div>
-            <div class="floating-element" style="top: 50%; left: 5%; animation-delay: 14s;">🎊</div>
+        <!-- Floating Elements -->
+        <div class="floating-elements">
+            <div class="floating-element" style="top: 10%; left: 5%;">🎈</div>
+            <div class="floating-element" style="top: 20%; right: 10%; animation-delay: 2s;">🎂</div>
+            <div class="floating-element" style="top: 40%; left: 15%; animation-delay: 4s;">✨</div>
+            <div class="floating-element" style="top: 60%; right: 15%; animation-delay: 6s;">🎁</div>
+            <div class="floating-element" style="top: 80%; left: 10%; animation-delay: 8s;">🥳</div>
         </div>
 
         <!-- Confetti Canvas -->
@@ -1149,368 +972,443 @@
 
         <!-- Page 1: Welcome -->
         <section class="page active" id="page1">
-            <div class="welcome-container">
-                <h1 class="main-title">ULTIMATE BIRTHDAY ARCADE</h1>
-                
-                <div class="birthday-hero">
-                    <div class="hero-name">JENISHA</div>
-                    <div class="hero-age">18</div>
+            <div class="container">
+                <div class="welcome-container">
+                    <h1 class="welcome-title">Happy 18th Birthday!</h1>
+                    
+                    <div class="birthday-hero">
+                        <div class="hero-name">JENISHA</div>
+                        <div class="hero-age">18</div>
+                    </div>
+                    
+                    <p class="welcome-subtitle">
+                        Welcome to your special birthday surprise! 🎉<br>
+                        Let's celebrate with some fun games and surprises!
+                    </p>
+                    
+                    <button class="start-btn" id="start-btn">
+                        <i class="fas fa-play-circle"></i>
+                        START THE CELEBRATION
+                    </button>
+                    
+                    <p class="hint">
+                        <i class="fas fa-lightbulb"></i> Complete all games to unlock the final surprise!
+                    </p>
                 </div>
-                
-                <p class="welcome-subtitle">
-                    🎉 Welcome to your exclusive 18th birthday gaming experience!<br>
-                    Complete 4 awesome games to unlock the final celebration! 🎮
-                </p>
-                
-                <button class="start-game-btn" id="start-game-btn">
-                    <i class="fas fa-play-circle"></i>
-                    START GAMING ADVENTURE
-                </button>
-                
-                <p class="game-hint">
-                    💡 Each game has unique controls - follow the instructions!
-                </p>
             </div>
         </section>
 
-        <!-- Page 2: Game 1 - Cake Defense -->
+        <!-- Page 2: Balloon Pop Game -->
         <section class="page" id="page2">
-            <div class="game-container">
-                <div class="game-header">
-                    <h2 class="game-title">
-                        <i class="fas fa-shield-alt"></i>
-                        GAME 1: CAKE DEFENSE
-                    </h2>
-                    <div class="game-stats">
-                        <div class="stat">
-                            <i class="fas fa-heart"></i>
-                            Lives: <span class="stat-value" id="game1-lives">3</span>
-                        </div>
-                        <div class="stat">
-                            <i class="fas fa-star"></i>
-                            Score: <span class="stat-value" id="game1-score">0</span>
-                        </div>
-                        <div class="stat">
-                            <i class="fas fa-clock"></i>
-                            Time: <span class="stat-value" id="game1-time">60</span>s
+            <div class="container">
+                <div class="game-container">
+                    <div class="game-header">
+                        <h2 class="game-title">
+                            <i class="fas fa-birthday-cake"></i>
+                            GAME 1: BALLOON POP
+                        </h2>
+                        <div class="game-stats">
+                            <div class="stat">
+                                <i class="fas fa-clock"></i>
+                                Time: <span class="stat-value" id="balloon-time">60</span>s
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-star"></i>
+                                Score: <span class="stat-value" id="balloon-score">0</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="game-instruction">
-                    <p><i class="fas fa-mouse-pointer instruction-icon"></i> <strong>HOW TO PLAY:</strong></p>
-                    <p>🎂 Protect the birthday cake from hungry enemies!</p>
-                    <p>🖱️ CLICK enemies before they reach the cake</p>
-                    <p>🛡️ Stay inside the green shield zone</p>
-                    <p>🎯 Each click = 10 points, Combo = extra points!</p>
-                    <p>⏰ Survive 60 seconds to win!</p>
-                </div>
-                
-                <div id="game1-area">
-                    <div id="cake">🎂</div>
-                    <div class="shield-line"></div>
-                    <!-- Enemies will be generated here -->
-                </div>
-                
-                <div class="game-feedback" id="game1-feedback">
-                    Ready to defend the cake? Click START!
-                </div>
-                
-                <div class="game-nav">
-                    <button class="nav-btn nav-prev" onclick="goToPage(1)">
-                        <i class="fas fa-arrow-left"></i> BACK
-                    </button>
-                    <button class="nav-btn" id="game1-start">START GAME</button>
-                    <button class="nav-btn nav-next" id="game1-next" disabled onclick="goToPage(3)">
-                        NEXT GAME <i class="fas fa-arrow-right"></i>
-                    </button>
+                    
+                    <div class="game-instruction">
+                        <p><strong>How to Play:</strong></p>
+                        <p>🎈 Pop regular balloons = 10 points</p>
+                        <p>🎁 Gift balloons = 25 points</p>
+                        <p>💣 Avoid bomb balloons!</p>
+                        <p>🎉 Confetti balloons = Bonus!</p>
+                        <p>⏰ 60 seconds to score as many as you can!</p>
+                    </div>
+                    
+                    <div id="balloon-area">
+                        <!-- Balloons will be generated here -->
+                    </div>
+                    
+                    <div class="game-feedback" id="balloon-feedback">
+                        Ready? Click START!
+                    </div>
+                    
+                    <div class="nav-buttons">
+                        <button class="nav-btn prev" onclick="goToPage(1)">
+                            <i class="fas fa-arrow-left"></i> BACK
+                        </button>
+                        <button class="nav-btn" id="balloon-start">START GAME</button>
+                        <button class="nav-btn next" id="balloon-next" disabled onclick="goToPage(3)">
+                            NEXT GAME <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Page 3: Game 2 - Gift Stacker -->
+        <!-- Page 3: Memory Match Game -->
         <section class="page" id="page3">
-            <div class="game-container">
-                <div class="game-header">
-                    <h2 class="game-title">
-                        <i class="fas fa-gifts"></i>
-                        GAME 2: GIFT STACKER
-                    </h2>
-                    <div class="game-stats">
-                        <div class="stat">
-                            <i class="fas fa-layer-group"></i>
-                            Height: <span class="stat-value" id="game2-height">0</span>
-                        </div>
-                        <div class="stat">
-                            <i class="fas fa-star"></i>
-                            Score: <span class="stat-value" id="game2-score">0</span>
-                        </div>
-                        <div class="stat">
-                            <i class="fas fa-bolt"></i>
-                            Combo: <span class="stat-value" id="game2-combo">1</span>x
+            <div class="container">
+                <div class="game-container">
+                    <div class="game-header">
+                        <h2 class="game-title">
+                            <i class="fas fa-brain"></i>
+                            GAME 2: MEMORY MATCH
+                        </h2>
+                        <div class="game-stats">
+                            <div class="stat">
+                                <i class="fas fa-layer-group"></i>
+                                Matches: <span class="stat-value" id="memory-matches">0</span>/6
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-star"></i>
+                                Score: <span class="stat-value" id="memory-score">0</span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-redo"></i>
+                                Moves: <span class="stat-value" id="memory-moves">0</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="game-instruction">
-                    <p><i class="fas fa-keyboard instruction-icon"></i> <strong>HOW TO PLAY:</strong></p>
-                    <p>🎁 Stack falling gifts as high as possible!</p>
-                    <p>⬅️➡️ Use LEFT/RIGHT buttons to move gift</p>
-                    <p>⬇️ Use DROP button to place gift</p>
-                    <p>🎯 Perfect center = Bonus points!</p>
-                    <p>💥 Stack 20 gifts without falling!</p>
-                </div>
-                
-                <div id="game2-area">
-                    <div class="stack-area">
-                        <!-- Gifts will be stacked here -->
+                    
+                    <div class="game-instruction">
+                        <p><strong>How to Play:</strong></p>
+                        <p>🎴 Find matching pairs of birthday emojis</p>
+                        <p>🧠 Test your memory skills</p>
+                        <p>🎯 Each match reveals part of a birthday message</p>
+                        <p>🏆 Match all 6 pairs to win!</p>
                     </div>
-                </div>
-                
-                <div class="stack-controls">
-                    <button class="stack-btn" id="move-left">
-                        <i class="fas fa-arrow-left"></i> MOVE LEFT
-                    </button>
-                    <button class="stack-btn" id="drop-gift">
-                        <i class="fas fa-arrow-down"></i> DROP GIFT
-                    </button>
-                    <button class="stack-btn" id="move-right">
-                        MOVE RIGHT <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-                
-                <div class="game-feedback" id="game2-feedback">
-                    Ready to stack? Click START!
-                </div>
-                
-                <div class="game-nav">
-                    <button class="nav-btn nav-prev" onclick="goToPage(2)">
-                        <i class="fas fa-arrow-left"></i> BACK
-                    </button>
-                    <button class="nav-btn" id="game2-start">START GAME</button>
-                    <button class="nav-btn nav-next" id="game2-next" disabled onclick="goToPage(4)">
-                        NEXT GAME <i class="fas fa-arrow-right"></i>
-                    </button>
+                    
+                    <div id="memory-area">
+                        <!-- Memory cards will be generated here -->
+                    </div>
+                    
+                    <div class="game-feedback" id="memory-feedback">
+                        Find all matching pairs!
+                    </div>
+                    
+                    <div class="nav-buttons">
+                        <button class="nav-btn prev" onclick="goToPage(2)">
+                            <i class="fas fa-arrow-left"></i> BACK
+                        </button>
+                        <button class="nav-btn" id="memory-start">START GAME</button>
+                        <button class="nav-btn next" id="memory-next" disabled onclick="goToPage(4)">
+                            NEXT GAME <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Page 4: Game 3 - Party Photographer -->
+        <!-- Page 4: Birthday Quiz -->
         <section class="page" id="page4">
-            <div class="game-container">
-                <div class="game-header">
-                    <h2 class="game-title">
-                        <i class="fas fa-camera"></i>
-                        GAME 3: PARTY PHOTOGRAPHER
-                    </h2>
-                    <div class="game-stats">
-                        <div class="stat">
-                            <i class="fas fa-images"></i>
-                            Photos: <span class="stat-value" id="game3-photos">0</span>/10
-                        </div>
-                        <div class="stat">
-                            <i class="fas fa-star"></i>
-                            Score: <span class="stat-value" id="game3-score">0</span>
-                        </div>
-                        <div class="stat">
-                            <i class="fas fa-percentage"></i>
-                            Accuracy: <span class="stat-value" id="game3-accuracy">100%</span>
+            <div class="container">
+                <div class="game-container">
+                    <div class="game-header">
+                        <h2 class="game-title">
+                            <i class="fas fa-question-circle"></i>
+                            GAME 3: BIRTHDAY QUIZ
+                        </h2>
+                        <div class="game-stats">
+                            <div class="stat">
+                                <i class="fas fa-check-circle"></i>
+                                Questions: <span class="stat-value" id="quiz-current">1</span>/5
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-star"></i>
+                                Score: <span class="stat-value" id="quiz-score">0</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="game-instruction">
-                    <p><i class="fas fa-mouse-pointer instruction-icon"></i> <strong>HOW TO PLAY:</strong></p>
-                    <p>📸 Take photos of guests doing funny poses!</p>
-                    <p>🖱️ CLICK on guests when they strike a pose</p>
-                    <p>🎯 Perfect timing = 100 points!</p>
-                    <p>⏱️ Pose lasts only 1-2 seconds</p>
-                    <p>📷 Take 10 perfect photos to win!</p>
-                </div>
-                
-                <div id="game3-area">
-                    <div class="photo-frame">
-                        <!-- Guests will appear here -->
+                    
+                    <div class="game-instruction">
+                        <p><strong>How to Play:</strong></p>
+                        <p>❓ Answer 5 fun birthday questions</p>
+                        <p>😄 No right or wrong answers - just fun!</p>
+                        <p>🎁 Each answer = 50 points</p>
+                        <p>🎂 Complete all questions for bonus!</p>
                     </div>
-                    <button class="capture-btn" id="capture-btn">
-                        <i class="fas fa-camera"></i>
-                    </button>
-                    <div class="flash" id="flash"></div>
-                </div>
-                
-                <div class="game-feedback" id="game3-feedback">
-                    Ready to photograph? Click START!
-                </div>
-                
-                <div class="game-nav">
-                    <button class="nav-btn nav-prev" onclick="goToPage(3)">
-                        <i class="fas fa-arrow-left"></i> BACK
-                    </button>
-                    <button class="nav-btn" id="game3-start">START GAME</button>
-                    <button class="nav-btn nav-next" id="game3-next" disabled onclick="goToPage(5)">
-                        NEXT GAME <i class="fas fa-arrow-right"></i>
-                    </button>
+                    
+                    <div id="quiz-area">
+                        <div class="question-card active" id="question-1">
+                            <div class="question-number">Question 1 of 5</div>
+                            <h3 class="question-text">🎂 If Jenisha could have any birthday cake in the world, what would it MOST likely be?</h3>
+                            <div class="options-grid">
+                                <button class="option-btn" onclick="selectAnswer(1, 'A')">
+                                    <span class="option-letter">A</span>
+                                    <span>Chocolate overload (never fails 😌)</span>
+                                </button>
+                                <button class="option-btn" onclick="selectAnswer(1, 'B')">
+                                    <span class="option-letter">B</span>
+                                    <span>Classic vanilla (simple & clean)</span>
+                                </button>
+                                <button class="option-btn" onclick="selectAnswer(1, 'C')">
+                                    <span class="option-letter">C</span>
+                                    <span>Red velvet (because it looks cool 😄)</span>
+                                </button>
+                                <button class="option-btn" onclick="selectAnswer(1, 'D')">
+                                    <span class="option-letter">D</span>
+                                    <span>Surprise cake (dealer's choice 👀)</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="question-card" id="question-2">
+                            <div class="question-number">Question 2 of 5</div>
+                            <h3 class="question-text">🎁 What's the ultimate 18th birthday gift?</h3>
+                            <div class="options-grid">
+                                <button class="option-btn" onclick="selectAnswer(2, 'A')">
+                                    <span class="option-letter">A</span>
+                                    <span>A stack of good fictional books 📚✨</span>
+                                </button>
+                                <button class="option-btn" onclick="selectAnswer(2, 'B')">
+                                    <span class="option-letter">B</span>
+                                    <span>A surprise trip / outing 🧳</span>
+                                </button>
+                                <button class="option-btn" onclick="selectAnswer(2, 'C')">
+                                    <span class="option-letter">C</span>
+                                    <span>Clothes + glow-up vibes 😎</span>
+                                </button>
+                                <button class="option-btn" onclick="selectAnswer(2, 'D')">
+                                    <span class="option-letter">D</span>
+                                    <span>Cash (honesty wins 💸😂)</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="question-card" id="question-3">
+                            <div class="question-number">Question 3 of 5</div>
+                            <h3 class="question-text">🦸‍♀️ Birthday Superpower (for today only)</h3>
+                            <div class="options-grid">
+                                <button class="option-btn" onclick="selectAnswer(3, 'A')">
+                                    <span class="option-letter">A</span>
+                                    <span>Teleportation (no more being late!)</span>
+                                </button>
+                                <button class="option-btn" onclick="selectAnswer(3, 'B')">
+                                    <span class="option-letter">B</span>
+                                    <span>Mind reading (finally know what people really think!)</span>
+                                </button>
+                                <button class="option-btn" onclick="selectAnswer(3, 'C')">
+                                    <span class="option-letter">C</span>
+                                    <span>Time control (pause, rewind, skip boring moments)</span>
+                                </button>
+                                <button class="option-btn" onclick="selectAnswer(3, 'D')">
+                                    <span class="option-letter">D</span>
+                                    <span>Unlimited cupcakes forever 🧁😋</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="question-card" id="question-4">
+                            <div class="question-number">Question 4 of 5</div>
+                            <h3 class="question-text">😌 Birthday Mood Check</h3>
+                            <div class="options-grid">
+                                <button class="option-btn" onclick="selectAnswer(4, 'A')">
+                                    <span class="option-letter">A</span>
+                                    <span>Full party mode 🕺🎶</span>
+                                </button>
+                                <button class="option-btn" onclick="selectAnswer(4, 'B')">
+                                    <span class="option-letter">B</span>
+                                    <span>Chill + close people only ☕</span>
+                                </button>
+                                <button class="option-btn" onclick="selectAnswer(4, 'C')">
+                                    <span class="option-letter">C</span>
+                                    <span>Eat + sleep + repeat 😴</span>
+                                </button>
+                                <button class="option-btn" onclick="selectAnswer(4, 'D')">
+                                    <span class="option-letter">D</span>
+                                    <span>Anything as long as cake is there 😂</span>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="question-card" id="question-5">
+                            <div class="question-number">Question 5 of 5</div>
+                            <h3 class="question-text">👀 Important Question</h3>
+                            <div class="options-grid">
+                                <button class="option-btn" onclick="selectAnswer(5, 'A')">
+                                    <span class="option-letter">A</span>
+                                    <span>Aaj hi 🎉</span>
+                                </button>
+                                <button class="option-btn" onclick="selectAnswer(5, 'B')">
+                                    <span class="option-letter">B</span>
+                                    <span>Weekend pe 😄</span>
+                                </button>
+                                <button class="option-btn" onclick="selectAnswer(5, 'C')">
+                                    <span class="option-letter">C</span>
+                                    <span>Baad mein pakka 😅</span>
+                                </button>
+                                <button class="option-btn" onclick="selectAnswer(5, 'D')">
+                                    <span class="option-letter">D</span>
+                                    <span>Still deciding 🤷‍♀️</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-feedback" id="quiz-feedback">
+                        Choose your answer!
+                    </div>
+                    
+                    <div class="nav-buttons">
+                        <button class="nav-btn prev" onclick="goToPage(3)">
+                            <i class="fas fa-arrow-left"></i> BACK
+                        </button>
+                        <button class="nav-btn" id="quiz-next-btn" onclick="nextQuestion()">NEXT QUESTION</button>
+                        <button class="nav-btn next" id="quiz-next" disabled onclick="goToPage(5)">
+                            DANCE PARTY <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Page 5: Game 4 - Dance Floor -->
+        <!-- Page 5: Dance Party -->
         <section class="page" id="page5">
-            <div class="game-container">
-                <div class="game-header">
-                    <h2 class="game-title">
-                        <i class="fas fa-music"></i>
-                        GAME 4: DANCE FLOOR
-                    </h2>
-                    <div class="game-stats">
-                        <div class="stat">
-                            <i class="fas fa-fire"></i>
-                            Streak: <span class="stat-value" id="game4-streak">0</span>
-                        </div>
-                        <div class="stat">
-                            <i class="fas fa-star"></i>
-                            Score: <span class="stat-value" id="game4-score">0</span>
-                        </div>
-                        <div class="stat">
-                            <i class="fas fa-percentage"></i>
-                            Accuracy: <span class="stat-value" id="game4-accuracy">100%</span>
+            <div class="container">
+                <div class="game-container">
+                    <div class="game-header">
+                        <h2 class="game-title">
+                            <i class="fas fa-music"></i>
+                            DANCE PARTY CELEBRATION!
+                        </h2>
+                        <div class="game-stats">
+                            <div class="stat">
+                                <i class="fas fa-fire"></i>
+                                Streak: <span class="stat-value" id="dance-streak">0</span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-star"></i>
+                                Score: <span class="stat-value" id="dance-score">0</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="game-instruction">
-                    <p><i class="fas fa-keyboard instruction-icon"></i> <strong>HOW TO PLAY:</strong></p>
-                    <p>💃 Press arrow keys when tiles light up!</p>
-                    <p>⬆️⬇️⬅️➡️ Match the arrow direction</p>
-                    <p>🎵 Follow the birthday beat!</p>
-                    <p>🔥 Keep the streak for bonus points!</p>
-                    <p>🎯 30 perfect hits to win!</p>
-                </div>
-                
-                <div id="game4-area">
-                    <div class="dance-floor" id="dance-floor">
-                        <!-- Dance tiles will be generated here -->
+                    
+                    <div class="game-instruction">
+                        <p><strong>Let's Dance!</strong></p>
+                        <p>💃 Press arrow keys when tiles light up</p>
+                        <p>🎵 Follow the birthday beat</p>
+                        <p>🔥 Keep the streak going</p>
+                        <p>🎉 Celebrate your birthday victory!</p>
                     </div>
-                    <div class="arrow-indicator" id="arrow-indicator">⬆️</div>
-                </div>
-                
-                <div class="game-feedback" id="game4-feedback">
-                    Ready to dance? Click START!
-                </div>
-                
-                <div class="game-nav">
-                    <button class="nav-btn nav-prev" onclick="goToPage(4)">
-                        <i class="fas fa-arrow-left"></i> BACK
-                    </button>
-                    <button class="nav-btn" id="game4-start">START GAME</button>
-                    <button class="nav-btn nav-next" id="game4-next" disabled onclick="goToPage(6)">
-                        FINAL CELEBRATION <i class="fas fa-arrow-right"></i>
-                    </button>
+                    
+                    <div id="party-area">
+                        <div class="dance-floor" id="dance-floor">
+                            <!-- Dance tiles will be generated here -->
+                        </div>
+                    </div>
+                    
+                    <div class="game-feedback" id="dance-feedback">
+                        Get ready to dance! Click START!
+                    </div>
+                    
+                    <div class="nav-buttons">
+                        <button class="nav-btn prev" onclick="goToPage(4)">
+                            <i class="fas fa-arrow-left"></i> BACK
+                        </button>
+                        <button class="nav-btn" id="dance-start">START DANCE PARTY</button>
+                        <button class="nav-btn next" id="dance-next" onclick="goToPage(6)">
+                            SEE SURPRISE <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Page 6: Celebration -->
+        <!-- Page 6: Birthday Display -->
         <section class="page" id="page6">
-            <div class="celebration-container">
-                <h1 class="celebration-title">🎉 CONGRATULATIONS! 🎉</h1>
-                
-                <p class="welcome-subtitle">
-                    You completed all 4 birthday games!<br>
-                    Now it's time to celebrate your victory!
-                </p>
-                
-                <div class="total-score" id="total-score">0</div>
-                
-                <p style="font-size: 1.5rem; margin: 20px 0; color: #ffd166;">
-                    Total Points Earned: <span id="total-points">0</span>
-                </p>
-                
-                <div class="celebration-actions">
-                    <button class="celebration-btn" id="fireworks-btn">
-                        <i class="fas fa-fireworks"></i> FIREWORKS SHOW
+            <div class="container">
+                <div class="birthday-display">
+                    <h1 class="birthday-message">🎂 HAPPY 18TH BIRTHDAY JENISHA! 🎉</h1>
+                    <p style="font-size: 1.5rem; color: var(--purple); margin: 30px 0;">
+                        You completed all the birthday challenges!<br>
+                        Now for the final surprise...
+                    </p>
+                    <button class="start-btn" onclick="goToPage(7)">
+                        <i class="fas fa-gift"></i>
+                        VIEW SPECIAL MESSAGE
                     </button>
-                    <button class="celebration-btn" id="music-btn">
-                        <i class="fas fa-music"></i> BIRTHDAY MUSIC
-                    </button>
-                    <button class="celebration-btn" id="message-btn" onclick="goToPage(7)">
-                        <i class="fas fa-envelope"></i> SPECIAL MESSAGE
-                    </button>
-                </div>
-                
-                <div class="game-hint mt-40">
-                    🎮 You can replay any game from the navigation!
                 </div>
             </div>
         </section>
 
         <!-- Page 7: Final Message -->
         <section class="page" id="page7">
-            <div class="message-container">
-                <h1 class="message-title">🎂 HAPPY 18TH BIRTHDAY! 🎂</h1>
-                
-                <div class="message-content">
-                    <div class="message-line">
-                        <span class="highlight">Jenisha</span>, welcome to adulthood! 🎉
+            <div class="container">
+                <div class="final-message-container">
+                    <div class="message-header">
+                        <h1 class="message-title">A Special Birthday Message 💌</h1>
+                        <p class="message-subtitle">For Jenisha on her 18th birthday</p>
                     </div>
                     
-                    <div class="message-line">
-                        May every wish you blow on those candles come true ✨<br>
-                        And may this year be filled with amazing adventures!
-                    </div>
-                    
-                    <div class="message-line">
-                        I'm grateful to have a friend like <span class="highlight">me</span> 😂😂<br>
-                        (Just kidding! Couldn't resist the meme!)
-                    </div>
-                    
-                    <div class="message-line">
-                        <strong>Important Question Time:</strong><br>
-                        Waise birthday party ka kya scene hai? 👀
-                    </div>
-                    
-                    <div class="message-line">
-                        <i class="fas fa-history"></i> Previous 2 years ki party abhi bhi pending hai 😭<br>
-                        <i class="fas fa-calendar"></i> Iss saal compensate karne ka plan hai...
-                    </div>
-                    
-                    <div class="message-line" style="text-align: center; font-size: 1.6rem; color: #ff6b8b;">
-                        ...ya phir next year bhi add kar dein? 😄
-                    </div>
-                    
-                    <div class="message-line">
-                        Have the absolute best day ever!<br>
-                        Eat lots of cake, enjoy every moment, and make awesome memories! 🥳
+                    <div class="message-content">
+                        <div class="message-line">
+                            🎂 <span class="highlight">Happy 18th Birthday, Jenisha!</span> 🎉
+                        </div>
+                        
+                        <div class="message-line">
+                            Welcome to adulthood! 🎉<br>
+                            May every wish you blow on those candles come true ✨<br>
+                            And may this year be filled with amazing adventures!
+                        </div>
+                        
+                        <div class="message-line">
+                            <span class="highlight">I'm grateful to have a friend like me 😂😂</span><br>
+                            (Just kidding! Couldn't resist the meme!)
+                        </div>
+                        
+                        <div class="message-line">
+                            <strong>Important question time 👀</strong><br>
+                            Waise birthday party ka kya scene hai?<br>
+                            Previous 2 years ki party abhi bhi pending hai 😭
+                        </div>
+                        
+                        <div class="message-line">
+                            Iss saal compensate karne ka plan hai…<br>
+                            ya phir next year bhi add kar dein? 😄
+                        </div>
+                        
+                        <div class="message-line">
+                            Have the absolute best day ever!<br>
+                            Eat lots of cake 🎂, enjoy every moment,<br>
+                            and make awesome memories 🥳
+                        </div>
                     </div>
                     
                     <div class="signature">
-                        - Made with ❤️ for your special 18th<br>
-                        P.S. Hope you enjoyed the games! 🎮
+                        Made with ❤️ & 😂 for your special 18th<br>
+                        <span style="font-size: 1.2rem;">P.S. Hope you enjoyed your birthday surprise! 🎁</span>
                     </div>
-                </div>
-                
-                <div class="celebration-actions mt-40">
-                    <button class="celebration-btn" onclick="goToPage(1)">
-                        <i class="fas fa-redo"></i> PLAY AGAIN
-                    </button>
-                    <button class="celebration-btn" id="share-btn">
-                        <i class="fas fa-share"></i> SHARE RESULTS
-                    </button>
+                    
+                    <div class="nav-buttons" style="margin-top: 40px;">
+                        <button class="nav-btn prev" onclick="goToPage(6)">
+                            <i class="fas fa-arrow-left"></i> BACK
+                        </button>
+                        <button class="nav-btn" onclick="createConfetti(500)">
+                            <i class="fas fa-fireworks"></i> CELEBRATE
+                        </button>
+                        <button class="nav-btn next" onclick="goToPage(1)">
+                            PLAY AGAIN <i class="fas fa-redo"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Audio Elements -->
         <audio id="bg-music" loop>
-            <source src="https://assets.mixkit.co/music/preview/mixkit-game-show-suspense-waiting-667.mp3" type="audio/mpeg">
-        </audio>
-        
-        <audio id="click-sound">
-            <source src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3" type="audio/mpeg">
+            <source src="https://assets.mixkit.co/music/preview/mixkit-happy-birthday-to-you-443.mp3" type="audio/mpeg">
         </audio>
         
         <audio id="pop-sound">
             <source src="https://assets.mixkit.co/sfx/preview/mixkit-balloon-pop-2928.mp3" type="audio/mpeg">
+        </audio>
+        
+        <audio id="click-sound">
+            <source src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3" type="audio/mpeg">
         </audio>
         
         <audio id="success-sound">
@@ -1520,12 +1418,791 @@
         <audio id="celebration-sound">
             <source src="https://assets.mixkit.co/sfx/preview/mixkit-party-horn-sound-2927.mp3" type="audio/mpeg">
         </audio>
-        
-        <audio id="camera-sound">
-            <source src="https://assets.mixkit.co/sfx/preview/mixkit-camera-shutter-click-1131.mp3" type="audio/mpeg">
-        </audio>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // ===== GLOBAL VARIABLES =====
+        let totalScore = 0;
+        let currentPage = 1;
+        let musicEnabled = true;
+        let soundEnabled = true;
+        let attempts = 0;
+
+        // Game variables
+        let balloonScore = 0;
+        let balloonTime = 60;
+        let balloonInterval;
+        let balloonGameActive = false;
+
+        let memoryMatches = 0;
+        let memoryMoves = 0;
+        let memoryScore = 0;
+        let memoryGameActive = false;
+        let firstCard = null;
+        let secondCard = null;
+        let canFlip = true;
+
+        let currentQuestion = 1;
+        let quizScore = 0;
+        let quizAnswers = {};
+
+        let danceScore = 0;
+        let danceStreak = 0;
+        let danceGameActive = false;
+        let danceSequence = [];
+        let currentDanceStep = 0;
+
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Password system
+            document.getElementById('password-submit').addEventListener('click', checkPassword);
+            document.getElementById('password-input').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') checkPassword();
+            });
+            
+            // Start button
+            document.getElementById('start-btn').addEventListener('click', function() {
+                playSound('celebration-sound');
+                addToScore(100);
+                goToPage(2);
+            });
+            
+            // Game 1: Balloon Pop
+            document.getElementById('balloon-start').addEventListener('click', startBalloonGame);
+            
+            // Game 2: Memory Match
+            document.getElementById('memory-start').addEventListener('click', startMemoryGame);
+            
+            // Game 3: Quiz
+            document.getElementById('quiz-next-btn').addEventListener('click', nextQuestion);
+            
+            // Game 4: Dance Party
+            document.getElementById('dance-start').addEventListener('click', startDanceGame);
+            
+            // Music/Sound toggles
+            document.getElementById('music-toggle').addEventListener('click', toggleMusic);
+            document.getElementById('sound-toggle').addEventListener('click', toggleSound);
+            
+            // Keyboard controls for dance game
+            document.addEventListener('keydown', handleKeyboard);
+            
+            // Initialize games
+            setupMemoryGame();
+            setupDanceGame();
+            
+            // Focus password input
+            document.getElementById('password-input').focus();
+        });
+
+        // ===== PASSWORD SYSTEM =====
+        function checkPassword() {
+            const passwordInput = document.getElementById('password-input');
+            const errorMsg = document.getElementById('password-error');
+            const attemptCount = document.getElementById('attempt-count');
+            const enteredPassword = passwordInput.value.toLowerCase().trim();
+            
+            attempts++;
+            attemptCount.textContent = attempts;
+            
+            if (enteredPassword === "jenisha") {
+                // Correct password
+                playSound('success-sound');
+                errorMsg.classList.remove('show');
+                
+                // Create confetti
+                createConfetti(200);
+                
+                // Update button
+                const submitBtn = document.getElementById('password-submit');
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> ACCESS GRANTED!';
+                submitBtn.style.background = 'linear-gradient(45deg, var(--cyan), var(--blue))';
+                
+                // Unlock website
+                setTimeout(() => {
+                    document.getElementById('password-screen').style.opacity = '0';
+                    setTimeout(() => {
+                        document.getElementById('password-screen').style.display = 'none';
+                        document.getElementById('main-content').classList.add('show');
+                        initMainWebsite();
+                    }, 500);
+                }, 1500);
+            } else {
+                // Wrong password
+                playSound('pop-sound');
+                errorMsg.classList.add('show');
+                passwordInput.value = '';
+                passwordInput.focus();
+                
+                // Shake animation
+                passwordInput.style.animation = 'shake 0.5s ease';
+                setTimeout(() => {
+                    passwordInput.style.animation = '';
+                }, 500);
+                
+                // Limit attempts
+                if (attempts >= 5) {
+                    document.getElementById('password-submit').disabled = true;
+                    document.getElementById('password-input').disabled = true;
+                    errorMsg.textContent = '❌ Too many attempts! Refresh page.';
+                }
+            }
+        }
+
+        // ===== WEBSITE INITIALIZATION =====
+        function initMainWebsite() {
+            // Start background music
+            if (musicEnabled) {
+                const bgMusic = document.getElementById('bg-music');
+                bgMusic.volume = 0.3;
+                bgMusic.play().catch(e => {
+                    console.log("Music autoplay blocked");
+                });
+            }
+            
+            // Update score display
+            updateGlobalScore();
+        }
+
+        // ===== PAGE NAVIGATION =====
+        function goToPage(pageNum) {
+            if (pageNum < 1 || pageNum > 7) return;
+            
+            // Hide current page
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show new page
+            currentPage = pageNum;
+            document.getElementById(`page${pageNum}`).classList.add('active');
+            
+            // Play click sound
+            playSound('click-sound');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Stop any running games
+            stopAllGames();
+        }
+
+        function stopAllGames() {
+            clearInterval(balloonInterval);
+            balloonGameActive = false;
+            memoryGameActive = false;
+            danceGameActive = false;
+        }
+
+        // ===== GAME 1: BALLOON POP =====
+        function startBalloonGame() {
+            if (balloonGameActive) return;
+            
+            balloonGameActive = true;
+            balloonScore = 0;
+            balloonTime = 60;
+            
+            const startBtn = document.getElementById('balloon-start');
+            const feedback = document.getElementById('balloon-feedback');
+            
+            startBtn.disabled = true;
+            startBtn.textContent = 'GAME RUNNING...';
+            feedback.textContent = '🎈 Game started! Pop those balloons!';
+            
+            // Update UI
+            document.getElementById('balloon-score').textContent = balloonScore;
+            document.getElementById('balloon-time').textContent = balloonTime;
+            
+            // Clear existing balloons
+            const balloonArea = document.getElementById('balloon-area');
+            balloonArea.innerHTML = '';
+            
+            // Create initial balloons
+            for (let i = 0; i < 10; i++) {
+                createBalloon();
+            }
+            
+            // Start game timer
+            balloonInterval = setInterval(updateBalloonGame, 1000);
+            
+            // Spawn new balloons periodically
+            setInterval(() => {
+                if (balloonGameActive && balloonTime > 0) {
+                    createBalloon();
+                }
+            }, 1000);
+        }
+
+        function createBalloon() {
+            if (!balloonGameActive || balloonTime <= 0) return;
+            
+            const balloonArea = document.getElementById('balloon-area');
+            const balloon = document.createElement('div');
+            
+            // Random balloon type
+            const types = [
+                { emoji: '🎈', class: 'regular', points: 10 },
+                { emoji: '🎁', class: 'gift', points: 25 },
+                { emoji: '💣', class: 'bomb', points: -20 },
+                { emoji: '🎉', class: 'confetti', points: 50 }
+            ];
+            
+            const type = types[Math.floor(Math.random() * types.length)];
+            balloon.className = `balloon ${type.class}`;
+            balloon.innerHTML = type.emoji;
+            balloon.dataset.points = type.points;
+            
+            // Random position
+            const col = Math.floor(Math.random() * 5);
+            const row = Math.floor(Math.random() * 3);
+            balloon.style.gridColumn = col + 1;
+            balloon.style.gridRow = row + 1;
+            
+            // Click event
+            balloon.addEventListener('click', function() {
+                if (!balloonGameActive) return;
+                
+                const points = parseInt(this.dataset.points);
+                balloonScore += points;
+                addToScore(points);
+                
+                // Update display
+                document.getElementById('balloon-score').textContent = balloonScore;
+                
+                // Visual feedback
+                this.classList.add('popped');
+                playSound('pop-sound');
+                
+                // Remove after animation
+                setTimeout(() => {
+                    if (this.parentNode) {
+                        this.remove();
+                        createBalloon(); // Spawn new balloon
+                    }
+                }, 300);
+            });
+            
+            balloonArea.appendChild(balloon);
+        }
+
+        function updateBalloonGame() {
+            if (!balloonGameActive) return;
+            
+            balloonTime--;
+            document.getElementById('balloon-time').textContent = balloonTime;
+            
+            if (balloonTime <= 0) {
+                endBalloonGame();
+            }
+        }
+
+        function endBalloonGame() {
+            clearInterval(balloonInterval);
+            balloonGameActive = false;
+            
+            const startBtn = document.getElementById('balloon-start');
+            const feedback = document.getElementById('balloon-feedback');
+            const nextBtn = document.getElementById('balloon-next');
+            
+            startBtn.disabled = false;
+            startBtn.textContent = 'PLAY AGAIN';
+            nextBtn.disabled = false;
+            
+            // Calculate bonus
+            const bonus = Math.floor(balloonScore * 0.5);
+            balloonScore += bonus;
+            addToScore(bonus);
+            
+            feedback.innerHTML = `🎉 Time's up! Final score: ${balloonScore}<br>+${bonus} bonus points!`;
+            
+            // Celebration
+            playSound('success-sound');
+            createConfetti(100);
+        }
+
+        // ===== GAME 2: MEMORY MATCH =====
+        function setupMemoryGame() {
+            const memoryArea = document.getElementById('memory-area');
+            memoryArea.innerHTML = '';
+            
+            // Create card pairs
+            const emojis = ['🎂', '🎁', '🎈', '🎊', '🥳', '🎉'];
+            const cards = [...emojis, ...emojis]; // Duplicate for pairs
+            
+            // Shuffle cards
+            cards.sort(() => Math.random() - 0.5);
+            
+            // Create card elements
+            cards.forEach((emoji, index) => {
+                const card = document.createElement('div');
+                card.className = 'memory-card';
+                card.dataset.emoji = emoji;
+                card.dataset.index = index;
+                
+                const front = document.createElement('div');
+                front.className = 'front';
+                front.innerHTML = '?';
+                
+                const back = document.createElement('div');
+                back.className = 'back';
+                back.innerHTML = emoji;
+                
+                card.appendChild(front);
+                card.appendChild(back);
+                
+                card.addEventListener('click', () => flipCard(card));
+                memoryArea.appendChild(card);
+            });
+        }
+
+        function startMemoryGame() {
+            if (memoryGameActive) return;
+            
+            memoryGameActive = true;
+            memoryMatches = 0;
+            memoryMoves = 0;
+            memoryScore = 0;
+            firstCard = null;
+            secondCard = null;
+            canFlip = true;
+            
+            const startBtn = document.getElementById('memory-start');
+            const feedback = document.getElementById('memory-feedback');
+            
+            startBtn.disabled = true;
+            startBtn.textContent = 'GAME RUNNING...';
+            feedback.textContent = 'Find matching pairs!';
+            
+            // Reset all cards
+            document.querySelectorAll('.memory-card').forEach(card => {
+                card.classList.remove('flipped', 'matched');
+            });
+            
+            // Update UI
+            updateMemoryUI();
+        }
+
+        function flipCard(card) {
+            if (!memoryGameActive || !canFlip || card.classList.contains('flipped') || card.classList.contains('matched')) {
+                return;
+            }
+            
+            card.classList.add('flipped');
+            playSound('click-sound');
+            
+            if (!firstCard) {
+                firstCard = card;
+            } else {
+                secondCard = card;
+                canFlip = false;
+                memoryMoves++;
+                
+                setTimeout(checkMatch, 500);
+            }
+        }
+
+        function checkMatch() {
+            if (firstCard.dataset.emoji === secondCard.dataset.emoji) {
+                // Match found
+                firstCard.classList.add('matched');
+                secondCard.classList.add('matched');
+                memoryMatches++;
+                memoryScore += 100;
+                addToScore(100);
+                
+                const feedback = document.getElementById('memory-feedback');
+                feedback.textContent = `🎉 Match found! ${6 - memoryMatches} pairs left!`;
+                playSound('success-sound');
+                
+                if (memoryMatches === 6) {
+                    winMemoryGame();
+                }
+            } else {
+                // No match
+                firstCard.classList.remove('flipped');
+                secondCard.classList.remove('flipped');
+                playSound('pop-sound');
+            }
+            
+            firstCard = null;
+            secondCard = null;
+            canFlip = true;
+            updateMemoryUI();
+        }
+
+        function updateMemoryUI() {
+            document.getElementById('memory-matches').textContent = memoryMatches;
+            document.getElementById('memory-moves').textContent = memoryMoves;
+            document.getElementById('memory-score').textContent = memoryScore;
+        }
+
+        function winMemoryGame() {
+            memoryGameActive = false;
+            
+            const startBtn = document.getElementById('memory-start');
+            const feedback = document.getElementById('memory-feedback');
+            const nextBtn = document.getElementById('memory-next');
+            
+            startBtn.disabled = false;
+            startBtn.textContent = 'PLAY AGAIN';
+            nextBtn.disabled = false;
+            
+            const bonus = 500;
+            memoryScore += bonus;
+            addToScore(bonus);
+            
+            feedback.innerHTML = `🏆 Perfect! All pairs matched!<br>+${bonus} bonus points!`;
+            
+            // Celebration
+            playSound('celebration-sound');
+            createConfetti(150);
+        }
+
+        // ===== GAME 3: BIRTHDAY QUIZ =====
+        function selectAnswer(questionNum, answer) {
+            if (quizAnswers[questionNum]) return; // Already answered
+            
+            // Store answer
+            quizAnswers[questionNum] = answer;
+            
+            // Add points
+            quizScore += 50;
+            addToScore(50);
+            document.getElementById('quiz-score').textContent = quizScore;
+            
+            // Visual feedback
+            const questionCard = document.getElementById(`question-${questionNum}`);
+            questionCard.querySelectorAll('.option-btn').forEach(btn => {
+                btn.classList.remove('selected');
+                if (btn.querySelector('.option-letter').textContent === answer) {
+                    btn.classList.add('selected');
+                }
+            });
+            
+            // Show response based on question
+            const feedback = document.getElementById('quiz-feedback');
+            const responses = [
+                "🎂 Cake preference noted!",
+                "🎁 Gift choice registered!",
+                "⚡ Superpower activated for 24 hours!",
+                "😌 Birthday mood set!",
+                "📅 Party timing noted!"
+            ];
+            
+            feedback.textContent = responses[questionNum - 1];
+            playSound('click-sound');
+            
+            // Enable next button
+            document.getElementById('quiz-next-btn').disabled = false;
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < 5) {
+                // Hide current question
+                document.getElementById(`question-${currentQuestion}`).classList.remove('active');
+                
+                // Show next question
+                currentQuestion++;
+                document.getElementById(`question-${currentQuestion}`).classList.add('active');
+                document.getElementById('quiz-current').textContent = currentQuestion;
+                
+                // Reset next button if not answered yet
+                if (!quizAnswers[currentQuestion]) {
+                    document.getElementById('quiz-next-btn').disabled = true;
+                }
+                
+                // Update feedback
+                document.getElementById('quiz-feedback').textContent = 'Choose your answer!';
+            }
+            
+            // If all questions answered
+            if (Object.keys(quizAnswers).length === 5) {
+                endQuiz();
+            }
+        }
+
+        function endQuiz() {
+            document.getElementById('quiz-next').disabled = false;
+            document.getElementById('quiz-next-btn').style.display = 'none';
+            
+            const feedback = document.getElementById('quiz-feedback');
+            feedback.innerHTML = `🎉 Quiz complete! Final score: ${quizScore}<br>You know yourself best! 😄`;
+            
+            // Bonus for completing all questions
+            const bonus = 250;
+            quizScore += bonus;
+            addToScore(bonus);
+            
+            playSound('success-sound');
+            createConfetti(100);
+        }
+
+        // ===== GAME 4: DANCE PARTY =====
+        function setupDanceGame() {
+            const danceFloor = document.getElementById('dance-floor');
+            danceFloor.innerHTML = '';
+            
+            // Create 3x4 grid of tiles
+            for (let i = 0; i < 12; i++) {
+                const tile = document.createElement('div');
+                tile.className = 'dance-tile';
+                tile.dataset.index = i;
+                danceFloor.appendChild(tile);
+            }
+        }
+
+        function startDanceGame() {
+            if (danceGameActive) return;
+            
+            danceGameActive = true;
+            danceScore = 0;
+            danceStreak = 0;
+            danceSequence = [];
+            currentDanceStep = 0;
+            
+            const startBtn = document.getElementById('dance-start');
+            const feedback = document.getElementById('dance-feedback');
+            
+            startBtn.disabled = true;
+            startBtn.textContent = 'DANCING...';
+            feedback.textContent = '🎵 Follow the arrows! Press matching arrow keys!';
+            
+            // Update UI
+            document.getElementById('dance-score').textContent = danceScore;
+            document.getElementById('dance-streak').textContent = danceStreak;
+            
+            // Start generating dance steps
+            generateDanceStep();
+        }
+
+        function generateDanceStep() {
+            if (!danceGameActive || danceSequence.length >= 30) return;
+            
+            const directions = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
+            const direction = directions[Math.floor(Math.random() * directions.length)];
+            
+            // Map direction to tile index
+            let tileIndex;
+            switch(direction) {
+                case 'ArrowUp': tileIndex = 1; break;
+                case 'ArrowDown': tileIndex = 9; break;
+                case 'ArrowLeft': tileIndex = 4; break;
+                case 'ArrowRight': tileIndex = 7; break;
+            }
+            
+            danceSequence.push({
+                direction: direction,
+                tileIndex: tileIndex,
+                timestamp: Date.now() + 1000
+            });
+            
+            // Highlight tile
+            highlightDanceTile(tileIndex);
+            
+            // Schedule next step
+            if (danceSequence.length < 30) {
+                setTimeout(generateDanceStep, 1500);
+            }
+        }
+
+        function highlightDanceTile(index) {
+            const tiles = document.querySelectorAll('.dance-tile');
+            tiles.forEach(tile => tile.classList.remove('active'));
+            
+            if (tiles[index]) {
+                tiles[index].classList.add('active');
+                
+                // Remove highlight after time
+                setTimeout(() => {
+                    tiles[index].classList.remove('active');
+                }, 1000);
+            }
+        }
+
+        function handleKeyboard(e) {
+            if (currentPage === 5 && danceGameActive && danceSequence.length > 0) {
+                const currentStep = danceSequence[0];
+                const now = Date.now();
+                const timeDiff = Math.abs(now - currentStep.timestamp);
+                
+                if (e.key === currentStep.direction && timeDiff < 500) {
+                    // Correct input
+                    danceStreak++;
+                    danceScore += 50 * danceStreak;
+                    addToScore(50 * danceStreak);
+                    
+                    danceSequence.shift();
+                    currentDanceStep++;
+                    
+                    document.getElementById('dance-score').textContent = danceScore;
+                    document.getElementById('dance-streak').textContent = danceStreak;
+                    
+                    const feedback = document.getElementById('dance-feedback');
+                    feedback.textContent = `🎯 PERFECT! Streak: ${danceStreak}x`;
+                    
+                    playSound('click-sound');
+                    highlightDanceTile(currentStep.tileIndex);
+                    
+                    // Check win condition
+                    if (currentDanceStep >= 30) {
+                        endDanceGame();
+                    }
+                } else if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+                    // Wrong input
+                    danceStreak = 0;
+                    document.getElementById('dance-streak').textContent = danceStreak;
+                    
+                    const feedback = document.getElementById('dance-feedback');
+                    feedback.textContent = '💥 Missed! Try again!';
+                    
+                    playSound('pop-sound');
+                }
+            }
+        }
+
+        function endDanceGame() {
+            danceGameActive = false;
+            
+            const startBtn = document.getElementById('dance-start');
+            const feedback = document.getElementById('dance-feedback');
+            
+            startBtn.disabled = false;
+            startBtn.textContent = 'DANCE AGAIN';
+            
+            const bonus = danceStreak * 200;
+            danceScore += bonus;
+            addToScore(bonus);
+            
+            feedback.innerHTML = `🎉 DANCE PARTY COMPLETE!<br>Final score: ${danceScore}<br>+${bonus} streak bonus!`;
+            
+            // Celebration
+            playSound('celebration-sound');
+            createConfetti(200);
+            
+            // Make all tiles dance
+            const tiles = document.querySelectorAll('.dance-tile');
+            tiles.forEach(tile => {
+                tile.classList.add('active');
+                tile.style.animation = 'float 1s infinite ease-in-out';
+            });
+        }
+
+        // ===== UTILITY FUNCTIONS =====
+        function playSound(soundId, volume = 0.5) {
+            if (!soundEnabled) return;
+            
+            const sound = document.getElementById(soundId);
+            if (sound) {
+                sound.currentTime = 0;
+                sound.volume = volume;
+                sound.play().catch(e => console.log("Audio play failed"));
+            }
+        }
+
+        function addToScore(points) {
+            totalScore += points;
+            updateGlobalScore();
+            
+            // Animate score update
+            const scoreDisplay = document.getElementById('global-score');
+            scoreDisplay.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                scoreDisplay.style.transform = 'scale(1)';
+            }, 300);
+        }
+
+        function updateGlobalScore() {
+            document.getElementById('global-score').textContent = totalScore;
+        }
+
+        function toggleMusic() {
+            const musicBtn = document.getElementById('music-toggle');
+            const bgMusic = document.getElementById('bg-music');
+            
+            if (musicEnabled) {
+                bgMusic.pause();
+                musicBtn.innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: OFF</span>';
+            } else {
+                bgMusic.volume = 0.3;
+                bgMusic.play();
+                musicBtn.innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: ON</span>';
+            }
+            musicEnabled = !musicEnabled;
+            playSound('click-sound');
+        }
+
+        function toggleSound() {
+            const soundBtn = document.getElementById('sound-toggle');
+            soundEnabled = !soundEnabled;
+            soundBtn.innerHTML = `<i class="fas fa-volume-up"></i> <span>SOUND: ${soundEnabled ? 'ON' : 'OFF'}</span>`;
+            playSound('click-sound');
+        }
+
+        // ===== CONFETTI EFFECT =====
+        function createConfetti(count = 100) {
+            const canvas = document.getElementById('confetti-canvas');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            const particles = [];
+            const colors = ['#ff6b8b', '#ffd166', '#06d6a0', '#a882dd', '#118ab2'];
+            
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    size: Math.random() * 10 + 5,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    speed: Math.random() * 3 + 2,
+                    rotation: Math.random() * 360,
+                    rotationSpeed: Math.random() * 10 - 5
+                });
+            }
+            
+            let animationId;
+            function animateConfetti() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                let particlesAlive = 0;
+                
+                particles.forEach(particle => {
+                    particle.y += particle.speed;
+                    particle.x += Math.sin(particle.y * 0.01);
+                    particle.rotation += particle.rotationSpeed;
+                    
+                    ctx.save();
+                    ctx.translate(particle.x, particle.y);
+                    ctx.rotate(particle.rotation * Math.PI / 180);
+                    ctx.fillStyle = particle.color;
+                    ctx.fillRect(-particle.size/2, -particle.size/2, particle.size, particle.size);
+                    ctx.restore();
+                    
+                    if (particle.y < canvas.height) {
+                        particlesAlive++;
+                    }
+                });
+                
+                if (particlesAlive > 0) {
+                    animationId = requestAnimationFrame(animateConfetti);
+                } else {
+                    cancelAnimationFrame(animationId);
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                }
+            }
+            
+            animateConfetti();
+        }
+
+        // ===== WINDOW RESIZE =====
+        window.addEventListener('resize', () => {
+            const canvas = document.getElementById('confetti-canvas');
+            if (canvas) {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+        });
+    </script>
 </body>
 </html>
