@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&family=Great+Vibes&family=Pacifico&family=Satisfy&display=swap" rel="stylesheet">
     <style>
-        /* ===== BIRTHDAY THEME COLORS ===== */
         :root {
             --hot-pink: #ff00aa;
             --pink: #ff66b2;
@@ -26,7 +25,6 @@
             --shadow-lg: 0 20px 60px rgba(255, 0, 170, 0.5);
         }
 
-        /* ===== RESET & BASE ===== */
         * {
             margin: 0;
             padding: 0;
@@ -50,7 +48,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* ===== BIRTHDAY BACKGROUND ELEMENTS ===== */
         .birthday-bg {
             position: fixed;
             width: 100%;
@@ -91,7 +88,6 @@
             }
         }
 
-        /* ===== PASSWORD SCREEN ===== */
         .password-screen {
             position: fixed;
             top: 0;
@@ -225,10 +221,6 @@
             box-shadow: 0 20px 40px rgba(255, 0, 170, 0.4);
         }
 
-        .password-btn:active {
-            transform: translateY(-2px);
-        }
-
         .password-error {
             color: var(--cyan);
             margin-top: 20px;
@@ -244,7 +236,6 @@
             opacity: 1;
         }
 
-        /* ===== CONTROL PANEL ===== */
         .control-panel {
             position: fixed;
             top: 20px;
@@ -305,7 +296,6 @@
             text-shadow: 0 0 10px white;
         }
 
-        /* ===== MAIN CONTENT ===== */
         .main-content {
             display: none;
             opacity: 0;
@@ -317,7 +307,6 @@
             opacity: 1;
         }
 
-        /* ===== PAGES ===== */
         .page {
             display: none;
             min-height: 100vh;
@@ -348,7 +337,6 @@
             padding: 0 20px;
         }
 
-        /* ===== PAGE 1: WELCOME ===== */
         .welcome-container {
             text-align: center;
             max-width: 900px;
@@ -484,7 +472,6 @@
             background: linear-gradient(45deg, var(--cyan), var(--purple), var(--hot-pink));
         }
 
-        /* ===== PAGE 2: CAKE SMASH GAME ===== */
         .cake-smash-container {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(30px);
@@ -635,7 +622,6 @@
             backdrop-filter: blur(10px);
         }
 
-        /* ===== PAGE 3: MEMORY MATCH GAME ===== */
         .game-container {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(30px);
@@ -759,7 +745,6 @@
             50% { transform: scale(1.2) rotateY(180deg); }
         }
 
-        /* ===== PAGE 4: SPIN THE WHEEL ===== */
         .wheel-container {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(30px);
@@ -868,7 +853,6 @@
             backdrop-filter: blur(10px);
         }
 
-        /* ===== PAGE 5: BIRTHDAY QUIZ ===== */
         #quiz-area {
             min-height: 500px;
             padding: 40px;
@@ -964,7 +948,6 @@
             flex-shrink: 0;
         }
 
-        /* ===== PAGE 6: BIRTHDAY DISPLAY ===== */
         .birthday-display {
             text-align: center;
             padding: 80px 20px;
@@ -1001,7 +984,6 @@
             }
         }
 
-        /* ===== PAGE 7: 404 ERROR JOKE ===== */
         .error-joke-container {
             text-align: center;
             padding: 80px 20px;
@@ -1048,7 +1030,6 @@
             from { opacity: 0; transform: translateY(20px); }
         }
 
-        /* ===== PAGE 8: SURPRISE BUTTON ===== */
         .surprise-container {
             text-align: center;
             padding: 80px 20px;
@@ -1125,7 +1106,6 @@
             opacity: 1;
         }
 
-        /* ===== PAGE 9: IMPROVED FINAL MESSAGE ===== */
         .final-message-container {
             max-width: 1000px;
             margin: 0 auto;
@@ -1267,7 +1247,6 @@
             50% { opacity: 1; transform: translateX(-50%) scale(1.2); }
         }
 
-        /* ===== SPECIAL EFFECTS FOR WHEEL PRIZES ===== */
         .prize-effect {
             position: fixed;
             top: 0;
@@ -1483,7 +1462,6 @@
             }
         }
 
-        /* ===== NAVIGATION BUTTONS ===== */
         .nav-buttons {
             display: flex;
             justify-content: space-between;
@@ -1529,7 +1507,6 @@
             cursor: not-allowed;
         }
 
-        /* ===== CONFETTI CANVAS ===== */
         #confetti-canvas {
             position: fixed;
             top: 0;
@@ -1540,7 +1517,6 @@
             z-index: 9999;
         }
 
-        /* ===== CAKE BLAST OVERLAY ===== */
         .cake-blast-overlay {
             position: fixed;
             top: 0;
@@ -1580,7 +1556,6 @@
             100% { transform: scale(1.1); }
         }
 
-        /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 1200px) {
             .welcome-title { font-size: 4rem; }
             .hero-name { font-size: 5rem; }
@@ -1650,14 +1625,10 @@
     </style>
 </head>
 <body>
-    <!-- Birthday Background Elements -->
     <div class="birthday-bg" id="birthday-bg"></div>
-
-    <!-- Special Effect Containers -->
     <div class="prize-effect" id="prize-effect"></div>
     <div class="cake-rain" id="cake-rain"></div>
 
-    <!-- Full Screen Cake Blast Overlay -->
     <div class="cake-blast-overlay" id="cake-blast-overlay">
         <div class="blast-text">🎂 CAKE SMASH! 🎉</div>
         <div style="font-size: 2.5rem; color: var(--gold); text-shadow: 0 0 30px var(--gold);">
@@ -1665,7 +1636,6 @@
         </div>
     </div>
 
-    <!-- Password Screen -->
     <div class="password-screen" id="password-screen">
         <div class="birthday-icon">🎁</div>
         <div class="password-container">
@@ -1703,9 +1673,7 @@
         </div>
     </div>
 
-    <!-- Main Content -->
     <div class="main-content" id="main-content">
-        <!-- Control Panel -->
         <div class="control-panel">
             <button id="music-toggle" class="control-btn">
                 <i class="fas fa-music"></i> <span>MUSIC: ON</span>
@@ -1718,10 +1686,8 @@
             </div>
         </div>
 
-        <!-- Confetti Canvas -->
         <canvas id="confetti-canvas"></canvas>
 
-        <!-- Page 1: Welcome -->
         <section class="page active" id="page1">
             <div class="container">
                 <div class="welcome-container">
@@ -1749,7 +1715,6 @@
             </div>
         </section>
 
-        <!-- Page 2: Cake Smash Game -->
         <section class="page" id="page2">
             <div class="container">
                 <div class="cake-smash-container">
@@ -1800,7 +1765,6 @@
             </div>
         </section>
 
-        <!-- Page 3: Memory Match Game -->
         <section class="page" id="page3">
             <div class="container">
                 <div class="game-container">
@@ -1833,9 +1797,7 @@
                         <p>🏆 Match all 6 pairs to win 500 bonus points!</p>
                     </div>
                     
-                    <div id="memory-area">
-                        <!-- Memory cards will be generated here -->
-                    </div>
+                    <div id="memory-area"></div>
                     
                     <div class="game-feedback" id="memory-feedback">
                         🎉 Click START to begin the memory challenge!
@@ -1854,7 +1816,6 @@
             </div>
         </section>
 
-        <!-- Page 4: Spin the Wheel Game -->
         <section class="page" id="page4">
             <div class="container">
                 <div class="wheel-container">
@@ -1872,9 +1833,7 @@
                     </div>
                     
                     <div class="wheel-wrapper">
-                        <svg id="wheel" width="500" height="500" viewBox="0 0 500 500">
-                            <!-- Wheel will be generated by JavaScript - NO TEXT, only colors -->
-                        </svg>
+                        <svg id="wheel" width="500" height="500" viewBox="0 0 500 500"></svg>
                         <div class="wheel-center"></div>
                         <div class="wheel-pointer"></div>
                     </div>
@@ -1915,7 +1874,6 @@
             </div>
         </section>
 
-        <!-- Page 5: Birthday Quiz -->
         <section class="page" id="page5">
             <div class="container">
                 <div class="game-container">
@@ -1944,9 +1902,7 @@
                         <p>🎂 Complete all for 500 bonus points!</p>
                     </div>
                     
-                    <div id="quiz-area">
-                        <!-- Questions will be loaded by JavaScript -->
-                    </div>
+                    <div id="quiz-area"></div>
                     
                     <div class="game-feedback" id="quiz-feedback">
                         🎯 Choose your answer to get started!
@@ -1965,7 +1921,6 @@
             </div>
         </section>
 
-        <!-- Page 6: Birthday Display -->
         <section class="page" id="page6">
             <div class="container">
                 <div class="birthday-display">
@@ -1982,7 +1937,6 @@
             </div>
         </section>
 
-        <!-- Page 7: 404 Error Joke -->
         <section class="page" id="page7">
             <div class="container">
                 <div class="error-joke-container">
@@ -2001,7 +1955,6 @@
             </div>
         </section>
 
-        <!-- Page 8: Surprise Button -->
         <section class="page" id="page8">
             <div class="container">
                 <div class="surprise-container">
@@ -2024,7 +1977,6 @@
             </div>
         </section>
 
-        <!-- Page 9: IMPROVED FINAL MESSAGE -->
         <section class="page" id="page9">
             <div class="container">
                 <div class="final-message-container">
@@ -2085,7 +2037,6 @@
             </div>
         </section>
 
-        <!-- Audio Elements - NO VISIBLE CONTROLS -->
         <audio id="bg-music" loop>
             <source src="https://assets.mixkit.co/music/preview/mixkit-happy-birthday-to-you-443.mp3" type="audio/mpeg">
         </audio>
@@ -2117,16 +2068,12 @@
 
     <script>
         // ===== GLOBAL VARIABLES =====
-        let totalScore = 500; // Starting bonus
+        let totalScore = 500;
         let currentPage = 1;
         let musicEnabled = true;
         let soundEnabled = true;
         let attempts = 0;
         let maxAttempts = 5;
-        
-        // Music player instance
-        let bgMusic = null;
-        let musicPlaying = false;
 
         // Cake Smash Game
         let tapCount = 0;
@@ -2145,48 +2092,16 @@
         let wheelSpinning = false;
         let wheelScore = 0;
         
-        // Define the 8 prizes with their effects (REMOVED "Wheel spins again")
+        // Wheel prizes
         const wheelPrizes = [
-            {
-                name: "🥔 Potato appears and does nothing",
-                effect: "potato",
-                points: 50
-            },
-            {
-                name: "🌀 Screen spins slightly then stops",
-                effect: "screenSpin",
-                points: 100
-            },
-            {
-                name: "🎂 Cake falls… misses… disappears",
-                effect: "cakeFall",
-                points: 75
-            },
-            {
-                name: "🎂 Cake rain",
-                effect: "cakeRain",
-                points: 200
-            },
-            {
-                name: "🎈 Balloon inflates then pops",
-                effect: "balloon",
-                points: 150
-            },
-            {
-                name: "👻 Ghost fades in then says bye",
-                effect: "ghost",
-                points: 175
-            },
-            {
-                name: "🧨 Firework fizzles out",
-                effect: "firework",
-                points: 100
-            },
-            {
-                name: "🤷‍♀️ Shrug emoji floats up",
-                effect: "shrug",
-                points: 50
-            }
+            { name: "🥔 Potato appears and does nothing", effect: "potato", points: 50 },
+            { name: "🌀 Screen spins slightly then stops", effect: "screenSpin", points: 100 },
+            { name: "🎂 Cake falls… misses… disappears", effect: "cakeFall", points: 75 },
+            { name: "🎂 Cake rain", effect: "cakeRain", points: 200 },
+            { name: "🎈 Balloon inflates then pops", effect: "balloon", points: 150 },
+            { name: "👻 Ghost fades in then says bye", effect: "ghost", points: 175 },
+            { name: "🧨 Firework fizzles out", effect: "firework", points: 100 },
+            { name: "🤷‍♀️ Shrug emoji floats up", effect: "shrug", points: 50 }
         ];
 
         // Quiz Game
@@ -2195,77 +2110,10 @@
         let quizScore = 0;
         let quizAnswers = {};
 
-        // ===== MUSIC SYSTEM =====
-        function initializeMusic() {
-            bgMusic = document.getElementById('bg-music');
-            bgMusic.volume = 1.0;
-            bgMusic.loop = true;
-            
-            // Try to preload and play when user interacts
-            bgMusic.load();
-            
-            // Update music button state
-            updateMusicButton();
-        }
-        
-        function startMusic() {
-            if (!bgMusic || musicPlaying) return;
-            
-            bgMusic.play().then(() => {
-                console.log("Music started!");
-                musicPlaying = true;
-                updateMusicButton();
-            }).catch(error => {
-                console.log("Music play blocked. Will start on next user interaction.");
-                
-                // Set up one-time click handler to start music
-                const startOnClick = () => {
-                    bgMusic.play().then(() => {
-                        console.log("Music started after click!");
-                        musicPlaying = true;
-                        updateMusicButton();
-                        document.body.removeEventListener('click', startOnClick);
-                    }).catch(e => {
-                        console.error("Still can't play music:", e);
-                    });
-                };
-                
-                document.body.addEventListener('click', startOnClick, { once: true });
-            });
-        }
-        
-        function stopMusic() {
-            if (!bgMusic || !musicPlaying) return;
-            
-            bgMusic.pause();
-            bgMusic.currentTime = 0;
-            musicPlaying = false;
-            updateMusicButton();
-        }
-        
-        function toggleMusic() {
-            if (musicPlaying) {
-                stopMusic();
-            } else {
-                startMusic();
-            }
-            playSound('click-sound');
-        }
-        
-        function updateMusicButton() {
-            const musicBtn = document.getElementById('music-toggle');
-            if (musicBtn) {
-                musicBtn.innerHTML = `<i class="fas fa-music"></i> <span>MUSIC: ${musicPlaying ? 'ON' : 'OFF'}</span>`;
-            }
-        }
-
         // ===== INITIALIZATION =====
         document.addEventListener('DOMContentLoaded', function() {
-            // Create birthday background elements
+            // Create birthday background
             createBirthdayBackground();
-            
-            // Initialize music system
-            initializeMusic();
             
             // Initialize password system
             document.getElementById('password-submit').addEventListener('click', checkPassword);
@@ -2279,15 +2127,31 @@
             initWheelGame();
             initQuizGame();
             
-            // START BUTTON - THIS IS WHERE MUSIC STARTS!
+            // Start button - WITH MUSIC FIX
             document.getElementById('start-btn').addEventListener('click', function() {
-                // Start the music when adventure begins
-                startMusic();
+                // Start music first
+                const bgMusic = document.getElementById('bg-music');
+                bgMusic.volume = 1.0;
                 
-                // Play celebration sound
+                bgMusic.play().then(() => {
+                    console.log("Music started from start button!");
+                    musicEnabled = true;
+                    document.getElementById('music-toggle').innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: ON</span>';
+                }).catch(error => {
+                    console.log("Music auto-play blocked. It will start after user interaction.");
+                    // Music will start when user clicks anywhere
+                    document.body.addEventListener('click', function startMusicOnClick() {
+                        bgMusic.play().then(() => {
+                            console.log("Music started after click!");
+                            musicEnabled = true;
+                            document.getElementById('music-toggle').innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: ON</span>';
+                        }).catch(e => console.log("Music error:", e));
+                        document.body.removeEventListener('click', startMusicOnClick);
+                    }, { once: true });
+                });
+                
+                // Play celebration sound and go to page
                 playSound('celebration-sound');
-                
-                // Go to page 2
                 goToPage(2);
             });
             
@@ -2305,22 +2169,6 @@
             
             // Update score display
             updateGlobalScore();
-            
-            // Also try to start music when password is entered
-            const originalCheckPassword = checkPassword;
-            checkPassword = function() {
-                const result = originalCheckPassword.apply(this, arguments);
-                
-                // If password is correct, try to start music after a delay
-                const passwordInput = document.getElementById('password-input');
-                if (passwordInput.value.toLowerCase().trim() === "janisha") {
-                    setTimeout(() => {
-                        startMusic();
-                    }, 1000);
-                }
-                
-                return result;
-            };
         });
 
         // ===== CREATE BIRTHDAY BACKGROUND =====
@@ -2332,22 +2180,12 @@
                 const element = document.createElement('div');
                 element.className = 'birthday-element';
                 element.innerHTML = elements[Math.floor(Math.random() * elements.length)];
-                
-                // Random position
                 element.style.left = `${Math.random() * 100}%`;
                 element.style.top = `${Math.random() * 100}%`;
-                
-                // Random animation delay
                 element.style.animationDelay = `${Math.random() * 10}s`;
-                
-                // Random size
-                const size = Math.random() * 1.5 + 1;
-                element.style.fontSize = `${size}rem`;
-                
-                // Random color
+                element.style.fontSize = `${Math.random() * 1.5 + 1}rem`;
                 const colors = ['var(--hot-pink)', 'var(--gold)', 'var(--cyan)', 'var(--purple)', 'var(--pink)'];
                 element.style.color = colors[Math.floor(Math.random() * colors.length)];
-                
                 bg.appendChild(element);
             }
         }
@@ -2385,12 +2223,9 @@
                         // Play celebration sound
                         playSound('celebration-sound', 0.8);
                         
-                        // Scroll to top
-                        window.scrollTo(0, 0);
+                        // Don't auto-start music here - let user click "START BIRTHDAY ADVENTURE"
                     }, 500);
                 }, 1500);
-                
-                return true;
             } else {
                 // Wrong password
                 playSound('pop-sound');
@@ -2410,8 +2245,6 @@
                     document.getElementById('password-input').disabled = true;
                     errorMsg.textContent = '❌ Too many attempts! Refresh page. 🎈';
                 }
-                
-                return false;
             }
         }
 
@@ -2475,7 +2308,6 @@
                         playSound('pop-sound');
                         break;
                     case 5:
-                        // CAKE SMASH - FULL SCREEN BLAST!
                         cakeSmashed = true;
                         cake.style.opacity = '0';
                         feedback.innerHTML = "🎊🎊🎊 CAKE SMASH! 🎊🎊🎊";
@@ -2506,7 +2338,6 @@
         }
 
         function createCakeExplosion() {
-            // Create 150 cake pieces
             for (let i = 0; i < 150; i++) {
                 setTimeout(() => {
                     const piece = document.createElement('div');
@@ -2517,11 +2348,8 @@
                     piece.style.pointerEvents = 'none';
                     piece.style.zIndex = '10000';
                     
-                    // Start from center
                     const centerX = window.innerWidth / 2;
                     const centerY = window.innerHeight / 2;
-                    
-                    // Random explosion direction
                     const angle = Math.random() * Math.PI * 2;
                     const distance = Math.random() * 500 + 300;
                     const tx = Math.cos(angle) * distance;
@@ -2530,7 +2358,6 @@
                     piece.style.left = `${centerX}px`;
                     piece.style.top = `${centerY}px`;
                     
-                    // Random cake color
                     const colors = ['#ffcc00', '#ff66b2', '#ff00aa', '#cc66ff', '#00ffff'];
                     piece.style.background = `linear-gradient(45deg, ${colors[Math.floor(Math.random() * colors.length)]}, ${colors[Math.floor(Math.random() * colors.length)]})`;
                     
@@ -2560,7 +2387,6 @@
         function initMemoryGame() {
             const memoryArea = document.getElementById('memory-area');
             const startBtn = document.getElementById('memory-start');
-            const feedback = document.getElementById('memory-feedback');
             
             // Create card pairs
             const emojis = ['🎂', '🎁', '🎈', '🎊', '🥳', '🎉'];
@@ -2619,7 +2445,6 @@
                 card.classList.remove('flipped', 'matched');
             });
             
-            // Update UI
             updateMemoryUI();
         }
 
@@ -2653,7 +2478,6 @@
                 feedback.innerHTML = `🎉 Match found! ${6 - memoryMatches} pairs left!`;
                 playSound('success-sound');
                 
-                // Add points
                 addToScore(100);
                 
                 if (memoryMatches === 6) {
@@ -2689,13 +2513,11 @@
             startBtn.innerHTML = '<i class="fas fa-redo"></i> PLAY AGAIN';
             nextBtn.disabled = false;
             
-            // Bonus points
             const bonus = 500;
             addToScore(bonus);
             
             feedback.innerHTML = `🏆 PERFECT! All pairs matched!<br>+${bonus} bonus points!`;
             
-            // Celebration
             playSound('celebration-sound');
             createConfetti(150);
         }
@@ -2704,9 +2526,8 @@
         function initWheelGame() {
             const wheel = document.getElementById('wheel');
             const spinBtn = document.getElementById('spin-btn');
-            const nextBtn = document.getElementById('wheel-next');
             
-            // Create wheel sections (NO TEXT, only colors)
+            // Create wheel sections
             createWheelSections();
             
             spinBtn.addEventListener('click', spinWheel);
@@ -2728,7 +2549,6 @@
                 const startAngle = i * anglePerSection;
                 const endAngle = (i + 1) * anglePerSection;
                 
-                // Calculate points for arc
                 const startRad = (startAngle - 90) * Math.PI / 180;
                 const endRad = (endAngle - 90) * Math.PI / 180;
                 
@@ -2737,7 +2557,6 @@
                 const x2 = 250 + 200 * Math.cos(endRad);
                 const y2 = 250 + 200 * Math.sin(endRad);
                 
-                // Create arc path (NO TEXT)
                 const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
                 path.setAttribute('d', `M250,250 L${x1},${y1} A200,200 0 0,1 ${x2},${y2} Z`);
                 path.setAttribute('fill', colors[i % colors.length]);
@@ -2761,19 +2580,15 @@
             spinBtn.disabled = true;
             spinBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SPINNING...';
             
-            // Play spin sound
             playSound('wheel-spin-sound', 0.5);
             
-            // Random rotation
             const rotations = 5 + Math.random() * 3;
             const targetAngle = rotations * 360 + Math.random() * 360;
             
-            // Animate wheel
             const wheel = document.getElementById('wheel');
             wheel.style.transform = `rotate(${targetAngle}deg)`;
             wheel.style.transition = 'transform 4s cubic-bezier(0.17, 0.67, 0.23, 0.99)';
             
-            // Determine prize after spin completes
             setTimeout(() => {
                 const normalizedAngle = targetAngle % 360;
                 const sections = wheelPrizes.length;
@@ -2781,38 +2596,30 @@
                 const prizeIndex = Math.floor(((360 - normalizedAngle) % 360) / sectionSize);
                 const prize = wheelPrizes[prizeIndex];
                 
-                // Update score
                 wheelScore += prize.points;
                 addToScore(prize.points);
                 
-                // Update UI
                 document.getElementById('spins-left').textContent = spinsLeft;
                 document.getElementById('wheel-score').textContent = wheelScore;
                 
-                // Show prize and trigger effect
                 prizeDisplay.innerHTML = `🎉 ${prize.name} 🎉`;
                 feedback.innerHTML = `🎁 You got ${prize.points} points! ${spinsLeft} spins left!`;
                 
-                // Play celebration sound
                 playSound('success-sound');
                 
-                // Trigger the prize effect
                 triggerPrizeEffect(prize.effect);
                 
-                // Reset button
                 setTimeout(() => {
                     spinBtn.disabled = false;
                     spinBtn.innerHTML = '<i class="fas fa-sync-alt"></i> 🎡 SPIN THE WHEEL! 🎡';
                     wheelSpinning = false;
                 }, 3000);
                 
-                // Check if game is complete
                 if (spinsLeft <= 0) {
                     setTimeout(() => {
                         spinBtn.disabled = true;
                         spinBtn.innerHTML = '🎯 ALL SPINS USED!';
                         
-                        // Bonus for completing all spins
                         const bonus = 500;
                         wheelScore += bonus;
                         addToScore(bonus);
@@ -2820,10 +2627,8 @@
                         prizeDisplay.innerHTML = `🏆 ALL SPINS COMPLETE!<br>+${bonus} bonus points!`;
                         feedback.innerHTML = '🎊 Wheel game completed! Move to next game!';
                         
-                        // Enable next button
                         nextBtn.disabled = false;
                         
-                        // Big celebration
                         playSound('celebration-sound', 0.8);
                         createConfetti(200);
                     }, 3000);
@@ -2839,7 +2644,6 @@
             
             switch(effectType) {
                 case 'potato':
-                    // 🥔 Potato appears and does nothing
                     const potato = document.createElement('div');
                     potato.className = 'potato-effect';
                     potato.innerHTML = '🥔';
@@ -2852,7 +2656,6 @@
                     break;
                     
                 case 'screenSpin':
-                    // 🌀 Screen spins slightly then stops
                     const screenSpin = document.createElement('div');
                     screenSpin.className = 'screen-spin-effect';
                     effectContainer.appendChild(screenSpin);
@@ -2863,7 +2666,6 @@
                     break;
                     
                 case 'cakeFall':
-                    // 🎂 Cake falls… misses… disappears
                     const cakeFall = document.createElement('div');
                     cakeFall.className = 'cake-fall-effect';
                     cakeFall.innerHTML = '🎂';
@@ -2875,11 +2677,9 @@
                     break;
                     
                 case 'cakeRain':
-                    // 🎂 Cake rain - 50 CAKES!
                     const cakeRainContainer = document.getElementById('cake-rain');
                     cakeRainContainer.innerHTML = '';
                     
-                    // Create 50 falling cakes
                     for (let i = 0; i < 50; i++) {
                         setTimeout(() => {
                             const cake = document.createElement('div');
@@ -2904,7 +2704,6 @@
                     break;
                     
                 case 'balloon':
-                    // 🎈 Balloon inflates then pops - MULTIPLE BALLOONS!
                     for (let i = 0; i < 30; i++) {
                         setTimeout(() => {
                             const balloon = document.createElement('div');
@@ -2925,7 +2724,6 @@
                     break;
                     
                 case 'ghost':
-                    // 👻 Ghost fades in then says bye - MULTIPLE GHOSTS!
                     for (let i = 0; i < 20; i++) {
                         setTimeout(() => {
                             const ghost = document.createElement('div');
@@ -2949,7 +2747,6 @@
                     break;
                     
                 case 'firework':
-                    // 🧨 Firework fizzles out - MULTIPLE FIREWORKS!
                     for (let i = 0; i < 40; i++) {
                         setTimeout(() => {
                             const firework = document.createElement('div');
@@ -2969,7 +2766,6 @@
                     break;
                     
                 case 'shrug':
-                    // 🤷‍♀️ Shrug emoji floats up - MULTIPLE SHRUGS!
                     for (let i = 0; i < 50; i++) {
                         setTimeout(() => {
                             const shrug = document.createElement('div');
@@ -2989,7 +2785,6 @@
                     break;
             }
             
-            // Hide effect container after animation
             setTimeout(() => {
                 effectContainer.classList.remove('active');
                 effectContainer.innerHTML = '';
@@ -3047,7 +2842,6 @@
                 }
             ];
             
-            // Create question cards
             questions.forEach((q, index) => {
                 const questionCard = document.createElement('div');
                 questionCard.className = 'question-card';
@@ -3069,20 +2863,15 @@
                 quizArea.appendChild(questionCard);
             });
             
-            // Show first question
             document.getElementById('question-1').classList.add('active');
-            
-            // Initialize quiz buttons
             document.getElementById('quiz-next-btn').addEventListener('click', nextQuestion);
         }
 
         function selectAnswer(questionNum, answerNum) {
             if (quizAnswers[questionNum]) return;
             
-            // Store answer
             quizAnswers[questionNum] = answerNum;
             
-            // Visual feedback
             const questionCard = document.getElementById(`question-${questionNum}`);
             questionCard.querySelectorAll('.option-btn').forEach((btn, index) => {
                 btn.classList.remove('selected');
@@ -3091,12 +2880,10 @@
                 }
             });
             
-            // Add points
             quizScore += 100;
             addToScore(100);
             document.getElementById('quiz-score').textContent = quizScore;
             
-            // Show response
             const feedback = document.getElementById('quiz-feedback');
             const responses = [
                 "🎂 Great cake choice!",
@@ -3109,10 +2896,8 @@
             feedback.innerHTML = responses[questionNum - 1];
             playSound('click-sound');
             
-            // Enable next button
             document.getElementById('quiz-next-btn').disabled = false;
             
-            // Check if quiz is complete
             if (Object.keys(quizAnswers).length === totalQuestions) {
                 completeQuiz();
             }
@@ -3120,20 +2905,15 @@
 
         function nextQuestion() {
             if (currentQuestion < totalQuestions) {
-                // Hide current question
                 document.getElementById(`question-${currentQuestion}`).classList.remove('active');
-                
-                // Show next question
                 currentQuestion++;
                 document.getElementById(`question-${currentQuestion}`).classList.add('active');
                 document.getElementById('quiz-current').textContent = currentQuestion;
                 
-                // Reset next button if not answered yet
                 if (!quizAnswers[currentQuestion]) {
                     document.getElementById('quiz-next-btn').disabled = true;
                 }
                 
-                // Update feedback
                 document.getElementById('quiz-feedback').innerHTML = '🎯 Choose your answer!';
             }
         }
@@ -3145,7 +2925,6 @@
             const feedback = document.getElementById('quiz-feedback');
             feedback.innerHTML = `🎉 QUIZ COMPLETE! Final score: ${quizScore}<br>You know yourself best! 😄`;
             
-            // Bonus for completing all questions
             const bonus = 500;
             quizScore += bonus;
             addToScore(bonus);
@@ -3159,17 +2938,14 @@
             const jokeMessage = document.getElementById('joke-message');
             const continueBtn = document.getElementById('error-continue');
             
-            // Reset states
             jokeMessage.style.display = 'none';
             jokeMessage.style.opacity = '0';
             continueBtn.style.display = 'none';
             
-            // Animation sequence
             setTimeout(() => {
                 const errorCode = document.getElementById('error-code');
                 const errorMessage = document.getElementById('error-message');
                 
-                // Glitch effect
                 errorCode.style.animation = 'none';
                 setTimeout(() => {
                     errorCode.style.animation = 'glitchError 1s 3';
@@ -3204,20 +2980,16 @@
             const feedback = document.getElementById('surprise-feedback');
             const finalBtn = document.getElementById('final-page-btn');
             
-            // Hide button with animation
             button.style.transform = 'scale(0) rotate(180deg)';
             button.style.opacity = '0';
             button.disabled = true;
             
-            // Show feedback
             setTimeout(() => {
                 feedback.classList.add('show');
                 playSound('celebration-sound', 0.8);
                 
-                // Create massive confetti
                 createConfetti(1500);
                 
-                // Show final button after 2 seconds
                 setTimeout(() => {
                     finalBtn.style.display = 'block';
                 }, 2000);
@@ -3242,7 +3014,6 @@
             totalScore += points;
             updateGlobalScore();
             
-            // Animate score update
             const scoreDisplay = document.getElementById('global-score');
             scoreDisplay.style.transform = 'scale(1.3)';
             scoreDisplay.style.color = 'var(--gold)';
@@ -3255,6 +3026,23 @@
 
         function updateGlobalScore() {
             document.getElementById('global-score').textContent = totalScore;
+        }
+
+        function toggleMusic() {
+            const musicBtn = document.getElementById('music-toggle');
+            const bgMusic = document.getElementById('bg-music');
+            
+            if (musicEnabled) {
+                bgMusic.pause();
+                musicBtn.innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: OFF</span>';
+                musicEnabled = false;
+            } else {
+                bgMusic.volume = 1.0;
+                bgMusic.play();
+                musicBtn.innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: ON</span>';
+                musicEnabled = true;
+            }
+            playSound('click-sound');
         }
 
         function toggleSound() {
