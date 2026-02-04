@@ -258,7 +258,6 @@
             padding: 15px 25px;
             border-radius: 50px;
             border: 2px solid var(--glass-border);
-            flex-wrap: wrap;
         }
 
         @media (max-width: 768px) {
@@ -267,7 +266,6 @@
                 padding: 10px 15px;
                 top: 10px;
                 right: 10px;
-                max-width: 200px;
             }
         }
 
@@ -305,152 +303,6 @@
             gap: 10px;
             box-shadow: var(--shadow);
             text-shadow: 0 0 10px white;
-        }
-
-        /* ===== SONG PLAYER ===== */
-        .song-player {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(255, 0, 170, 0.2);
-            backdrop-filter: blur(20px);
-            border-radius: 25px;
-            padding: 15px;
-            border: 2px solid var(--glass-border);
-            z-index: 1000;
-            display: none;
-            flex-direction: column;
-            gap: 10px;
-            max-width: 350px;
-            box-shadow: var(--shadow);
-        }
-
-        .song-player.active {
-            display: flex;
-            animation: slideUp 0.5s ease;
-        }
-
-        @keyframes slideUp {
-            from { transform: translateY(100px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .song-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 5px;
-        }
-
-        .song-title {
-            font-weight: 700;
-            color: var(--gold);
-            text-shadow: 0 0 10px var(--gold);
-            font-size: 1.1rem;
-        }
-
-        .song-artist {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        .song-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .song-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid var(--glass-border);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
-        }
-
-        .song-btn:hover {
-            background: rgba(255, 0, 170, 0.3);
-            transform: scale(1.1);
-        }
-
-        .song-progress {
-            flex: 1;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 3px;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .song-progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--hot-pink), var(--cyan));
-            width: 0%;
-            transition: width 0.3s ease;
-            border-radius: 3px;
-        }
-
-        .song-time {
-            font-size: 0.8rem;
-            opacity: 0.7;
-            min-width: 80px;
-            text-align: center;
-        }
-
-        .volume-control {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 5px;
-        }
-
-        .volume-slider {
-            flex: 1;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 3px;
-            outline: none;
-            -webkit-appearance: none;
-            cursor: pointer;
-        }
-
-        .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--cyan);
-            cursor: pointer;
-            box-shadow: 0 0 10px var(--cyan);
-        }
-
-        .volume-slider::-moz-range-thumb {
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--cyan);
-            cursor: pointer;
-            border: none;
-            box-shadow: 0 0 10px var(--cyan);
-        }
-
-        /* ===== YOUTUBE PLAYER ===== */
-        .youtube-player {
-            position: fixed;
-            bottom: 100px;
-            right: 20px;
-            width: 0;
-            height: 0;
-            overflow: hidden;
-            opacity: 0;
-            z-index: -1;
         }
 
         /* ===== MAIN CONTENT ===== */
@@ -1441,10 +1293,11 @@
             z-index: 9999;
         }
 
-        .falling-cake {
+        .falling-element {
             position: absolute;
             font-size: 2.5rem;
             animation: fallDown 3s linear forwards;
+            z-index: 9999;
         }
 
         @keyframes fallDown {
@@ -1762,12 +1615,6 @@
             .cake-container { height: 300px; }
             .cake { width: 250px; height: 250px; }
             .wheel-wrapper { width: 300px; height: 300px; }
-            .song-player { 
-                bottom: 10px; 
-                right: 10px; 
-                left: 10px; 
-                max-width: none; 
-            }
         }
 
         @media (max-width: 480px) {
@@ -1809,45 +1656,6 @@
     <!-- Special Effect Containers -->
     <div class="prize-effect" id="prize-effect"></div>
     <div class="cake-rain" id="cake-rain"></div>
-
-    <!-- YouTube Player (Hidden) -->
-    <div class="youtube-player" id="youtube-player">
-        <iframe id="youtube-iframe" width="0" height="0" src="https://www.youtube.com/embed/BcqxLCWn-CE?enablejsapi=1&controls=0&modestbranding=1&rel=0&showinfo=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
-
-    <!-- Song Player -->
-    <div class="song-player" id="song-player">
-        <div class="song-header">
-            <i class="fas fa-music" style="color: var(--cyan);"></i>
-            <div>
-                <div class="song-title">I Like Me Better</div>
-                <div class="song-artist">Lauv • Birthday Mix</div>
-            </div>
-        </div>
-        
-        <div class="song-controls">
-            <button class="song-btn" id="song-prev">
-                <i class="fas fa-step-backward"></i>
-            </button>
-            <button class="song-btn" id="song-play">
-                <i class="fas fa-play"></i>
-            </button>
-            <button class="song-btn" id="song-next">
-                <i class="fas fa-step-forward"></i>
-            </button>
-            
-            <div class="song-progress" id="song-progress">
-                <div class="song-progress-bar" id="song-progress-bar"></div>
-            </div>
-            
-            <div class="song-time" id="song-time">0:00 / 3:20</div>
-        </div>
-        
-        <div class="volume-control">
-            <i class="fas fa-volume-up" style="color: var(--cyan);"></i>
-            <input type="range" class="volume-slider" id="volume-slider" min="0" max="100" value="70">
-        </div>
-    </div>
 
     <!-- Full Screen Cake Blast Overlay -->
     <div class="cake-blast-overlay" id="cake-blast-overlay">
@@ -1904,9 +1712,6 @@
             </button>
             <button id="sound-toggle" class="control-btn">
                 <i class="fas fa-volume-up"></i> <span>SOUND: ON</span>
-            </button>
-            <button id="song-toggle" class="control-btn">
-                <i class="fas fa-headphones"></i> <span>SONG: OFF</span>
             </button>
             <div class="score-display">
                 <i class="fas fa-crown"></i> <span id="global-score">500</span>
@@ -2280,7 +2085,7 @@
             </div>
         </section>
 
-        <!-- Audio Elements -->
+        <!-- Audio Elements - NO VISIBLE CONTROLS -->
         <audio id="bg-music" loop>
             <source src="https://assets.mixkit.co/music/preview/mixkit-happy-birthday-to-you-443.mp3" type="audio/mpeg">
         </audio>
@@ -2316,14 +2121,8 @@
         let currentPage = 1;
         let musicEnabled = true;
         let soundEnabled = true;
-        let songEnabled = false;
         let attempts = 0;
         let maxAttempts = 5;
-
-        // YouTube Player Variables
-        let youtubePlayer = null;
-        let isSongPlaying = false;
-        let songUpdateInterval = null;
 
         // Cake Smash Game
         let tapCount = 0;
@@ -2342,7 +2141,7 @@
         let wheelSpinning = false;
         let wheelScore = 0;
         
-        // Define the 8 prizes with their effects
+        // Define the 8 prizes with their effects (REMOVED "Wheel spins again")
         const wheelPrizes = [
             {
                 name: "🥔 Potato appears and does nothing",
@@ -2368,11 +2167,6 @@
                 name: "🎈 Balloon inflates then pops",
                 effect: "balloon",
                 points: 150
-            },
-            {
-                name: "🔄 Wheel spins again by itself",
-                effect: "wheelSpinAgain",
-                points: 125
             },
             {
                 name: "👻 Ghost fades in then says bye",
@@ -2414,9 +2208,6 @@
             initWheelGame();
             initQuizGame();
             
-            // Initialize song player
-            initSongPlayer();
-            
             // Start button
             document.getElementById('start-btn').addEventListener('click', function() {
                 playSound('celebration-sound');
@@ -2426,7 +2217,6 @@
             // Music/Sound toggles
             document.getElementById('music-toggle').addEventListener('click', toggleMusic);
             document.getElementById('sound-toggle').addEventListener('click', toggleSound);
-            document.getElementById('song-toggle').addEventListener('click', toggleSong);
             
             // Surprise Button
             document.getElementById('danger-button').addEventListener('click', surpriseButtonClicked);
@@ -2438,158 +2228,7 @@
             
             // Update score display
             updateGlobalScore();
-            
-            // Start background music
-            const bgMusic = document.getElementById('bg-music');
-            bgMusic.volume = 0.1;
-            bgMusic.play().catch(e => {
-                console.log("Autoplay blocked. User interaction required.");
-            });
         });
-
-        // ===== SONG PLAYER FUNCTIONS =====
-        function initSongPlayer() {
-            // Load YouTube IFrame API
-            const tag = document.createElement('script');
-            tag.src = "https://www.youtube.com/iframe_api";
-            const firstScriptTag = document.getElementsByTagName('script')[0];
-            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-            
-            // Initialize player when API is ready
-            window.onYouTubeIframeAPIReady = function() {
-                youtubePlayer = new YT.Player('youtube-iframe', {
-                    events: {
-                        'onReady': onPlayerReady,
-                        'onStateChange': onPlayerStateChange
-                    }
-                });
-            };
-            
-            // Setup control buttons
-            document.getElementById('song-play').addEventListener('click', toggleSongPlay);
-            document.getElementById('song-prev').addEventListener('click', restartSong);
-            document.getElementById('song-next').addEventListener('click', restartSong);
-            document.getElementById('song-progress').addEventListener('click', seekSong);
-            document.getElementById('volume-slider').addEventListener('input', updateVolume);
-            
-            // Update song time every second
-            songUpdateInterval = setInterval(updateSongTime, 1000);
-        }
-
-        function onPlayerReady(event) {
-            // Player is ready
-            console.log("YouTube player ready");
-            updateVolume(); // Set initial volume
-        }
-
-        function onPlayerStateChange(event) {
-            // Update play/pause button based on player state
-            const playBtn = document.getElementById('song-play');
-            if (event.data === YT.PlayerState.PLAYING) {
-                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                isSongPlaying = true;
-            } else {
-                playBtn.innerHTML = '<i class="fas fa-play"></i>';
-                isSongPlaying = false;
-            }
-        }
-
-        function toggleSongPlay() {
-            if (!youtubePlayer) return;
-            
-            if (isSongPlaying) {
-                youtubePlayer.pauseVideo();
-            } else {
-                youtubePlayer.playVideo();
-            }
-        }
-
-        function restartSong() {
-            if (!youtubePlayer) return;
-            youtubePlayer.seekTo(0);
-            if (!isSongPlaying) {
-                youtubePlayer.playVideo();
-            }
-        }
-
-        function seekSong(e) {
-            if (!youtubePlayer) return;
-            
-            const progressBar = document.getElementById('song-progress');
-            const rect = progressBar.getBoundingClientRect();
-            const percent = (e.clientX - rect.left) / rect.width;
-            
-            const duration = youtubePlayer.getDuration();
-            const newTime = duration * percent;
-            
-            youtubePlayer.seekTo(newTime);
-        }
-
-        function updateSongTime() {
-            if (!youtubePlayer || !isSongPlaying) return;
-            
-            try {
-                const currentTime = youtubePlayer.getCurrentTime();
-                const duration = youtubePlayer.getDuration();
-                
-                if (duration && currentTime) {
-                    // Update progress bar
-                    const progressPercent = (currentTime / duration) * 100;
-                    document.getElementById('song-progress-bar').style.width = `${progressPercent}%`;
-                    
-                    // Update time display
-                    const currentMinutes = Math.floor(currentTime / 60);
-                    const currentSeconds = Math.floor(currentTime % 60);
-                    const durationMinutes = Math.floor(duration / 60);
-                    const durationSeconds = Math.floor(duration % 60);
-                    
-                    document.getElementById('song-time').textContent = 
-                        `${currentMinutes}:${currentSeconds.toString().padStart(2, '0')} / ` +
-                        `${durationMinutes}:${durationSeconds.toString().padStart(2, '0')}`;
-                }
-            } catch (e) {
-                // Player might not be ready yet
-            }
-        }
-
-        function updateVolume() {
-            if (!youtubePlayer) return;
-            
-            const volume = document.getElementById('volume-slider').value;
-            youtubePlayer.setVolume(volume);
-        }
-
-        function toggleSong() {
-            const songBtn = document.getElementById('song-toggle');
-            const songPlayer = document.getElementById('song-player');
-            
-            songEnabled = !songEnabled;
-            
-            if (songEnabled) {
-                // Show song player and start song
-                songPlayer.classList.add('active');
-                songBtn.innerHTML = '<i class="fas fa-headphones"></i> <span>SONG: ON</span>';
-                
-                // Start playing after a short delay
-                setTimeout(() => {
-                    if (youtubePlayer && youtubePlayer.playVideo) {
-                        youtubePlayer.playVideo();
-                    }
-                }, 500);
-                
-                playSound('click-sound');
-            } else {
-                // Hide song player and pause song
-                songPlayer.classList.remove('active');
-                songBtn.innerHTML = '<i class="fas fa-headphones"></i> <span>SONG: OFF</span>';
-                
-                if (youtubePlayer && youtubePlayer.pauseVideo) {
-                    youtubePlayer.pauseVideo();
-                }
-                
-                playSound('click-sound');
-            }
-        }
 
         // ===== CREATE BIRTHDAY BACKGROUND =====
         function createBirthdayBackground() {
@@ -2643,7 +2282,7 @@
                 submitBtn.innerHTML = '<i class="fas fa-check"></i> 🎉 ACCESS GRANTED! 🎉';
                 submitBtn.style.background = 'linear-gradient(45deg, var(--cyan), var(--blue))';
                 
-                // Unlock website
+                // Unlock website and START MUSIC IMMEDIATELY
                 setTimeout(() => {
                     document.getElementById('password-screen').style.opacity = '0';
                     setTimeout(() => {
@@ -2653,12 +2292,19 @@
                         // Play celebration sound
                         playSound('celebration-sound', 0.8);
                         
-                        // Show song player
-                        setTimeout(() => {
-                            document.getElementById('song-player').classList.add('active');
-                            document.getElementById('song-toggle').innerHTML = '<i class="fas fa-headphones"></i> <span>SONG: ON</span>';
-                            songEnabled = true;
-                        }, 1000);
+                        // START BACKGROUND MUSIC - FULL VOLUME, NO USER INTERACTION NEEDED
+                        const bgMusic = document.getElementById('bg-music');
+                        bgMusic.volume = 1.0; // FULL VOLUME
+                        bgMusic.play().then(() => {
+                            console.log("Music started successfully!");
+                        }).catch(e => {
+                            console.log("Music play error:", e);
+                            // Try again with user interaction fallback
+                            document.body.addEventListener('click', function startMusicOnce() {
+                                bgMusic.play();
+                                document.body.removeEventListener('click', startMusicOnce);
+                            }, { once: true });
+                        });
                     }, 500);
                 }, 1500);
             } else {
@@ -2990,7 +2636,7 @@
             
             const sections = wheelPrizes.length;
             const anglePerSection = 360 / sections;
-            const colors = ['#ff00aa', '#ffcc00', '#00ffff', '#cc66ff', '#ff66b2', '#33ff99', '#3399ff', '#ffff66', '#ff9966'];
+            const colors = ['#ff00aa', '#ffcc00', '#00ffff', '#cc66ff', '#ff66b2', '#33ff99', '#3399ff', '#ffff66'];
             
             for (let i = 0; i < sections; i++) {
                 const startAngle = i * anglePerSection;
@@ -3143,15 +2789,15 @@
                     break;
                     
                 case 'cakeRain':
-                    // 🎂 Cake rain
+                    // 🎂 Cake rain - 50 CAKES!
                     const cakeRainContainer = document.getElementById('cake-rain');
                     cakeRainContainer.innerHTML = '';
                     
-                    // Create 30 falling cakes
-                    for (let i = 0; i < 30; i++) {
+                    // Create 50 falling cakes
+                    for (let i = 0; i < 50; i++) {
                         setTimeout(() => {
                             const cake = document.createElement('div');
-                            cake.className = 'falling-cake';
+                            cake.className = 'falling-element';
                             cake.innerHTML = '🎂';
                             cake.style.left = `${Math.random() * 100}%`;
                             cake.style.fontSize = `${Math.random() * 2 + 1.5}rem`;
@@ -3163,7 +2809,7 @@
                             setTimeout(() => {
                                 if (cake.parentNode) cake.remove();
                             }, 3000);
-                        }, i * 100);
+                        }, i * 50); // Faster spawning
                     }
                     
                     setTimeout(() => {
@@ -3172,77 +2818,88 @@
                     break;
                     
                 case 'balloon':
-                    // 🎈 Balloon inflates then pops
-                    const balloon = document.createElement('div');
-                    balloon.className = 'balloon-effect';
-                    balloon.innerHTML = '🎈';
-                    balloon.style.color = '#ff00aa';
-                    effectContainer.appendChild(balloon);
-                    
-                    setTimeout(() => {
-                        balloon.remove();
-                        playSound('pop-sound');
-                    }, 2000);
-                    break;
-                    
-                case 'wheelSpinAgain':
-                    // 🔄 Wheel spins again by itself
-                    const wheel = document.getElementById('wheel');
-                    const extraSpinAngle = 720 + Math.random() * 360;
-                    
-                    setTimeout(() => {
-                        wheel.style.transition = 'transform 2s cubic-bezier(0.17, 0.67, 0.23, 0.99)';
-                        wheel.style.transform = `rotate(${extraSpinAngle}deg)`;
-                        
-                        playSound('wheel-spin-sound', 0.3);
-                    }, 500);
-                    
-                    setTimeout(() => {
-                        wheel.style.transition = '';
-                    }, 2500);
+                    // 🎈 Balloon inflates then pops - MULTIPLE BALLOONS!
+                    for (let i = 0; i < 30; i++) {
+                        setTimeout(() => {
+                            const balloon = document.createElement('div');
+                            balloon.className = 'balloon-effect';
+                            balloon.innerHTML = '🎈';
+                            balloon.style.color = ['#ff00aa', '#ffcc00', '#00ffff'][Math.floor(Math.random() * 3)];
+                            balloon.style.left = `${Math.random() * 100}%`;
+                            balloon.style.top = `${Math.random() * 100}%`;
+                            balloon.style.fontSize = `${Math.random() * 4 + 3}rem`;
+                            effectContainer.appendChild(balloon);
+                            
+                            setTimeout(() => {
+                                balloon.remove();
+                                playSound('pop-sound', 0.3);
+                            }, 2000);
+                        }, i * 100);
+                    }
                     break;
                     
                 case 'ghost':
-                    // 👻 Ghost fades in then says bye
-                    const ghost = document.createElement('div');
-                    ghost.className = 'ghost-effect';
-                    ghost.innerHTML = '👻';
-                    ghost.style.color = 'white';
-                    effectContainer.appendChild(ghost);
-                    
-                    setTimeout(() => {
-                        ghost.innerHTML = '👻 👋';
-                    }, 1500);
-                    
-                    setTimeout(() => {
-                        ghost.remove();
-                    }, 3000);
+                    // 👻 Ghost fades in then says bye - MULTIPLE GHOSTS!
+                    for (let i = 0; i < 20; i++) {
+                        setTimeout(() => {
+                            const ghost = document.createElement('div');
+                            ghost.className = 'ghost-effect';
+                            ghost.innerHTML = '👻';
+                            ghost.style.color = 'white';
+                            ghost.style.left = `${Math.random() * 100}%`;
+                            ghost.style.top = `${Math.random() * 100}%`;
+                            ghost.style.fontSize = `${Math.random() * 3 + 5}rem`;
+                            effectContainer.appendChild(ghost);
+                            
+                            setTimeout(() => {
+                                ghost.innerHTML = '👻 👋';
+                            }, 1500);
+                            
+                            setTimeout(() => {
+                                ghost.remove();
+                            }, 3000);
+                        }, i * 150);
+                    }
                     break;
                     
                 case 'firework':
-                    // 🧨 Firework fizzles out
-                    const firework = document.createElement('div');
-                    firework.className = 'firework-effect';
-                    firework.innerHTML = '🧨';
-                    firework.style.color = '#ffcc00';
-                    effectContainer.appendChild(firework);
-                    
-                    setTimeout(() => {
-                        firework.remove();
-                    }, 2000);
+                    // 🧨 Firework fizzles out - MULTIPLE FIREWORKS!
+                    for (let i = 0; i < 40; i++) {
+                        setTimeout(() => {
+                            const firework = document.createElement('div');
+                            firework.className = 'firework-effect';
+                            firework.innerHTML = '🧨';
+                            firework.style.color = ['#ffcc00', '#ff00aa', '#00ffff'][Math.floor(Math.random() * 3)];
+                            firework.style.left = `${Math.random() * 100}%`;
+                            firework.style.top = `${Math.random() * 100}%`;
+                            firework.style.fontSize = `${Math.random() * 3 + 4}rem`;
+                            effectContainer.appendChild(firework);
+                            
+                            setTimeout(() => {
+                                firework.remove();
+                            }, 2000);
+                        }, i * 75);
+                    }
                     break;
                     
                 case 'shrug':
-                    // 🤷‍♀️ Shrug emoji floats up
-                    const shrug = document.createElement('div');
-                    shrug.className = 'shrug-effect';
-                    shrug.innerHTML = '🤷‍♀️';
-                    shrug.style.color = 'white';
-                    effectContainer.appendChild(shrug);
-                    
-                    setTimeout(() => {
-                        shrug.remove();
-                    }, 3000);
+                    // 🤷‍♀️ Shrug emoji floats up - MULTIPLE SHRUGS!
+                    for (let i = 0; i < 50; i++) {
+                        setTimeout(() => {
+                            const shrug = document.createElement('div');
+                            shrug.className = 'shrug-effect';
+                            shrug.innerHTML = '🤷‍♀️';
+                            shrug.style.color = 'white';
+                            shrug.style.left = `${Math.random() * 100}%`;
+                            shrug.style.fontSize = `${Math.random() * 2 + 2}rem`;
+                            shrug.style.animationDuration = `${Math.random() * 2 + 2}s`;
+                            effectContainer.appendChild(shrug);
+                            
+                            setTimeout(() => {
+                                shrug.remove();
+                            }, 3000);
+                        }, i * 60);
+                    }
                     break;
             }
             
@@ -3250,7 +2907,7 @@
             setTimeout(() => {
                 effectContainer.classList.remove('active');
                 effectContainer.innerHTML = '';
-            }, 4000);
+            }, 5000);
         }
 
         // ===== PAGE 5: BIRTHDAY QUIZ =====
@@ -3521,12 +3178,13 @@
             if (musicEnabled) {
                 bgMusic.pause();
                 musicBtn.innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: OFF</span>';
+                musicEnabled = false;
             } else {
-                bgMusic.volume = 0.2;
+                bgMusic.volume = 1.0;
                 bgMusic.play();
                 musicBtn.innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: ON</span>';
+                musicEnabled = true;
             }
-            musicEnabled = !musicEnabled;
             playSound('click-sound');
         }
 
