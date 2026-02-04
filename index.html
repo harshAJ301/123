@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎂 HAPPY 18TH BIRTHDAY JANISHA! 🎉</title>
+    <title>🎂 HAPPY 18TH BIRTHDAY JENISHA! 🎉</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&family=Great+Vibes&family=Pacifico&family=Satisfy&display=swap" rel="stylesheet">
     <style>
@@ -818,14 +818,6 @@
             stroke: white;
         }
 
-        .wheel-text {
-            font-size: 1.2rem;
-            font-weight: bold;
-            fill: white;
-            text-anchor: middle;
-            user-select: none;
-        }
-
         .spin-btn {
             background: linear-gradient(45deg, var(--hot-pink), var(--purple));
             border: none;
@@ -1275,6 +1267,221 @@
             50% { opacity: 1; transform: translateX(-50%) scale(1.2); }
         }
 
+        /* ===== SPECIAL EFFECTS FOR WHEEL PRIZES ===== */
+        .prize-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            display: none;
+        }
+
+        .prize-effect.active {
+            display: block;
+        }
+
+        .cake-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .falling-cake {
+            position: absolute;
+            font-size: 2.5rem;
+            animation: fallDown 3s linear forwards;
+        }
+
+        @keyframes fallDown {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .balloon-effect {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 10rem;
+            z-index: 9999;
+            animation: inflatePop 2s forwards;
+        }
+
+        @keyframes inflatePop {
+            0% {
+                transform: translate(-50%, -50%) scale(0.1);
+                opacity: 1;
+            }
+            70% {
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(2);
+                opacity: 0;
+            }
+        }
+
+        .ghost-effect {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 8rem;
+            z-index: 9999;
+            animation: ghostAppear 3s forwards;
+        }
+
+        @keyframes ghostAppear {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+            30% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            70% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+        }
+
+        .firework-effect {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 6rem;
+            z-index: 9999;
+            animation: fireworkFizzle 2s forwards;
+        }
+
+        @keyframes fireworkFizzle {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                opacity: 0.5;
+                transform: translate(-50%, -50%) scale(1.3);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+        }
+
+        .shrug-effect {
+            position: fixed;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 4rem;
+            z-index: 9999;
+            animation: floatUp 3s forwards;
+        }
+
+        @keyframes floatUp {
+            0% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-100px);
+            }
+        }
+
+        .potato-effect {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 6rem;
+            z-index: 9999;
+            animation: potatoNothing 2s forwards;
+        }
+
+        @keyframes potatoNothing {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .screen-spin-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9998;
+            animation: screenSpin 2s ease-in-out;
+        }
+
+        @keyframes screenSpin {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            30% {
+                transform: rotate(5deg);
+            }
+            70% {
+                transform: rotate(-5deg);
+            }
+        }
+
+        .cake-fall-effect {
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 8rem;
+            z-index: 9999;
+            animation: cakeFallMiss 2s forwards;
+        }
+
+        @keyframes cakeFallMiss {
+            0% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(-100px);
+            }
+            50% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(50vh);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(50vh);
+            }
+        }
+
         /* ===== NAVIGATION BUTTONS ===== */
         .nav-buttons {
             display: flex;
@@ -1407,7 +1614,6 @@
             .cake-container { height: 300px; }
             .cake { width: 250px; height: 250px; }
             .wheel-wrapper { width: 300px; height: 300px; }
-            .wheel-text { font-size: 0.9rem; }
         }
 
         @media (max-width: 480px) {
@@ -1439,7 +1645,6 @@
             .message-subtitle { font-size: 1.8rem; }
             .signature { font-size: 2.5rem; }
             .wheel-wrapper { width: 250px; height: 250px; }
-            .wheel-text { font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -1447,11 +1652,15 @@
     <!-- Birthday Background Elements -->
     <div class="birthday-bg" id="birthday-bg"></div>
 
+    <!-- Special Effect Containers -->
+    <div class="prize-effect" id="prize-effect"></div>
+    <div class="cake-rain" id="cake-rain"></div>
+
     <!-- Full Screen Cake Blast Overlay -->
     <div class="cake-blast-overlay" id="cake-blast-overlay">
         <div class="blast-text">🎂 CAKE SMASH! 🎉</div>
         <div style="font-size: 2.5rem; color: var(--gold); text-shadow: 0 0 30px var(--gold);">
-            Happy Birthday Janisha! 🥳
+            Happy Birthday Jenisha! 🥳
         </div>
     </div>
 
@@ -1459,7 +1668,7 @@
     <div class="password-screen" id="password-screen">
         <div class="birthday-icon">🎁</div>
         <div class="password-container">
-            <h1 class="password-title">Happy Birthday Janisha! 🎉</h1>
+            <h1 class="password-title">Happy Birthday Jenisha! 🎉</h1>
             <p class="password-subtitle">You've unlocked a secret birthday website! ✨</p>
             
             <p style="font-size: 1.2rem; color: var(--cyan); margin-bottom: 20px;">
@@ -1467,14 +1676,14 @@
             </p>
             
             <div class="password-hint">
-                <p><strong>🔑 Password Hint:</strong> It's your name! (all lowercase)</p>
+                <p><strong>🔑 Password Hint:</strong> It's similar to your name! (all lowercase)</p>
                 <p><em>✨ Starts with 'j', ends with 'a', has 7 magical letters ✨</em></p>
             </div>
             
             <input type="password" 
                    class="password-input" 
                    id="password-input"
-                   placeholder="🎂 Type your name here..."
+                   placeholder="🎂 Type the password here..."
                    autocomplete="off"
                    maxlength="20">
             
@@ -1518,7 +1727,7 @@
                     <h1 class="welcome-title">🎉 WELCOME TO YOUR 18TH BIRTHDAY! 🎉</h1>
                     
                     <div class="birthday-hero">
-                        <div class="hero-name">JANISHA</div>
+                        <div class="hero-name">JENISHA</div>
                         <div class="hero-age">18</div>
                     </div>
                     
@@ -1650,27 +1859,27 @@
                 <div class="wheel-container">
                     <h2 class="game-title">
                         <i class="fas fa-sync-alt"></i>
-                        🎡 SPIN THE WHEEL OF FORTUNE! 🎁
+                        🎡 SPIN THE WHEEL OF SURPRISES! 🎁
                     </h2>
                     
                     <div class="game-instruction">
                         <p><strong>🎮 HOW TO PLAY:</strong></p>
-                        <p>🎡 Spin the wheel to win birthday prizes!</p>
-                        <p>🎁 Each spin gives you a special birthday reward!</p>
-                        <p>🎯 You get 3 spins - make them count!</p>
+                        <p>🎡 Spin the wheel to win random birthday surprises!</p>
+                        <p>🎁 Each spin triggers a special animation/effect!</p>
+                        <p>🎯 You get 3 spins - expect the unexpected!</p>
                         <p>🏆 Complete all spins for 500 bonus points!</p>
                     </div>
                     
                     <div class="wheel-wrapper">
                         <svg id="wheel" width="500" height="500" viewBox="0 0 500 500">
-                            <!-- Wheel will be generated by JavaScript -->
+                            <!-- Wheel will be generated by JavaScript - NO TEXT, only colors -->
                         </svg>
                         <div class="wheel-center"></div>
                         <div class="wheel-pointer"></div>
                     </div>
                     
                     <div class="prize-display" id="prize-display">
-                        🎁 Spin the wheel to win a prize! 🎁
+                        🎡 Spin to see what surprise awaits! 🎡
                     </div>
                     
                     <div class="game-stats" style="justify-content: center; margin: 30px 0;">
@@ -1690,7 +1899,7 @@
                     </button>
                     
                     <div class="game-feedback" id="wheel-feedback">
-                        🎯 Ready to win amazing prizes? Click SPIN!
+                        🎯 Ready for a surprise? Click SPIN!
                     </div>
                     
                     <div class="nav-buttons">
@@ -1759,7 +1968,7 @@
         <section class="page" id="page6">
             <div class="container">
                 <div class="birthday-display">
-                    <h1 class="birthday-message">🎂 HAPPY 18TH BIRTHDAY JANISHA! 🎉</h1>
+                    <h1 class="birthday-message">🎂 HAPPY 18TH BIRTHDAY JENISHA! 🎉</h1>
                     <p style="font-size: 2.2rem; color: var(--gold); margin: 50px 0; text-shadow: 0 0 30px var(--gold);">
                         🏆 YOU COMPLETED ALL BIRTHDAY CHALLENGES! 🏆<br>
                         ✨ Now for the FINAL SURPRISES... ✨
@@ -1820,12 +2029,12 @@
                 <div class="final-message-container">
                     <div class="message-header">
                         <h1 class="message-title">A Special Birthday Message</h1>
-                        <p class="message-subtitle">For Janisha on her magical 18th birthday ✨</p>
+                        <p class="message-subtitle">For Jenisha on her magical 18th birthday ✨</p>
                     </div>
                     
                     <div class="message-content">
                         <div class="message-line">
-                            🎉 <span class="highlight">HAPPY 18TH BIRTHDAY, JANISHA!</span> 🎉
+                            🎉 <span class="highlight">HAPPY 18TH BIRTHDAY, JENISHA!</span> 🎉
                         </div>
                         
                         <div class="message-line">
@@ -1930,15 +2139,54 @@
         let spinsLeft = 3;
         let wheelSpinning = false;
         let wheelScore = 0;
+        
+        // Define the 8 prizes with their effects
         const wheelPrizes = [
-            "🎂 Virtual Birthday Cake! (+100 points)",
-            "🎁 Birthday Gift! (+150 points)",
-            "🎉 Party Popper! (+200 points)",
-            "✨ Sparkling Confetti! (+250 points)",
-            "🥳 Dance Party! (+300 points)",
-            "🎈 Birthday Balloon! (+100 points)",
-            "🍰 Cupcake Treat! (+150 points)",
-            "🌟 Birthday Star! (+200 points)"
+            {
+                name: "🥔 Potato appears and does nothing",
+                effect: "potato",
+                points: 50
+            },
+            {
+                name: "🌀 Screen spins slightly then stops",
+                effect: "screenSpin",
+                points: 100
+            },
+            {
+                name: "🎂 Cake falls… misses… disappears",
+                effect: "cakeFall",
+                points: 75
+            },
+            {
+                name: "🎂 Cake rain",
+                effect: "cakeRain",
+                points: 200
+            },
+            {
+                name: "🎈 Balloon inflates then pops",
+                effect: "balloon",
+                points: 150
+            },
+            {
+                name: "🔄 Wheel spins again by itself",
+                effect: "wheelSpinAgain",
+                points: 125
+            },
+            {
+                name: "👻 Ghost fades in then says bye",
+                effect: "ghost",
+                points: 175
+            },
+            {
+                name: "🧨 Firework fizzles out",
+                effect: "firework",
+                points: 100
+            },
+            {
+                name: "🤷‍♀️ Shrug emoji floats up",
+                effect: "shrug",
+                points: 50
+            }
         ];
 
         // Quiz Game
@@ -2032,7 +2280,7 @@
             attempts++;
             attemptCount.textContent = attempts;
             
-            if (enteredPassword === "janisha") {
+            if (enteredPassword === "janisha") {  // CHANGED TO JANISHA
                 // Correct password
                 playSound('success-sound', 0.7);
                 errorMsg.classList.remove('show');
@@ -2369,7 +2617,7 @@
             const spinBtn = document.getElementById('spin-btn');
             const nextBtn = document.getElementById('wheel-next');
             
-            // Create wheel sections
+            // Create wheel sections (NO TEXT, only colors)
             createWheelSections();
             
             spinBtn.addEventListener('click', spinWheel);
@@ -2385,7 +2633,7 @@
             
             const sections = wheelPrizes.length;
             const anglePerSection = 360 / sections;
-            const colors = ['#ff00aa', '#ffcc00', '#00ffff', '#cc66ff', '#ff66b2', '#33ff99', '#3399ff', '#ffff66'];
+            const colors = ['#ff00aa', '#ffcc00', '#00ffff', '#cc66ff', '#ff66b2', '#33ff99', '#3399ff', '#ffff66', '#ff9966'];
             
             for (let i = 0; i < sections; i++) {
                 const startAngle = i * anglePerSection;
@@ -2400,27 +2648,13 @@
                 const x2 = 250 + 200 * Math.cos(endRad);
                 const y2 = 250 + 200 * Math.sin(endRad);
                 
-                // Create arc path
+                // Create arc path (NO TEXT)
                 const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
                 path.setAttribute('d', `M250,250 L${x1},${y1} A200,200 0 0,1 ${x2},${y2} Z`);
                 path.setAttribute('fill', colors[i % colors.length]);
                 path.setAttribute('class', 'wheel-section');
                 path.setAttribute('data-index', i);
                 wheel.appendChild(path);
-                
-                // Add text
-                const textAngle = (startAngle + endAngle) / 2;
-                const textRad = (textAngle - 90) * Math.PI / 180;
-                const textX = 250 + 120 * Math.cos(textRad);
-                const textY = 250 + 120 * Math.sin(textRad);
-                
-                const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-                text.setAttribute('x', textX);
-                text.setAttribute('y', textY);
-                text.setAttribute('transform', `rotate(${textAngle}, ${textX}, ${textY})`);
-                text.setAttribute('class', 'wheel-text');
-                text.textContent = wheelPrizes[i];
-                wheel.appendChild(text);
             }
         }
 
@@ -2450,7 +2684,7 @@
             wheel.style.transform = `rotate(${targetAngle}deg)`;
             wheel.style.transition = 'transform 4s cubic-bezier(0.17, 0.67, 0.23, 0.99)';
             
-            // Determine prize
+            // Determine prize after spin completes
             setTimeout(() => {
                 const normalizedAngle = targetAngle % 360;
                 const sections = wheelPrizes.length;
@@ -2458,53 +2692,207 @@
                 const prizeIndex = Math.floor(((360 - normalizedAngle) % 360) / sectionSize);
                 const prize = wheelPrizes[prizeIndex];
                 
-                // Extract points from prize string
-                const pointsMatch = prize.match(/\+(\d+)/);
-                const points = pointsMatch ? parseInt(pointsMatch[1]) : 100;
-                
                 // Update score
-                wheelScore += points;
-                addToScore(points);
+                wheelScore += prize.points;
+                addToScore(prize.points);
                 
                 // Update UI
                 document.getElementById('spins-left').textContent = spinsLeft;
                 document.getElementById('wheel-score').textContent = wheelScore;
                 
-                // Show prize
-                prizeDisplay.innerHTML = `🎉 YOU WON: ${prize} 🎉`;
-                feedback.innerHTML = `🎁 Amazing spin! ${spinsLeft} spins left!`;
+                // Show prize and trigger effect
+                prizeDisplay.innerHTML = `🎉 ${prize.name} 🎉`;
+                feedback.innerHTML = `🎁 You got ${prize.points} points! ${spinsLeft} spins left!`;
                 
                 // Play celebration sound
                 playSound('success-sound');
                 
-                // Reset button
-                spinBtn.disabled = false;
-                spinBtn.innerHTML = '<i class="fas fa-sync-alt"></i> 🎡 SPIN THE WHEEL! 🎡';
-                wheelSpinning = false;
+                // Trigger the prize effect
+                triggerPrizeEffect(prize.effect);
                 
-                // Create confetti
-                createConfetti(100);
+                // Reset button
+                setTimeout(() => {
+                    spinBtn.disabled = false;
+                    spinBtn.innerHTML = '<i class="fas fa-sync-alt"></i> 🎡 SPIN THE WHEEL! 🎡';
+                    wheelSpinning = false;
+                }, 3000);
                 
                 // Check if game is complete
                 if (spinsLeft <= 0) {
-                    spinBtn.disabled = true;
-                    spinBtn.innerHTML = '🎯 ALL SPINS USED!';
-                    
-                    // Bonus for completing all spins
-                    const bonus = 500;
-                    wheelScore += bonus;
-                    addToScore(bonus);
-                    
-                    prizeDisplay.innerHTML = `🏆 ALL SPINS COMPLETE!<br>+${bonus} bonus points!`;
-                    feedback.innerHTML = '🎊 Wheel game completed! Move to next game!';
-                    
-                    // Enable next button
-                    nextBtn.disabled = false;
-                    
-                    // Big celebration
-                    playSound('celebration-sound', 0.8);
-                    createConfetti(200);
+                    setTimeout(() => {
+                        spinBtn.disabled = true;
+                        spinBtn.innerHTML = '🎯 ALL SPINS USED!';
+                        
+                        // Bonus for completing all spins
+                        const bonus = 500;
+                        wheelScore += bonus;
+                        addToScore(bonus);
+                        
+                        prizeDisplay.innerHTML = `🏆 ALL SPINS COMPLETE!<br>+${bonus} bonus points!`;
+                        feedback.innerHTML = '🎊 Wheel game completed! Move to next game!';
+                        
+                        // Enable next button
+                        nextBtn.disabled = false;
+                        
+                        // Big celebration
+                        playSound('celebration-sound', 0.8);
+                        createConfetti(200);
+                    }, 3000);
                 }
+            }, 4000);
+        }
+
+        // ===== PRIZE EFFECTS =====
+        function triggerPrizeEffect(effectType) {
+            const effectContainer = document.getElementById('prize-effect');
+            effectContainer.innerHTML = '';
+            effectContainer.classList.add('active');
+            
+            switch(effectType) {
+                case 'potato':
+                    // 🥔 Potato appears and does nothing
+                    const potato = document.createElement('div');
+                    potato.className = 'potato-effect';
+                    potato.innerHTML = '🥔';
+                    potato.style.color = '#8B4513';
+                    effectContainer.appendChild(potato);
+                    
+                    setTimeout(() => {
+                        potato.remove();
+                    }, 2000);
+                    break;
+                    
+                case 'screenSpin':
+                    // 🌀 Screen spins slightly then stops
+                    const screenSpin = document.createElement('div');
+                    screenSpin.className = 'screen-spin-effect';
+                    effectContainer.appendChild(screenSpin);
+                    
+                    setTimeout(() => {
+                        screenSpin.remove();
+                    }, 2000);
+                    break;
+                    
+                case 'cakeFall':
+                    // 🎂 Cake falls… misses… disappears
+                    const cakeFall = document.createElement('div');
+                    cakeFall.className = 'cake-fall-effect';
+                    cakeFall.innerHTML = '🎂';
+                    effectContainer.appendChild(cakeFall);
+                    
+                    setTimeout(() => {
+                        cakeFall.remove();
+                    }, 2000);
+                    break;
+                    
+                case 'cakeRain':
+                    // 🎂 Cake rain
+                    const cakeRainContainer = document.getElementById('cake-rain');
+                    cakeRainContainer.innerHTML = '';
+                    
+                    // Create 30 falling cakes
+                    for (let i = 0; i < 30; i++) {
+                        setTimeout(() => {
+                            const cake = document.createElement('div');
+                            cake.className = 'falling-cake';
+                            cake.innerHTML = '🎂';
+                            cake.style.left = `${Math.random() * 100}%`;
+                            cake.style.fontSize = `${Math.random() * 2 + 1.5}rem`;
+                            cake.style.color = ['#ffcc00', '#ff66b2', '#ff00aa'][Math.floor(Math.random() * 3)];
+                            cake.style.animationDuration = `${Math.random() * 2 + 2}s`;
+                            cake.style.animationDelay = `${Math.random() * 0.5}s`;
+                            cakeRainContainer.appendChild(cake);
+                            
+                            setTimeout(() => {
+                                if (cake.parentNode) cake.remove();
+                            }, 3000);
+                        }, i * 100);
+                    }
+                    
+                    setTimeout(() => {
+                        cakeRainContainer.innerHTML = '';
+                    }, 4000);
+                    break;
+                    
+                case 'balloon':
+                    // 🎈 Balloon inflates then pops
+                    const balloon = document.createElement('div');
+                    balloon.className = 'balloon-effect';
+                    balloon.innerHTML = '🎈';
+                    balloon.style.color = '#ff00aa';
+                    effectContainer.appendChild(balloon);
+                    
+                    setTimeout(() => {
+                        balloon.remove();
+                        playSound('pop-sound');
+                    }, 2000);
+                    break;
+                    
+                case 'wheelSpinAgain':
+                    // 🔄 Wheel spins again by itself
+                    const wheel = document.getElementById('wheel');
+                    const extraSpinAngle = 720 + Math.random() * 360;
+                    
+                    setTimeout(() => {
+                        wheel.style.transition = 'transform 2s cubic-bezier(0.17, 0.67, 0.23, 0.99)';
+                        wheel.style.transform = `rotate(${extraSpinAngle}deg)`;
+                        
+                        playSound('wheel-spin-sound', 0.3);
+                    }, 500);
+                    
+                    setTimeout(() => {
+                        wheel.style.transition = '';
+                    }, 2500);
+                    break;
+                    
+                case 'ghost':
+                    // 👻 Ghost fades in then says bye
+                    const ghost = document.createElement('div');
+                    ghost.className = 'ghost-effect';
+                    ghost.innerHTML = '👻';
+                    ghost.style.color = 'white';
+                    effectContainer.appendChild(ghost);
+                    
+                    setTimeout(() => {
+                        ghost.innerHTML = '👻 👋';
+                    }, 1500);
+                    
+                    setTimeout(() => {
+                        ghost.remove();
+                    }, 3000);
+                    break;
+                    
+                case 'firework':
+                    // 🧨 Firework fizzles out
+                    const firework = document.createElement('div');
+                    firework.className = 'firework-effect';
+                    firework.innerHTML = '🧨';
+                    firework.style.color = '#ffcc00';
+                    effectContainer.appendChild(firework);
+                    
+                    setTimeout(() => {
+                        firework.remove();
+                    }, 2000);
+                    break;
+                    
+                case 'shrug':
+                    // 🤷‍♀️ Shrug emoji floats up
+                    const shrug = document.createElement('div');
+                    shrug.className = 'shrug-effect';
+                    shrug.innerHTML = '🤷‍♀️';
+                    shrug.style.color = 'white';
+                    effectContainer.appendChild(shrug);
+                    
+                    setTimeout(() => {
+                        shrug.remove();
+                    }, 3000);
+                    break;
+            }
+            
+            // Hide effect container after animation
+            setTimeout(() => {
+                effectContainer.classList.remove('active');
+                effectContainer.innerHTML = '';
             }, 4000);
         }
 
@@ -2513,7 +2901,7 @@
             const quizArea = document.getElementById('quiz-area');
             const questions = [
                 {
-                    question: "🎂 If Janisha could have ANY birthday cake in the world, what would it MOST likely be?",
+                    question: "🎂 If Jenisha could have ANY birthday cake in the world, what would it MOST likely be?",
                     options: [
                         "A) Chocolate overload (never fails 😌)",
                         "B) Classic vanilla (simple & clean)",
@@ -2522,7 +2910,7 @@
                     ]
                 },
                 {
-                    question: "🎁 What's the ULTIMATE 18th birthday gift for Janisha?",
+                    question: "🎁 What's the ULTIMATE 18th birthday gift for Jenisha?",
                     options: [
                         "A) A stack of good fictional books 📚✨",
                         "B) A surprise trip / outing 🧳",
