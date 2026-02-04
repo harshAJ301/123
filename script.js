@@ -914,3 +914,65 @@ document.addEventListener('DOMContentLoaded', function() {
         document.head.appendChild(style);
     }
 });
+// ===== EMERGENCY MUSIC START =====
+function emergencyStartMusic() {
+    console.log("EMERGENCY: Starting music...");
+    
+    // Create a visible button for music start
+    const musicBtn = document.createElement('button');
+    musicBtn.innerHTML = '🎵 CLICK TO START MUSIC 🎵';
+    musicBtn.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: linear-gradient(45deg, #ff00aa, #00ffff);
+        color: white;
+        border: none;
+        padding: 15px 25px;
+        border-radius: 25px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 10000;
+        box-shadow: 0 10px 30px rgba(255, 0, 170, 0.5);
+        animation: pulse 2s infinite;
+    `;
+    
+    musicBtn.onclick = function() {
+        const bgMusic = document.getElementById('bg-music');
+        if (bgMusic) {
+            bgMusic.volume = 1.0;
+            bgMusic.play().then(() => {
+                console.log("Emergency music started!");
+                musicBtn.innerHTML = '🎵 MUSIC PLAYING! 🎵';
+                musicBtn.style.background = 'linear-gradient(45deg, #06d6a0, #118ab2)';
+                musicBtn.disabled = true;
+                
+                setTimeout(() => {
+                    musicBtn.remove();
+                }, 3000);
+            }).catch(e => {
+                console.error("Still can't play:", e);
+                musicBtn.innerHTML = '❌ PERMISSION DENIED';
+                musicBtn.style.background = 'linear-gradient(45deg, #ff0000, #ff9500)';
+            });
+        }
+    };
+    
+    document.body.appendChild(musicBtn);
+    
+    // Auto-remove after 30 seconds
+    setTimeout(() => {
+        if (musicBtn.parentNode) {
+            musicBtn.remove();
+        }
+    }, 30000);
+}
+
+// Call this if music doesn't start after 5 seconds
+setTimeout(() => {
+    const bgMusic = document.getElementById('bg-music');
+    if (bgMusic && bgMusic.paused) {
+        emergencyStartMusic();
+    }
+}, 5000);
