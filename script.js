@@ -730,3 +730,187 @@ function checkElements() {
 
 // Run check on load
 setTimeout(checkElements, 1000);
+// ===== MUSIC PLAYER SYSTEM =====
+class MusicPlayer {
+    constructor() {
+        this.bgMusic = document.getElementById('bg-music');
+        this.musicEnabled = true;
+        this.hasUserInteracted = false;
+        
+        if (this.bgMusic) {
+            this.bgMusic.volume = 1.0;
+            this.bgMusic.loop = true;
+            
+            // Try to preload
+            this.bgMusic.load();
+            
+            // Setup event listeners
+            this.setupMusicListeners();
+        }
+    }
+    
+    setupMusicListeners() {
+        // Music button in control panel
+        const musicToggle = document.getElementById('music-toggle');
+        if (musicToggle) {
+            musicToggle.addEventListener('click', () => this.toggleMusic());
+        }
+        
+        // Enable music button in password screen
+        const enableMusicBtn = document.getElementById('enable-music-btn');
+        if (enableMusicBtn) {
+            enableMusicBtn.addEventListener('click', () => this.startMusicWithInteraction());
+        }
+        
+        // Start music when website unlocks
+        const originalUnlockWebsite = unlockWebsite;
+        unlockWebsite = () => {
+            const result = originalUnlockWebsite.apply(this, arguments);
+            setTimeout(() => this.tryStartMusic(), 1000);
+            return result;
+        };
+        
+        // Try to start when start button is clicked
+        const startBtn = document.getElementById('start-game-btn');
+        if (startBtn) {
+            startBtn.addEventListener('click', () => {
+                setTimeout(() => this.tryStartMusic(), 500);
+            });
+        }
+        
+        // Try to start on ANY user interaction
+        const interactionEvents = ['click', 'touchstart', 'keydown'];
+        interactionEvents.forEach(event => {
+            document.addEventListener(event, () => {
+                if (!this.hasUserInteracted) {
+                    this.hasUserInteracted = true;
+                    this.tryStartMusic();
+                }
+            }, { once: false });
+        });
+    }
+    
+    startMusicWithInteraction() {
+        console.log("User clicked ENABLE MUSIC button");
+        this.hasUserInteracted = true;
+        
+        if (this.bgMusic) {
+            this.bgMusic.play().then(() => {
+                console.log("Music started successfully via button!");
+                this.musicEnabled = true;
+                this.updateMusicButton();
+                
+                // Show success message
+                const btn = document.getElementById('enable-music-btn');
+                if (btn) {
+                    btn.innerHTML = '<i class="fas fa-check"></i> MUSIC ENABLED!';
+                    btn.style.background = 'linear-gradient(45deg, #06d6a0, #118ab2)';
+                    btn.disabled = true;
+                }
+                
+                // Play celebration sound
+                playSound('success-sound', 0.5);
+                
+            }).catch(error => {
+                console.error("Music play failed:", error);
+                alert("Couldn't start music. Please allow audio permissions in your browser!");
+            });
+        }
+    }
+    
+    tryStartMusic() {
+        if (!this.bgMusic || !this.musicEnabled || this.bgMusic.played) return;
+        
+        console.log("Trying to start music...");
+        
+        this.bgMusic.play().then(() => {
+            console.log("Music auto-started!");
+            this.updateMusicButton();
+        }).catch(error => {
+            console.log("Music autoplay blocked, waiting for interaction...", error);
+            
+            // Show instruction to user
+            if (document.getElementById('password-screen') && 
+                document.getElementById('password-screen').style.display !== 'none') {
+                this.showMusicInstruction();
+            }
+        });
+    }
+    
+    showMusicInstruction() {
+        const musicBox = document.querySelector('.music-permission-box');
+        if (musicBox) {
+            musicBox.style.animation = 'pulse 2s infinite';
+            musicBox.style.borderColor = 'var(--hot-pink)';
+        }
+    }
+    
+    toggleMusic() {
+        if (!this.bgMusic) return;
+        
+        if (this.musicEnabled && !this.bgMusic.paused) {
+            this.bgMusic.pause();
+            this.musicEnabled = false;
+        } else {
+            this.bgMusic.play().catch(e => {
+                console.log("Toggle play failed:", e);
+                this.startMusicWithInteraction();
+            });
+            this.musicEnabled = true;
+        }
+        
+        this.updateMusicButton();
+        playSound('click-sound');
+    }
+    
+    updateMusicButton() {
+        const musicBtn = document.getElementById('music-toggle');
+        if (musicBtn) {
+            const isPlaying = this.bgMusic && !this.bgMusic.paused;
+            musicBtn.innerHTML = `<i class="fas fa-music"></i> <span>MUSIC: ${isPlaying ? 'ON' : 'OFF'}</span>`;
+        }
+    }
+    
+    forcePlayMusic() {
+        if (!this.bgMusic) return;
+        
+        // Stop and restart
+        this.bgMusic.pause();
+        this.bgMusic.currentTime = 0;
+        
+        // Small delay then play
+        setTimeout(() => {
+            this.bgMusic.play().then(() => {
+                console.log("Music force-played!");
+                this.musicEnabled = true;
+                this.updateMusicButton();
+            }).catch(e => {
+                console.error("Force play failed:", e);
+            });
+        }, 100);
+    }
+}
+
+// ===== INITIALIZE MUSIC PLAYER =====
+let musicPlayer = null;
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize music player
+    musicPlayer = new MusicPlayer();
+    
+    // ... rest of your existing initialization code ...
+    
+    // Add CSS animation for pulse effect
+    if (!document.querySelector('#music-animations')) {
+        const style = document.createElement('style');
+        style.id = 'music-animations';
+        style.textContent = `
+            @keyframes pulse {
+                0% { box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.7); }
+                70% { box-shadow: 0 0 0 10px rgba(0, 255, 255, 0); }
+                100% { box-shadow: 0 0 0 0 rgba(0, 255, 255, 0); }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+});
