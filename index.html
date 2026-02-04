@@ -2123,6 +2123,9 @@
         let soundEnabled = true;
         let attempts = 0;
         let maxAttempts = 5;
+        
+        // Music player instance
+        let musicPlayer = null;
 
         // Cake Smash Game
         let tapCount = 0;
@@ -2191,10 +2194,105 @@
         let quizScore = 0;
         let quizAnswers = {};
 
+        // ===== ENHANCED MUSIC PLAYER =====
+        class BirthdayMusicPlayer {
+            constructor() {
+                this.audio = document.getElementById('bg-music');
+                this.audio.volume = 1.0;
+                this.audio.loop = true;
+                this.userInteracted = false;
+                this.isPlaying = false;
+                
+                this.setupEventListeners();
+                this.tryStartMusic();
+            }
+            
+            setupEventListeners() {
+                // Mark user interaction on any click/touch
+                const interactionEvents = ['click', 'touchstart', 'keydown', 'mousedown'];
+                
+                interactionEvents.forEach(event => {
+                    document.addEventListener(event, () => {
+                        if (!this.userInteracted) {
+                            this.userInteracted = true;
+                            this.tryStartMusic();
+                        }
+                    }, { once: false });
+                });
+                
+                // Also listen for password success
+                const originalCheckPassword = checkPassword;
+                checkPassword = function() {
+                    const result = originalCheckPassword.apply(this, arguments);
+                    
+                    // If password is correct, try to play music
+                    const passwordInput = document.getElementById('password-input');
+                    if (passwordInput.value.toLowerCase().trim() === "janisha") {
+                        setTimeout(() => {
+                            musicPlayer.tryStartMusic();
+                        }, 1000);
+                    }
+                    
+                    return result;
+                };
+            }
+            
+            tryStartMusic() {
+                if (this.isPlaying) return;
+                
+                this.audio.play().then(() => {
+                    console.log("Music started successfully!");
+                    this.isPlaying = true;
+                    this.updateMusicButton();
+                }).catch(error => {
+                    console.log("Music play blocked. Waiting for user interaction...");
+                    
+                    // If music is blocked, wait for any user interaction
+                    const startOnInteraction = () => {
+                        this.audio.play().then(() => {
+                            console.log("Music started after user interaction!");
+                            this.isPlaying = true;
+                            this.updateMusicButton();
+                            document.body.removeEventListener('click', startOnInteraction);
+                        }).catch(e => {
+                            console.error("Still can't play music:", e);
+                        });
+                    };
+                    
+                    document.body.addEventListener('click', startOnInteraction, { once: true });
+                });
+            }
+            
+            stopMusic() {
+                this.audio.pause();
+                this.audio.currentTime = 0;
+                this.isPlaying = false;
+                this.updateMusicButton();
+            }
+            
+            toggleMusic() {
+                if (this.isPlaying) {
+                    this.stopMusic();
+                } else {
+                    this.tryStartMusic();
+                }
+            }
+            
+            updateMusicButton() {
+                const musicBtn = document.getElementById('music-toggle');
+                if (musicBtn) {
+                    musicBtn.innerHTML = `<i class="fas fa-music"></i> <span>MUSIC: ${this.isPlaying ? 'ON' : 'OFF'}</span>`;
+                }
+            }
+        }
+
         // ===== INITIALIZATION =====
         document.addEventListener('DOMContentLoaded', function() {
             // Create birthday background elements
             createBirthdayBackground();
+            
+            // Initialize music player
+            musicPlayer = new BirthdayMusicPlayer();
             
             // Initialize password system
             document.getElementById('password-submit').addEventListener('click', checkPassword);
@@ -2215,7 +2313,11 @@
             });
             
             // Music/Sound toggles
-            document.getElementById('music-toggle').addEventListener('click', toggleMusic);
+            document.getElementById('music-toggle').addEventListener('click', function() {
+                musicPlayer.toggleMusic();
+                playSound('click-sound');
+            });
+            
             document.getElementById('sound-toggle').addEventListener('click', toggleSound);
             
             // Surprise Button
@@ -2228,6 +2330,12 @@
             
             // Update score display
             updateGlobalScore();
+            
+            // Force music start on any click in password screen
+            const passwordScreen = document.getElementById('password-screen');
+            passwordScreen.addEventListener('click', function() {
+                musicPlayer.tryStartMusic();
+            }, { once: true });
         });
 
         // ===== CREATE BIRTHDAY BACKGROUND =====
@@ -2269,7 +2377,7 @@
             attempts++;
             attemptCount.textContent = attempts;
             
-            if (enteredPassword === "janisha") {  // CHANGED TO JANISHA
+            if (enteredPassword === "janisha") {
                 // Correct password
                 playSound('success-sound', 0.7);
                 errorMsg.classList.remove('show');
@@ -2282,7 +2390,7 @@
                 submitBtn.innerHTML = '<i class="fas fa-check"></i> 🎉 ACCESS GRANTED! 🎉';
                 submitBtn.style.background = 'linear-gradient(45deg, var(--cyan), var(--blue))';
                 
-                // Unlock website and START MUSIC IMMEDIATELY
+                // Unlock website
                 setTimeout(() => {
                     document.getElementById('password-screen').style.opacity = '0';
                     setTimeout(() => {
@@ -2292,21 +2400,19 @@
                         // Play celebration sound
                         playSound('celebration-sound', 0.8);
                         
-                        // START BACKGROUND MUSIC - FULL VOLUME, NO USER INTERACTION NEEDED
-                        const bgMusic = document.getElementById('bg-music');
-                        bgMusic.volume = 1.0; // FULL VOLUME
-                        bgMusic.play().then(() => {
-                            console.log("Music started successfully!");
-                        }).catch(e => {
-                            console.log("Music play error:", e);
-                            // Try again with user interaction fallback
-                            document.body.addEventListener('click', function startMusicOnce() {
-                                bgMusic.play();
-                                document.body.removeEventListener('click', startMusicOnce);
-                            }, { once: true });
-                        });
+                        // Try to start music
+                        if (musicPlayer) {
+                            setTimeout(() => {
+                                musicPlayer.tryStartMusic();
+                            }, 500);
+                        }
+                        
+                        // Scroll to top
+                        window.scrollTo(0, 0);
                     }, 500);
                 }, 1500);
+                
+                return true;
             } else {
                 // Wrong password
                 playSound('pop-sound');
@@ -2326,6 +2432,8 @@
                     document.getElementById('password-input').disabled = true;
                     errorMsg.textContent = '❌ Too many attempts! Refresh page. 🎈';
                 }
+                
+                return false;
             }
         }
 
@@ -2809,7 +2917,7 @@
                             setTimeout(() => {
                                 if (cake.parentNode) cake.remove();
                             }, 3000);
-                        }, i * 50); // Faster spawning
+                        }, i * 50);
                     }
                     
                     setTimeout(() => {
@@ -3169,23 +3277,6 @@
 
         function updateGlobalScore() {
             document.getElementById('global-score').textContent = totalScore;
-        }
-
-        function toggleMusic() {
-            const musicBtn = document.getElementById('music-toggle');
-            const bgMusic = document.getElementById('bg-music');
-            
-            if (musicEnabled) {
-                bgMusic.pause();
-                musicBtn.innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: OFF</span>';
-                musicEnabled = false;
-            } else {
-                bgMusic.volume = 1.0;
-                bgMusic.play();
-                musicBtn.innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: ON</span>';
-                musicEnabled = true;
-            }
-            playSound('click-sound');
         }
 
         function toggleSound() {
