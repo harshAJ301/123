@@ -1134,3 +1134,59 @@ audio {
     background-color: var(--primary-pink);
     color: white;
 }
+/* Add this CSS to your stylesheet */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+@keyframes clickEffect {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(3);
+        opacity: 0;
+    }
+}
+
+.password-error {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.password-error.show {
+    opacity: 1;
+}
+
+.game-feedback {
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.feedback-success {
+    background-color: rgba(6, 214, 160, 0.2);
+    color: #06d6a0;
+    border: 2px solid #06d6a0;
+}
+
+.feedback-error {
+    background-color: rgba(255, 107, 139, 0.2);
+    color: #ff6b8b;
+    border: 2px solid #ff6b8b;
+}
+
+.floating-element {
+    position: absolute;
+    animation: float 20s infinite linear;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(100vw, 100vh) rotate(360deg); }
+}
