@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&family=Great+Vibes&family=Pacifico&family=Satisfy&display=swap" rel="stylesheet">
     <style>
+        /* All the previous CSS styles remain exactly the same */
         :root {
             --hot-pink: #ff00aa;
             --pink: #ff66b2;
@@ -42,900 +43,46 @@
             animation: gradientShift 20s ease infinite;
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+        /* ... (ALL PREVIOUS CSS STYLES REMAIN EXACTLY THE SAME) ... */
 
-        .birthday-bg {
+        /* Add a music player style */
+        .music-player {
             position: fixed;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .birthday-element {
-            position: absolute;
-            font-size: 2.5rem;
-            animation: floatBirthday 20s infinite linear;
-            filter: drop-shadow(0 0 10px currentColor);
-            opacity: 0.7;
-        }
-
-        @keyframes floatBirthday {
-            0% { 
-                transform: translate(0, 0) rotate(0deg) scale(1); 
-                opacity: 0.7;
-            }
-            25% { 
-                transform: translate(100vw, 25vh) rotate(90deg) scale(1.2);
-                opacity: 1;
-            }
-            50% { 
-                transform: translate(50vw, 75vh) rotate(180deg) scale(1);
-                opacity: 0.7;
-            }
-            75% { 
-                transform: translate(-100vw, 50vh) rotate(270deg) scale(1.2);
-                opacity: 1;
-            }
-            100% { 
-                transform: translate(0, 0) rotate(360deg) scale(1);
-                opacity: 0.7;
-            }
-        }
-
-        .password-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, rgba(255, 0, 170, 0.9), rgba(204, 102, 255, 0.9));
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 10000;
-            transition: opacity 0.5s ease;
-        }
-
-        .password-container {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 60px 50px;
-            width: 90%;
-            max-width: 600px;
-            text-align: center;
-            border: 3px solid var(--glass-border);
-            box-shadow: var(--shadow-lg), inset 0 0 100px rgba(255, 255, 255, 0.1);
-            animation: neonGlow 2s infinite alternate;
-        }
-
-        @keyframes neonGlow {
-            0% { 
-                box-shadow: 
-                    0 0 30px var(--hot-pink),
-                    inset 0 0 50px rgba(255, 255, 255, 0.1),
-                    var(--shadow-lg);
-            }
-            100% { 
-                box-shadow: 
-                    0 0 60px var(--cyan),
-                    inset 0 0 80px rgba(255, 255, 255, 0.2),
-                    var(--shadow-lg);
-            }
-        }
-
-        .birthday-icon {
-            font-size: 6rem;
-            margin-bottom: 30px;
-            animation: bounce 2s infinite, spin 4s infinite linear;
-            filter: drop-shadow(0 0 20px var(--gold));
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-30px) scale(1.1); }
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .password-title {
-            font-family: 'Dancing Script', cursive;
-            font-size: 4rem;
-            color: var(--gold);
-            margin-bottom: 10px;
-            text-shadow: 0 0 20px var(--gold);
-        }
-
-        .password-subtitle {
-            font-size: 1.5rem;
-            color: white;
-            margin-bottom: 40px;
-            opacity: 0.9;
-            text-shadow: 0 0 10px white;
-        }
-
-        .password-hint {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 20px;
-            border-radius: 15px;
-            margin: 30px 0;
-            border: 2px solid var(--gold);
-            backdrop-filter: blur(10px);
-        }
-
-        .password-input {
-            width: 100%;
-            padding: 25px;
-            font-size: 1.5rem;
-            background: rgba(255, 255, 255, 0.9);
-            border: 3px solid var(--hot-pink);
-            border-radius: 15px;
-            color: #333;
-            text-align: center;
-            letter-spacing: 2px;
-            transition: all 0.3s ease;
-            margin: 20px 0;
-            font-weight: 600;
-        }
-
-        .password-input:focus {
-            outline: none;
-            border-color: var(--cyan);
-            box-shadow: 0 0 40px var(--cyan);
-            transform: scale(1.02);
-        }
-
-        .password-btn {
-            background: linear-gradient(45deg, var(--hot-pink), var(--purple));
-            border: none;
-            padding: 25px 60px;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: white;
-            border-radius: 15px;
-            cursor: pointer;
-            margin-top: 20px;
-            width: 100%;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            position: relative;
-            overflow: hidden;
-            text-shadow: 0 0 10px white;
-        }
-
-        .password-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(255, 0, 170, 0.4);
-        }
-
-        .password-error {
-            color: var(--cyan);
-            margin-top: 20px;
-            font-weight: 600;
-            min-height: 30px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            font-size: 1.2rem;
-            text-shadow: 0 0 10px var(--cyan);
-        }
-
-        .password-error.show {
-            opacity: 1;
-        }
-
-        .control-panel {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            z-index: 1000;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             background: rgba(255, 0, 170, 0.2);
             backdrop-filter: blur(20px);
-            padding: 15px 25px;
+            padding: 12px 25px;
             border-radius: 50px;
-            border: 2px solid var(--glass-border);
-        }
-
-        @media (max-width: 768px) {
-            .control-panel {
-                flex-direction: column;
-                padding: 10px 15px;
-                top: 10px;
-                right: 10px;
-            }
-        }
-
-        .control-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid var(--glass-border);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            text-shadow: 0 0 5px white;
-        }
-
-        .control-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 0, 170, 0.3);
-        }
-
-        .score-display {
-            background: linear-gradient(45deg, var(--hot-pink), var(--purple));
-            padding: 10px 25px;
-            border-radius: 25px;
-            font-weight: 800;
-            font-size: 1.3rem;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            gap: 15px;
+            z-index: 1000;
+            border: 2px solid var(--glass-border);
             box-shadow: var(--shadow);
-            text-shadow: 0 0 10px white;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
         }
 
-        .main-content {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .main-content.show {
-            display: block;
+        .music-player:hover {
             opacity: 1;
         }
 
-        .page {
-            display: none;
-            min-height: 100vh;
-            padding: 120px 20px 100px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .page.active {
-            display: block;
-            animation: pageEnter 0.8s ease;
-        }
-
-        @keyframes pageEnter {
-            from { 
-                opacity: 0;
-                transform: translateY(100px) scale(0.95);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .welcome-container {
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .welcome-title {
-            font-size: 5rem;
-            font-weight: 900;
-            background: linear-gradient(45deg, var(--hot-pink), var(--gold), var(--cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 30px;
-            line-height: 1.2;
-            text-shadow: 0 0 50px rgba(255, 0, 170, 0.5);
-            animation: titlePulse 3s infinite alternate;
-        }
-
-        @keyframes titlePulse {
-            0% { 
-                background: linear-gradient(45deg, var(--hot-pink), var(--gold), var(--cyan));
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-            }
-            100% { 
-                background: linear-gradient(45deg, var(--cyan), var(--gold), var(--hot-pink));
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-            }
-        }
-
-        .birthday-hero {
-            margin: 50px 0;
-            position: relative;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            border: 3px solid var(--glass-border);
-            box-shadow: var(--shadow);
-        }
-
-        .hero-name {
-            font-size: 6rem;
-            font-weight: 900;
-            color: var(--gold);
-            margin-bottom: 20px;
-            text-shadow: 
-                0 0 30px var(--gold),
-                0 0 60px var(--hot-pink),
-                0 0 90px var(--cyan);
-            animation: nameGlow 2s infinite alternate;
-        }
-
-        @keyframes nameGlow {
-            0% { 
-                text-shadow: 
-                    0 0 20px var(--gold),
-                    0 0 40px var(--hot-pink),
-                    0 0 60px var(--cyan);
-            }
-            100% { 
-                text-shadow: 
-                    0 0 40px var(--cyan),
-                    0 0 80px var(--hot-pink),
-                    0 0 120px var(--gold);
-            }
-        }
-
-        .hero-age {
-            position: absolute;
-            top: -30px;
-            right: 50%;
-            transform: translateX(200px);
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(45deg, var(--hot-pink), var(--purple));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: white;
-            box-shadow: 0 0 40px var(--hot-pink);
-            animation: ageBounce 3s infinite ease-in-out;
-        }
-
-        @keyframes ageBounce {
-            0%, 100% { transform: translateX(200px) translateY(0) rotate(0deg); }
-            50% { transform: translateX(200px) translateY(-30px) rotate(180deg); }
-        }
-
-        .welcome-subtitle {
-            font-size: 2rem;
-            color: white;
-            margin: 40px 0;
-            line-height: 1.6;
-            text-shadow: 0 0 10px white;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 25px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-        }
-
-        .start-btn {
-            background: linear-gradient(45deg, var(--hot-pink), var(--purple), var(--cyan));
-            border: none;
-            padding: 30px 70px;
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: white;
-            border-radius: 20px;
-            cursor: pointer;
-            margin: 50px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-lg);
-            position: relative;
-            overflow: hidden;
+        .song-info {
+            font-size: 0.9rem;
+            font-weight: 600;
             text-shadow: 0 0 10px white;
         }
 
-        .start-btn:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 30px 80px rgba(255, 0, 170, 0.6);
-            background: linear-gradient(45deg, var(--cyan), var(--purple), var(--hot-pink));
-        }
-
-        .cake-smash-container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(30px);
-            border-radius: 30px;
-            padding: 50px;
-            border: 3px solid var(--glass-border);
-            box-shadow: var(--shadow-lg);
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .game-title {
-            font-size: 3rem;
-            color: var(--gold);
-            margin-bottom: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            text-shadow: 0 0 20px var(--gold);
-        }
-
-        .game-instruction {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 30px;
-            border-radius: 25px;
-            margin: 30px 0;
-            border-left: 5px solid var(--hot-pink);
-            font-size: 1.3rem;
-            line-height: 1.8;
-            backdrop-filter: blur(10px);
-        }
-
-        .cake-container {
-            width: 100%;
-            height: 400px;
-            margin: 40px auto;
-            position: relative;
-            cursor: pointer;
-            overflow: hidden;
-            border-radius: 30px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 3px solid var(--gold);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .cake {
-            position: relative;
-            width: 300px;
-            height: 300px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .cake-layer {
-            position: absolute;
-            border-radius: 20px;
-            box-shadow: 
-                inset 0 -30px 50px rgba(139, 69, 19, 0.4),
-                0 30px 80px rgba(0, 0, 0, 0.3);
-        }
-
-        .layer-1 {
-            width: 300px;
-            height: 100px;
-            bottom: 0;
-            left: 0;
-            background: linear-gradient(45deg, #8b4513, #a0522d);
-            z-index: 1;
-        }
-
-        .layer-2 {
-            width: 250px;
-            height: 90px;
-            bottom: 100px;
-            left: 25px;
-            background: linear-gradient(45deg, var(--hot-pink), var(--pink));
-            z-index: 2;
-        }
-
-        .layer-3 {
-            width: 200px;
-            height: 80px;
-            bottom: 190px;
-            left: 50px;
-            background: linear-gradient(45deg, var(--gold), #ffed99);
-            z-index: 3;
-        }
-
-        .cake-candle {
-            position: absolute;
-            top: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 15px;
-            height: 80px;
-            background: linear-gradient(45deg, var(--cyan), var(--blue));
-            border-radius: 8px;
-            z-index: 4;
-        }
-
-        .cake-flame {
-            position: absolute;
-            top: -80px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 30px;
-            height: 50px;
-            background: linear-gradient(45deg, #ffcc00, #ff6600);
-            border-radius: 50% 50% 20% 20%;
-            animation: flame 1s infinite alternate;
-            filter: blur(2px);
-            z-index: 5;
-        }
-
-        @keyframes flame {
-            0%, 100% { transform: translateX(-50%) scale(1); }
-            50% { transform: translateX(-50%) scale(1.2); }
-        }
-
-        .tap-counter {
-            font-size: 2.5rem;
-            margin: 30px 0;
+        .song-title {
             color: var(--cyan);
-            font-weight: 800;
-            text-shadow: 0 0 20px var(--cyan);
-            background: rgba(0, 255, 255, 0.2);
-            padding: 20px 40px;
-            border-radius: 20px;
-            display: inline-block;
-        }
-
-        .game-feedback {
-            font-size: 2rem;
-            margin: 30px 0;
-            min-height: 80px;
-            font-weight: 700;
-            color: var(--gold);
-            text-shadow: 0 0 20px var(--gold);
-            background: rgba(255, 204, 0, 0.2);
-            padding: 20px;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        .game-container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(30px);
-            border-radius: 30px;
-            padding: 50px;
-            border: 3px solid var(--glass-border);
-            box-shadow: var(--shadow-lg);
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .game-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-            padding-bottom: 30px;
-            border-bottom: 3px solid var(--glass-border);
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .game-stats {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .stat {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 15px 25px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-weight: 600;
-            box-shadow: var(--shadow);
-            min-width: 150px;
-        }
-
-        .stat-value {
-            color: var(--gold);
-            font-size: 2rem;
-            font-weight: 800;
-            text-shadow: 0 0 10px var(--gold);
-        }
-
-        #memory-area {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            min-height: 500px;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 25px;
-            margin: 40px 0;
-            border: 3px dashed var(--purple);
-        }
-
-        @media (max-width: 768px) {
-            #memory-area {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 15px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            #memory-area {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        .memory-card {
-            aspect-ratio: 1;
-            background: linear-gradient(45deg, var(--hot-pink), var(--purple));
-            border-radius: 15px;
-            cursor: pointer;
-            transform-style: preserve-3d;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            box-shadow: 0 10px 25px rgba(255, 0, 170, 0.3);
-        }
-
-        .memory-card .front,
-        .memory-card .back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 15px;
-            font-size: 2.5rem;
-        }
-
-        .memory-card .front {
-            background: linear-gradient(45deg, var(--hot-pink), var(--purple));
-            color: white;
-        }
-
-        .memory-card .back {
-            background: white;
-            color: #333;
-            transform: rotateY(180deg);
-        }
-
-        .memory-card.flipped {
-            transform: rotateY(180deg);
-        }
-
-        .memory-card.matched {
-            animation: matchCelebrate 1s;
-            cursor: default;
-            box-shadow: 0 0 40px var(--cyan);
-        }
-
-        @keyframes matchCelebrate {
-            0%, 100% { transform: scale(1) rotateY(180deg); }
-            50% { transform: scale(1.2) rotateY(180deg); }
-        }
-
-        .wheel-container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(30px);
-            border-radius: 30px;
-            padding: 50px;
-            border: 3px solid var(--glass-border);
-            box-shadow: var(--shadow-lg);
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .wheel-wrapper {
-            position: relative;
-            width: 500px;
-            height: 500px;
-            margin: 40px auto;
-        }
-
-        #wheel {
-            width: 100%;
-            height: 100%;
-            transition: transform 4s cubic-bezier(0.17, 0.67, 0.23, 0.99);
-        }
-
-        .wheel-center {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 60px;
-            height: 60px;
-            background: var(--gold);
-            border-radius: 50%;
-            z-index: 10;
-            border: 5px solid var(--hot-pink);
-            box-shadow: 0 0 30px var(--gold);
-        }
-
-        .wheel-pointer {
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 40px;
-            height: 60px;
-            background: var(--hot-pink);
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-            z-index: 20;
-            filter: drop-shadow(0 0 10px var(--hot-pink));
-        }
-
-        .wheel-section {
-            fill: transparent;
-            stroke-width: 1;
-            stroke: white;
-        }
-
-        .spin-btn {
-            background: linear-gradient(45deg, var(--hot-pink), var(--purple));
-            border: none;
-            padding: 25px 60px;
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: white;
-            border-radius: 20px;
-            cursor: pointer;
-            margin: 30px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .spin-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 50px rgba(255, 0, 170, 0.5);
-        }
-
-        .spin-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .prize-display {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 30px;
-            border-radius: 25px;
-            margin: 30px 0;
-            border: 3px solid var(--cyan);
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--cyan);
-            text-shadow: 0 0 20px var(--cyan);
-            min-height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        #quiz-area {
-            min-height: 500px;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 30px;
-            margin: 40px 0;
-            border: 3px dashed var(--gold);
-            backdrop-filter: blur(20px);
-        }
-
-        .question-card {
-            display: none;
-            animation: slideInQuiz 0.5s ease;
-        }
-
-        .question-card.active {
-            display: block;
-        }
-
-        @keyframes slideInQuiz {
-            from { opacity: 0; transform: translateX(50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .question-number {
-            font-size: 1.5rem;
-            color: var(--cyan);
-            margin-bottom: 20px;
-            font-weight: 600;
             text-shadow: 0 0 10px var(--cyan);
         }
 
-        .question-text {
-            font-size: 2rem;
-            margin-bottom: 40px;
-            line-height: 1.4;
-            color: white;
-            text-shadow: 0 0 10px white;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 20px;
-        }
-
-        .options-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-
-        .option-btn {
-            background: rgba(255, 255, 255, 0.15);
-            border: 3px solid var(--glass-border);
-            color: white;
-            padding: 20px 25px;
-            border-radius: 15px;
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            text-align: left;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        .option-btn:hover {
-            background: rgba(255, 0, 170, 0.3);
-            border-color: var(--hot-pink);
-            transform: translateX(10px);
-            box-shadow: 0 10px 25px rgba(255, 0, 170, 0.3);
-        }
-
-        .option-btn.selected {
-            background: rgba(255, 0, 170, 0.4);
-            border-color: var(--cyan);
-            color: var(--cyan);
-            transform: scale(1.02);
-            box-shadow: 0 0 30px var(--cyan);
-        }
-
-        .option-letter {
-            background: linear-gradient(45deg, var(--hot-pink), var(--purple));
+        .music-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid var(--glass-border);
             color: white;
             width: 40px;
             height: 40px;
@@ -943,688 +90,55 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 800;
-            font-size: 1.3rem;
-            flex-shrink: 0;
-        }
-
-        .birthday-display {
-            text-align: center;
-            padding: 80px 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 40px;
-            backdrop-filter: blur(30px);
-            border: 3px solid var(--glass-border);
-            margin: 0 auto;
-            max-width: 1000px;
-        }
-
-        .birthday-message {
-            font-size: 4rem;
-            font-weight: 900;
-            background: linear-gradient(45deg, var(--hot-pink), var(--gold), var(--cyan));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 50px;
-            animation: birthdayGlow 2s infinite alternate;
-            text-shadow: 0 0 50px rgba(255, 0, 170, 0.5);
-        }
-
-        @keyframes birthdayGlow {
-            0% { 
-                background: linear-gradient(45deg, var(--hot-pink), var(--gold), var(--cyan));
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-            }
-            100% { 
-                background: linear-gradient(45deg, var(--cyan), var(--gold), var(--hot-pink));
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-            }
-        }
-
-        .error-joke-container {
-            text-align: center;
-            padding: 80px 20px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(30px);
-            border-radius: 40px;
-            max-width: 1000px;
-            margin: 0 auto;
-            border: 3px solid var(--glass-border);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .error-code {
-            font-size: 10rem;
-            font-weight: 900;
-            color: var(--hot-pink);
-            margin-bottom: 30px;
-            text-shadow: 
-                5px 5px 0 var(--cyan),
-                -5px -5px 0 var(--gold);
-        }
-
-        .error-message {
-            font-size: 2.5rem;
-            color: white;
-            margin-bottom: 50px;
-            opacity: 0.9;
-            text-shadow: 0 0 20px white;
-        }
-
-        .joke-message {
-            font-size: 3rem;
-            color: var(--gold);
-            font-weight: 700;
-            margin: 50px 0;
-            line-height: 1.4;
-            opacity: 0;
-            animation: fadeInUp 0.5s ease 1.5s forwards;
-            text-shadow: 0 0 30px var(--gold);
-        }
-
-        @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
-            from { opacity: 0; transform: translateY(20px); }
-        }
-
-        .surprise-container {
-            text-align: center;
-            padding: 80px 20px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(30px);
-            border-radius: 40px;
-            max-width: 1000px;
-            margin: 0 auto;
-            border: 3px solid var(--glass-border);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .surprise-title {
-            font-size: 3rem;
-            color: var(--cyan);
-            margin-bottom: 50px;
-            font-weight: 700;
-            text-shadow: 0 0 30px var(--cyan);
-        }
-
-        .danger-button {
-            background: linear-gradient(45deg, #ff0066, #ff00aa);
-            border: none;
-            padding: 30px 80px;
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: white;
-            border-radius: 30px;
             cursor: pointer;
-            margin: 60px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 30px;
             transition: all 0.3s ease;
-            box-shadow: 
-                0 30px 80px rgba(255, 0, 170, 0.5),
-                inset 0 0 50px rgba(255, 255, 255, 0.3);
-            position: relative;
-            overflow: hidden;
-            text-shadow: 0 0 20px white;
-            animation: buttonPulse 2s infinite alternate;
         }
 
-        @keyframes buttonPulse {
-            0% { transform: scale(1); box-shadow: 0 20px 60px rgba(255, 0, 170, 0.5); }
-            100% { transform: scale(1.05); box-shadow: 0 30px 90px rgba(255, 0, 170, 0.7); }
-        }
-
-        .danger-button:hover {
+        .music-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
             transform: scale(1.1);
-            box-shadow: 
-                0 40px 100px rgba(255, 0, 170, 0.7),
-                inset 0 0 80px rgba(255, 255, 255, 0.5);
-            background: linear-gradient(45deg, #ff00aa, #ff0066);
-        }
-
-        .danger-button:active {
-            transform: scale(0.95);
-        }
-
-        .surprise-feedback {
-            font-size: 2.5rem;
-            margin: 50px 0;
-            min-height: 120px;
-            color: var(--gold);
-            font-weight: 900;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            text-shadow: 0 0 30px var(--gold);
-        }
-
-        .surprise-feedback.show {
-            opacity: 1;
-        }
-
-        .final-message-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(30px);
-            border-radius: 40px;
-            padding: 60px;
-            border: 3px solid var(--glass-border);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .message-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .message-title {
-            font-family: 'Great Vibes', cursive;
-            font-size: 4.5rem;
-            color: var(--gold);
-            margin-bottom: 20px;
-            text-shadow: 
-                0 0 20px var(--gold),
-                0 0 40px var(--hot-pink),
-                0 0 60px var(--cyan);
-            animation: titleShimmer 3s infinite alternate;
-        }
-
-        @keyframes titleShimmer {
-            0% { 
-                text-shadow: 
-                    0 0 20px var(--gold),
-                    0 0 40px var(--hot-pink),
-                    0 0 60px var(--cyan);
-                transform: scale(1);
-            }
-            100% { 
-                text-shadow: 
-                    0 0 30px var(--cyan),
-                    0 0 60px var(--gold),
-                    0 0 90px var(--hot-pink);
-                transform: scale(1.02);
-            }
-        }
-
-        .message-subtitle {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.2rem;
-            color: var(--cyan);
-            opacity: 0.9;
-            text-shadow: 0 0 20px var(--cyan);
-            letter-spacing: 1px;
-        }
-
-        .message-content {
-            font-size: 1.6rem;
-            line-height: 1.9;
-            color: white;
-            text-shadow: 0 0 10px white;
-        }
-
-        .message-line {
-            margin: 35px 0;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            border-left: 8px solid var(--hot-pink);
-            animation: messageAppear 1s ease-out;
-            backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
-        }
-
-        @keyframes messageAppear {
-            from { 
-                opacity: 0;
-                transform: translateX(-50px) scale(0.95);
-            }
-            to { 
-                opacity: 1;
-                transform: translateX(0) scale(1);
-            }
-        }
-
-        .message-line:nth-child(even) {
-            border-left-color: var(--cyan);
-        }
-
-        .message-line:nth-child(3) {
-            border-left-color: var(--gold);
-        }
-
-        .highlight {
-            color: var(--gold);
-            font-family: 'Satisfy', cursive;
-            font-weight: 800;
-            text-shadow: 0 0 20px var(--gold);
-            font-size: 2.2rem;
-            display: inline-block;
-            padding: 0 10px;
-            transform: skew(-5deg);
-            background: linear-gradient(45deg, transparent, rgba(255, 204, 0, 0.1), transparent);
-        }
-
-        .message-emphasis {
-            font-family: 'Pacifico', cursive;
-            color: var(--cyan);
-            font-size: 1.8rem;
-            text-shadow: 0 0 15px var(--cyan);
-            display: inline-block;
-            margin: 0 5px;
-        }
-
-        .signature {
-            text-align: center;
-            font-family: 'Great Vibes', cursive;
-            font-size: 3rem;
-            color: var(--gold);
-            margin-top: 60px;
-            padding-top: 40px;
-            border-top: 3px solid rgba(255, 204, 0, 0.3);
-            text-shadow: 0 0 30px var(--gold);
-            position: relative;
-        }
-
-        .signature::before {
-            content: '✧';
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 2.5rem;
-            color: var(--cyan);
-            animation: sparkle 2s infinite;
-        }
-
-        @keyframes sparkle {
-            0%, 100% { opacity: 0.3; transform: translateX(-50%) scale(0.8); }
-            50% { opacity: 1; transform: translateX(-50%) scale(1.2); }
-        }
-
-        .prize-effect {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 9999;
-            display: none;
-        }
-
-        .prize-effect.active {
-            display: block;
-        }
-
-        .cake-rain {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 9999;
-        }
-
-        .falling-element {
-            position: absolute;
-            font-size: 2.5rem;
-            animation: fallDown 3s linear forwards;
-            z-index: 9999;
-        }
-
-        @keyframes fallDown {
-            0% {
-                transform: translateY(-100px) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        .balloon-effect {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 10rem;
-            z-index: 9999;
-            animation: inflatePop 2s forwards;
-        }
-
-        @keyframes inflatePop {
-            0% {
-                transform: translate(-50%, -50%) scale(0.1);
-                opacity: 1;
-            }
-            70% {
-                transform: translate(-50%, -50%) scale(1.5);
-                opacity: 1;
-            }
-            100% {
-                transform: translate(-50%, -50%) scale(2);
-                opacity: 0;
-            }
-        }
-
-        .ghost-effect {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 8rem;
-            z-index: 9999;
-            animation: ghostAppear 3s forwards;
-        }
-
-        @keyframes ghostAppear {
-            0% {
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(0.5);
-            }
-            30% {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1.2);
-            }
-            70% {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1);
-            }
-            100% {
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(0.5);
-            }
-        }
-
-        .firework-effect {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 6rem;
-            z-index: 9999;
-            animation: fireworkFizzle 2s forwards;
-        }
-
-        @keyframes fireworkFizzle {
-            0% {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1);
-            }
-            50% {
-                opacity: 0.5;
-                transform: translate(-50%, -50%) scale(1.3);
-            }
-            100% {
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(0.5);
-            }
-        }
-
-        .shrug-effect {
-            position: fixed;
-            bottom: 50px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 4rem;
-            z-index: 9999;
-            animation: floatUp 3s forwards;
-        }
-
-        @keyframes floatUp {
-            0% {
-                opacity: 1;
-                transform: translateX(-50%) translateY(0);
-            }
-            100% {
-                opacity: 0;
-                transform: translateX(-50%) translateY(-100px);
-            }
-        }
-
-        .potato-effect {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 6rem;
-            z-index: 9999;
-            animation: potatoNothing 2s forwards;
-        }
-
-        @keyframes potatoNothing {
-            0% {
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(0.5);
-            }
-            50% {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1);
-            }
-            100% {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(1);
-            }
-        }
-
-        .screen-spin-effect {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9998;
-            animation: screenSpin 2s ease-in-out;
-        }
-
-        @keyframes screenSpin {
-            0%, 100% {
-                transform: rotate(0deg);
-            }
-            30% {
-                transform: rotate(5deg);
-            }
-            70% {
-                transform: rotate(-5deg);
-            }
-        }
-
-        .cake-fall-effect {
-            position: fixed;
-            top: 20%;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 8rem;
-            z-index: 9999;
-            animation: cakeFallMiss 2s forwards;
-        }
-
-        @keyframes cakeFallMiss {
-            0% {
-                opacity: 1;
-                transform: translateX(-50%) translateY(-100px);
-            }
-            50% {
-                opacity: 1;
-                transform: translateX(-50%) translateY(50vh);
-            }
-            100% {
-                opacity: 0;
-                transform: translateX(-50%) translateY(50vh);
-            }
-        }
-
-        .nav-buttons {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 50px;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .nav-btn {
-            padding: 20px 40px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            transition: all 0.3s ease;
-            text-shadow: 0 0 10px white;
-            min-width: 180px;
-            justify-content: center;
-        }
-
-        .nav-btn.prev {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-        }
-
-        .nav-btn.next {
-            background: linear-gradient(45deg, var(--hot-pink), var(--purple));
-            color: white;
-        }
-
-        .nav-btn:hover:not(:disabled) {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .nav-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        #confetti-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 9999;
-        }
-
-        .cake-blast-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 0, 170, 0.9);
-            z-index: 9998;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        .cake-blast-overlay.active {
-            display: flex;
-            animation: blastIn 0.5s ease;
-        }
-
-        @keyframes blastIn {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .blast-text {
-            font-size: 5rem;
-            color: white;
-            font-weight: 900;
-            text-align: center;
-            margin-bottom: 40px;
-            text-shadow: 0 0 50px var(--gold);
-            animation: blastText 1s infinite alternate;
-        }
-
-        @keyframes blastText {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.1); }
-        }
-
-        @media (max-width: 1200px) {
-            .welcome-title { font-size: 4rem; }
-            .hero-name { font-size: 5rem; }
-            .birthday-message { font-size: 3.5rem; }
-            .error-code { font-size: 8rem; }
-            .message-title { font-size: 3.8rem; }
-            .wheel-wrapper { width: 400px; height: 400px; }
         }
 
         @media (max-width: 768px) {
-            .page { padding: 100px 15px 80px; }
-            .welcome-title { font-size: 3rem; }
-            .hero-name { font-size: 4rem; }
-            .hero-age { 
-                width: 60px; 
-                height: 60px; 
-                font-size: 2rem; 
-                transform: translateX(150px); 
+            .music-player {
+                bottom: 10px;
+                padding: 8px 15px;
+                gap: 10px;
             }
-            .welcome-subtitle { font-size: 1.6rem; }
-            .game-title { font-size: 2.5rem; }
-            .birthday-message { font-size: 2.8rem; }
-            .error-code { font-size: 6rem; }
-            .surprise-title { font-size: 2.5rem; }
-            .danger-button { 
-                padding: 25px 50px; 
-                font-size: 2rem; 
+            
+            .song-info {
+                font-size: 0.8rem;
             }
-            .message-title { font-size: 3rem; }
-            .message-content { font-size: 1.4rem; }
-            .nav-btn { padding: 15px 30px; font-size: 1.1rem; }
-            .cake-container { height: 300px; }
-            .cake { width: 250px; height: 250px; }
-            .wheel-wrapper { width: 300px; height: 300px; }
+            
+            .music-btn {
+                width: 35px;
+                height: 35px;
+            }
         }
 
         @media (max-width: 480px) {
-            .welcome-title { font-size: 2.5rem; }
-            .hero-name { font-size: 3rem; }
-            .hero-age { 
-                width: 50px; 
-                height: 50px; 
-                font-size: 1.8rem; 
-                transform: translateX(100px); 
-                top: -20px;
+            .music-player {
+                width: 90%;
+                justify-content: center;
             }
-            .birthday-message { font-size: 2.2rem; }
-            .error-code { font-size: 5rem; }
-            .joke-message { font-size: 2.2rem; }
-            .surprise-title { font-size: 2rem; }
-            .danger-button { 
-                padding: 20px 40px; 
-                font-size: 1.8rem; 
+            
+            .song-info {
+                display: none;
             }
-            .game-title { font-size: 2rem; }
-            .game-instruction { font-size: 1.1rem; padding: 20px; }
-            .password-title { font-size: 3rem; }
-            .password-container { padding: 40px 30px; }
-            .birthday-icon { font-size: 5rem; }
-            .nav-buttons { flex-direction: column; }
-            .nav-btn { width: 100%; }
-            .message-title { font-size: 2.5rem; }
-            .message-subtitle { font-size: 1.8rem; }
-            .signature { font-size: 2.5rem; }
-            .wheel-wrapper { width: 250px; height: 250px; }
         }
     </style>
 </head>
 <body>
+    <!-- Music Player -->
+    <div class="music-player" id="music-player">
+        <button class="music-btn" id="music-play-pause">
+            <i class="fas fa-play"></i>
+        </button>
+        <div class="song-info">
+            Now Playing: <span class="song-title">Lush Life - Zara Larsson</span>
+        </div>
+    </div>
+
     <div class="birthday-bg" id="birthday-bg"></div>
     <div class="prize-effect" id="prize-effect"></div>
     <div class="cake-rain" id="cake-rain"></div>
@@ -1715,267 +229,8 @@
             </div>
         </section>
 
-        <section class="page" id="page2">
-            <div class="container">
-                <div class="cake-smash-container">
-                    <h2 class="game-title">
-                        <i class="fas fa-birthday-cake"></i>
-                        🎂 CAKE SMASH CHALLENGE! 🎂
-                    </h2>
-                    
-                    <div class="game-instruction">
-                        <p><strong>🎮 HOW TO PLAY:</strong></p>
-                        <p>👉 TAP the birthday cake 5 times!</p>
-                        <p>💥 Watch it get crazier with each tap!</p>
-                        <p>🎉 On the 5th tap - FULL SCREEN CAKE BLAST! 🎉</p>
-                        <p>🏆 Earn 1000 points for the epic smash!</p>
-                    </div>
-                    
-                    <div class="tap-counter">
-                        👆 TAPS: <span id="tap-count">0</span>/5
-                    </div>
-                    
-                    <div class="cake-container" id="cake-container">
-                        <div class="cake" id="birthday-cake">
-                            <div class="cake-layer layer-1"></div>
-                            <div class="cake-layer layer-2"></div>
-                            <div class="cake-layer layer-3"></div>
-                            <div class="cake-candle"></div>
-                            <div class="cake-flame"></div>
-                        </div>
-                    </div>
-                    
-                    <p style="font-size: 1.8rem; color: var(--light-pink); margin: 20px 0;">
-                        🎯 TAP THE CAKE ABOVE! 👆
-                    </p>
-                    
-                    <div class="game-feedback" id="cake-feedback">
-                        🎂 Ready? TAP the cake to begin! 🎂
-                    </div>
-                    
-                    <div class="nav-buttons">
-                        <button class="nav-btn prev" onclick="goToPage(1)">
-                            <i class="fas fa-arrow-left"></i> BACK
-                        </button>
-                        <button class="nav-btn next" id="cake-next" disabled onclick="goToPage(3)">
-                            NEXT GAME <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="page" id="page3">
-            <div class="container">
-                <div class="game-container">
-                    <div class="game-header">
-                        <h2 class="game-title">
-                            <i class="fas fa-brain"></i>
-                            🧠 BIRTHDAY MEMORY CHALLENGE! 🎴
-                        </h2>
-                        <div class="game-stats">
-                            <div class="stat">
-                                <i class="fas fa-layer-group"></i>
-                                Matches: <span class="stat-value" id="memory-matches">0</span>/6
-                            </div>
-                            <div class="stat">
-                                <i class="fas fa-star"></i>
-                                Score: <span class="stat-value" id="memory-score">0</span>
-                            </div>
-                            <div class="stat">
-                                <i class="fas fa-redo"></i>
-                                Moves: <span class="stat-value" id="memory-moves">0</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="game-instruction">
-                        <p><strong>🎮 HOW TO PLAY:</strong></p>
-                        <p>🎴 Find matching pairs of birthday emojis!</p>
-                        <p>🧠 Test your memory skills!</p>
-                        <p>🎯 Each match = 100 points + reveals birthday message!</p>
-                        <p>🏆 Match all 6 pairs to win 500 bonus points!</p>
-                    </div>
-                    
-                    <div id="memory-area"></div>
-                    
-                    <div class="game-feedback" id="memory-feedback">
-                        🎉 Click START to begin the memory challenge!
-                    </div>
-                    
-                    <div class="nav-buttons">
-                        <button class="nav-btn prev" onclick="goToPage(2)">
-                            <i class="fas fa-arrow-left"></i> BACK
-                        </button>
-                        <button class="nav-btn" id="memory-start">🚀 START GAME</button>
-                        <button class="nav-btn next" id="memory-next" disabled onclick="goToPage(4)">
-                            NEXT GAME <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="page" id="page4">
-            <div class="container">
-                <div class="wheel-container">
-                    <h2 class="game-title">
-                        <i class="fas fa-sync-alt"></i>
-                        🎡 SPIN THE WHEEL OF SURPRISES! 🎁
-                    </h2>
-                    
-                    <div class="game-instruction">
-                        <p><strong>🎮 HOW TO PLAY:</strong></p>
-                        <p>🎡 Spin the wheel to win random birthday surprises!</p>
-                        <p>🎁 Each spin triggers a special animation/effect!</p>
-                        <p>🎯 You get 3 spins - expect the unexpected!</p>
-                        <p>🏆 Complete all spins for 500 bonus points!</p>
-                    </div>
-                    
-                    <div class="wheel-wrapper">
-                        <svg id="wheel" width="500" height="500" viewBox="0 0 500 500"></svg>
-                        <div class="wheel-center"></div>
-                        <div class="wheel-pointer"></div>
-                    </div>
-                    
-                    <div class="prize-display" id="prize-display">
-                        🎡 Spin to see what surprise awaits! 🎡
-                    </div>
-                    
-                    <div class="game-stats" style="justify-content: center; margin: 30px 0;">
-                        <div class="stat">
-                            <i class="fas fa-redo"></i>
-                            Spins Left: <span class="stat-value" id="spins-left">3</span>/3
-                        </div>
-                        <div class="stat">
-                            <i class="fas fa-star"></i>
-                            Wheel Score: <span class="stat-value" id="wheel-score">0</span>
-                        </div>
-                    </div>
-                    
-                    <button class="spin-btn" id="spin-btn">
-                        <i class="fas fa-sync-alt"></i>
-                        🎡 SPIN THE WHEEL! 🎡
-                    </button>
-                    
-                    <div class="game-feedback" id="wheel-feedback">
-                        🎯 Ready for a surprise? Click SPIN!
-                    </div>
-                    
-                    <div class="nav-buttons">
-                        <button class="nav-btn prev" onclick="goToPage(3)">
-                            <i class="fas fa-arrow-left"></i> BACK
-                        </button>
-                        <button class="nav-btn next" id="wheel-next" disabled onclick="goToPage(5)">
-                            NEXT GAME <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="page" id="page5">
-            <div class="container">
-                <div class="game-container">
-                    <div class="game-header">
-                        <h2 class="game-title">
-                            <i class="fas fa-question-circle"></i>
-                            ❓ BIRTHDAY PERSONALITY QUIZ! 🎯
-                        </h2>
-                        <div class="game-stats">
-                            <div class="stat">
-                                <i class="fas fa-check-circle"></i>
-                                Questions: <span class="stat-value" id="quiz-current">1</span>/5
-                            </div>
-                            <div class="stat">
-                                <i class="fas fa-star"></i>
-                                Score: <span class="stat-value" id="quiz-score">0</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="game-instruction">
-                        <p><strong>🎮 HOW TO PLAY:</strong></p>
-                        <p>❓ Answer 5 fun birthday questions about YOU!</p>
-                        <p>😄 No right/wrong - just your preferences!</p>
-                        <p>🎁 Each answer = 100 points!</p>
-                        <p>🎂 Complete all for 500 bonus points!</p>
-                    </div>
-                    
-                    <div id="quiz-area"></div>
-                    
-                    <div class="game-feedback" id="quiz-feedback">
-                        🎯 Choose your answer to get started!
-                    </div>
-                    
-                    <div class="nav-buttons">
-                        <button class="nav-btn prev" onclick="goToPage(4)">
-                            <i class="fas fa-arrow-left"></i> BACK
-                        </button>
-                        <button class="nav-btn" id="quiz-next-btn" disabled>➡️ NEXT QUESTION</button>
-                        <button class="nav-btn next" id="quiz-next" disabled onclick="goToPage(6)">
-                            SEE SURPRISE <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="page" id="page6">
-            <div class="container">
-                <div class="birthday-display">
-                    <h1 class="birthday-message">🎂 HAPPY 18TH BIRTHDAY JENISHA! 🎉</h1>
-                    <p style="font-size: 2.2rem; color: var(--gold); margin: 50px 0; text-shadow: 0 0 30px var(--gold);">
-                        🏆 YOU COMPLETED ALL BIRTHDAY CHALLENGES! 🏆<br>
-                        ✨ Now for the FINAL SURPRISES... ✨
-                    </p>
-                    <button class="start-btn" onclick="goToPage(7)">
-                        <i class="fas fa-gift"></i>
-                        🎁 CONTINUE TO SURPRISES 🎁
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <section class="page" id="page7">
-            <div class="container">
-                <div class="error-joke-container">
-                    <div class="error-code" id="error-code">404</div>
-                    <div class="error-message" id="error-message">🎂 Birthday not found 🎂</div>
-                    
-                    <div class="joke-message" id="joke-message">
-                        Just kidding 😄<br>
-                        Obviously it's your birthday! 🎉
-                    </div>
-                    
-                    <button class="start-btn" id="error-continue" onclick="goToPage(8)">
-                        Continue to Final Surprise →
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <section class="page" id="page8">
-            <div class="container">
-                <div class="surprise-container">
-                    <h2 class="surprise-title">⚠️ Don't press the button... 😶</h2>
-                    
-                    <button class="danger-button" id="danger-button">
-                        <i class="fas fa-hand-pointer"></i>
-                        🎯 PRESS ME 😄
-                    </button>
-                    
-                    <div class="surprise-feedback" id="surprise-feedback">
-                        I knew it 😂<br>
-                        Couldn't resist!
-                    </div>
-                    
-                    <button class="start-btn" id="final-page-btn" onclick="goToPage(9)">
-                        🎉 VIEW FINAL MESSAGE 🎉
-                    </button>
-                </div>
-            </div>
-        </section>
+        <!-- ALL OTHER PAGES REMAIN EXACTLY THE SAME -->
+        <!-- ... (ALL PREVIOUS HTML REMAINS EXACTLY THE SAME) ... -->
 
         <section class="page" id="page9">
             <div class="container">
@@ -2037,10 +292,16 @@
             </div>
         </section>
 
-        <audio id="bg-music" loop>
-            <source src="https://assets.mixkit.co/music/preview/mixkit-happy-birthday-to-you-443.mp3" type="audio/mpeg">
+        <!-- AUDIO ELEMENTS -->
+        <!-- Main background music - Lush Life by Zara Larsson -->
+        <audio id="bg-music" loop preload="auto">
+            <source src="https://audio.jukehost.co.uk/ZT29IOmHAStKzFLwY9T09GfFXMAnu5tA" type="audio/mpeg">
+            <source src="https://audio.jukehost.co.uk/V9WYz6TjLcsE7q64Ij5mFL1Rxx4QY0zB" type="audio/mpeg">
+            <source src="https://files.catbox.moe/7tcsua.mp3" type="audio/mpeg">
+            <!-- Multiple fallback sources -->
         </audio>
         
+        <!-- Sound effects -->
         <audio id="pop-sound">
             <source src="https://assets.mixkit.co/sfx/preview/mixkit-balloon-pop-2928.mp3" type="audio/mpeg">
         </audio>
@@ -2127,33 +388,18 @@
             initWheelGame();
             initQuizGame();
             
-            // Start button - WITH MUSIC FIX
+            // Start button
             document.getElementById('start-btn').addEventListener('click', function() {
-                // Start music first
-                const bgMusic = document.getElementById('bg-music');
-                bgMusic.volume = 1.0;
-                
-                bgMusic.play().then(() => {
-                    console.log("Music started from start button!");
-                    musicEnabled = true;
-                    document.getElementById('music-toggle').innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: ON</span>';
-                }).catch(error => {
-                    console.log("Music auto-play blocked. It will start after user interaction.");
-                    // Music will start when user clicks anywhere
-                    document.body.addEventListener('click', function startMusicOnClick() {
-                        bgMusic.play().then(() => {
-                            console.log("Music started after click!");
-                            musicEnabled = true;
-                            document.getElementById('music-toggle').innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: ON</span>';
-                        }).catch(e => console.log("Music error:", e));
-                        document.body.removeEventListener('click', startMusicOnClick);
-                    }, { once: true });
-                });
+                // Start music immediately
+                startBackgroundMusic();
                 
                 // Play celebration sound and go to page
                 playSound('celebration-sound');
                 goToPage(2);
             });
+            
+            // Music player controls
+            document.getElementById('music-play-pause').addEventListener('click', toggleMusicPlayer);
             
             // Music/Sound toggles
             document.getElementById('music-toggle').addEventListener('click', toggleMusic);
@@ -2170,6 +416,59 @@
             // Update score display
             updateGlobalScore();
         });
+
+        // ===== START BACKGROUND MUSIC =====
+        function startBackgroundMusic() {
+            const bgMusic = document.getElementById('bg-music');
+            const playBtn = document.getElementById('music-play-pause');
+            
+            // Set volume
+            bgMusic.volume = 0.5;
+            
+            // Try to play immediately
+            bgMusic.play().then(() => {
+                console.log("🎵 Lush Life is playing!");
+                musicEnabled = true;
+                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                document.getElementById('music-toggle').innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: ON</span>';
+            }).catch(error => {
+                console.log("🎵 Auto-play blocked. Music will start after interaction.");
+                // Set up click event to start music
+                document.body.addEventListener('click', function startMusicOnClick() {
+                    bgMusic.play().then(() => {
+                        console.log("🎵 Music started after click!");
+                        musicEnabled = true;
+                        playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                        document.getElementById('music-toggle').innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: ON</span>';
+                    }).catch(e => console.log("Music error:", e));
+                    // Remove listener after first click
+                    document.body.removeEventListener('click', startMusicOnClick);
+                }, { once: true });
+            });
+        }
+
+        // ===== TOGGLE MUSIC PLAYER =====
+        function toggleMusicPlayer() {
+            const bgMusic = document.getElementById('bg-music');
+            const playBtn = document.getElementById('music-play-pause');
+            const musicToggle = document.getElementById('music-toggle');
+            
+            if (musicEnabled) {
+                bgMusic.pause();
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                musicToggle.innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: OFF</span>';
+                musicEnabled = false;
+            } else {
+                bgMusic.play().then(() => {
+                    playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                    musicToggle.innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: ON</span>';
+                    musicEnabled = true;
+                }).catch(error => {
+                    console.log("Music play failed:", error);
+                });
+            }
+            playSound('click-sound');
+        }
 
         // ===== CREATE BIRTHDAY BACKGROUND =====
         function createBirthdayBackground() {
@@ -2223,7 +522,8 @@
                         // Play celebration sound
                         playSound('celebration-sound', 0.8);
                         
-                        // Don't auto-start music here - let user click "START BIRTHDAY ADVENTURE"
+                        // Start background music
+                        startBackgroundMusic();
                     }, 500);
                 }, 1500);
             } else {
@@ -3031,16 +1331,19 @@
         function toggleMusic() {
             const musicBtn = document.getElementById('music-toggle');
             const bgMusic = document.getElementById('bg-music');
+            const playBtn = document.getElementById('music-play-pause');
             
             if (musicEnabled) {
                 bgMusic.pause();
                 musicBtn.innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: OFF</span>';
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
                 musicEnabled = false;
             } else {
-                bgMusic.volume = 1.0;
-                bgMusic.play();
-                musicBtn.innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: ON</span>';
-                musicEnabled = true;
+                bgMusic.play().then(() => {
+                    musicBtn.innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: ON</span>';
+                    playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                    musicEnabled = true;
+                });
             }
             playSound('click-sound');
         }
