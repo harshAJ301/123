@@ -1609,33 +1609,6 @@
             transform: scale(1.1);
         }
 
-        /* YouTube Music Container */
-        .youtube-music-container {
-            position: fixed;
-            bottom: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
-            height: 80px;
-            z-index: 999;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-            border-radius: 15px;
-            overflow: hidden;
-            border: 2px solid var(--glass-border);
-            box-shadow: var(--shadow);
-        }
-
-        .youtube-music-container:hover {
-            opacity: 1;
-        }
-
-        .youtube-music-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
         @media (max-width: 1200px) {
             .welcome-title { font-size: 4rem; }
             .hero-name { font-size: 5rem; }
@@ -1677,11 +1650,6 @@
             }
             .song-info { font-size: 0.8rem; }
             .music-btn { width: 35px; height: 35px; }
-            .youtube-music-container {
-                width: 250px;
-                height: 70px;
-                bottom: 60px;
-            }
         }
 
         @media (max-width: 480px) {
@@ -1718,35 +1686,10 @@
                 justify-content: center;
             }
             .song-info { display: none; }
-            .youtube-music-container {
-                width: 200px;
-                height: 60px;
-                bottom: 50px;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- YouTube Music Player (Hidden Initially) -->
-    <div class="youtube-music-container" id="youtube-music-container" style="display: none;">
-        <iframe id="youtube-player" 
-                src="https://www.youtube.com/embed/drHpYfJhD4Y?autoplay=1&loop=1&playlist=drHpYfJhD4Y&controls=0&showinfo=0&modestbranding=1&rel=0&enablejsapi=1&mute=0" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-        </iframe>
-    </div>
-
-    <!-- Music Player Controls -->
-    <div class="music-player" id="music-player">
-        <button class="music-btn" id="music-play-pause">
-            <i class="fas fa-play"></i>
-        </button>
-        <div class="song-info">
-            Now Playing: <span class="song-title">Lush Life - Zara Larsson</span>
-        </div>
-    </div>
-
     <div class="birthday-bg" id="birthday-bg"></div>
     <div class="prize-effect" id="prize-effect"></div>
     <div class="cake-rain" id="cake-rain"></div>
@@ -2183,10 +2126,12 @@
         <audio id="wheel-spin-sound">
             <source src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-spin-1089.mp3" type="audio/mpeg">
         </audio>
+        
+        <!-- Background Music -->
+        <audio id="background-music" loop>
+            <source src="https://assets.mixkit.co/music/preview/mixkit-game-show-suspense-waiting-667.mp3" type="audio/mpeg">
+        </audio>
     </div>
-
-    <!-- YouTube API Script -->
-    <script src="https://www.youtube.com/iframe_api"></script>
 
     <script>
         // ===== GLOBAL VARIABLES =====
@@ -2196,7 +2141,7 @@
         let soundEnabled = true;
         let attempts = 0;
         let maxAttempts = 5;
-        let player;
+        let backgroundMusic;
 
         // Cake Smash Game
         let tapCount = 0;
@@ -2233,32 +2178,13 @@
         let quizScore = 0;
         let quizAnswers = {};
 
-        // ===== YOUTUBE PLAYER INITIALIZATION =====
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('youtube-player', {
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
-                }
-            });
-        }
-
-        function onPlayerReady(event) {
-            console.log("YouTube Player is ready!");
-            // Player is ready but not playing yet
-        }
-
-        function onPlayerStateChange(event) {
-            // Handle player state changes if needed
-            if (event.data === YT.PlayerState.PLAYING) {
-                console.log("YouTube video is playing!");
-            }
-        }
-
         // ===== INITIALIZATION =====
         document.addEventListener('DOMContentLoaded', function() {
             // Create birthday background
             createBirthdayBackground();
+            
+            // Get background music element
+            backgroundMusic = document.getElementById('background-music');
             
             // Initialize password system
             document.getElementById('password-submit').addEventListener('click', checkPassword);
@@ -2274,16 +2200,13 @@
             
             // Start button
             document.getElementById('start-btn').addEventListener('click', function() {
-                // Start YouTube music
-                startYouTubeMusic();
+                // Start background music
+                startBackgroundMusic();
                 
                 // Play celebration sound and go to page
                 playSound('celebration-sound');
                 goToPage(2);
             });
-            
-            // Music player controls
-            document.getElementById('music-play-pause').addEventListener('click', toggleMusicPlayer);
             
             // Music/Sound toggles
             document.getElementById('music-toggle').addEventListener('click', toggleMusic);
@@ -2301,49 +2224,19 @@
             updateGlobalScore();
         });
 
-        // ===== START YOUTUBE MUSIC =====
-        function startYouTubeMusic() {
-            const youtubeContainer = document.getElementById('youtube-music-container');
-            const playBtn = document.getElementById('music-play-pause');
-            
-            // Show YouTube player
-            youtubeContainer.style.display = 'block';
-            
-            // Wait a moment for YouTube API to be ready
-            setTimeout(() => {
-                if (player && player.playVideo) {
-                    player.playVideo();
-                    console.log("🎵 YouTube music started!");
+        // ===== START BACKGROUND MUSIC =====
+        function startBackgroundMusic() {
+            if (backgroundMusic) {
+                backgroundMusic.volume = 0.5;
+                backgroundMusic.play().then(() => {
+                    console.log("🎵 Background music started!");
                     musicEnabled = true;
-                    playBtn.innerHTML = '<i class="fas fa-pause"></i>';
                     document.getElementById('music-toggle').innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: ON</span>';
-                }
-            }, 1000);
-        }
-
-        // ===== TOGGLE MUSIC PLAYER =====
-        function toggleMusicPlayer() {
-            const playBtn = document.getElementById('music-play-pause');
-            const musicToggle = document.getElementById('music-toggle');
-            
-            if (musicEnabled) {
-                // Pause YouTube video
-                if (player && player.pauseVideo) {
-                    player.pauseVideo();
-                }
-                playBtn.innerHTML = '<i class="fas fa-play"></i>';
-                musicToggle.innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: OFF</span>';
-                musicEnabled = false;
-            } else {
-                // Play YouTube video
-                if (player && player.playVideo) {
-                    player.playVideo();
-                }
-                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                musicToggle.innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: ON</span>';
-                musicEnabled = true;
+                }).catch(error => {
+                    console.log("Music autoplay prevented:", error);
+                    // Music will play after user interaction
+                });
             }
-            playSound('click-sound');
         }
 
         // ===== CREATE BIRTHDAY BACKGROUND =====
@@ -2398,8 +2291,8 @@
                         // Play celebration sound
                         playSound('celebration-sound', 0.8);
                         
-                        // Start YouTube music
-                        startYouTubeMusic();
+                        // Start background music
+                        startBackgroundMusic();
                     }, 500);
                 }, 1500);
             } else {
@@ -3206,23 +3099,22 @@
 
         function toggleMusic() {
             const musicBtn = document.getElementById('music-toggle');
-            const playBtn = document.getElementById('music-play-pause');
             
             if (musicEnabled) {
-                // Pause YouTube video
-                if (player && player.pauseVideo) {
-                    player.pauseVideo();
+                // Pause background music
+                if (backgroundMusic) {
+                    backgroundMusic.pause();
                 }
                 musicBtn.innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: OFF</span>';
-                playBtn.innerHTML = '<i class="fas fa-play"></i>';
                 musicEnabled = false;
             } else {
-                // Play YouTube video
-                if (player && player.playVideo) {
-                    player.playVideo();
+                // Play background music
+                if (backgroundMusic) {
+                    backgroundMusic.play().catch(error => {
+                        console.log("Music play error:", error);
+                    });
                 }
                 musicBtn.innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: ON</span>';
-                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
                 musicEnabled = true;
             }
             playSound('click-sound');
