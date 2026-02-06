@@ -1609,6 +1609,11 @@
             transform: scale(1.1);
         }
 
+        /* YouTube Music Container - Hidden */
+        .youtube-music-container {
+            display: none;
+        }
+
         @media (max-width: 1200px) {
             .welcome-title { font-size: 4rem; }
             .hero-name { font-size: 5rem; }
@@ -1690,6 +1695,29 @@
     </style>
 </head>
 <body>
+    <!-- Hidden YouTube Player (Auto-plays in background) -->
+    <div class="youtube-music-container" id="youtube-music-container">
+        <iframe 
+            id="youtube-player" 
+            width="0" 
+            height="0" 
+            src="https://www.youtube.com/embed/aAXLhvrfaT8?autoplay=1&loop=1&playlist=aAXLhvrfaT8&controls=0&showinfo=0&modestbranding=1&rel=0&enablejsapi=1&mute=0" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <!-- Music Player Controls -->
+    <div class="music-player" id="music-player">
+        <button class="music-btn" id="music-play-pause">
+            <i class="fas fa-play"></i>
+        </button>
+        <div class="song-info">
+            Now Playing: <span class="song-title">Birthday Celebration Music 🎵</span>
+        </div>
+    </div>
+
     <div class="birthday-bg" id="birthday-bg"></div>
     <div class="prize-effect" id="prize-effect"></div>
     <div class="cake-rain" id="cake-rain"></div>
@@ -2126,11 +2154,6 @@
         <audio id="wheel-spin-sound">
             <source src="https://assets.mixkit.co/sfx/preview/mixkit-arcade-spin-1089.mp3" type="audio/mpeg">
         </audio>
-        
-        <!-- Background Music -->
-        <audio id="background-music" loop>
-            <source src="https://assets.mixkit.co/music/preview/mixkit-game-show-suspense-waiting-667.mp3" type="audio/mpeg">
-        </audio>
     </div>
 
     <script>
@@ -2141,7 +2164,6 @@
         let soundEnabled = true;
         let attempts = 0;
         let maxAttempts = 5;
-        let backgroundMusic;
 
         // Cake Smash Game
         let tapCount = 0;
@@ -2183,9 +2205,6 @@
             // Create birthday background
             createBirthdayBackground();
             
-            // Get background music element
-            backgroundMusic = document.getElementById('background-music');
-            
             // Initialize password system
             document.getElementById('password-submit').addEventListener('click', checkPassword);
             document.getElementById('password-input').addEventListener('keypress', function(e) {
@@ -2200,13 +2219,13 @@
             
             // Start button
             document.getElementById('start-btn').addEventListener('click', function() {
-                // Start background music
-                startBackgroundMusic();
-                
-                // Play celebration sound and go to page
+                // Start music (it will autoplay after password)
                 playSound('celebration-sound');
                 goToPage(2);
             });
+            
+            // Music player controls
+            document.getElementById('music-play-pause').addEventListener('click', toggleMusicPlayer);
             
             // Music/Sound toggles
             document.getElementById('music-toggle').addEventListener('click', toggleMusic);
@@ -2222,21 +2241,76 @@
             
             // Update score display
             updateGlobalScore();
+            
+            // Start YouTube music in background (hidden)
+            setTimeout(startYouTubeMusic, 1000);
         });
 
-        // ===== START BACKGROUND MUSIC =====
-        function startBackgroundMusic() {
-            if (backgroundMusic) {
-                backgroundMusic.volume = 0.5;
-                backgroundMusic.play().then(() => {
-                    console.log("🎵 Background music started!");
-                    musicEnabled = true;
-                    document.getElementById('music-toggle').innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: ON</span>';
-                }).catch(error => {
-                    console.log("Music autoplay prevented:", error);
-                    // Music will play after user interaction
-                });
+        // ===== YOUTUBE MUSIC CONTROL =====
+        let youtubePlayer;
+        
+        function startYouTubeMusic() {
+            // Create hidden YouTube iframe
+            const iframe = document.getElementById('youtube-player');
+            if (iframe) {
+                // YouTube will autoplay the music in background
+                console.log("🎵 YouTube music started (hidden)!");
+                
+                // Try to play if autoplay doesn't work
+                setTimeout(() => {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+                }, 1000);
             }
+        }
+
+        function toggleMusicPlayer() {
+            const playBtn = document.getElementById('music-play-pause');
+            const musicToggle = document.getElementById('music-toggle');
+            const iframe = document.getElementById('youtube-player');
+            
+            if (musicEnabled) {
+                // Pause YouTube video
+                if (iframe) {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                }
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                musicToggle.innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: OFF</span>';
+                musicEnabled = false;
+            } else {
+                // Play YouTube video
+                if (iframe) {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+                }
+                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                musicToggle.innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: ON</span>';
+                musicEnabled = true;
+            }
+            playSound('click-sound');
+        }
+
+        function toggleMusic() {
+            const iframe = document.getElementById('youtube-player');
+            const playBtn = document.getElementById('music-play-pause');
+            const musicToggle = document.getElementById('music-toggle');
+            
+            if (musicEnabled) {
+                // Pause YouTube video
+                if (iframe) {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                }
+                musicToggle.innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: OFF</span>';
+                playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                musicEnabled = false;
+            } else {
+                // Play YouTube video
+                if (iframe) {
+                    iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+                }
+                musicToggle.innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: ON</span>';
+                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                musicEnabled = true;
+            }
+            playSound('click-sound');
         }
 
         // ===== CREATE BIRTHDAY BACKGROUND =====
@@ -2291,8 +2365,12 @@
                         // Play celebration sound
                         playSound('celebration-sound', 0.8);
                         
-                        // Start background music
-                        startBackgroundMusic();
+                        // Start YouTube music
+                        startYouTubeMusic();
+                        
+                        // Show music is playing
+                        document.getElementById('music-play-pause').innerHTML = '<i class="fas fa-pause"></i>';
+                        musicEnabled = true;
                     }, 500);
                 }, 1500);
             } else {
@@ -3095,29 +3173,6 @@
 
         function updateGlobalScore() {
             document.getElementById('global-score').textContent = totalScore;
-        }
-
-        function toggleMusic() {
-            const musicBtn = document.getElementById('music-toggle');
-            
-            if (musicEnabled) {
-                // Pause background music
-                if (backgroundMusic) {
-                    backgroundMusic.pause();
-                }
-                musicBtn.innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: OFF</span>';
-                musicEnabled = false;
-            } else {
-                // Play background music
-                if (backgroundMusic) {
-                    backgroundMusic.play().catch(error => {
-                        console.log("Music play error:", error);
-                    });
-                }
-                musicBtn.innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: ON</span>';
-                musicEnabled = true;
-            }
-            playSound('click-sound');
         }
 
         function toggleSound() {
