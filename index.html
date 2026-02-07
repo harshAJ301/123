@@ -1740,8 +1740,8 @@
             </p>
             
             <div class="password-hint">
-                <p><strong>🔑 Password Hint:</strong> It's similar to your name! (all lowercase)</p>
-                <p><em>✨ Starts with 'j', ends with 'a', has 7 magical letters ✨</em></p>
+                <p><strong>🔑 Password Hint:</strong> It's the universal "I don't know" - just 3 letters!</p>
+                <p><em>✨ All lowercase, the most common response when you're clueless ✨</em></p>
             </div>
             
             <input type="password" 
@@ -2342,7 +2342,8 @@
             attempts++;
             attemptCount.textContent = attempts;
             
-            if (enteredPassword === "janisha") {
+            // CHANGED PASSWORD FROM "janisha" TO "idk"
+            if (enteredPassword === "idk") {
                 // Correct password
                 playSound('success-sound', 0.7);
                 errorMsg.classList.remove('show');
