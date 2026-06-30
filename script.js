@@ -1,12 +1,12 @@
 /**
  * ============================================
- * MAGICAL BIRTHDAY EXPERIENCE - ENHANCED
- * Full Interactive Version with Hand Tracking
+ * MAGICAL BIRTHDAY GARDEN
+ * Camera + Hand Tracking + Controls
  * ============================================
  */
 
 // ============================================
-// APPLICATION STATE
+// STATE
 // ============================================
 const AppState = {
     isReady: false,
@@ -14,153 +14,84 @@ const AppState = {
     seedCount: 0,
     flowerCount: 0,
     butterflyCount: 0,
-    scene: null,
-    camera: null,
-    renderer: null,
+    bloom: 0.35,
+    grow: 0.30,
     handLandmarks: null,
-    gestures: {
-        pinch: false,
-        wave: false,
-        point: false,
-        pinchStart: null,
-        waveStart: null
-    },
-    // Performance settings
-    settings: {
-        maxParticles: 500,
-        maxFlowers: 50,
-        maxButterflies: 30,
-        enableShadows: true,
-        quality: 'high'
-    },
-    // Visual feedback elements
-    feedback: {
-        cursor: null,
-        glow: null,
-        particles: []
-    }
+    gestures: { pinch: false, wave: false },
+    feedback: { cursor: null }
 };
 
 // ============================================
-// THREE.JS SCENE MANAGER
+// THREE.JS SCENE
 // ============================================
 class SceneManager {
     constructor() {
-        this.container = document.getElementById('app');
         this.canvas = document.getElementById('three-canvas');
         
-        // Initialize Three.js
         this.scene = new THREE.Scene();
-        this.scene.fog = new THREE.FogExp2(0x0a0a0f, 0.002);
-        
-        // Camera
         this.camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
         this.camera.position.set(0, 2, 8);
         this.camera.lookAt(0, 0, 0);
         
-        // Renderer
         this.renderer = new THREE.WebGLRenderer({
             canvas: this.canvas,
             alpha: true,
-            antialias: true,
-            powerPreference: "high-performance"
+            antialias: true
         });
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        this.renderer.shadowMap.enabled = true;
-        this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-        this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        this.renderer.toneMappingExposure = 1.2;
         
-        // Store in state
         AppState.scene = this.scene;
         AppState.camera = this.camera;
         AppState.renderer = this.renderer;
         
-        // Setup
-        this.setupLighting();
-        this.setupBackgroundParticles();
-        this.setupEventListeners();
+        this.setupScene();
         this.animate();
-        
-        console.log('🎨 Scene initialized');
     }
     
-    setupLighting() {
-        const ambient = new THREE.AmbientLight(0x222244, 0.4);
+    setupScene() {
+        // Ambient light
+        const ambient = new THREE.AmbientLight(0xffffff, 0.3);
         this.scene.add(ambient);
         
-        const mainLight = new THREE.DirectionalLight(0xffeedd, 1.2);
-        mainLight.position.set(5, 10, 7);
-        mainLight.castShadow = true;
-        mainLight.shadow.mapSize.width = 1024;
-        mainLight.shadow.mapSize.height = 1024;
-        this.scene.add(mainLight);
+        const light = new THREE.DirectionalLight(0xffffff, 0.8);
+        light.position.set(5, 10, 7);
+        this.scene.add(light);
         
-        const fillLight = new THREE.DirectionalLight(0x4444ff, 0.4);
-        fillLight.position.set(-5, 0, 5);
-        this.scene.add(fillLight);
-        
-        const rimLight = new THREE.DirectionalLight(0x8855ff, 0.3);
-        rimLight.position.set(0, -5, -5);
-        this.scene.add(rimLight);
-        
-        const pointLight = new THREE.PointLight(0xff6b9d, 0.5, 20);
-        pointLight.position.set(0, 3, 0);
-        this.scene.add(pointLight);
-        
-        this.lights = { mainLight, fillLight, rimLight, pointLight };
-    }
-    
-    setupBackgroundParticles() {
+        // Floating particles
         const geometry = new THREE.BufferGeometry();
-        const count = 300;
+        const count = 150;
         const positions = new Float32Array(count * 3);
-        const colors = new Float32Array(count * 3);
+        const sizes = new Float32Array(count);
         
         for (let i = 0; i < count; i++) {
             positions[i * 3] = (Math.random() - 0.5) * 20;
-            positions[i * 3 + 1] = Math.random() * 8 - 2;
-            positions[i * 3 + 2] = (Math.random() - 0.5) * 20 - 5;
-            
-            const color = new THREE.Color().setHSL(0.6 + Math.random() * 0.3, 0.5, 0.3 + Math.random() * 0.2);
-            colors[i * 3] = color.r;
-            colors[i * 3 + 1] = color.g;
-            colors[i * 3 + 2] = color.b;
+            positions[i * 3 + 1] = (Math.random() - 0.5) * 10 + 2;
+            positions[i * 3 + 2] = (Math.random() - 0.5) * 15 - 5;
+            sizes[i] = 0.01 + Math.random() * 0.03;
         }
         
         geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+        geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
         
         const material = new THREE.PointsMaterial({
+            color: 0xa855f7,
             size: 0.03,
             transparent: true,
-            opacity: 0.6,
-            blending: THREE.AdditiveBlending,
-            vertexColors: true
+            opacity: 0.4,
+            blending: THREE.AdditiveBlending
         });
         
-        this.backgroundParticles = new THREE.Points(geometry, material);
-        this.scene.add(this.backgroundParticles);
-    }
-    
-    setupEventListeners() {
-        window.addEventListener('resize', () => {
-            const width = window.innerWidth;
-            const height = window.innerHeight;
-            this.camera.aspect = width / height;
-            this.camera.updateProjectionMatrix();
-            this.renderer.setSize(width, height);
-        });
+        this.particles = new THREE.Points(geometry, material);
+        this.scene.add(this.particles);
     }
     
     animate() {
         requestAnimationFrame(() => this.animate());
         
-        // Rotate background particles slowly
-        if (this.backgroundParticles) {
-            this.backgroundParticles.rotation.y += 0.0005;
-            this.backgroundParticles.rotation.x += 0.0002;
+        if (this.particles) {
+            this.particles.rotation.y += 0.001;
+            this.particles.rotation.x += 0.0003;
         }
         
         this.renderer.render(this.scene, this.camera);
@@ -168,26 +99,19 @@ class SceneManager {
 }
 
 // ============================================
-// HAND TRACKING MANAGER (MediaPipe)
+// HAND TRACKING
 // ============================================
 class HandTrackingManager {
     constructor() {
         this.canvas = document.getElementById('hand-canvas');
         this.ctx = this.canvas.getContext('2d');
-        this.isInitialized = false;
-        this.video = null;
-        this.hands = null;
-        this.camera = null;
+        this.video = document.getElementById('camera-feed');
         this.lastPinchTime = 0;
         this.lastWaveTime = 0;
-        this.pinchCooldown = 500; // ms
-        this.waveCooldown = 1000; // ms
         
-        // Setup canvas
         this.resizeCanvas();
         window.addEventListener('resize', () => this.resizeCanvas());
         
-        // Initialize
         this.initializeMediaPipe();
     }
     
@@ -198,75 +122,87 @@ class HandTrackingManager {
     
     async initializeMediaPipe() {
         try {
-            // Show status
-            this.updateLoadingStatus('📷 Requesting camera access...');
+            this.updateLoading('📷 Starting camera...');
             
-            // Create video element
-            this.video = document.createElement('video');
-            this.video.style.display = 'none';
-            document.body.appendChild(this.video);
+            const stream = await navigator.mediaDevices.getUserMedia({
+                video: { facingMode: 'user', width: 640, height: 480 }
+            });
+            this.video.srcObject = stream;
+            await this.video.play();
             
-            // Initialize MediaPipe Hands
-            this.hands = new Hands({
-                locateFile: (file) => {
-                    return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
-                }
+            this.updateLoading('👋 Loading hand tracking...');
+            
+            const hands = new Hands({
+                locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`
             });
             
-            this.hands.setOptions({
+            hands.setOptions({
                 maxNumHands: 1,
                 modelComplexity: 1,
                 minDetectionConfidence: 0.7,
                 minTrackingConfidence: 0.6
             });
             
-            this.hands.onResults((results) => {
-                this.handleResults(results);
-            });
+            hands.onResults((results) => this.handleResults(results));
             
-            // Start camera
-            this.updateLoadingStatus('🎥 Starting camera...');
-            
-            this.camera = new Camera(this.video, {
+            const camera = new Camera(this.video, {
                 onFrame: async () => {
                     try {
-                        await this.hands.send({ image: this.video });
-                    } catch (e) {
-                        // Silently handle frame errors
-                    }
+                        await hands.send({ image: this.video });
+                    } catch (e) {}
                 },
                 width: 640,
                 height: 480
             });
             
-            await this.camera.start();
+            await camera.start();
             
-            this.isInitialized = true;
-            AppState.isTracking = true;
+            this.updateLoading('✨ Ready! Show your hand');
+            setTimeout(() => this.hideLoading(), 1000);
             
-            this.updateLoadingStatus('✨ Ready! Show your hand to the camera');
-            
-            // Hide loading screen after delay
-            setTimeout(() => {
-                this.hideLoadingScreen();
-            }, 1000);
-            
-            console.log('✨ Hand tracking initialized successfully!');
+            console.log('✨ Hand tracking ready!');
             
         } catch (error) {
-            console.error('❌ Failed to initialize hand tracking:', error);
-            this.updateLoadingStatus('❌ Camera error. Click to retry.');
+            console.error('❌ Camera error:', error);
             this.showFallbackUI();
         }
     }
     
-    updateLoadingStatus(text) {
-        const loadingScreen = document.getElementById('loading-screen');
-        if (loadingScreen) {
-            const textEl = loadingScreen.querySelector('.loading-text');
-            if (textEl) {
-                textEl.textContent = text;
-            }
+    updateLoading(text) {
+        const el = document.querySelector('.loading-text');
+        if (el) el.textContent = text;
+    }
+    
+    hideLoading() {
+        const screen = document.getElementById('loading-screen');
+        if (screen) {
+            screen.classList.add('fade-out');
+            setTimeout(() => {
+                screen.style.display = 'none';
+                AppState.isReady = true;
+                document.getElementById('action-hint').textContent = '👋 Show your hand to start';
+            }, 800);
+        }
+    }
+    
+    showFallbackUI() {
+        const screen = document.getElementById('loading-screen');
+        if (screen) {
+            screen.innerHTML = `
+                <div style="text-align:center;color:white;padding:20px;">
+                    <div style="font-size:4rem;margin-bottom:20px;">📷</div>
+                    <h2 style="margin-bottom:12px;">Camera Access Required</h2>
+                    <p style="max-width:400px;margin:0 auto 20px;color:rgba(255,255,255,0.7);">
+                        Please allow camera access for the magical experience.
+                    </p>
+                    <button onclick="location.reload()" style="
+                        background:linear-gradient(135deg,#f7d44a,#ff6b9d);
+                        border:none;padding:12px 32px;border-radius:50px;
+                        font-size:1rem;font-weight:600;cursor:pointer;
+                        color:white;
+                    ">🔄 Retry</button>
+                </div>
+            `;
         }
     }
     
@@ -275,97 +211,69 @@ class HandTrackingManager {
         
         if (results.multiHandLandmarks && results.multiHandLandmarks.length > 0) {
             const landmarks = results.multiHandLandmarks[0];
-            
-            // Draw hand with enhanced visuals
-            this.drawHandEnhanced(landmarks);
-            
-            // Process gestures
+            this.drawHand(landmarks);
             this.processGestures(landmarks);
-            
-            // Update cursor position
             this.updateCursor(landmarks);
-            
-            // Store landmarks
             AppState.handLandmarks = landmarks;
-            
-            // Update instruction steps
-            this.updateInstructions(true);
+            document.getElementById('action-hint').textContent = '✨ Hand detected! Try gestures!';
         } else {
             AppState.handLandmarks = null;
-            this.resetGestures();
-            this.updateInstructions(false);
-            
-            // Reset cursor
+            document.getElementById('action-hint').textContent = '👋 Show your hand to start';
             if (AppState.feedback.cursor) {
                 AppState.feedback.cursor.style.opacity = '0';
             }
         }
     }
     
-    drawHandEnhanced(landmarks) {
-        const width = this.canvas.width;
-        const height = this.canvas.height;
+    drawHand(landmarks) {
+        const w = this.canvas.width;
+        const h = this.canvas.height;
         
-        // Connection map
+        // Connections
         const connections = [
-            [0, 1], [1, 2], [2, 3], [3, 4],
-            [0, 5], [5, 6], [6, 7], [7, 8],
-            [0, 9], [9, 10], [10, 11], [11, 12],
-            [0, 13], [13, 14], [14, 15], [15, 16],
-            [0, 17], [17, 18], [18, 19], [19, 20],
-            [5, 9], [9, 13], [13, 17]
+            [0,1],[1,2],[2,3],[3,4],
+            [0,5],[5,6],[6,7],[7,8],
+            [0,9],[9,10],[10,11],[11,12],
+            [0,13],[13,14],[14,15],[15,16],
+            [0,17],[17,18],[18,19],[19,20],
+            [5,9],[9,13],[13,17]
         ];
         
-        // Glow effect for connections
+        // Draw connections with glow
         this.ctx.shadowColor = 'rgba(247, 212, 74, 0.3)';
-        this.ctx.shadowBlur = 10;
+        this.ctx.shadowBlur = 15;
         
-        // Draw connections with gradient
         connections.forEach(([i, j]) => {
             const p1 = landmarks[i];
             const p2 = landmarks[j];
-            
-            const gradient = this.ctx.createLinearGradient(
-                p1.x * width, p1.y * height,
-                p2.x * width, p2.y * height
-            );
-            gradient.addColorStop(0, 'rgba(247, 212, 74, 0.4)');
-            gradient.addColorStop(0.5, 'rgba(168, 85, 247, 0.4)');
-            gradient.addColorStop(1, 'rgba(59, 130, 246, 0.4)');
-            
-            this.ctx.strokeStyle = gradient;
-            this.ctx.lineWidth = 2;
             this.ctx.beginPath();
-            this.ctx.moveTo(p1.x * width, p1.y * height);
-            this.ctx.lineTo(p2.x * width, p2.y * height);
+            this.ctx.moveTo(p1.x * w, p1.y * h);
+            this.ctx.lineTo(p2.x * w, p2.y * h);
+            this.ctx.strokeStyle = 'rgba(247, 212, 74, 0.4)';
+            this.ctx.lineWidth = 2;
             this.ctx.stroke();
         });
         
         this.ctx.shadowBlur = 0;
         
-        // Draw landmarks with glow
+        // Draw landmarks
+        const colors = ['#f7d44a', '#ff6b9d', '#a855f7', '#3b82f6', '#06b6d4'];
         landmarks.forEach((landmark, index) => {
-            const x = landmark.x * width;
-            const y = landmark.y * height;
-            
-            // Finger colors
-            const fingerColors = [
-                '#f7d44a', '#ff6b9d', '#a855f7', '#3b82f6', '#06b6d4'
-            ];
+            const x = landmark.x * w;
+            const y = landmark.y * h;
             const fingerIndex = Math.floor(index / 4);
-            const color = fingerColors[fingerIndex % fingerColors.length];
+            const color = colors[fingerIndex % colors.length];
             
-            // Outer glow
+            // Glow
             const gradient = this.ctx.createRadialGradient(x, y, 0, x, y, 15);
             gradient.addColorStop(0, color + '80');
             gradient.addColorStop(1, 'transparent');
-            
             this.ctx.fillStyle = gradient;
             this.ctx.beginPath();
             this.ctx.arc(x, y, 15, 0, Math.PI * 2);
             this.ctx.fill();
             
-            // Core dot
+            // Core
             this.ctx.shadowColor = color;
             this.ctx.shadowBlur = 20;
             this.ctx.fillStyle = color;
@@ -375,133 +283,100 @@ class HandTrackingManager {
             this.ctx.shadowBlur = 0;
         });
         
-        // Draw pinch indicator if pinching
+        // Pinch indicator
         if (AppState.gestures.pinch) {
             const thumb = landmarks[4];
             const index = landmarks[8];
-            const cx = (thumb.x + index.x) / 2 * width;
-            const cy = (thumb.y + index.y) / 2 * height;
+            const cx = (thumb.x + index.x) / 2 * w;
+            const cy = (thumb.y + index.y) / 2 * h;
             
-            // Ripple effect
-            const ripple = this.ctx.createRadialGradient(cx, cy, 0, cx, cy, 30);
+            const ripple = this.ctx.createRadialGradient(cx, cy, 0, cx, cy, 40);
             ripple.addColorStop(0, 'rgba(247, 212, 74, 0.8)');
             ripple.addColorStop(0.5, 'rgba(255, 107, 157, 0.4)');
             ripple.addColorStop(1, 'transparent');
-            
             this.ctx.fillStyle = ripple;
             this.ctx.beginPath();
-            this.ctx.arc(cx, cy, 30, 0, Math.PI * 2);
+            this.ctx.arc(cx, cy, 40, 0, Math.PI * 2);
             this.ctx.fill();
         }
     }
     
     processGestures(landmarks) {
-        const thumbTip = landmarks[4];
-        const indexTip = landmarks[8];
-        
-        // Calculate pinch distance
-        const pinchDistance = this.distance(thumbTip, indexTip);
-        const isPinching = pinchDistance < 0.04;
-        
-        // Pinch detection with cooldown
+        const thumb = landmarks[4];
+        const index = landmarks[8];
         const now = Date.now();
-        if (isPinching && !AppState.gestures.pinch && now - this.lastPinchTime > this.pinchCooldown) {
+        
+        // Pinch
+        const distance = Math.sqrt(
+            Math.pow(thumb.x - index.x, 2) +
+            Math.pow(thumb.y - index.y, 2) +
+            Math.pow(thumb.z - index.z, 2)
+        );
+        const isPinching = distance < 0.04;
+        
+        if (isPinching && !AppState.gestures.pinch && now - this.lastPinchTime > 500) {
             this.onPinch(landmarks);
             this.lastPinchTime = now;
         }
         AppState.gestures.pinch = isPinching;
         
-        // Wave detection
-        const waveHeight = this.getWaveHeight(landmarks);
+        // Wave
+        let heights = [];
+        for (let i = 5; i < 21; i += 4) {
+            heights.push(landmarks[i].y);
+        }
+        const waveHeight = Math.max(...heights) - Math.min(...heights);
         const isWaving = waveHeight > 0.12;
         
-        if (isWaving && !AppState.gestures.wave && now - this.lastWaveTime > this.waveCooldown) {
+        if (isWaving && !AppState.gestures.wave && now - this.lastWaveTime > 1000) {
             this.onWave(landmarks);
             this.lastWaveTime = now;
         }
         AppState.gestures.wave = isWaving;
     }
     
-    distance(p1, p2) {
-        return Math.sqrt(
-            Math.pow(p1.x - p2.x, 2) +
-            Math.pow(p1.y - p2.y, 2) +
-            Math.pow(p1.z - p2.z, 2)
-        );
-    }
-    
-    getWaveHeight(landmarks) {
-        let heights = [];
-        for (let i = 5; i < 21; i += 4) {
-            heights.push(landmarks[i].y);
-        }
-        return Math.max(...heights) - Math.min(...heights);
-    }
-    
-    resetGestures() {
-        AppState.gestures.pinch = false;
-        AppState.gestures.wave = false;
-    }
-    
     onPinch(landmarks) {
-        console.log('🌱 Pinch detected! Planting seed...');
         AppState.seedCount++;
-        document.getElementById('seed-count').textContent = AppState.seedCount;
         AppState.flowerCount++;
+        document.getElementById('seed-count').textContent = AppState.seedCount;
         document.getElementById('flower-count').textContent = AppState.flowerCount;
         
-        // Show action hint
-        const hint = document.getElementById('action-hint');
-        hint.textContent = '🌱 Seed planted! Watch it grow! ✨';
-        hint.style.opacity = '1';
-        hint.style.color = '#f7d44a';
-        clearTimeout(this.hintTimeout);
-        this.hintTimeout = setTimeout(() => {
-            hint.style.opacity = '0';
-        }, 2500);
-        
-        // Create burst effect
-        const wrist = landmarks[0];
-        const x = wrist.x * window.innerWidth;
-        const y = wrist.y * window.innerHeight;
-        this.createBurstEffect(x, y, '#f7d44a', 30);
-        
-        // Create seed particles
-        this.createSeedParticles(x, y);
+        this.showHint('🌱 Seed planted! Watch it grow! ✨', '#f7d44a');
+        this.createBurst(landmarks, '#f7d44a', 25);
     }
     
     onWave(landmarks) {
-        console.log('🦋 Wave detected! Attracting butterflies...');
         AppState.butterflyCount++;
         document.getElementById('butterfly-count').textContent = AppState.butterflyCount;
         
-        // Show action hint
+        this.showHint('🦋 Butterflies are coming!', '#ff6b9d');
+        this.createBurst(landmarks, '#ff6b9d', 30);
+    }
+    
+    showHint(text, color) {
         const hint = document.getElementById('action-hint');
-        hint.textContent = '🦋 Butterflies are coming!';
+        hint.textContent = text;
+        hint.style.color = color;
+        hint.style.borderColor = color;
         hint.style.opacity = '1';
-        hint.style.color = '#ff6b9d';
         clearTimeout(this.hintTimeout);
         this.hintTimeout = setTimeout(() => {
-            hint.style.opacity = '0';
-        }, 2500);
-        
-        // Create burst effect
+            hint.style.color = 'white';
+            hint.style.borderColor = 'rgba(255,255,255,0.1)';
+            hint.textContent = '✨ Try gestures!';
+        }, 2000);
+    }
+    
+    createBurst(landmarks, color, count = 20) {
         const wrist = landmarks[0];
         const x = wrist.x * window.innerWidth;
         const y = wrist.y * window.innerHeight;
-        this.createBurstEffect(x, y, '#ff6b9d', 40);
-        
-        // Create butterfly particles
-        this.createButterflyParticles(x, y);
-    }
-    
-    createBurstEffect(x, y, color, count = 20) {
         const colors = ['#f7d44a', '#ff6b9d', '#a855f7', '#3b82f6', '#06b6d4'];
         
         for (let i = 0; i < count; i++) {
             const particle = document.createElement('div');
             const angle = Math.random() * Math.PI * 2;
-            const distance = 50 + Math.random() * 150;
+            const distance = 40 + Math.random() * 120;
             const size = 4 + Math.random() * 8;
             const duration = 600 + Math.random() * 400;
             
@@ -521,7 +396,6 @@ class HandTrackingManager {
             `;
             document.body.appendChild(particle);
             
-            // Animate
             requestAnimationFrame(() => {
                 const dx = Math.cos(angle) * distance;
                 const dy = Math.sin(angle) * distance;
@@ -529,79 +403,7 @@ class HandTrackingManager {
                 particle.style.opacity = '0';
             });
             
-            setTimeout(() => {
-                particle.remove();
-            }, duration + 100);
-        }
-    }
-    
-    createSeedParticles(x, y) {
-        // Create floating seed emojis
-        for (let i = 0; i < 5; i++) {
-            const seed = document.createElement('div');
-            const angle = Math.random() * Math.PI * 2;
-            const distance = 30 + Math.random() * 60;
-            
-            seed.textContent = '🌱';
-            seed.style.cssText = `
-                position: fixed;
-                left: ${x}px;
-                top: ${y}px;
-                font-size: ${20 + Math.random() * 20}px;
-                pointer-events: none;
-                z-index: 100;
-                opacity: 1;
-                transform: translate(0, 0) scale(0);
-                transition: all 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-            `;
-            document.body.appendChild(seed);
-            
-            requestAnimationFrame(() => {
-                const dx = Math.cos(angle) * distance;
-                const dy = Math.sin(angle) * distance - 50;
-                seed.style.transform = `translate(${dx}px, ${dy}px) scale(1)`;
-                seed.style.opacity = '0';
-            });
-            
-            setTimeout(() => {
-                seed.remove();
-            }, 2000);
-        }
-    }
-    
-    createButterflyParticles(x, y) {
-        const emojis = ['🦋', '✨', '🌸', '🦋', '✨'];
-        
-        for (let i = 0; i < 8; i++) {
-            const element = document.createElement('div');
-            const angle = Math.random() * Math.PI * 2;
-            const distance = 40 + Math.random() * 100;
-            
-            element.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-            element.style.cssText = `
-                position: fixed;
-                left: ${x}px;
-                top: ${y}px;
-                font-size: ${24 + Math.random() * 30}px;
-                pointer-events: none;
-                z-index: 100;
-                opacity: 1;
-                transform: translate(0, 0) rotate(0deg) scale(0);
-                transition: all 1.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-            `;
-            document.body.appendChild(element);
-            
-            requestAnimationFrame(() => {
-                const dx = Math.cos(angle) * distance;
-                const dy = Math.sin(angle) * distance - 30 + Math.random() * 60;
-                const rotation = Math.random() * 720 - 360;
-                element.style.transform = `translate(${dx}px, ${dy}px) rotate(${rotation}deg) scale(1)`;
-                element.style.opacity = '0';
-            });
-            
-            setTimeout(() => {
-                element.remove();
-            }, 2200);
+            setTimeout(() => particle.remove(), duration + 100);
         }
     }
     
@@ -615,15 +417,15 @@ class HandTrackingManager {
             cursor = document.createElement('div');
             cursor.style.cssText = `
                 position: fixed;
-                width: 20px;
-                height: 20px;
+                width: 24px;
+                height: 24px;
                 border-radius: 50%;
                 background: radial-gradient(circle, rgba(247, 212, 74, 0.6), transparent);
                 pointer-events: none;
                 z-index: 50;
                 transform: translate(-50%, -50%);
                 transition: all 0.1s ease;
-                box-shadow: 0 0 30px rgba(247, 212, 74, 0.3);
+                box-shadow: 0 0 40px rgba(247, 212, 74, 0.3);
             `;
             document.body.appendChild(cursor);
             AppState.feedback.cursor = cursor;
@@ -633,122 +435,157 @@ class HandTrackingManager {
         cursor.style.top = y + 'px';
         cursor.style.opacity = '0.8';
         
-        // Scale based on pinch
         if (AppState.gestures.pinch) {
-            cursor.style.transform = 'translate(-50%, -50%) scale(0.5)';
+            cursor.style.transform = 'translate(-50%, -50%) scale(0.4)';
             cursor.style.background = 'radial-gradient(circle, rgba(255, 107, 157, 0.8), transparent)';
-            cursor.style.boxShadow = '0 0 40px rgba(255, 107, 157, 0.5)';
+            cursor.style.boxShadow = '0 0 50px rgba(255, 107, 157, 0.5)';
         } else {
             cursor.style.transform = 'translate(-50%, -50%) scale(1)';
             cursor.style.background = 'radial-gradient(circle, rgba(247, 212, 74, 0.6), transparent)';
-            cursor.style.boxShadow = '0 0 30px rgba(247, 212, 74, 0.3)';
-        }
-    }
-    
-    updateInstructions(handDetected) {
-        const steps = document.querySelectorAll('.instruction-step');
-        if (handDetected) {
-            steps.forEach((step, index) => {
-                if (index === 0) {
-                    step.classList.add('active');
-                } else {
-                    step.classList.remove('active');
-                }
-            });
-        } else {
-            steps.forEach(step => step.classList.remove('active'));
-        }
-    }
-    
-    hideLoadingScreen() {
-        const loadingScreen = document.getElementById('loading-screen');
-        if (loadingScreen) {
-            loadingScreen.classList.add('fade-out');
-            setTimeout(() => {
-                loadingScreen.style.display = 'none';
-                AppState.isReady = true;
-                console.log('🎉 Magic is ready!');
-            }, 800);
-        }
-    }
-    
-    showFallbackUI() {
-        const loadingScreen = document.getElementById('loading-screen');
-        if (loadingScreen) {
-            loadingScreen.innerHTML = `
-                <div style="text-align: center; color: var(--text-secondary); padding: 20px;">
-                    <div style="font-size: 4rem; margin-bottom: 24px;">📷</div>
-                    <h2 style="color: var(--text-primary); margin-bottom: 16px; font-size: 1.5rem;">
-                        Camera Access Required
-                    </h2>
-                    <p style="max-width: 400px; margin: 0 auto 24px; line-height: 1.6;">
-                        Please allow camera access to enable the magical hand-tracking experience.
-                        <br><br>
-                        <span style="font-size: 0.9rem; opacity: 0.7;">
-                            💡 Tip: Use Chrome or Edge for best results
-                        </span>
-                    </p>
-                    <button onclick="location.reload()" style="
-                        background: linear-gradient(135deg, #f7d44a, #ff6b9d);
-                        color: #0a0a0f;
-                        border: none;
-                        padding: 12px 32px;
-                        border-radius: 50px;
-                        font-size: 1rem;
-                        font-weight: 600;
-                        cursor: pointer;
-                        transition: transform 0.2s, box-shadow 0.2s;
-                        box-shadow: 0 4px 20px rgba(247, 212, 74, 0.3);
-                    "
-                    onmouseover="this.style.transform='scale(1.05)'"
-                    onmouseout="this.style.transform='scale(1)'"
-                    >🔄 Retry</button>
-                </div>
-            `;
+            cursor.style.boxShadow = '0 0 40px rgba(247, 212, 74, 0.3)';
         }
     }
 }
 
 // ============================================
-// MAIN APPLICATION
+// CONTROLS MANAGER
 // ============================================
-class Application {
+class ControlsManager {
     constructor() {
-        console.log('🎂 Initializing Magical Birthday Experience...');
+        this.setupBloomControl();
+        this.setupGrowControl();
+        this.setupButtons();
+    }
+    
+    setupBloomControl() {
+        const slider = document.getElementById('bloom-slider');
+        const value = document.getElementById('bloom-value');
         
-        // Initialize Three.js Scene
-        this.sceneManager = new SceneManager();
+        slider.addEventListener('input', () => {
+            AppState.bloom = parseFloat(slider.value);
+            value.textContent = AppState.bloom.toFixed(2);
+            
+            // Visual feedback
+            document.querySelector('.control-group:first-child .control-track span:last-child')
+                .style.opacity = AppState.bloom;
+            
+            // Animate flowers based on bloom
+            this.updateFlowers();
+        });
+    }
+    
+    setupGrowControl() {
+        const slider = document.getElementById('grow-slider');
+        const value = document.getElementById('grow-value');
         
-        // Initialize Hand Tracking
-        this.handTracking = new HandTrackingManager();
+        slider.addEventListener('input', () => {
+            AppState.grow = parseFloat(slider.value);
+            value.textContent = AppState.grow.toFixed(2);
+            
+            // Visual feedback
+            document.querySelector('.control-group:last-child .control-track span:last-child')
+                .style.opacity = AppState.grow;
+            
+            // Animate growth
+            this.updateGrowth();
+        });
+    }
+    
+    setupButtons() {
+        document.getElementById('send-message').addEventListener('click', () => {
+            const message = document.getElementById('birthday-message').value;
+            if (message.trim()) {
+                this.createMessageEffect(message);
+                document.getElementById('action-hint').textContent = '✨ Message planted!';
+                document.getElementById('action-hint').style.color = '#a855f7';
+                setTimeout(() => {
+                    document.getElementById('action-hint').style.color = 'white';
+                }, 2000);
+            }
+        });
         
-        console.log('✨ Application ready!');
+        document.getElementById('clear-message').addEventListener('click', () => {
+            document.getElementById('birthday-message').value = '';
+            document.getElementById('action-hint').textContent = '🗑️ Message cleared';
+            setTimeout(() => {
+                document.getElementById('action-hint').textContent = '✨ Try gestures!';
+            }, 1500);
+        });
+    }
+    
+    updateFlowers() {
+        // This will be connected to flower system in later phases
+        console.log('🌺 Bloom updated:', AppState.bloom);
+    }
+    
+    updateGrowth() {
+        // This will be connected to growth system in later phases
+        console.log('🌿 Grow updated:', AppState.grow);
+    }
+    
+    createMessageEffect(message) {
+        // Create floating message particles
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            const size = 16 + Math.random() * 24;
+            
+            particle.textContent = ['✨', '🌸', '🦋', '💝', '🎂', '⭐'][Math.floor(Math.random() * 6)];
+            particle.style.cssText = `
+                position: fixed;
+                left: ${x}px;
+                top: ${y}px;
+                font-size: ${size}px;
+                pointer-events: none;
+                z-index: 100;
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+                transition: all 2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            `;
+            document.body.appendChild(particle);
+            
+            requestAnimationFrame(() => {
+                particle.style.opacity = '1';
+                particle.style.transform = `scale(1) rotate(${Math.random() * 720 - 360}deg)`;
+                particle.style.top = (y - 100 - Math.random() * 200) + 'px';
+            });
+            
+            setTimeout(() => {
+                particle.style.opacity = '0';
+                particle.style.transform = `scale(0) rotate(${Math.random() * 720}deg)`;
+            }, 2000);
+            
+            setTimeout(() => particle.remove(), 2500);
+        }
     }
 }
 
 // ============================================
-// START
+// INITIALIZE APPLICATION
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
-    window.app = new Application();
+    const scene = new SceneManager();
+    const handTracking = new HandTrackingManager();
+    const controls = new ControlsManager();
+    
+    console.log('🌸 Magical Birthday Garden ready!');
 });
 
 // ============================================
 // DYNAMIC STYLES
 // ============================================
-const styleSheet = document.createElement("style");
+const styleSheet = document.createElement('style');
 styleSheet.textContent = `
-    @keyframes seed-burst {
-        0% { transform: scale(0); opacity: 1; }
-        50% { transform: scale(3); opacity: 0.8; }
-        100% { transform: scale(5); opacity: 0; }
+    .control-group:first-child .control-track span:last-child {
+        opacity: 0.35;
+        transition: opacity 0.3s ease;
     }
-    
-    @keyframes float-up {
-        0% { transform: translateY(0) scale(0); opacity: 1; }
-        100% { transform: translateY(-100px) scale(1); opacity: 0; }
+    .control-group:last-child .control-track span:last-child {
+        opacity: 0.30;
+        transition: opacity 0.3s ease;
     }
 `;
 document.head.appendChild(styleSheet);
 
-console.log('🎉 Magical Birthday Experience loaded successfully!');
+console.log('🎉 Magical Birthday Garden loaded!');
