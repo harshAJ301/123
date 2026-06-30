@@ -3,22 +3,15 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>✨ Magical Birthday Experience ✨</title>
+    <title>🌸 Magical Birthday Garden</title>
     
     <!-- ============================================
-    EXTERNAL LIBRARIES (CDN)
+    EXTERNAL LIBRARIES
     ============================================ -->
-    <!-- Three.js - 3D Graphics -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js">
     </script>
-    
-    <!-- GSAP - Premium Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js">
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js">
-    </script>
-    
-    <!-- MediaPipe - Hand Tracking -->
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js">
@@ -26,76 +19,125 @@
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js">
     </script>
     
-    <!-- CSS -->
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <!-- ============================================
-    OVERLAY UI ELEMENTS
+    CAMERA FEED (Background)
     ============================================ -->
-    <!-- Loading Screen -->
+    <video id="camera-feed" autoplay playsinline></video>
+
+    <!-- ============================================
+    HAND TRACKING OVERLAY
+    ============================================ -->
+    <canvas id="hand-canvas"></canvas>
+
+    <!-- ============================================
+    THREE.JS CANVAS (3D Effects)
+    ============================================ -->
+    <canvas id="three-canvas"></canvas>
+
+    <!-- ============================================
+    BIRTHDAY CARD (White Card with Controls)
+    ============================================ -->
+    <div id="birthday-card">
+        <div class="card-content">
+            <!-- Header -->
+            <div class="card-header">
+                <span class="card-icon">🌸</span>
+                <h2>Birthday Garden</h2>
+                <span class="card-badge">✨ Magic</span>
+            </div>
+            
+            <!-- Message Area -->
+            <div class="card-body">
+                <div class="message-container">
+                    <label for="birthday-message">💝 Your Birthday Wish</label>
+                    <textarea id="birthday-message" placeholder="Write your magical birthday message...">Wishing you a day filled with joy, laughter, and beautiful moments! 🎉</textarea>
+                </div>
+                
+                <!-- Bloom & Grow Controls -->
+                <div class="controls-container">
+                    <div class="control-group">
+                        <div class="control-header">
+                            <span class="control-icon">🌱</span>
+                            <span class="control-label">Bloom</span>
+                            <span class="control-value" id="bloom-value">0.35</span>
+                        </div>
+                        <input type="range" id="bloom-slider" min="0" max="1" step="0.01" value="0.35" />
+                        <div class="control-track">
+                            <span>🌱</span>
+                            <span>🌸</span>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <div class="control-header">
+                            <span class="control-icon">🌿</span>
+                            <span class="control-label">Grow</span>
+                            <span class="control-value" id="grow-value">0.30</span>
+                        </div>
+                        <input type="range" id="grow-slider" min="0" max="1" step="0.01" value="0.30" />
+                        <div class="control-track">
+                            <span>🌱</span>
+                            <span>🌳</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="card-actions">
+                    <button id="send-message" class="btn-primary">
+                        ✨ Plant Magic
+                    </button>
+                    <button id="clear-message" class="btn-secondary">
+                        🗑️ Clear
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Footer Stats -->
+            <div class="card-footer">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-icon">🌱</span>
+                        <span class="stat-label">Seeds</span>
+                        <span class="stat-value" id="seed-count">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon">🌸</span>
+                        <span class="stat-label">Flowers</span>
+                        <span class="stat-value" id="flower-count">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-icon">🦋</span>
+                        <span class="stat-label">Butterflies</span>
+                        <span class="stat-value" id="butterfly-count">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================
+    ACTION HINT
+    ============================================ -->
+    <div id="action-hint">👋 Show your hand to start the magic</div>
+
+    <!-- ============================================
+    LOADING SCREEN
+    ============================================ -->
     <div id="loading-screen">
         <div class="loader">
             <div class="sparkle"></div>
             <div class="sparkle"></div>
             <div class="sparkle"></div>
         </div>
-        <p class="loading-text">✨ Preparing Magic...</p>
-    </div>
-
-    <!-- Main Canvas Container -->
-    <div id="app">
-        <!-- Three.js will render here -->
-        <canvas id="three-canvas"></canvas>
-        
-        <!-- MediaPipe Canvas (overlay for hand tracking) -->
-        <canvas id="hand-canvas"></canvas>
-        
-        <!-- UI Overlay -->
-        <div id="ui-overlay">
-            <div class="brand">
-                <span class="icon">🎂</span>
-                <span class="title">Birthday Magic</span>
-            </div>
-            
-            <div class="instructions">
-                <div class="instruction-step" id="step-1">
-                    <span class="icon">👋</span>
-                    <span>Show your hand to the camera</span>
-                </div>
-                <div class="instruction-step" id="step-2">
-                    <span class="icon">🤏</span>
-                    <span>Pinch to plant a seed</span>
-                </div>
-                <div class="instruction-step" id="step-3">
-                    <span class="icon">🦋</span>
-                    <span>Wave to attract butterflies</span>
-                </div>
-            </div>
-            
-            <div class="status-bar">
-                <div class="status-item">
-                    <span class="label">Seeds</span>
-                    <span class="value" id="seed-count">0</span>
-                </div>
-                <div class="status-item">
-                    <span class="label">Flowers</span>
-                    <span class="value" id="flower-count">0</span>
-                </div>
-                <div class="status-item">
-                    <span class="label">Butterflies</span>
-                    <span class="value" id="butterfly-count">0</span>
-                </div>
-            </div>
-            
-            <div class="action-hint" id="action-hint">
-                🌱 Pinch to plant a seed!
-            </div>
-        </div>
+        <p class="loading-text">📷 Starting Camera...</p>
     </div>
 
     <!-- ============================================
-    JAVASCRIPT - MAIN APPLICATION
+    MAIN SCRIPT
     ============================================ -->
     <script src="script.js"></script>
 </body>
