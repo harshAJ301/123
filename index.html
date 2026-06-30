@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>🌸 Digital Flowers</title>
     
+    <!-- External Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js">
     </script>
@@ -17,15 +20,22 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+    <!-- CAMERA FEED - FULL SCREEN -->
     <video id="camera-feed" autoplay playsinline></video>
+    
+    <!-- HAND TRACKING CANVAS -->
     <canvas id="hand-canvas"></canvas>
+    
+    <!-- THREE.JS CANVAS -->
     <canvas id="three-canvas"></canvas>
-
+    
+    <!-- POETRY TEXT -->
     <div id="poetry-text">
         <p class="line-1">How I would send her flowers,</p>
         <p class="line-2">but she didn't exist</p>
     </div>
-
+    
+    <!-- COUNTERS -->
     <div id="counters">
         <div class="counter-group">
             <span class="counter-number" id="flower-counter">0</span>
@@ -37,7 +47,8 @@
             <span class="counter-label">seeds</span>
         </div>
     </div>
-
+    
+    <!-- CONTROLS -->
     <div id="controls">
         <div class="control-item">
             <span class="control-label">Bloom</span>
@@ -48,9 +59,11 @@
             <span class="control-value" id="grow-value">0.30</span>
         </div>
     </div>
-
+    
+    <!-- ACTION HINT -->
     <div id="action-hint">✦ show your hand to the camera ✦</div>
-
+    
+    <!-- LOADING SCREEN -->
     <div id="loading-screen">
         <div class="loader">
             <div class="sparkle"></div>
@@ -59,7 +72,8 @@
         </div>
         <p class="loading-text">✦ loading ✦</p>
     </div>
-
+    
+    <!-- BEGIN SCREEN -->
     <div id="begin-screen">
         <div class="begin-container">
             <h2 class="begin-title">✦ digital flowers ✦</h2>
@@ -68,7 +82,7 @@
             <p class="begin-hint">camera access required</p>
         </div>
     </div>
-
+    
     <script src="script.js"></script>
 </body>
 </html>
