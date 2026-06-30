@@ -1,93 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- ============================================
+    META TAGS
+    ============================================ -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>🌸 Digital Flowers</title>
+    <title>🌸 Digital Flowers - A Cinematic Experience</title>
     
     <!-- ============================================
     EXTERNAL LIBRARIES
     ============================================ -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js">
-    </script>
+    <!-- GSAP for premium animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js">
     </script>
     
+    <!-- Three.js for 3D background effects -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js">
+    </script>
+    
+    <!-- ============================================
+    STYLESHEET
+    ============================================ -->
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
     <!-- ============================================
-    CAMERA FEED - FULL SCREEN
+    LAYER 1: THREE.JS 3D BACKGROUND
     ============================================ -->
-    <video id="camera-feed" autoplay playsinline></video>
+    <canvas id="bg-canvas"></canvas>
 
     <!-- ============================================
-    HAND TRACKING OVERLAY - LINES ON CAMERA
-    ============================================ -->
-    <canvas id="hand-canvas"></canvas>
-
-    <!-- ============================================
-    POETRY TEXT OVERLAY
-    ============================================ -->
-    <div id="poetry-text">
-        <p class="line-1">How I would send her flowers,</p>
-        <p class="line-2">but she didn't exist</p>
-    </div>
-
-    <!-- ============================================
-    COUNTERS
-    ============================================ -->
-    <div id="counters">
-        <div class="counter-group">
-            <span class="counter-number" id="flower-counter">2,229</span>
-            <span class="counter-label">flowers</span>
-        </div>
-        <div class="counter-divider">✦</div>
-        <div class="counter-group">
-            <span class="counter-number" id="seed-counter">31</span>
-            <span class="counter-label">seeds</span>
-        </div>
-    </div>
-
-    <!-- ============================================
-    CONTROLS - BLOOM & GROW (Floating)
-    ============================================ -->
-    <div id="controls">
-        <div class="control-item">
-            <span class="control-label">Bloom</span>
-            <span class="control-value" id="bloom-value">0.35</span>
-        </div>
-        <div class="control-item">
-            <span class="control-label">Grow</span>
-            <span class="control-value" id="grow-value">0.30</span>
-        </div>
-    </div>
-
-    <!-- ============================================
-    ACTION HINT
-    ============================================ -->
-    <div id="action-hint">✧ pinch to plant a flower ✧</div>
-
-    <!-- ============================================
-    LOADING SCREEN
+    LAYER 2: LOADING SCREEN
     ============================================ -->
     <div id="loading-screen">
-        <div class="loader">
-            <div class="sparkle"></div>
-            <div class="sparkle"></div>
-            <div class="sparkle"></div>
+        <div class="loading-container">
+            <!-- Animated Flower Logo -->
+            <div class="flower-logo">
+                <div class="flower-petal petal-1"></div>
+                <div class="flower-petal petal-2"></div>
+                <div class="flower-petal petal-3"></div>
+                <div class="flower-petal petal-4"></div>
+                <div class="flower-petal petal-5"></div>
+                <div class="flower-petal petal-6"></div>
+                <div class="flower-center"></div>
+            </div>
+            
+            <!-- Loading Text -->
+            <h1 class="loading-title">Digital Flowers</h1>
+            <p class="loading-subtitle">a cinematic experience</p>
+            
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <p class="progress-text" id="progress-text">0%</p>
         </div>
-        <p class="loading-text">✦ starting camera ✦</p>
     </div>
 
     <!-- ============================================
-    MAIN SCRIPT
+    LAYER 3: BEGIN EXPERIENCE BUTTON
+    ============================================ -->
+    <div id="begin-screen">
+        <div class="begin-container">
+            <h2 class="begin-title">ready to begin?</h2>
+            <p class="begin-subtitle">a journey of digital flowers awaits</p>
+            
+            <button id="begin-button" class="begin-button">
+                <span class="button-text">✦ begin experience ✦</span>
+                <span class="button-glow"></span>
+            </button>
+            
+            <p class="begin-hint">camera access required for full experience</p>
+        </div>
+    </div>
+
+    <!-- ============================================
+    LAYER 4: CAMERA PERMISSION OVERLAY
+    ============================================ -->
+    <div id="camera-permission-overlay">
+        <div class="permission-container">
+            <div class="permission-icon">📷</div>
+            <h2 class="permission-title">camera access</h2>
+            <p class="permission-text">
+                this experience uses your camera<br />
+                to create a magical augmented reality
+            </p>
+            <div class="permission-buttons">
+                <button id="allow-camera" class="permission-allow">
+                    ✦ allow camera ✦
+                </button>
+                <button id="deny-camera" class="permission-deny">
+                    maybe later
+                </button>
+            </div>
+            <p class="permission-note">your privacy is respected • camera feed stays local</p>
+        </div>
+    </div>
+
+    <!-- ============================================
+    LAYER 5: CAMERA FEED (Hidden until allowed)
+    ============================================ -->
+    <video id="camera-feed" autoplay playsinline style="display:none;"></video>
+
+    <!-- ============================================
+    LAYER 6: MAIN EXPERIENCE (Hidden until ready)
+    ============================================ -->
+    <div id="main-experience" style="display:none;">
+        <!-- Poetry Text -->
+        <div id="poetry-text">
+            <p class="line-1">How I would send her flowers,</p>
+            <p class="line-2">but she didn't exist</p>
+        </div>
+        
+        <!-- Counters -->
+        <div id="counters">
+            <div class="counter-group">
+                <span class="counter-number" id="flower-counter">2,229</span>
+                <span class="counter-label">flowers</span>
+            </div>
+            <div class="counter-divider">✦</div>
+            <div class="counter-group">
+                <span class="counter-number" id="seed-counter">31</span>
+                <span class="counter-label">seeds</span>
+            </div>
+        </div>
+        
+        <!-- Controls -->
+        <div id="controls">
+            <div class="control-item">
+                <span class="control-label">Bloom</span>
+                <span class="control-value" id="bloom-value">0.35</span>
+            </div>
+            <div class="control-item">
+                <span class="control-label">Grow</span>
+                <span class="control-value" id="grow-value">0.30</span>
+            </div>
+        </div>
+        
+        <!-- Action Hint -->
+        <div id="action-hint">✦ ready for magic ✦</div>
+    </div>
+
+    <!-- ============================================
+    JAVASCRIPT
     ============================================ -->
     <script src="script.js"></script>
 </body>
