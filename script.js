@@ -1,104 +1,72 @@
 /**
  * ============================================
- * MILESTONE 1: CINEMATIC LOADING EXPERIENCE
- * ============================================
- * 
- * Features:
- * - Animated loading screen with flower logo
- * - 3D particle background using Three.js
- * - Progress bar animation
- * - "Begin Experience" button with hover effects
- * - Camera permission request flow
- * - Smooth transitions between states
- * 
- * No hand tracking yet - just beautiful UI/UX
+ * DIGITAL FLOWERS - FULL EXPERIENCE
+ * Camera + Hand Tracking + Poetry + Controls
  * ============================================
  */
 
 // ============================================
-// THREE.JS BACKGROUND
+// APPLICATION STATE
 // ============================================
-class ThreeBackground {
+const AppState = {
+    isReady: false,
+    isTracking: false,
+    flowerCount: 2229,
+    seedCount: 31,
+    bloom: 0.35,
+    grow: 0.30,
+    handLandmarks: null,
+    gestures: { pinch: false, wave: false },
+    feedback: { cursor: null }
+};
+
+// ============================================
+// THREE.JS BACKGROUND EFFECTS
+// ============================================
+class ThreeManager {
     constructor() {
-        this.canvas = document.getElementById('bg-canvas');
+        this.canvas = document.getElementById('three-canvas');
+        
         this.scene = new THREE.Scene();
-        this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        this.camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+        this.camera.position.set(0, 2, 8);
+        this.camera.lookAt(0, 0, 0);
+        
         this.renderer = new THREE.WebGLRenderer({
             canvas: this.canvas,
             alpha: true,
             antialias: true
         });
-        
         this.renderer.setSize(window.innerWidth, window.innerHeight);
         this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         
-        this.camera.position.z = 30;
-        
-        this.createParticles();
+        this.setupParticles();
         this.animate();
         this.handleResize();
     }
     
-    createParticles() {
-        // Create floating particles
+    setupParticles() {
         const geometry = new THREE.BufferGeometry();
-        const count = 800;
+        const count = 200;
         const positions = new Float32Array(count * 3);
         const sizes = new Float32Array(count);
-        const colors = new Float32Array(count * 3);
-        
-        const colorPalette = [
-            new THREE.Color(0xf7d44a), // gold
-            new THREE.Color(0xff6b9d), // rose
-            new THREE.Color(0xa855f7), // purple
-            new THREE.Color(0x3b82f6), // blue
-            new THREE.Color(0x06b6d4)  // cyan
-        ];
         
         for (let i = 0; i < count; i++) {
-            // Position in a sphere
-            const radius = 20 + Math.random() * 15;
-            const theta = Math.random() * Math.PI * 2;
-            const phi = Math.acos((Math.random() * 2) - 1);
-            
-            positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
-            positions[i * 3 + 1] = radius * Math.cos(phi);
-            positions[i * 3 + 2] = radius * Math.sin(phi) * Math.sin(theta);
-            
-            sizes[i] = 0.1 + Math.random() * 0.3;
-            
-            const color = colorPalette[Math.floor(Math.random() * colorPalette.length)];
-            colors[i * 3] = color.r;
-            colors[i * 3 + 1] = color.g;
-            colors[i * 3 + 2] = color.b;
+            positions[i * 3] = (Math.random() - 0.5) * 20;
+            positions[i * 3 + 1] = (Math.random() - 0.5) * 10 + 2;
+            positions[i * 3 + 2] = (Math.random() - 0.5) * 15 - 5;
+            sizes[i] = 0.01 + Math.random() * 0.03;
         }
         
         geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
         geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
-        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-        
-        // Create texture for particles (glow dot)
-        const canvas = document.createElement('canvas');
-        canvas.width = 64;
-        canvas.height = 64;
-        const ctx = canvas.getContext('2d');
-        const gradient = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
-        gradient.addColorStop(0, 'rgba(255,255,255,1)');
-        gradient.addColorStop(0.3, 'rgba(255,255,255,0.8)');
-        gradient.addColorStop(1, 'rgba(255,255,255,0)');
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, 64, 64);
-        
-        const texture = new THREE.CanvasTexture(canvas);
         
         const material = new THREE.PointsMaterial({
-            size: 0.4,
-            map: texture,
-            blending: THREE.AdditiveBlending,
-            depthWrite: false,
+            color: 0xa855f7,
+            size: 0.04,
             transparent: true,
-            vertexColors: true,
-            opacity: 0.6
+            opacity: 0.3,
+            blending: THREE.AdditiveBlending
         });
         
         this.particles = new THREE.Points(geometry, material);
@@ -107,268 +75,513 @@ class ThreeBackground {
     
     animate() {
         requestAnimationFrame(() => this.animate());
-        
         if (this.particles) {
-            this.particles.rotation.x += 0.0005;
             this.particles.rotation.y += 0.001;
+            this.particles.rotation.x += 0.0003;
         }
-        
         this.renderer.render(this.scene, this.camera);
     }
     
     handleResize() {
         window.addEventListener('resize', () => {
-            const width = window.innerWidth;
-            const height = window.innerHeight;
-            
-            this.camera.aspect = width / height;
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+            this.camera.aspect = w / h;
             this.camera.updateProjectionMatrix();
-            this.renderer.setSize(width, height);
+            this.renderer.setSize(w, h);
         });
     }
 }
 
 // ============================================
-// LOADING SCREEN MANAGER
+// HAND TRACKING MANAGER
 // ============================================
-class LoadingManager {
+class HandTrackingManager {
     constructor() {
-        this.progressBar = document.getElementById('progress-bar');
-        this.progressText = document.getElementById('progress-text');
-        this.loadingScreen = document.getElementById('loading-screen');
-        this.beginScreen = document.getElementById('begin-screen');
-        this.currentProgress = 0;
+        this.canvas = document.getElementById('hand-canvas');
+        this.ctx = this.canvas.getContext('2d');
+        this.video = document.getElementById('camera-feed');
+        this.lastPinchTime = 0;
+        this.lastWaveTime = 0;
         
-        this.startLoading();
+        this.resizeCanvas();
+        window.addEventListener('resize', () => this.resizeCanvas());
+        
+        this.initializeCameraAndTracking();
     }
     
-    startLoading() {
-        // Simulate loading with beautiful timing
-        const steps = [
-            { progress: 20, delay: 400, label: '✦ loading assets' },
-            { progress: 40, delay: 600, label: '✦ preparing magic' },
-            { progress: 60, delay: 500, label: '✦ growing flowers' },
-            { progress: 80, delay: 700, label: '✦ almost ready' },
-            { progress: 95, delay: 400, label: '✦ final touches' },
-            { progress: 100, delay: 300, label: '✦ complete' }
-        ];
-        
-        let currentStep = 0;
-        
-        const nextStep = () => {
-            if (currentStep >= steps.length) {
-                this.onLoadingComplete();
-                return;
-            }
-            
-            const step = steps[currentStep];
-            this.updateProgress(step.progress, step.label);
-            
-            currentStep++;
-            setTimeout(nextStep, step.delay);
-        };
-        
-        // Start after a small delay
-        setTimeout(nextStep, 500);
+    resizeCanvas() {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
     }
     
-    updateProgress(value, label) {
-        this.currentProgress = value;
-        this.progressBar.style.width = value + '%';
-        this.progressText.textContent = label || value + '%';
-        
-        // Add subtle glow when near completion
-        if (value > 80) {
-            this.progressBar.style.boxShadow = '0 0 20px rgba(247, 212, 74, 0.2)';
+    async initializeCameraAndTracking() {
+        try {
+            this.updateLoading('✦ starting camera ✦');
+            
+            // Start camera
+            const stream = await navigator.mediaDevices.getUserMedia({
+                video: { facingMode: 'user', width: 640, height: 480 }
+            });
+            this.video.srcObject = stream;
+            await this.video.play();
+            
+            this.updateLoading('✦ loading hand tracking ✦');
+            
+            // Initialize MediaPipe
+            const hands = new Hands({
+                locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`
+            });
+            
+            hands.setOptions({
+                maxNumHands: 1,
+                modelComplexity: 1,
+                minDetectionConfidence: 0.7,
+                minTrackingConfidence: 0.6
+            });
+            
+            hands.onResults((results) => this.handleResults(results));
+            
+            const camera = new Camera(this.video, {
+                onFrame: async () => {
+                    try { await hands.send({ image: this.video }); } 
+                    catch (e) {}
+                },
+                width: 640,
+                height: 480
+            });
+            
+            await camera.start();
+            
+            this.updateLoading('✦ ready ✦');
+            setTimeout(() => this.hideLoading(), 800);
+            
+            console.log('✦ Hand tracking ready ✦');
+            
+        } catch (error) {
+            console.error('❌ Camera error:', error);
+            this.showFallbackUI();
         }
     }
     
-    onLoadingComplete() {
-        // Hide loading screen with animation
+    updateLoading(text) {
+        const el = document.querySelector('.loading-text');
+        if (el) el.textContent = text;
+    }
+    
+    hideLoading() {
+        const screen = document.getElementById('loading-screen');
+        if (screen) {
+            screen.classList.add('hidden');
+            setTimeout(() => {
+                screen.style.display = 'none';
+                AppState.isReady = true;
+            }, 800);
+        }
+    }
+    
+    showFallbackUI() {
+        const screen = document.getElementById('loading-screen');
+        if (screen) {
+            screen.innerHTML = `
+                <div style="text-align:center;color:white;padding:20px;">
+                    <div style="font-size:4rem;margin-bottom:20px;">📷</div>
+                    <h2 style="font-weight:300;letter-spacing:0.1em;">camera access required</h2>
+                    <p style="margin:20px auto;color:rgba(255,255,255,0.5);">
+                        please allow camera access for the experience
+                    </p>
+                    <button onclick="location.reload()" style="
+                        background:rgba(255,255,255,0.1);
+                        border:1px solid rgba(255,255,255,0.2);
+                        padding:12px 32px;
+                        border-radius:40px;
+                        font-size:0.85rem;
+                        color:white;
+                        cursor:pointer;
+                        letter-spacing:0.1em;
+                    ">✦ retry ✦</button>
+                </div>
+            `;
+        }
+    }
+    
+    handleResults(results) {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        if (results.multiHandLandmarks && results.multiHandLandmarks.length > 0) {
+            const landmarks = results.multiHandLandmarks[0];
+            this.drawHand(landmarks);
+            this.processGestures(landmarks);
+            this.updateCursor(landmarks);
+            AppState.handLandmarks = landmarks;
+            
+            const hint = document.getElementById('action-hint');
+            hint.textContent = '✦ hand detected • try gestures ✦';
+            hint.style.color = 'rgba(255,255,255,0.8)';
+        } else {
+            AppState.handLandmarks = null;
+            const hint = document.getElementById('action-hint');
+            hint.textContent = '✦ show your hand to the camera ✦';
+            hint.style.color = 'rgba(255,255,255,0.4)';
+            
+            if (AppState.feedback.cursor) {
+                AppState.feedback.cursor.style.opacity = '0';
+            }
+        }
+    }
+    
+    drawHand(landmarks) {
+        const w = this.canvas.width;
+        const h = this.canvas.height;
+        
+        // Connections
+        const connections = [
+            [0,1],[1,2],[2,3],[3,4],
+            [0,5],[5,6],[6,7],[7,8],
+            [0,9],[9,10],[10,11],[11,12],
+            [0,13],[13,14],[14,15],[15,16],
+            [0,17],[17,18],[18,19],[19,20],
+            [5,9],[9,13],[13,17]
+        ];
+        
+        // Draw connections
+        connections.forEach(([i, j]) => {
+            const p1 = landmarks[i];
+            const p2 = landmarks[j];
+            
+            this.ctx.shadowColor = 'rgba(247, 212, 74, 0.15)';
+            this.ctx.shadowBlur = 10;
+            this.ctx.strokeStyle = 'rgba(247, 212, 74, 0.25)';
+            this.ctx.lineWidth = 1.5;
+            this.ctx.beginPath();
+            this.ctx.moveTo(p1.x * w, p1.y * h);
+            this.ctx.lineTo(p2.x * w, p2.y * h);
+            this.ctx.stroke();
+        });
+        
+        this.ctx.shadowBlur = 0;
+        
+        // Draw landmarks
+        const colors = ['#f7d44a', '#ff6b9d', '#a855f7', '#3b82f6', '#06b6d4'];
+        landmarks.forEach((landmark, index) => {
+            const x = landmark.x * w;
+            const y = landmark.y * h;
+            const color = colors[Math.floor(index / 4) % colors.length];
+            
+            // Glow
+            const gradient = this.ctx.createRadialGradient(x, y, 0, x, y, 12);
+            gradient.addColorStop(0, color + '40');
+            gradient.addColorStop(1, 'transparent');
+            this.ctx.fillStyle = gradient;
+            this.ctx.beginPath();
+            this.ctx.arc(x, y, 12, 0, Math.PI * 2);
+            this.ctx.fill();
+            
+            // Dot
+            this.ctx.shadowColor = color;
+            this.ctx.shadowBlur = 15;
+            this.ctx.fillStyle = color + '80';
+            this.ctx.beginPath();
+            this.ctx.arc(x, y, 2.5, 0, Math.PI * 2);
+            this.ctx.fill();
+            this.ctx.shadowBlur = 0;
+        });
+        
+        // Pinch indicator
+        if (AppState.gestures.pinch) {
+            const thumb = landmarks[4];
+            const index = landmarks[8];
+            const cx = (thumb.x + index.x) / 2 * w;
+            const cy = (thumb.y + index.y) / 2 * h;
+            
+            this.ctx.strokeStyle = 'rgba(247, 212, 74, 0.2)';
+            this.ctx.lineWidth = 1;
+            this.ctx.beginPath();
+            this.ctx.arc(cx, cy, 25, 0, Math.PI * 2);
+            this.ctx.stroke();
+            
+            this.ctx.strokeStyle = 'rgba(255, 107, 157, 0.1)';
+            this.ctx.beginPath();
+            this.ctx.arc(cx, cy, 40, 0, Math.PI * 2);
+            this.ctx.stroke();
+        }
+    }
+    
+    processGestures(landmarks) {
+        const thumb = landmarks[4];
+        const index = landmarks[8];
+        const now = Date.now();
+        
+        // Pinch detection
+        const distance = Math.sqrt(
+            Math.pow(thumb.x - index.x, 2) +
+            Math.pow(thumb.y - index.y, 2) +
+            Math.pow(thumb.z - index.z, 2)
+        );
+        const isPinching = distance < 0.04;
+        
+        if (isPinching && !AppState.gestures.pinch && now - this.lastPinchTime > 500) {
+            this.onPinch();
+            this.lastPinchTime = now;
+        }
+        AppState.gestures.pinch = isPinching;
+        
+        // Wave detection
+        let heights = [];
+        for (let i = 5; i < 21; i += 4) {
+            heights.push(landmarks[i].y);
+        }
+        const waveHeight = Math.max(...heights) - Math.min(...heights);
+        const isWaving = waveHeight > 0.12;
+        
+        if (isWaving && !AppState.gestures.wave && now - this.lastWaveTime > 1000) {
+            this.onWave();
+            this.lastWaveTime = now;
+        }
+        AppState.gestures.wave = isWaving;
+    }
+    
+    onPinch() {
+        AppState.seedCount++;
+        AppState.flowerCount++;
+        
+        document.getElementById('seed-counter').textContent = AppState.seedCount.toLocaleString();
+        document.getElementById('flower-counter').textContent = AppState.flowerCount.toLocaleString();
+        
+        const hint = document.getElementById('action-hint');
+        hint.textContent = '✦ flower planted ✦';
+        hint.style.color = '#f7d44a';
+        clearTimeout(this.hintTimeout);
+        this.hintTimeout = setTimeout(() => {
+            hint.textContent = '✦ pinch to plant a flower ✦';
+            hint.style.color = 'rgba(255,255,255,0.4)';
+        }, 1500);
+        
+        this.createBurst('#f7d44a', 15);
+    }
+    
+    onWave() {
+        const hint = document.getElementById('action-hint');
+        hint.textContent = '✦ butterflies dancing ✦';
+        hint.style.color = '#ff6b9d';
+        clearTimeout(this.hintTimeout);
+        this.hintTimeout = setTimeout(() => {
+            hint.textContent = '✦ wave to attract butterflies ✦';
+            hint.style.color = 'rgba(255,255,255,0.4)';
+        }, 1500);
+        
+        this.createBurst('#ff6b9d', 20);
+    }
+    
+    createBurst(color, count = 15) {
+        const colors = ['#f7d44a', '#ff6b9d', '#a855f7', '#3b82f6', '#06b6d4'];
+        const x = window.innerWidth / 2;
+        const y = window.innerHeight / 2;
+        
+        for (let i = 0; i < count; i++) {
+            const particle = document.createElement('div');
+            const angle = Math.random() * Math.PI * 2;
+            const distance = 30 + Math.random() * 80;
+            const size = 3 + Math.random() * 6;
+            const duration = 600 + Math.random() * 400;
+            
+            particle.style.cssText = `
+                position: fixed;
+                left: ${x}px;
+                top: ${y}px;
+                width: ${size}px;
+                height: ${size}px;
+                border-radius: 50%;
+                background: ${colors[Math.floor(Math.random() * colors.length)]};
+                pointer-events: none;
+                z-index: 50;
+                opacity: 0.8;
+                transform: translate(0, 0) scale(1);
+                transition: all ${duration}ms cubic-bezier(0.34, 1.56, 0.64, 1);
+            `;
+            document.body.appendChild(particle);
+            
+            requestAnimationFrame(() => {
+                const dx = Math.cos(angle) * distance;
+                const dy = Math.sin(angle) * distance - 30;
+                particle.style.transform = `translate(${dx}px, ${dy}px) scale(0)`;
+                particle.style.opacity = '0';
+            });
+            
+            setTimeout(() => particle.remove(), duration + 100);
+        }
+    }
+    
+    updateCursor(landmarks) {
+        const wrist = landmarks[0];
+        const x = wrist.x * window.innerWidth;
+        const y = wrist.y * window.innerHeight;
+        
+        let cursor = AppState.feedback.cursor;
+        if (!cursor) {
+            cursor = document.createElement('div');
+            cursor.style.cssText = `
+                position: fixed;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                border: 1px solid rgba(247, 212, 74, 0.15);
+                pointer-events: none;
+                z-index: 3;
+                transform: translate(-50%, -50%);
+                transition: all 0.15s ease;
+                background: radial-gradient(circle, rgba(247, 212, 74, 0.05), transparent);
+            `;
+            document.body.appendChild(cursor);
+            AppState.feedback.cursor = cursor;
+        }
+        
+        cursor.style.left = x + 'px';
+        cursor.style.top = y + 'px';
+        cursor.style.opacity = '0.6';
+        
+        if (AppState.gestures.pinch) {
+            cursor.style.transform = 'translate(-50%, -50%) scale(0.3)';
+            cursor.style.borderColor = 'rgba(255, 107, 157, 0.3)';
+            cursor.style.background = 'radial-gradient(circle, rgba(255, 107, 157, 0.1), transparent)';
+        } else {
+            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+            cursor.style.borderColor = 'rgba(247, 212, 74, 0.15)';
+            cursor.style.background = 'radial-gradient(circle, rgba(247, 212, 74, 0.05), transparent)';
+        }
+    }
+}
+
+// ============================================
+// CONTROLS MANAGER
+// ============================================
+class ControlsManager {
+    constructor() {
+        this.bloomValue = 0.35;
+        this.growValue = 0.30;
+        this.startAnimations();
+        this.setupInteractiveControls();
+    }
+    
+    startAnimations() {
+        // Animate bloom value
+        this.animateValue('bloom-value', 0.35);
+        this.animateValue('grow-value', 0.30);
+        
+        // Animate counters
+        this.animateCounter('flower-counter', 2229);
+        this.animateCounter('seed-counter', 31);
+    }
+    
+    animateValue(elementId, target) {
+        const element = document.getElementById(elementId);
+        if (!element) return;
+        
+        let current = 0;
+        const duration = 2000;
+        const startTime = Date.now();
+        
+        const animate = () => {
+            const elapsed = Date.now() - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const value = eased * target;
+            
+            element.textContent = value.toFixed(2);
+            
+            if (progress < 1) requestAnimationFrame(animate);
+        };
+        animate();
+    }
+    
+    animateCounter(elementId, target) {
+        const element = document.getElementById(elementId);
+        if (!element) return;
+        
+        let current = 0;
+        const duration = 3000;
+        const startTime = Date.now();
+        
+        const animate = () => {
+            const elapsed = Date.now() - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const value = Math.floor(eased * target);
+            
+            element.textContent = value.toLocaleString();
+            
+            if (progress < 1) requestAnimationFrame(animate);
+        };
+        animate();
+    }
+    
+    setupInteractiveControls() {
+        // Make controls interactive - this will be expanded in future phases
+        console.log('✦ Controls ready ✦');
+    }
+}
+
+// ============================================
+// BEGIN EXPERIENCE MANAGER
+// ============================================
+class BeginManager {
+    constructor() {
+        this.beginScreen = document.getElementById('begin-screen');
+        this.beginButton = document.getElementById('begin-button');
+        this.loadingScreen = document.getElementById('loading-screen');
+        
+        this.beginButton.addEventListener('click', () => {
+            this.startExperience();
+        });
+        
+        // Show begin screen after loading
+        this.showBeginScreen();
+    }
+    
+    showBeginScreen() {
+        // Hide loading screen
         this.loadingScreen.classList.add('hidden');
         
-        // Show begin screen after a moment
+        // Show begin screen
         setTimeout(() => {
             this.beginScreen.classList.add('visible');
-            this.beginScreen.style.display = 'flex';
-            
-            // Animate button entrance
-            const button = document.getElementById('begin-button');
-            gsap.from(button, {
+            gsap.from('.begin-container', {
                 scale: 0.9,
                 opacity: 0,
                 duration: 1,
-                delay: 0.3,
                 ease: 'back.out(1.7)'
             });
         }, 400);
     }
-}
-
-// ============================================
-// CAMERA PERMISSION MANAGER
-// ============================================
-class CameraManager {
-    constructor() {
-        this.permissionOverlay = document.getElementById('camera-permission-overlay');
-        this.beginButton = document.getElementById('begin-button');
-        this.allowButton = document.getElementById('allow-camera');
-        this.denyButton = document.getElementById('deny-camera');
-        this.cameraFeed = document.getElementById('camera-feed');
-        this.mainExperience = document.getElementById('main-experience');
-        
-        this.setupEventListeners();
-    }
     
-    setupEventListeners() {
-        // Begin button click
-        this.beginButton.addEventListener('click', () => {
-            this.showPermissionOverlay();
-        });
+    startExperience() {
+        this.beginScreen.classList.remove('visible');
+        this.beginScreen.style.display = 'none';
         
-        // Allow camera button
-        this.allowButton.addEventListener('click', () => {
-            this.requestCamera();
-        });
-        
-        // Deny camera button
-        this.denyButton.addEventListener('click', () => {
-            this.skipCamera();
-        });
-    }
-    
-    showPermissionOverlay() {
-        // Hide begin screen
-        document.getElementById('begin-screen').classList.remove('visible');
-        document.getElementById('begin-screen').style.display = 'none';
-        
-        // Show permission overlay with animation
-        this.permissionOverlay.classList.add('visible');
-        this.permissionOverlay.style.display = 'flex';
-        
-        // Animate permission content
-        gsap.from('.permission-container', {
-            scale: 0.9,
-            opacity: 0,
-            duration: 0.8,
-            ease: 'back.out(1.7)'
-        });
-    }
-    
-    async requestCamera() {
-        try {
-            // Update button state
-            this.allowButton.textContent = '✦ requesting... ✦';
-            this.allowButton.disabled = true;
-            this.allowButton.style.opacity = '0.6';
-            
-            // Request camera
-            const stream = await navigator.mediaDevices.getUserMedia({
-                video: {
-                    facingMode: 'user',
-                    width: { ideal: 640 },
-                    height: { ideal: 480 }
-                }
-            });
-            
-            // Success - show camera feed
-            this.cameraFeed.srcObject = stream;
-            await this.cameraFeed.play();
-            this.cameraFeed.style.display = 'block';
-            
-            // Hide permission overlay
-            this.permissionOverlay.classList.remove('visible');
-            this.permissionOverlay.style.display = 'none';
-            
-            // Show main experience
-            this.mainExperience.style.display = 'block';
-            
-            // Animate main experience in
-            gsap.from('#main-experience', {
-                opacity: 0,
-                duration: 1.2,
-                ease: 'power2.out'
-            });
-            
-            console.log('📷 Camera access granted');
-            
-        } catch (error) {
-            console.error('❌ Camera access denied:', error);
-            
-            // Show error state
-            this.allowButton.textContent = '✦ camera denied ✦';
-            this.allowButton.style.background = 'rgba(255, 107, 157, 0.3)';
-            
-            // After a moment, show skip option
-            setTimeout(() => {
-                this.allowButton.textContent = '✦ retry ✦';
-                this.allowButton.disabled = false;
-                this.allowButton.style.opacity = '1';
-                this.allowButton.style.background = 'linear-gradient(135deg, #f7d44a, #ff6b9d)';
-                
-                // Show skip button more prominently
-                this.denyButton.textContent = '✦ continue without camera ✦';
-                this.denyButton.style.borderColor = 'rgba(255,255,255,0.2)';
-                this.denyButton.style.color = 'rgba(255,255,255,0.8)';
-            }, 2000);
-        }
-    }
-    
-    skipCamera() {
-        // Hide permission overlay
-        this.permissionOverlay.classList.remove('visible');
-        this.permissionOverlay.style.display = 'none';
-        
-        // Show main experience without camera
-        this.mainExperience.style.display = 'block';
-        
-        // Add a note that camera is off
-        const hint = document.getElementById('action-hint');
-        hint.textContent = '✦ camera off • experience limited ✦';
-        hint.style.color = 'rgba(255,255,255,0.3)';
-        
-        console.log('📷 Camera skipped, continuing without');
+        // The camera and hand tracking are already running
+        // Just show the main experience
+        console.log('✦ Experience started ✦');
     }
 }
 
 // ============================================
-// MAIN APPLICATION
-// ============================================
-class Application {
-    constructor() {
-        console.log('🌸 Initializing Digital Flowers...');
-        console.log('📸 Milestone 1: Cinematic Loading Experience');
-        
-        // Start Three.js background
-        this.background = new ThreeBackground();
-        
-        // Start loading sequence
-        this.loading = new LoadingManager();
-        
-        // Setup camera manager (will be triggered by user)
-        this.camera = new CameraManager();
-        
-        console.log('✨ Ready for Milestone 1');
-        console.log('✦ Waiting for user to begin...');
-    }
-}
-
-// ============================================
-// START APPLICATION
+// INITIALIZE APPLICATION
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
-    const app = new Application();
+    // Start Three.js
+    const three = new ThreeManager();
     
-    // Expose for debugging
-    window.__APP__ = app;
+    // Start Hand Tracking
+    const handTracking = new HandTrackingManager();
+    
+    // Start Controls
+    const controls = new ControlsManager();
+    
+    // Start Begin Experience
+    const begin = new BeginManager();
+    
+    console.log('🌸 Digital Flowers ready!');
+    console.log('✦ Full camera + hand tracking + poetry ✦');
 });
 
-// ============================================
-// ERROR HANDLING
-// ============================================
-window.addEventListener('error', (error) => {
-    console.error('❌ Application error:', error.message);
-});
-
-console.log('🚀 Milestone 1: Cinematic Loading Screen');
-console.log('✦ Created with love for digital flowers ✦');
+console.log('✦ How I would send her flowers, but she didn\'t exist ✦');
