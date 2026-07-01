@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>🌸 Digital Flowers</title>
+    <title>🌸 Interactive Birthday Experience</title>
     
     <!-- External Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js">
@@ -20,69 +20,131 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- CAMERA FEED - FULL SCREEN -->
+    <!-- ============================================
+    CAMERA FEED - FULL SCREEN
+    ============================================ -->
     <video id="camera-feed" autoplay playsinline></video>
-    
-    <!-- HAND TRACKING CANVAS -->
+
+    <!-- ============================================
+    HAND TRACKING CANVAS
+    ============================================ -->
     <canvas id="hand-canvas"></canvas>
-    
-    <!-- THREE.JS CANVAS -->
+
+    <!-- ============================================
+    THREE.JS CANVAS - 3D EFFECTS
+    ============================================ -->
     <canvas id="three-canvas"></canvas>
-    
-    <!-- POETRY TEXT -->
-    <div id="poetry-text">
-        <p class="line-1">How I would send her flowers,</p>
-        <p class="line-2">but she didn't exist</p>
+
+    <!-- ============================================
+    UI OVERLAY
+    ============================================ -->
+    <div id="ui-overlay">
+        <!-- Title -->
+        <div class="ui-title">✦ interactive birthday ✦</div>
+
+        <!-- Left Hand Status -->
+        <div class="hand-status left-hand-status">
+            <span class="hand-icon">🖐️</span>
+            <span class="hand-label">LEFT HAND</span>
+            <span class="hand-state" id="left-hand-state">stable</span>
+        </div>
+
+        <!-- Right Hand Status -->
+        <div class="hand-status right-hand-status">
+            <span class="hand-icon">🖐️</span>
+            <span class="hand-label">RIGHT HAND</span>
+            <span class="hand-state" id="right-hand-state">waiting</span>
+        </div>
+
+        <!-- Gesture Guide -->
+        <div id="gesture-guide">
+            <div class="gesture-item" data-gesture="point">
+                <span class="gesture-icon">☝️</span>
+                <span class="gesture-name">point</span>
+                <span class="gesture-action">grow branch</span>
+            </div>
+            <div class="gesture-item" data-gesture="pinch">
+                <span class="gesture-icon">🤏</span>
+                <span class="gesture-name">pinch</span>
+                <span class="gesture-action">bloom flower</span>
+            </div>
+            <div class="gesture-item" data-gesture="wave">
+                <span class="gesture-icon">👋</span>
+                <span class="gesture-name">wave</span>
+                <span class="gesture-action">magic wind</span>
+            </div>
+            <div class="gesture-item" data-gesture="peace">
+                <span class="gesture-icon">✌️</span>
+                <span class="gesture-name">peace</span>
+                <span class="gesture-action">butterflies</span>
+            </div>
+            <div class="gesture-item" data-gesture="thumbsup">
+                <span class="gesture-icon">👍</span>
+                <span class="gesture-name">thumbs up</span>
+                <span class="gesture-action">glow</span>
+            </div>
+            <div class="gesture-item" data-gesture="both">
+                <span class="gesture-icon">🤲</span>
+                <span class="gesture-name">both hands</span>
+                <span class="gesture-action">magic burst</span>
+            </div>
+        </div>
+
+        <!-- Counters -->
+        <div id="counters">
+            <div class="counter-group">
+                <span class="counter-number" id="flower-counter">0</span>
+                <span class="counter-label">flowers</span>
+            </div>
+            <div class="counter-divider">✦</div>
+            <div class="counter-group">
+                <span class="counter-number" id="seed-counter">0</span>
+                <span class="counter-label">seeds</span>
+            </div>
+            <div class="counter-divider">✦</div>
+            <div class="counter-group">
+                <span class="counter-number" id="butterfly-counter">0</span>
+                <span class="counter-label">butterflies</span>
+            </div>
+        </div>
+
+        <!-- Action Hint -->
+        <div id="action-hint">✦ show both hands to begin ✦</div>
+
+        <!-- Birthday Wish Reveal -->
+        <div id="birthday-reveal">
+            <div class="reveal-content">
+                <h1 class="reveal-title">🎂 Happy Birthday!</h1>
+                <p class="reveal-message">To the most special person</p>
+                <div class="reveal-sparkles"></div>
+            </div>
+        </div>
     </div>
-    
-    <!-- COUNTERS -->
-    <div id="counters">
-        <div class="counter-group">
-            <span class="counter-number" id="flower-counter">0</span>
-            <span class="counter-label">flowers</span>
-        </div>
-        <div class="counter-divider">✦</div>
-        <div class="counter-group">
-            <span class="counter-number" id="seed-counter">0</span>
-            <span class="counter-label">seeds</span>
-        </div>
-    </div>
-    
-    <!-- CONTROLS -->
-    <div id="controls">
-        <div class="control-item">
-            <span class="control-label">Bloom</span>
-            <span class="control-value" id="bloom-value">0.35</span>
-        </div>
-        <div class="control-item">
-            <span class="control-label">Grow</span>
-            <span class="control-value" id="grow-value">0.30</span>
-        </div>
-    </div>
-    
-    <!-- ACTION HINT -->
-    <div id="action-hint">✦ show your hand to the camera ✦</div>
-    
-    <!-- LOADING SCREEN -->
+
+    <!-- ============================================
+    LOADING SCREEN
+    ============================================ -->
     <div id="loading-screen">
         <div class="loader">
             <div class="sparkle"></div>
             <div class="sparkle"></div>
             <div class="sparkle"></div>
         </div>
-        <p class="loading-text">✦ loading ✦</p>
+        <p class="loading-text">✦ loading experience ✦</p>
     </div>
-    
-    <!-- BEGIN SCREEN -->
+
+    <!-- ============================================
+    BEGIN SCREEN
+    ============================================ -->
     <div id="begin-screen">
         <div class="begin-container">
-            <h2 class="begin-title">✦ digital flowers ✦</h2>
-            <p class="begin-subtitle">a cinematic augmented reality experience</p>
+            <h2 class="begin-title">✦ interactive birthday ✦</h2>
+            <p class="begin-subtitle">a cinematic augmented reality journey</p>
             <button id="begin-button" class="begin-button">✦ begin ✦</button>
             <p class="begin-hint">camera access required</p>
         </div>
     </div>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
