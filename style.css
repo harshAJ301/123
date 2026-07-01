@@ -1,5 +1,5 @@
 /* ============================================
-   ROOT VARIABLES
+   ROOT VARIABLES - Premium Dark Theme
    ============================================ */
 :root {
     --color-gold: #f7d44a;
@@ -7,9 +7,14 @@
     --color-purple: #a855f7;
     --color-blue: #3b82f6;
     --color-cyan: #06b6d4;
+    --color-neon-pink: #ff2d95;
+    --color-neon-purple: #b44dff;
+    --color-neon-blue: #4d9eff;
     --color-white: #ffffff;
     --color-text: rgba(255, 255, 255, 0.9);
-    --color-text-muted: rgba(255, 255, 255, 0.5);
+    --color-text-muted: rgba(255, 255, 255, 0.4);
+    --color-bg-glass: rgba(0, 0, 0, 0.3);
+    --color-border-glass: rgba(255, 255, 255, 0.06);
 }
 
 * {
@@ -69,166 +74,291 @@ html, body {
 }
 
 /* ============================================
-   POETRY TEXT
+   UI OVERLAY
    ============================================ */
-#poetry-text {
+#ui-overlay {
     position: fixed;
-    bottom: 180px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* ============================================
+   TITLE
+   ============================================ */
+.ui-title {
+    position: absolute;
+    top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 5;
-    text-align: center;
-    pointer-events: none;
+    font-size: clamp(0.7rem, 1.2vw, 0.9rem);
+    font-weight: 300;
+    color: var(--color-text-muted);
+    letter-spacing: 0.3em;
+    text-transform: lowercase;
+    background: var(--color-bg-glass);
+    backdrop-filter: blur(12px);
+    padding: 8px 24px;
+    border-radius: 40px;
+    border: 1px solid var(--color-border-glass);
+    opacity: 0;
+    animation: fade-in 2s ease 1s forwards;
+}
+
+/* ============================================
+   HAND STATUS
+   ============================================ */
+.hand-status {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-bg-glass);
+    backdrop-filter: blur(12px);
+    padding: 8px 16px;
+    border-radius: 30px;
+    border: 1px solid var(--color-border-glass);
     opacity: 0;
     animation: fade-in 2s ease 1.5s forwards;
 }
 
-@keyframes fade-in {
-    0% {
-        opacity: 0;
-        transform: translateX(-50%) translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-    }
+.left-hand-status {
+    bottom: 80px;
+    left: 20px;
 }
 
-#poetry-text .line-1 {
-    font-size: clamp(1.2rem, 3.5vw, 2.8rem);
-    font-weight: 300;
+.right-hand-status {
+    bottom: 80px;
+    right: 20px;
+}
+
+.hand-icon {
+    font-size: 1rem;
+}
+
+.hand-label {
+    font-size: 0.5rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.hand-state {
+    font-size: 0.55rem;
+    font-weight: 400;
     color: var(--color-text);
-    letter-spacing: 0.15em;
-    text-shadow: 0 2px 40px rgba(0, 0, 0, 0.7);
-    margin-bottom: 4px;
-    font-style: italic;
+    letter-spacing: 0.05em;
+    padding: 2px 10px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
 }
 
-#poetry-text .line-2 {
-    font-size: clamp(1rem, 2.5vw, 2rem);
+.left-hand-status .hand-state {
+    color: var(--color-cyan);
+    border: 1px solid rgba(6, 182, 212, 0.2);
+}
+
+.right-hand-status .hand-state {
+    color: var(--color-rose);
+    border: 1px solid rgba(255, 107, 157, 0.2);
+}
+
+/* ============================================
+   GESTURE GUIDE
+   ============================================ */
+#gesture-guide {
+    position: absolute;
+    bottom: 140px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+    background: var(--color-bg-glass);
+    backdrop-filter: blur(16px);
+    padding: 8px 16px;
+    border-radius: 30px;
+    border: 1px solid var(--color-border-glass);
+    opacity: 0;
+    animation: fade-in 2s ease 2s forwards;
+    pointer-events: none;
+}
+
+.gesture-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+    opacity: 0.4;
+}
+
+.gesture-item.active {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.gesture-item .gesture-icon {
+    font-size: 0.8rem;
+}
+
+.gesture-item .gesture-name {
+    font-size: 0.4rem;
     font-weight: 300;
     color: var(--color-text-muted);
-    letter-spacing: 0.2em;
-    text-shadow: 0 2px 40px rgba(0, 0, 0, 0.7);
-    font-style: italic;
+    letter-spacing: 0.05em;
+    text-transform: lowercase;
+}
+
+.gesture-item .gesture-action {
+    font-size: 0.35rem;
+    font-weight: 300;
+    color: var(--color-text-muted);
+    letter-spacing: 0.05em;
+    opacity: 0.5;
 }
 
 /* ============================================
    COUNTERS
    ============================================ */
 #counters {
-    position: fixed;
-    bottom: 100px;
+    position: absolute;
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 5;
     display: flex;
     align-items: center;
-    gap: 24px;
-    background: rgba(0, 0, 0, 0.35);
-    backdrop-filter: blur(12px);
-    padding: 12px 32px;
-    border-radius: 60px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    pointer-events: none;
+    gap: 16px;
+    background: var(--color-bg-glass);
+    backdrop-filter: blur(16px);
+    padding: 8px 24px;
+    border-radius: 40px;
+    border: 1px solid var(--color-border-glass);
     opacity: 0;
-    animation: fade-in 2s ease 2s forwards;
+    animation: fade-in 2s ease 2.5s forwards;
 }
 
 .counter-group {
     display: flex;
     align-items: baseline;
-    gap: 6px;
+    gap: 4px;
 }
 
 .counter-number {
-    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    font-size: clamp(0.9rem, 1.5vw, 1.2rem);
     font-weight: 600;
     color: var(--color-text);
     letter-spacing: 0.05em;
 }
 
 .counter-label {
-    font-size: clamp(0.6rem, 0.9vw, 0.8rem);
+    font-size: clamp(0.5rem, 0.7vw, 0.6rem);
     font-weight: 300;
     color: var(--color-text-muted);
     text-transform: lowercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.05em;
 }
 
 .counter-divider {
     color: var(--color-text-muted);
-    font-size: 0.7rem;
+    font-size: 0.5rem;
     opacity: 0.3;
-}
-
-/* ============================================
-   CONTROLS
-   ============================================ */
-#controls {
-    position: fixed;
-    bottom: 160px;
-    right: 30px;
-    z-index: 5;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(16px);
-    padding: 14px 20px;
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    pointer-events: none;
-    opacity: 0;
-    animation: fade-in 2s ease 2.5s forwards;
-}
-
-.control-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.control-label {
-    font-size: 0.7rem;
-    font-weight: 300;
-    color: var(--color-text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    min-width: 36px;
-}
-
-.control-value {
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--color-text);
-    min-width: 32px;
-    text-align: right;
 }
 
 /* ============================================
    ACTION HINT
    ============================================ */
 #action-hint {
-    position: fixed;
-    top: 30px;
+    position: absolute;
+    top: 70px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 5;
-    font-size: clamp(0.7rem, 1.2vw, 0.9rem);
+    font-size: clamp(0.6rem, 1vw, 0.8rem);
     font-weight: 300;
     color: var(--color-text-muted);
-    letter-spacing: 0.2em;
+    letter-spacing: 0.15em;
     text-transform: lowercase;
-    background: rgba(0, 0, 0, 0.3);
+    background: var(--color-bg-glass);
     backdrop-filter: blur(8px);
-    padding: 8px 24px;
-    border-radius: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    pointer-events: none;
+    padding: 6px 20px;
+    border-radius: 30px;
+    border: 1px solid var(--color-border-glass);
     opacity: 0;
-    animation: fade-in 2s ease 1s forwards;
+    animation: fade-in 2s ease 0.5s forwards;
     transition: all 0.5s ease;
+    white-space: nowrap;
+}
+
+/* ============================================
+   BIRTHDAY REVEAL
+   ============================================ */
+#birthday-reveal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(20px);
+    z-index: 10;
+}
+
+#birthday-reveal.visible {
+    display: flex;
+    animation: reveal-pop 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes reveal-pop {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.reveal-content {
+    text-align: center;
+    padding: 40px;
+}
+
+.reveal-title {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--color-gold), var(--color-rose), var(--color-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.reveal-message {
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    font-weight: 300;
+    color: var(--color-text);
+    letter-spacing: 0.15em;
+    font-style: italic;
+}
+
+.reveal-sparkles {
+    margin-top: 20px;
+    font-size: 2rem;
+    letter-spacing: 10px;
 }
 
 /* ============================================
@@ -267,33 +397,18 @@ html, body {
     animation: sparkle-animation 1.4s ease-in-out infinite;
 }
 
-.sparkle:nth-child(1) {
-    background: var(--color-gold);
-}
-.sparkle:nth-child(2) {
-    background: var(--color-rose);
-    animation-delay: 0.2s;
-}
-.sparkle:nth-child(3) {
-    background: var(--color-purple);
-    animation-delay: 0.4s;
-}
+.sparkle:nth-child(1) { background: var(--color-gold); }
+.sparkle:nth-child(2) { background: var(--color-rose); animation-delay: 0.2s; }
+.sparkle:nth-child(3) { background: var(--color-purple); animation-delay: 0.4s; }
 
 @keyframes sparkle-animation {
-    0%, 100% {
-        transform: scale(0.3);
-        opacity: 0.2;
-    }
-    50% {
-        transform: scale(1.2);
-        opacity: 1;
-        box-shadow: 0 0 30px currentColor;
-    }
+    0%, 100% { transform: scale(0.3); opacity: 0.2; }
+    50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 30px currentColor; }
 }
 
 .loading-text {
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.4);
     letter-spacing: 0.2em;
     font-weight: 300;
 }
@@ -311,13 +426,18 @@ html, body {
     display: none;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(20px);
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(30px);
 }
 
 #begin-screen.visible {
     display: flex;
     animation: fade-in 1s ease forwards;
+}
+
+@keyframes fade-in {
+    0% { opacity: 0; transform: scale(1.05); }
+    100% { opacity: 1; transform: scale(1); }
 }
 
 .begin-container {
@@ -355,6 +475,7 @@ html, body {
     cursor: pointer;
     transition: all 0.5s ease;
     margin-top: 12px;
+    pointer-events: auto;
 }
 
 .begin-button:hover {
@@ -371,62 +492,73 @@ html, body {
 }
 
 /* ============================================
-   RESPONSIVE DESIGN
+   RESPONSIVE
    ============================================ */
 @media (max-width: 768px) {
-    #poetry-text {
-        bottom: 160px;
-    }
-    #poetry-text .line-1 {
-        font-size: clamp(1rem, 4vw, 1.6rem);
-    }
-    #poetry-text .line-2 {
-        font-size: clamp(0.8rem, 3vw, 1.2rem);
-    }
-    #counters {
-        bottom: 80px;
-        padding: 8px 18px;
-        gap: 12px;
-        border-radius: 40px;
-    }
-    .counter-number {
-        font-size: clamp(1rem, 3vw, 1.4rem);
-    }
-    #controls {
-        bottom: 130px;
-        right: 12px;
-        padding: 10px 14px;
-    }
-    .control-label {
+    .left-hand-status, .right-hand-status {
+        bottom: 70px;
+        padding: 6px 12px;
         font-size: 0.6rem;
-        min-width: 30px;
     }
-    .control-value {
-        font-size: 0.75rem;
-        min-width: 28px;
+    .left-hand-status { left: 10px; }
+    .right-hand-status { right: 10px; }
+    
+    .hand-label { display: none; }
+    .hand-state { font-size: 0.45rem; padding: 2px 8px; }
+    
+    #gesture-guide {
+        bottom: 120px;
+        padding: 6px 12px;
+        gap: 4px;
+        flex-wrap: wrap;
+        justify-content: center;
+        max-width: 95%;
+        border-radius: 20px;
     }
+    .gesture-item { padding: 3px 6px; }
+    .gesture-item .gesture-icon { font-size: 0.6rem; }
+    .gesture-item .gesture-name { font-size: 0.3rem; }
+    .gesture-item .gesture-action { display: none; }
+    
+    #counters {
+        bottom: 20px;
+        padding: 6px 16px;
+        gap: 10px;
+        border-radius: 30px;
+    }
+    .counter-number { font-size: clamp(0.7rem, 2vw, 0.9rem); }
+    .counter-label { font-size: 0.4rem; }
+    .counter-divider { font-size: 0.4rem; }
+    
     #action-hint {
-        top: 20px;
-        font-size: clamp(0.6rem, 1.5vw, 0.75rem);
+        top: 60px;
+        font-size: clamp(0.5rem, 1.2vw, 0.65rem);
+        padding: 4px 14px;
+        white-space: normal;
+        max-width: 90%;
+    }
+    
+    .ui-title {
+        top: 15px;
+        font-size: 0.6rem;
         padding: 6px 16px;
     }
 }
 
 @media (max-width: 480px) {
-    #poetry-text {
-        bottom: 140px;
+    #gesture-guide {
+        bottom: 100px;
+        padding: 4px 8px;
+        gap: 2px;
     }
-    #counters {
-        bottom: 70px;
-        padding: 6px 14px;
-        gap: 8px;
+    .gesture-item { padding: 2px 4px; }
+    .gesture-item .gesture-icon { font-size: 0.5rem; }
+    .gesture-item .gesture-name { display: none; }
+    
+    .left-hand-status, .right-hand-status {
+        bottom: 60px;
+        padding: 4px 8px;
     }
-    .counter-label {
-        display: none;
-    }
-    #controls {
-        bottom: 110px;
-        right: 8px;
-        padding: 8px 12px;
-    }
+    .hand-icon { font-size: 0.7rem; }
+    .hand-state { font-size: 0.35rem; padding: 1px 6px; }
 }
