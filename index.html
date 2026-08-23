@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎂 HAPPY 18TH BIRTHDAY JENISHA! 🎉</title>
+    <title>🎂 HAPPY 18TH BIRTHDAY XYZ! 🎉</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&family=Great+Vibes&family=Pacifico&family=Satisfy&display=swap" rel="stylesheet">
     <style>
@@ -1609,7 +1609,6 @@
             transform: scale(1.1);
         }
 
-        /* YouTube Music Container - Hidden */
         .youtube-music-container {
             display: none;
         }
@@ -1695,7 +1694,6 @@
     </style>
 </head>
 <body>
-    <!-- Hidden YouTube Player (Auto-plays in background) -->
     <div class="youtube-music-container" id="youtube-music-container">
         <iframe 
             id="youtube-player" 
@@ -1708,7 +1706,6 @@
         </iframe>
     </div>
 
-    <!-- Music Player Controls -->
     <div class="music-player" id="music-player">
         <button class="music-btn" id="music-play-pause">
             <i class="fas fa-play"></i>
@@ -1725,14 +1722,14 @@
     <div class="cake-blast-overlay" id="cake-blast-overlay">
         <div class="blast-text">🎂 CAKE SMASH! 🎉</div>
         <div style="font-size: 2.5rem; color: var(--gold); text-shadow: 0 0 30px var(--gold);">
-            Happy Birthday Jenisha! 🥳
+            Happy Birthday XYZ! 🥳
         </div>
     </div>
 
     <div class="password-screen" id="password-screen">
         <div class="birthday-icon">🎁</div>
         <div class="password-container">
-            <h1 class="password-title">Happy Birthday Jenisha! 🎉</h1>
+            <h1 class="password-title">Happy Birthday XYZ! 🎉</h1>
             <p class="password-subtitle">You've unlocked a secret birthday website! ✨</p>
             
             <p style="font-size: 1.2rem; color: var(--cyan); margin-bottom: 20px;">
@@ -1741,7 +1738,7 @@
             
             <div class="password-hint">
                 <p><strong>🔑 Password Hint:</strong> It's similar to your name! (all lowercase)</p>
-                <p><em>✨ Starts with 'j', ends with 'a', has 7 magical letters ✨</em></p>
+                <p><em>✨ Starts with 'x', ends with 'z', has 3 magical letters ✨</em></p>
             </div>
             
             <input type="password" 
@@ -1787,7 +1784,7 @@
                     <h1 class="welcome-title">🎉 WELCOME TO YOUR 18TH BIRTHDAY! 🎉</h1>
                     
                     <div class="birthday-hero">
-                        <div class="hero-name">JENISHA</div>
+                        <div class="hero-name">XYZ</div>
                         <div class="hero-age">18</div>
                     </div>
                     
@@ -2017,7 +2014,7 @@
         <section class="page" id="page6">
             <div class="container">
                 <div class="birthday-display">
-                    <h1 class="birthday-message">🎂 HAPPY 18TH BIRTHDAY JENISHA! 🎉</h1>
+                    <h1 class="birthday-message">🎂 HAPPY 18TH BIRTHDAY XYZ! 🎉</h1>
                     <p style="font-size: 2.2rem; color: var(--gold); margin: 50px 0; text-shadow: 0 0 30px var(--gold);">
                         🏆 YOU COMPLETED ALL BIRTHDAY CHALLENGES! 🏆<br>
                         ✨ Now for the FINAL SURPRISES... ✨
@@ -2075,12 +2072,12 @@
                 <div class="final-message-container">
                     <div class="message-header">
                         <h1 class="message-title">A Special Birthday Message</h1>
-                        <p class="message-subtitle">For Jenisha on her magical 18th birthday ✨</p>
+                        <p class="message-subtitle">For XYZ on their magical 18th birthday ✨</p>
                     </div>
                     
                     <div class="message-content">
                         <div class="message-line">
-                            🎉 <span class="highlight">HAPPY 18TH BIRTHDAY, JENISHA!</span> 🎉
+                            🎉 <span class="highlight">HAPPY 18TH BIRTHDAY, XYZ!</span> 🎉
                         </div>
                         
                         <div class="message-line">
@@ -2130,7 +2127,6 @@
             </div>
         </section>
 
-        <!-- Audio elements for sound effects -->
         <audio id="pop-sound">
             <source src="https://assets.mixkit.co/sfx/preview/mixkit-balloon-pop-2928.mp3" type="audio/mpeg">
         </audio>
@@ -2157,7 +2153,6 @@
     </div>
 
     <script>
-        // ===== GLOBAL VARIABLES =====
         let totalScore = 500;
         let currentPage = 1;
         let musicEnabled = true;
@@ -2165,11 +2160,9 @@
         let attempts = 0;
         let maxAttempts = 5;
 
-        // Cake Smash Game
         let tapCount = 0;
         let cakeSmashed = false;
 
-        // Memory Match Game
         let memoryMatches = 0;
         let memoryMoves = 0;
         let memoryGameActive = false;
@@ -2177,12 +2170,10 @@
         let secondCard = null;
         let canFlip = true;
 
-        // Spin the Wheel Game
         let spinsLeft = 3;
         let wheelSpinning = false;
         let wheelScore = 0;
         
-        // Wheel prizes
         const wheelPrizes = [
             { name: "🥔 Potato appears and does nothing", effect: "potato", points: 50 },
             { name: "🌀 Screen spins slightly then stops", effect: "screenSpin", points: 100 },
@@ -2194,69 +2185,52 @@
             { name: "🤷‍♀️ Shrug emoji floats up", effect: "shrug", points: 50 }
         ];
 
-        // Quiz Game
         let currentQuestion = 1;
         let totalQuestions = 5;
         let quizScore = 0;
         let quizAnswers = {};
 
-        // ===== INITIALIZATION =====
         document.addEventListener('DOMContentLoaded', function() {
-            // Create birthday background
             createBirthdayBackground();
             
-            // Initialize password system
             document.getElementById('password-submit').addEventListener('click', checkPassword);
             document.getElementById('password-input').addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') checkPassword();
             });
             
-            // Initialize games
             initCakeGame();
             initMemoryGame();
             initWheelGame();
             initQuizGame();
             
-            // Start button
             document.getElementById('start-btn').addEventListener('click', function() {
-                // Start music (it will autoplay after password)
                 playSound('celebration-sound');
                 goToPage(2);
             });
             
-            // Music player controls
             document.getElementById('music-play-pause').addEventListener('click', toggleMusicPlayer);
             
-            // Music/Sound toggles
             document.getElementById('music-toggle').addEventListener('click', toggleMusic);
             document.getElementById('sound-toggle').addEventListener('click', toggleSound);
             
-            // Surprise Button
             document.getElementById('danger-button').addEventListener('click', surpriseButtonClicked);
             document.getElementById('final-page-btn').style.display = 'none';
             
-            // 404 Error Page
             document.getElementById('joke-message').style.display = 'none';
             document.getElementById('error-continue').style.display = 'none';
             
-            // Update score display
             updateGlobalScore();
             
-            // Start YouTube music in background (hidden)
             setTimeout(startYouTubeMusic, 1000);
         });
 
-        // ===== YOUTUBE MUSIC CONTROL =====
         let youtubePlayer;
         
         function startYouTubeMusic() {
-            // Create hidden YouTube iframe
             const iframe = document.getElementById('youtube-player');
             if (iframe) {
-                // YouTube will autoplay the music in background
                 console.log("🎵 YouTube music started (hidden)!");
                 
-                // Try to play if autoplay doesn't work
                 setTimeout(() => {
                     iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
                 }, 1000);
@@ -2269,7 +2243,6 @@
             const iframe = document.getElementById('youtube-player');
             
             if (musicEnabled) {
-                // Pause YouTube video
                 if (iframe) {
                     iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
                 }
@@ -2277,7 +2250,6 @@
                 musicToggle.innerHTML = '<i class="fas fa-music"></i> <span>MUSIC: OFF</span>';
                 musicEnabled = false;
             } else {
-                // Play YouTube video
                 if (iframe) {
                     iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
                 }
@@ -2294,7 +2266,6 @@
             const musicToggle = document.getElementById('music-toggle');
             
             if (musicEnabled) {
-                // Pause YouTube video
                 if (iframe) {
                     iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
                 }
@@ -2302,7 +2273,6 @@
                 playBtn.innerHTML = '<i class="fas fa-play"></i>';
                 musicEnabled = false;
             } else {
-                // Play YouTube video
                 if (iframe) {
                     iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
                 }
@@ -2313,7 +2283,6 @@
             playSound('click-sound');
         }
 
-        // ===== CREATE BIRTHDAY BACKGROUND =====
         function createBirthdayBackground() {
             const bg = document.getElementById('birthday-bg');
             const elements = ['🎈', '🎉', '✨', '🥳', '🎁', '🎂', '🎊', '🎀', '🧁', '🍰'];
@@ -2332,7 +2301,6 @@
             }
         }
 
-        // ===== PASSWORD SYSTEM =====
         function checkPassword() {
             const passwordInput = document.getElementById('password-input');
             const errorMsg = document.getElementById('password-error');
@@ -2342,51 +2310,41 @@
             attempts++;
             attemptCount.textContent = attempts;
             
-            if (enteredPassword === "janisha") {
-                // Correct password
+            if (enteredPassword === "xyz") {
                 playSound('success-sound', 0.7);
                 errorMsg.classList.remove('show');
                 
-                // Create confetti
                 createConfetti(200);
                 
-                // Update button
                 const submitBtn = document.getElementById('password-submit');
                 submitBtn.innerHTML = '<i class="fas fa-check"></i> 🎉 ACCESS GRANTED! 🎉';
                 submitBtn.style.background = 'linear-gradient(45deg, var(--cyan), var(--blue))';
                 
-                // Unlock website
                 setTimeout(() => {
                     document.getElementById('password-screen').style.opacity = '0';
                     setTimeout(() => {
                         document.getElementById('password-screen').style.display = 'none';
                         document.getElementById('main-content').classList.add('show');
                         
-                        // Play celebration sound
                         playSound('celebration-sound', 0.8);
                         
-                        // Start YouTube music
                         startYouTubeMusic();
                         
-                        // Show music is playing
                         document.getElementById('music-play-pause').innerHTML = '<i class="fas fa-pause"></i>';
                         musicEnabled = true;
                     }, 500);
                 }, 1500);
             } else {
-                // Wrong password
                 playSound('pop-sound');
                 errorMsg.classList.add('show');
                 passwordInput.value = '';
                 passwordInput.focus();
                 
-                // Shake animation
                 passwordInput.style.animation = 'none';
                 setTimeout(() => {
                     passwordInput.style.animation = 'shake 0.5s ease';
                 }, 10);
                 
-                // Limit attempts
                 if (attempts >= maxAttempts) {
                     document.getElementById('password-submit').disabled = true;
                     document.getElementById('password-input').disabled = true;
@@ -2395,32 +2353,25 @@
             }
         }
 
-        // ===== PAGE NAVIGATION =====
         function goToPage(pageNum) {
             if (pageNum < 1 || pageNum > 9) return;
             
-            // Hide current page
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
             
-            // Show new page
             currentPage = pageNum;
             document.getElementById(`page${pageNum}`).classList.add('active');
             
-            // Play click sound
             playSound('click-sound');
             
-            // Scroll to top
             window.scrollTo(0, 0);
             
-            // Special handling for specific pages
             if (pageNum === 7) {
                 start404Animation();
             }
         }
 
-        // ===== PAGE 2: CAKE SMASH GAME =====
         function initCakeGame() {
             const cake = document.getElementById('birthday-cake');
             const feedback = document.getElementById('cake-feedback');
@@ -2432,7 +2383,6 @@
                 tapCount++;
                 document.getElementById('tap-count').textContent = tapCount;
                 
-                // Different effects based on tap count
                 switch(tapCount) {
                     case 1:
                         cake.style.transform = 'scale(0.95)';
@@ -2459,23 +2409,18 @@
                         cake.style.opacity = '0';
                         feedback.innerHTML = "🎊🎊🎊 CAKE SMASH! 🎊🎊🎊";
                         
-                        // Show full screen blast overlay
                         const overlay = document.getElementById('cake-blast-overlay');
                         overlay.classList.add('active');
                         
-                        // Add points
                         addToScore(1000);
                         nextBtn.disabled = false;
                         
-                        // Play celebration sounds
                         playSound('cake-smash-sound', 0.8);
                         playSound('celebration-sound', 0.7);
                         
-                        // Create cake explosion
                         createCakeExplosion();
                         createConfetti(200);
                         
-                        // Hide overlay after 3 seconds
                         setTimeout(() => {
                             overlay.classList.remove('active');
                         }, 3000);
@@ -2510,7 +2455,6 @@
                     
                     document.body.appendChild(piece);
                     
-                    // Animate
                     piece.animate([
                         { 
                             transform: 'translate(0, 0) scale(1) rotate(0deg)', 
@@ -2530,22 +2474,18 @@
             }
         }
 
-        // ===== PAGE 3: MEMORY MATCH GAME =====
         function initMemoryGame() {
             const memoryArea = document.getElementById('memory-area');
             const startBtn = document.getElementById('memory-start');
             
-            // Create card pairs
             const emojis = ['🎂', '🎁', '🎈', '🎊', '🥳', '🎉'];
             const cards = [...emojis, ...emojis];
             
-            // Shuffle cards
             for (let i = cards.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [cards[i], cards[j]] = [cards[j], cards[i]];
             }
             
-            // Create card elements
             cards.forEach((emoji, index) => {
                 const card = document.createElement('div');
                 card.className = 'memory-card';
@@ -2587,7 +2527,6 @@
             startBtn.innerHTML = '<i class="fas fa-gamepad"></i> GAME RUNNING...';
             feedback.innerHTML = '🎴 Find matching pairs!';
             
-            // Reset all cards
             document.querySelectorAll('.memory-card').forEach(card => {
                 card.classList.remove('flipped', 'matched');
             });
@@ -2616,7 +2555,6 @@
 
         function checkMatch() {
             if (firstCard.dataset.emoji === secondCard.dataset.emoji) {
-                // Match found
                 firstCard.classList.add('matched');
                 secondCard.classList.add('matched');
                 memoryMatches++;
@@ -2631,7 +2569,6 @@
                     winMemoryGame();
                 }
             } else {
-                // No match
                 firstCard.classList.remove('flipped');
                 secondCard.classList.remove('flipped');
                 playSound('pop-sound');
@@ -2669,17 +2606,14 @@
             createConfetti(150);
         }
 
-        // ===== PAGE 4: SPIN THE WHEEL GAME =====
         function initWheelGame() {
             const wheel = document.getElementById('wheel');
             const spinBtn = document.getElementById('spin-btn');
             
-            // Create wheel sections
             createWheelSections();
             
             spinBtn.addEventListener('click', spinWheel);
             
-            // Initialize UI
             document.getElementById('spins-left').textContent = spinsLeft;
             document.getElementById('wheel-score').textContent = wheelScore;
         }
@@ -2783,7 +2717,6 @@
             }, 4000);
         }
 
-        // ===== PRIZE EFFECTS =====
         function triggerPrizeEffect(effectType) {
             const effectContainer = document.getElementById('prize-effect');
             effectContainer.innerHTML = '';
@@ -2938,12 +2871,11 @@
             }, 5000);
         }
 
-        // ===== PAGE 5: BIRTHDAY QUIZ =====
         function initQuizGame() {
             const quizArea = document.getElementById('quiz-area');
             const questions = [
                 {
-                    question: "🎂 If Jenisha could have ANY birthday cake in the world, what would it MOST likely be?",
+                    question: "🎂 If XYZ could have ANY birthday cake in the world, what would it MOST likely be?",
                     options: [
                         "A) Chocolate overload (never fails 😌)",
                         "B) Classic vanilla (simple & clean)",
@@ -2952,7 +2884,7 @@
                     ]
                 },
                 {
-                    question: "🎁 What's the ULTIMATE 18th birthday gift for Jenisha?",
+                    question: "🎁 What's the ULTIMATE 18th birthday gift for XYZ?",
                     options: [
                         "A) A stack of good fictional books 📚✨",
                         "B) A surprise trip / outing 🧳",
@@ -3080,7 +3012,6 @@
             createConfetti(150);
         }
 
-        // ===== PAGE 7: 404 ERROR JOKE =====
         function start404Animation() {
             const jokeMessage = document.getElementById('joke-message');
             const continueBtn = document.getElementById('error-continue');
@@ -3121,7 +3052,6 @@
             }, 1000);
         }
 
-        // ===== PAGE 8: SURPRISE BUTTON =====
         function surpriseButtonClicked() {
             const button = document.getElementById('danger-button');
             const feedback = document.getElementById('surprise-feedback');
@@ -3143,7 +3073,6 @@
             }, 500);
         }
 
-        // ===== UTILITY FUNCTIONS =====
         function playSound(soundId, volume = 0.5) {
             if (!soundEnabled) return;
             
@@ -3152,7 +3081,6 @@
                 sound.currentTime = 0;
                 sound.volume = volume;
                 sound.play().catch(e => {
-                    // Ignore autoplay errors
                 });
             }
         }
@@ -3182,7 +3110,6 @@
             playSound('click-sound');
         }
 
-        // ===== CONFETTI EFFECT =====
         function createConfetti(count = 100) {
             const canvas = document.getElementById('confetti-canvas');
             if (!canvas) return;
@@ -3248,7 +3175,6 @@
             animateConfetti();
         }
 
-        // ===== WINDOW RESIZE =====
         window.addEventListener('resize', () => {
             const canvas = document.getElementById('confetti-canvas');
             if (canvas) {
@@ -3257,7 +3183,6 @@
             }
         });
 
-        // ===== MISSING ANIMATIONS =====
         const style = document.createElement('style');
         style.textContent = `
             @keyframes shake {
