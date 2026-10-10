@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎂 HAPPY 18TH BIRTHDAY XYZ! 🎉</title>
+    <title>🎂 HAPPY 19TH BIRTHDAY Nisha! 🎉</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Dancing+Script:wght@700&family=Great+Vibes&family=Pacifico&family=Satisfy&display=swap" rel="stylesheet">
     <style>
@@ -1691,6 +1691,37 @@
             }
             .song-info { display: none; }
         }
+
+        /* ===== NISHA'S BIRTHDAY CAMERA LAB ===== */
+        .camera-lab-container { width:min(100%,900px); margin:0 auto; padding:24px 0 40px; text-align:center; }
+        .camera-kicker { display:inline-block; padding:10px 16px; margin-bottom:14px; border:1px solid rgba(255,255,255,.55); border-radius:999px; background:rgba(25,12,55,.35); font-size:.85rem; font-weight:800; letter-spacing:.12em; }
+        .camera-intro { max-width:650px; margin:0 auto 24px; font-size:clamp(1rem,2.5vw,1.25rem); line-height:1.6; }
+        .camera-stage { position:relative; width:min(100%,420px); margin:0 auto 20px; overflow:hidden; border:3px solid rgba(255,255,255,.85); border-radius:24px; background:#17132b; box-shadow:0 18px 50px rgba(30,0,70,.35); aspect-ratio:4/5; }
+        .camera-stage video,.camera-stage canvas { display:none; width:100%; height:100%; object-fit:cover; }
+        .camera-stage video { transform:scaleX(-1); }
+        .camera-stage canvas { object-fit:contain; background:#17132b; }
+        .camera-placeholder { width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; padding:24px; background:radial-gradient(circle at 15% 20%,rgba(255,255,255,.15) 0 3px,transparent 4px),radial-gradient(circle at 80% 30%,rgba(255,255,255,.2) 0 4px,transparent 5px),linear-gradient(145deg,#241447,#702c91 55%,#d94c9c); }
+        .camera-placeholder-emoji { font-size:clamp(2.6rem,10vw,4.2rem); }
+        .camera-placeholder h3 { font-size:clamp(1.05rem,4vw,1.4rem); line-height:1.3; }
+        .camera-placeholder p { font-size:.95rem; line-height:1.5; max-width:310px; }
+        .camera-filter-options,.camera-actions { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:10px; margin:16px auto; }
+        .camera-filter { border:2px solid rgba(255,255,255,.65); border-radius:999px; padding:12px 16px; color:#fff; background:rgba(35,14,65,.35); font:inherit; font-weight:700; cursor:pointer; transition:transform .2s ease,background .2s ease; }
+        .camera-filter:hover { transform:translateY(-2px); }
+        .camera-filter.active { color:#29113d; background:#ffe38a; border-color:#ffe38a; box-shadow:0 0 0 3px rgba(255,255,255,.18); }
+        .camera-actions .start-btn { max-width:100%; padding:16px 20px; font-size:clamp(.9rem,2.5vw,1.05rem); }
+        .camera-status { min-height:48px; max-width:680px; margin:12px auto; padding:12px 16px; border-radius:14px; background:rgba(30,10,55,.22); font-size:.95rem; line-height:1.5; }
+        .camera-note { max-width:650px; margin:12px auto 22px; font-size:.85rem; opacity:.9; line-height:1.5; }
+        .camera-nav { margin-top:24px; }
+        @media (max-width:600px) {
+            .camera-lab-container { padding-top:10px; }
+            .camera-stage { border-radius:18px; }
+            .camera-filter-options { gap:8px; }
+            .camera-filter { width:100%; max-width:320px; }
+            .camera-actions { flex-direction:column; }
+            .camera-actions .start-btn { width:100%; }
+            .camera-nav { flex-direction:column; }
+            .camera-nav .nav-btn { width:100%; }
+        }
     </style>
 </head>
 <body>
@@ -1722,14 +1753,14 @@
     <div class="cake-blast-overlay" id="cake-blast-overlay">
         <div class="blast-text">🎂 CAKE SMASH! 🎉</div>
         <div style="font-size: 2.5rem; color: var(--gold); text-shadow: 0 0 30px var(--gold);">
-            Happy Birthday XYZ! 🥳
+            Happy Birthday Nisha! 🥳
         </div>
     </div>
 
     <div class="password-screen" id="password-screen">
         <div class="birthday-icon">🎁</div>
         <div class="password-container">
-            <h1 class="password-title">Happy Birthday XYZ! 🎉</h1>
+            <h1 class="password-title">Happy Birthday Nisha! 🎉</h1>
             <p class="password-subtitle">You've unlocked a secret birthday website! ✨</p>
             
             <p style="font-size: 1.2rem; color: var(--cyan); margin-bottom: 20px;">
@@ -1737,8 +1768,8 @@
             </p>
             
             <div class="password-hint">
-                <p><strong>🔑 Password Hint:</strong> It's similar to your name! (all lowercase)</p>
-                <p><em>✨ Starts with 'x', ends with 'z', has 3 magical letters ✨</em></p>
+                <p><strong>🔑 Password Hint:</strong> Your name + your new level (all lowercase)</p>
+                <p><em>✨ Hint: nisha + 19 ✨</em></p>
             </div>
             
             <input type="password" 
@@ -1781,11 +1812,11 @@
         <section class="page active" id="page1">
             <div class="container">
                 <div class="welcome-container">
-                    <h1 class="welcome-title">🎉 WELCOME TO YOUR 18TH BIRTHDAY! 🎉</h1>
+                    <h1 class="welcome-title">🎉 WELCOME TO YOUR 19TH BIRTHDAY! 🎉</h1>
                     
                     <div class="birthday-hero">
-                        <div class="hero-name">XYZ</div>
-                        <div class="hero-age">18</div>
+                        <div class="hero-name">Nisha</div>
+                        <div class="hero-age">19</div>
                     </div>
                     
                     <p class="welcome-subtitle">
@@ -2014,7 +2045,7 @@
         <section class="page" id="page6">
             <div class="container">
                 <div class="birthday-display">
-                    <h1 class="birthday-message">🎂 HAPPY 18TH BIRTHDAY XYZ! 🎉</h1>
+                    <h1 class="birthday-message">🎂 HAPPY 19TH BIRTHDAY Nisha! 🎉</h1>
                     <p style="font-size: 2.2rem; color: var(--gold); margin: 50px 0; text-shadow: 0 0 30px var(--gold);">
                         🏆 YOU COMPLETED ALL BIRTHDAY CHALLENGES! 🏆<br>
                         ✨ Now for the FINAL SURPRISES... ✨
@@ -2047,22 +2078,37 @@
 
         <section class="page" id="page8">
             <div class="container">
-                <div class="surprise-container">
-                    <h2 class="surprise-title">⚠️ Don't press the button... 😶</h2>
-                    
-                    <button class="danger-button" id="danger-button">
-                        <i class="fas fa-hand-pointer"></i>
-                        🎯 PRESS ME 😄
-                    </button>
-                    
-                    <div class="surprise-feedback" id="surprise-feedback">
-                        I knew it 😂<br>
-                        Couldn't resist!
+                <div class="camera-lab-container">
+                    <div class="camera-kicker">SPECIAL MISSION UNLOCKED</div>
+                    <h2 class="game-title">📸 NISHA'S 19TH BIRTHDAY CAMERA LAB</h2>
+                    <p class="camera-intro">Make a ridiculous birthday poster. Your face, your filter, your chaos.</p>
+                    <div class="camera-stage" id="camera-stage">
+                        <div class="camera-placeholder" id="camera-placeholder">
+                            <div class="camera-placeholder-emoji">🎂✨📸</div>
+                            <h3>LEVEL 19: MAIN CHARACTER MODE</h3>
+                            <p>Open the camera for a live birthday photo, or make a poster without using your camera.</p>
+                        </div>
+                        <video id="camera-video" autoplay playsinline muted></video>
+                        <canvas id="camera-canvas" width="900" height="1125" aria-label="Birthday poster preview"></canvas>
                     </div>
-                    
-                    <button class="start-btn" id="final-page-btn" onclick="goToPage(9)">
-                        🎉 VIEW FINAL MESSAGE 🎉
-                    </button>
+                    <div class="camera-filter-options" aria-label="Choose a birthday filter">
+                        <button class="camera-filter active" type="button" data-camera-filter="queen" aria-pressed="true">👑 Birthday Queen</button>
+                        <button class="camera-filter" type="button" data-camera-filter="chaos" aria-pressed="false">💀 Certified Chaos</button>
+                        <button class="camera-filter" type="button" data-camera-filter="main" aria-pressed="false">✨ Main Character</button>
+                    </div>
+                    <p class="camera-status" id="camera-status" role="status">Camera stays off until you choose OPEN CAMERA. Photos are processed in this browser and aren't uploaded.</p>
+                    <div class="camera-actions">
+                        <button class="start-btn" id="camera-start-btn" type="button">📸 OPEN CAMERA</button>
+                        <button class="start-btn" id="camera-capture-btn" type="button" style="display:none">✨ TAKE THE PHOTO</button>
+                        <button class="start-btn" id="camera-poster-btn" type="button">🎨 MAKE A POSTER WITHOUT CAMERA</button>
+                        <button class="start-btn" id="camera-retake-btn" type="button" style="display:none">🔄 TRY AGAIN</button>
+                        <button class="start-btn" id="camera-download-btn" type="button" style="display:none">⬇️ SAVE MY POSTER</button>
+                    </div>
+                    <p class="camera-note">Camera permission is optional. If it doesn't work, the no-camera poster works too. Nothing is sent to a server.</p>
+                    <div class="nav-buttons camera-nav">
+                        <button class="nav-btn prev" type="button" onclick="goToPage(7)">← BACK</button>
+                        <button class="nav-btn next" type="button" onclick="goToPage(9)">🎉 CONTINUE TO BIRTHDAY MESSAGE →</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -2072,16 +2118,16 @@
                 <div class="final-message-container">
                     <div class="message-header">
                         <h1 class="message-title">A Special Birthday Message</h1>
-                        <p class="message-subtitle">For XYZ on their magical 18th birthday ✨</p>
+                        <p class="message-subtitle">For Nisha on their magical 19th birthday ✨</p>
                     </div>
                     
                     <div class="message-content">
                         <div class="message-line">
-                            🎉 <span class="highlight">HAPPY 18TH BIRTHDAY, XYZ!</span> 🎉
+                            🎉 <span class="highlight">HAPPY 19TH BIRTHDAY, Nisha!</span> 🎉
                         </div>
                         
                         <div class="message-line">
-                            Welcome to adulthood! <span class="message-emphasis">May every wish you blow</span> on those candles come true ✨<br>
+                            Level 19 unlocked! <span class="message-emphasis">May every wish you blow</span> on those candles come true ✨<br>
                             And may this year be filled with <span class="message-emphasis">amazing adventures</span> and beautiful memories!
                         </div>
                         
@@ -2109,7 +2155,7 @@
                     </div>
                     
                     <div class="signature">
-                        Made with ❤️ & 😂 for your special 18th
+                        Made with ❤️ & 😂 for your special 19th
                     </div>
                     
                     <div class="nav-buttons" style="margin-top: 60px;">
@@ -2213,8 +2259,14 @@
             document.getElementById('music-toggle').addEventListener('click', toggleMusic);
             document.getElementById('sound-toggle').addEventListener('click', toggleSound);
             
-            document.getElementById('danger-button').addEventListener('click', surpriseButtonClicked);
-            document.getElementById('final-page-btn').style.display = 'none';
+            document.getElementById('camera-start-btn').addEventListener('click', startBirthdayCamera);
+            document.getElementById('camera-capture-btn').addEventListener('click', captureBirthdayPhoto);
+            document.getElementById('camera-poster-btn').addEventListener('click', createNoCameraPoster);
+            document.getElementById('camera-retake-btn').addEventListener('click', resetBirthdayCamera);
+            document.getElementById('camera-download-btn').addEventListener('click', downloadBirthdayPoster);
+            document.querySelectorAll('[data-camera-filter]').forEach(button => {
+                button.addEventListener('click', () => selectBirthdayFilter(button));
+            });
             
             document.getElementById('joke-message').style.display = 'none';
             document.getElementById('error-continue').style.display = 'none';
@@ -2310,7 +2362,7 @@
             attempts++;
             attemptCount.textContent = attempts;
             
-            if (enteredPassword === "xyz") {
+            if (enteredPassword === "nisha19") {
                 playSound('success-sound', 0.7);
                 errorMsg.classList.remove('show');
                 
@@ -2355,6 +2407,7 @@
 
         function goToPage(pageNum) {
             if (pageNum < 1 || pageNum > 9) return;
+            if (pageNum !== 8) stopBirthdayCamera();
             
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
@@ -2875,7 +2928,7 @@
             const quizArea = document.getElementById('quiz-area');
             const questions = [
                 {
-                    question: "🎂 If XYZ could have ANY birthday cake in the world, what would it MOST likely be?",
+                    question: "🎂 If Nisha could have ANY birthday cake in the world, what would it MOST likely be?",
                     options: [
                         "A) Chocolate overload (never fails 😌)",
                         "B) Classic vanilla (simple & clean)",
@@ -2884,7 +2937,7 @@
                     ]
                 },
                 {
-                    question: "🎁 What's the ULTIMATE 18th birthday gift for XYZ?",
+                    question: "🎁 What's the ULTIMATE 19th birthday gift for Nisha?",
                     options: [
                         "A) A stack of good fictional books 📚✨",
                         "B) A surprise trip / outing 🧳",
@@ -3052,25 +3105,141 @@
             }, 1000);
         }
 
-        function surpriseButtonClicked() {
-            const button = document.getElementById('danger-button');
-            const feedback = document.getElementById('surprise-feedback');
-            const finalBtn = document.getElementById('final-page-btn');
-            
-            button.style.transform = 'scale(0) rotate(180deg)';
-            button.style.opacity = '0';
-            button.disabled = true;
-            
-            setTimeout(() => {
-                feedback.classList.add('show');
-                playSound('celebration-sound', 0.8);
-                
-                createConfetti(1500);
-                
-                setTimeout(() => {
-                    finalBtn.style.display = 'block';
-                }, 2000);
-            }, 500);
+        let birthdayCameraStream = null;
+        let birthdayCameraFilter = 'queen';
+
+        function selectBirthdayFilter(button) {
+            birthdayCameraFilter = button.dataset.cameraFilter || 'queen';
+            document.querySelectorAll('[data-camera-filter]').forEach(item => {
+                const active = item === button;
+                item.classList.toggle('active', active);
+                item.setAttribute('aria-pressed', String(active));
+            });
+        }
+
+        async function startBirthdayCamera() {
+            const status = document.getElementById('camera-status');
+            const video = document.getElementById('camera-video');
+            const placeholder = document.getElementById('camera-placeholder');
+            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                status.textContent = "This browser can't open a camera here. No worries—make a poster without one!";
+                return;
+            }
+            try {
+                status.textContent = "Requesting camera permission…";
+                birthdayCameraStream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: { ideal: 'user' }, width: { ideal: 1280 }, height: { ideal: 1600 } },
+                    audio: false
+                });
+                video.srcObject = birthdayCameraStream;
+                await video.play();
+                placeholder.style.display = 'none';
+                video.style.display = 'block';
+                document.getElementById('camera-start-btn').style.display = 'none';
+                document.getElementById('camera-capture-btn').style.display = 'inline-flex';
+                document.getElementById('camera-poster-btn').style.display = 'none';
+                status.textContent = "Camera is on. Pick a filter, then tap TAKE THE PHOTO. Your photo stays on this device.";
+                playSound('success-sound', 0.5);
+            } catch (error) {
+                stopBirthdayCamera();
+                status.textContent = "Camera permission wasn't available. That's completely fine—make a birthday poster without using your camera.";
+            }
+        }
+
+        function stopBirthdayCamera() {
+            if (birthdayCameraStream) {
+                birthdayCameraStream.getTracks().forEach(track => track.stop());
+                birthdayCameraStream = null;
+            }
+            const video = document.getElementById('camera-video');
+            if (video) video.srcObject = null;
+        }
+
+        function renderBirthdayPoster(includePhoto) {
+            const video = document.getElementById('camera-video');
+            const canvas = document.getElementById('camera-canvas');
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width = 900;
+            const height = canvas.height = 1125;
+            const presets = {
+                queen: { filter:'brightness(1.06) saturate(1.12)', title:'BIRTHDAY QUEEN', color:'#ffe38a' },
+                chaos: { filter:'hue-rotate(325deg) saturate(1.45) contrast(1.08)', title:'CERTIFIED CHAOS', color:'#ff8bd1' },
+                main: { filter:'contrast(1.08) saturate(1.25)', title:'MAIN CHARACTER', color:'#91f4ff' }
+            };
+            const preset = presets[birthdayCameraFilter] || presets.queen;
+            ctx.clearRect(0,0,width,height);
+            if (includePhoto && video.videoWidth && video.videoHeight) {
+                const sourceRatio=video.videoWidth/video.videoHeight, targetRatio=width/height;
+                let sx=0, sy=0, sw=video.videoWidth, sh=video.videoHeight;
+                if(sourceRatio>targetRatio){sw=video.videoHeight*targetRatio;sx=(video.videoWidth-sw)/2;}
+                else{sh=video.videoWidth/targetRatio;sy=(video.videoHeight-sh)/2;}
+                ctx.save(); ctx.filter=preset.filter; ctx.translate(width,0); ctx.scale(-1,1);
+                ctx.drawImage(video,sx,sy,sw,sh,0,0,width,height); ctx.restore();
+            } else {
+                const gradient=ctx.createLinearGradient(0,0,width,height);
+                gradient.addColorStop(0,'#251244'); gradient.addColorStop(.52,'#8e329f'); gradient.addColorStop(1,'#f05caa');
+                ctx.fillStyle=gradient; ctx.fillRect(0,0,width,height);
+                ['✦','✧','✺','★','✦','✧'].forEach((star,i)=>{
+                    ctx.fillStyle=i%2?'#ffe38a':'#ffffff'; ctx.font='bold 54px sans-serif';
+                    ctx.textAlign='center'; ctx.fillText(star,95+i*137,170+(i%3)*150);
+                });
+                ctx.textAlign='center'; ctx.font='150px sans-serif'; ctx.fillText('🎂',width/2,550);
+                ctx.font='100px sans-serif'; ctx.fillText('🎉',200,760); ctx.fillText('✨',690,760);
+            }
+            const overlay=ctx.createLinearGradient(0,height*.55,0,height);
+            overlay.addColorStop(0,'rgba(14,8,35,0)'); overlay.addColorStop(1,'rgba(14,8,35,.88)');
+            ctx.fillStyle=overlay; ctx.fillRect(0,height*.55,width,height*.45);
+            ctx.strokeStyle=preset.color; ctx.lineWidth=18; ctx.strokeRect(24,24,width-48,height-48);
+            ctx.textAlign='center'; ctx.shadowColor='rgba(0,0,0,.45)'; ctx.shadowBlur=12;
+            ctx.fillStyle='#fff'; ctx.font='800 44px sans-serif'; ctx.fillText('NISHA • LEVEL 19 UNLOCKED',width/2,100);
+            ctx.fillStyle=preset.color; ctx.font='900 64px sans-serif'; ctx.fillText(preset.title,width/2,height-145);
+            ctx.fillStyle='#fff'; ctx.font='600 34px sans-serif'; ctx.fillText('HAPPY BIRTHDAY, NISHA! 🎂',width/2,height-85); ctx.shadowBlur=0;
+            canvas.style.display='block'; video.style.display='none';
+            document.getElementById('camera-placeholder').style.display='none';
+            ['camera-capture-btn','camera-start-btn','camera-poster-btn'].forEach(id=>document.getElementById(id).style.display='none');
+            document.getElementById('camera-retake-btn').style.display='inline-flex';
+            document.getElementById('camera-download-btn').style.display='inline-flex';
+            document.getElementById('camera-status').textContent=includePhoto
+                ? "Poster created! It's processed locally in your browser—save it if you like it."
+                : "No-camera poster created! Pick another filter or save this birthday masterpiece.";
+            playSound('celebration-sound',.65);
+        }
+
+        function captureBirthdayPhoto() {
+            const video=document.getElementById('camera-video');
+            if(!birthdayCameraStream||!video.videoWidth){
+                document.getElementById('camera-status').textContent="Camera isn't ready yet. Try opening it again, or make a poster without a camera.";
+                return;
+            }
+            renderBirthdayPoster(true); stopBirthdayCamera(); createConfetti(100);
+        }
+
+        function createNoCameraPoster() { stopBirthdayCamera(); renderBirthdayPoster(false); createConfetti(100); }
+
+        function resetBirthdayCamera() {
+            stopBirthdayCamera();
+            document.getElementById('camera-canvas').style.display='none';
+            document.getElementById('camera-download-btn').style.display='none';
+            document.getElementById('camera-retake-btn').style.display='none';
+            document.getElementById('camera-start-btn').style.display='inline-flex';
+            document.getElementById('camera-poster-btn').style.display='inline-flex';
+            document.getElementById('camera-capture-btn').style.display='none';
+            document.getElementById('camera-video').style.display='none';
+            document.getElementById('camera-placeholder').style.display='flex';
+            document.getElementById('camera-status').textContent="Camera stays off until you choose OPEN CAMERA. Photos are processed in this browser and aren't uploaded.";
+        }
+
+        function downloadBirthdayPoster() {
+            const canvas=document.getElementById('camera-canvas');
+            try {
+                const link=document.createElement('a');
+                link.download='nisha-level-19-birthday.png';
+                link.href=canvas.toDataURL('image/png');
+                link.click();
+                document.getElementById('camera-status').textContent="Your poster download should be ready. Happy level 19! 🎉";
+            } catch(error) {
+                document.getElementById('camera-status').textContent="Couldn't save automatically in this browser. Try making the poster again.";
+            }
         }
 
         function playSound(soundId, volume = 0.5) {
