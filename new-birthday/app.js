@@ -288,7 +288,7 @@ function resetAtCheckpoint(){game.x=38;game.y=386;game.vx=0;game.vy=0;game.onGro
 function startGame(){
   stopGameLoop();if(game.won)resetGame();game.started=true;game.won=false;game.startedAt=Date.now()-game.elapsed*1000;game.lastTick=performance.now();$('gameMessage').textContent='Go collect those sparkles!';game.raf=requestAnimationFrame(gameLoop);beep(580);
 }
-function stopGameLoop(){if(game.raf){cancelAnimationFrame(game.raf);game.raf=null;}}
+function stopGameLoop(){if(game.raf){cancelAnimationFrame(game.raf);game.raf=null;}game.started=false;}
 function gameLoop(now){
   if(!game.started||game.won)return;
   const dt=Math.min(.035,(now-(game.lastTick||now))/1000);game.lastTick=now;game.elapsed=(Date.now()-game.startedAt)/1000;
