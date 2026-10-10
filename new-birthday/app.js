@@ -100,7 +100,7 @@ function navigate(page, force=false){
   all('.screen').forEach(s=>s.classList.remove('active'));
   const target=$('screen'+page); if(!target)return;
   target.classList.add('active');
-  state.page=page; saveState(); beep(460);
+  state.page=page; if(page===2&&!state.completed[2]){state.completed[2]=true;state.unlocked=Math.max(state.unlocked,3);} saveState(); beep(460);
   $('mapButton').classList.toggle('hidden',page===1);
   if(page===2)renderMap();
   if(page===3)renderEvidence();
@@ -140,7 +140,7 @@ function advanceTo(page, label){
   navigate(Math.min(10,page+1));
 }
 $('beginQuest').addEventListener('click',()=>{
-  state.completed[1]=true;state.unlocked=Math.max(state.unlocked,3);saveState();navigate(2,true);confettiBurst(35);
+  state.completed[1]=true;state.completed[2]=true;state.unlocked=Math.max(state.unlocked,3);saveState();navigate(2,true);confettiBurst(35);
 });
 $('resumeQuest').addEventListener('click',()=>{
   if(state.unlocked===1){toast('No saved quest yet — begin the quest to start.');return;}
@@ -358,8 +358,8 @@ function renderFilters(){
 function loadExternalScript(url){
   return new Promise((resolve,reject)=>{
     const prior=all('script[data-dynamic-src]').find(s=>s.dataset.dynamicSrc===url);
-    if(prior){if(prior.dataset.loaded==='yes')resolve();else{prior.addEventListener('load',()=>resolve(),{once:true});prior.addEventListener('error',reject,{once:true});}return;}
-    const script=document.createElement('script');script.src=url;script.async=true;script.dataset.dynamicSrc=url;script.onload=()=>{script.dataset.loaded='yes';resolve();};script.onerror=()=>reject(new Error('script unavailable'));document.head.appendChild(script);
+    if(prior&&prior.dataset.failed==='yes'){prior.remove();} else if(prior){if(prior.dataset.loaded==='yes')resolve();else{prior.addEventListener('load',()=>resolve(),{once:true});prior.addEventListener('error',()=>reject(new Error('script unavailable')),{once:true});}return;}
+    const script=document.createElement('script');script.src=url;script.async=true;script.dataset.dynamicSrc=url;script.onload=()=>{script.dataset.loaded='yes';resolve();};script.onerror=()=>{script.dataset.failed='yes';reject(new Error('script unavailable'));};document.head.appendChild(script);
   });
 }
 async function ensureHands(){
@@ -580,7 +580,7 @@ function cyclePartyEffect(){
   all('[data-party-effect]').forEach(b=>b.classList.toggle('active',b.dataset.partyEffect===currentPartyEffect));
 }
 function updateStartupUI(){
-  renderMap();renderEvidence();renderPuzzleState();renderRoast();renderSecrets();updateTopProgress();drawGame();
+  $('mapButton').classList.toggle('hidden',Number(state.page)===1);renderMap();renderEvidence();renderPuzzleState();renderRoast();renderSecrets();updateTopProgress();drawGame();
   if(state.completed[3]&&state.evidence.length===6){state.unlocked=Math.max(state.unlocked,4);}
   if(state.completed[4]&&state.keys.length===4){state.unlocked=Math.max(state.unlocked,5);}
   if(state.gameWon){game.won=true;game.started=false;game.collected=new Set(starPoints.map((_,i)=>i));$('gameContinue').disabled=false;drawGame();updateGameHUD();}
