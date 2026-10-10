@@ -69,6 +69,60 @@
 @keyframes portalPulse{0%,100%{box-shadow:0 0 14px #f02fc944,inset 0 0 12px #ed5be522;transform:scale(.98)}50%{box-shadow:0 0 28px #f02fc988,inset 0 0 22px #ed5be544;transform:scale(1.04)}}
 @media(max-width:650px){.chapter-two{padding:18px 14px 30px}.chapter-title{margin-top:34px}.map-board{grid-template-columns:1fr;max-width:430px;gap:12px}.destination{min-height:0;display:grid;grid-template-columns:64px 1fr;grid-template-rows:auto auto;column-gap:14px;text-align:left;align-items:center;padding:13px}.destination .portal{grid-row:1/3;width:60px;height:60px;font-size:28px;margin:0}.destination strong{align-self:end}.destination small{align-self:start;margin-top:3px}.chapter-intro{margin-bottom:22px}.chapter-heading{font-size:clamp(32px,10vw,48px)}}
 
+
+/* Animated mystery map, inspired by the supplied reference */
+.chapter-two{padding:0;display:none;overflow:hidden;background:#0b0718}
+.chapter-two.active{display:flex}
+.map-scene{position:relative;width:100%;min-height:100%;flex:1;overflow:hidden;background:radial-gradient(ellipse at 52% 32%,#643078 0,#2c194c 32%,#130d2b 63%,#080714 100%)}
+.map-sky{position:absolute;inset:0;overflow:hidden;background:radial-gradient(ellipse at 50% 24%,#e77ddd2b,transparent 43%),linear-gradient(180deg,#090b25 0%,#342052 45%,#130c27 100%)}
+.map-sky:before{content:"";position:absolute;width:35vw;height:35vw;max-width:460px;max-height:460px;min-width:210px;min-height:210px;left:48%;top:8%;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle at 38% 35%,#ffd3f4,#f4a1e8 42%,#bb5dc9 68%,#713d9c);box-shadow:0 0 35px #f28ee888,0 0 100px #d14ddd55;animation:mapMoon 7s ease-in-out infinite alternate}
+.map-sky:after{content:"";position:absolute;inset:0;background-image:radial-gradient(#ffe6ff 1px,transparent 1.5px),radial-gradient(#ff85ec 1px,transparent 1.5px);background-size:67px 61px,113px 97px;background-position:0 0,24px 41px;opacity:.48;animation:starfield 35s linear infinite}
+.map-header{position:absolute;z-index:5;left:3%;right:3%;top:2%;display:flex;justify-content:space-between;align-items:flex-start;gap:15px;pointer-events:none}
+.map-logo{font-family:'Great Vibes',cursive;font-size:clamp(28px,4vw,62px);color:#ffb9f1;line-height:.9;text-shadow:0 0 15px #ff3cc9}
+.map-logo small{display:block;font-family:'Cinzel',serif;font-size:clamp(10px,1.3vw,18px);letter-spacing:.18em;line-height:1.7;margin-left:20px}
+.map-counter{pointer-events:auto;display:flex;align-items:center;gap:12px;padding:12px 16px;border:1px solid #e88af6;border-radius:12px;background:#16091fce;box-shadow:0 0 22px #e72bdb45;font-size:clamp(11px,1.4vw,17px);color:#ffe6ff}
+.map-counter b{font-size:clamp(18px,2.4vw,29px);color:#ff9dec;border-left:1px solid #b45bbd;padding-left:12px}
+.map-tagline{position:absolute;z-index:3;left:2.5%;top:22%;width:145px;font-family:'Great Vibes',cursive;font-size:clamp(18px,2vw,29px);text-align:center;line-height:1.2;color:#ffd6f5;transform:rotate(-5deg);text-shadow:0 0 10px #f238d3}
+.floating-island{position:absolute;z-index:1;width:clamp(100px,15vw,225px);height:clamp(70px,9vw,135px);background:linear-gradient(160deg,#6d397d,#2c1b46 58%,#0a0a1c 60%);clip-path:polygon(7% 12%,25% 0,75% 3%,95% 15%,100% 47%,77% 62%,63% 100%,43% 66%,15% 58%,0 37%);filter:drop-shadow(0 8px 13px #000);animation:islandFloat 5s ease-in-out infinite}
+.floating-island:before{content:"";position:absolute;inset:3% 4% 45%;border-radius:45%;background:radial-gradient(ellipse,#ff7ce9aa,#b44cc455 50%,transparent 74%)}
+.island-a{left:14%;top:33%;animation-delay:-1s}.island-b{left:35%;top:57%;width:clamp(120px,17vw,250px);height:clamp(80px,11vw,160px);animation-delay:-3s}.island-c{left:60%;top:37%;animation-delay:-2s}.island-d{right:2%;top:48%;width:clamp(110px,14vw,210px);animation-delay:-.5s}.island-e{left:49%;bottom:10%;width:clamp(110px,16vw,235px);height:clamp(70px,9vw,130px);animation-delay:-2.5s}
+.waterfall{position:absolute;z-index:0;width:4px;height:130px;background:linear-gradient(180deg,#75caff,#b4f4ff66,transparent);filter:drop-shadow(0 0 7px #69caff);animation:waterFlow 2.8s linear infinite;opacity:.8}
+.wf1{left:22%;top:44%;height:28%}.wf2{left:42%;top:65%;height:25%}.wf3{left:72%;top:48%;height:26%}
+.castle-center{position:absolute;z-index:2;left:50%;top:17%;transform:translateX(-50%);text-align:center;filter:drop-shadow(0 0 14px #ff51d8);animation:castleHover 5s ease-in-out infinite}
+.castle-art{font-size:clamp(70px,11vw,145px);line-height:1.1;text-shadow:0 0 18px #ff64e7}
+.castle-caption{font-family:'Cinzel',serif;font-weight:700;font-size:clamp(14px,2vw,27px);color:#fff0ff;text-shadow:0 0 14px #ff49d5}
+.map-nodes{position:absolute;inset:0;z-index:4}
+.map-node{position:absolute;transform:translate(-50%,-50%);width:clamp(95px,12vw,160px);min-height:76px;border:0;background:transparent;color:#fff2ff;text-align:center;cursor:pointer;padding:4px 3px;text-shadow:0 2px 6px #10051a;transition:transform .2s,filter .2s;touch-action:manipulation}
+.map-node:hover,.map-node:focus-visible{transform:translate(-50%,-50%) scale(1.08);filter:drop-shadow(0 0 10px #ff65e4);outline:none}
+.node-num{display:block;font-family:'Cinzel',serif;font-size:clamp(18px,2.3vw,31px);font-weight:800;line-height:1.1}
+.node-name{display:block;font-size:clamp(10px,1.35vw,17px);font-weight:700;line-height:1.12;margin-top:3px}
+.node-icon{display:grid;place-items:center;width:clamp(35px,4.5vw,58px);height:clamp(35px,4.5vw,58px);margin:5px auto 0;border-radius:50%;border:1px solid #ffb4f4;background:radial-gradient(circle,#ed63dc88,#28103c 68%);box-shadow:0 0 14px #ff3ecb66;font-size:clamp(17px,2.4vw,30px);animation:nodePulse 3s ease-in-out infinite}
+.map-node.done .node-icon{background:radial-gradient(circle,#74e7c688,#123a39 68%);border-color:#8affdf}
+.map-node.current .node-icon{box-shadow:0 0 0 5px #ff4acb33,0 0 25px #ff4acb;animation:nodePulse 1.4s ease-in-out infinite}
+.map-node.locked .node-icon:after{content:"🔒";position:absolute;right:15%;bottom:0;font-size:15px}
+.node-1{left:24%;top:29%}.node-2{left:34%;top:48%}.node-3{left:43%;top:68%}.node-4{left:57%;top:80%}.node-5{left:70%;top:68%}.node-6{left:84%;top:61%}.node-7{left:91%;top:42%}.node-8{left:88%;top:31%}.node-9{left:76%;top:23%}.node-10{left:53%;top:27%}
+.map-bottom{position:absolute;z-index:6;left:50%;bottom:2%;transform:translateX(-50%);width:min(90%,830px);display:flex;align-items:center;justify-content:center;gap:clamp(3px,1vw,12px);padding:10px 12px;border:1px solid #c960e055;border-radius:17px;background:#10081fdb;box-shadow:0 0 22px #e633d533;backdrop-filter:blur(8px)}
+.map-step{width:clamp(25px,3.2vw,43px);height:clamp(25px,3.2vw,43px);border-radius:50%;border:1px solid #9750a8;background:#1a0c2a;color:#eed6ff;font-size:clamp(10px,1.2vw,15px);cursor:pointer}
+.map-step.active{background:#ff7bdf;color:#2b0c31;box-shadow:0 0 17px #ff48d9;font-weight:900}
+.map-step.done{border-color:#8bffdf;color:#8bffdf}
+.map-step-arrow{border:0;background:transparent;color:#f9c4f1;font-size:clamp(22px,3vw,35px);cursor:pointer;padding:0 5px}
+.map-toast{position:absolute;z-index:8;left:50%;top:50%;transform:translate(-50%,-50%) scale(.96);opacity:0;pointer-events:none;max-width:88%;padding:16px 22px;border:1px solid #ff92e9;border-radius:14px;background:#180923f2;box-shadow:0 0 32px #ff35cf66;color:#fff0ff;text-align:center;font-size:clamp(13px,1.6vw,18px);transition:.25s}
+.map-toast.show{opacity:1;transform:translate(-50%,-50%) scale(1)}
+@keyframes mapMoon{from{filter:brightness(.9);transform:translateX(-50%) scale(.98)}to{filter:brightness(1.12);transform:translateX(-50%) scale(1.04)}}
+@keyframes starfield{to{background-position:67px 61px,137px 138px}}
+@keyframes islandFloat{0%,100%{translate:0 0}50%{translate:0 -10px}}
+@keyframes waterFlow{0%{background-position:0 0;opacity:.4}50%{opacity:1}100%{background-position:0 130px;opacity:.45}}
+@keyframes castleHover{0%,100%{translate:0 0}50%{translate:0 -8px}}
+@keyframes nodePulse{0%,100%{filter:brightness(.92);transform:scale(.98)}50%{filter:brightness(1.2);transform:scale(1.04)}}
+@media(max-width:650px){
+ .map-header{left:12px;right:12px;top:12px}.map-logo{font-size:30px}.map-logo small{font-size:9px;margin-left:5px}.map-counter{padding:8px 9px;gap:6px}.map-counter b{padding-left:7px}
+ .map-tagline{display:none}.castle-center{top:15%}.castle-art{font-size:76px}
+ .floating-island{opacity:.75}.island-a{left:3%;top:35%}.island-b{left:23%;top:57%}.island-c{left:51%;top:38%}.island-d{right:-5%;top:49%}.island-e{left:40%;bottom:13%}
+ .map-node{width:80px;min-height:60px}.node-num{font-size:17px}.node-name{font-size:10px}.node-icon{width:31px;height:31px;font-size:16px;margin-top:3px}.node-1{left:19%;top:31%}.node-2{left:27%;top:48%}.node-3{left:37%;top:66%}.node-4{left:54%;top:80%}.node-5{left:69%;top:67%}.node-6{left:85%;top:60%}.node-7{left:90%;top:44%}.node-8{left:87%;top:31%}.node-9{left:74%;top:22%}.node-10{left:52%;top:26%}
+ .map-bottom{bottom:10px;width:96%;gap:3px;padding:7px 5px}.map-step{width:clamp(22px,6vw,31px);height:clamp(22px,6vw,31px);font-size:10px}.map-step-arrow{font-size:22px;padding:0 2px}
+}
+@media(prefers-reduced-motion:reduce){.map-sky:before,.map-sky:after,.floating-island,.castle-center,.node-icon,.waterfall{animation:none!important}}
+
 </style>
 </head>
 <body>
@@ -104,31 +158,30 @@
 <button class="begin-hit" id="begin" aria-label="Begin the quest" title="Begin the quest"></button>
 </div>
 
-<section class="chapter-two" id="chapterTwo" aria-label="The enchanted map">
- <div class="chapter-top">
-  <div class="chapter-brand">Nisha's Birthday Quest ♡</div>
-  <div class="chapter-pill">MISSION 02 · WORLD MAP</div>
+<section class="chapter-two" id="chapterTwo" aria-label="The mystery map">
+ <div class="map-scene">
+  <div class="map-sky"></div>
+  <div class="map-header"><div class="map-logo">Nisha's<small>BIRTHDAY QUEST · THE MYSTERY MAP ♡</small></div><div class="map-counter">⭐ Collect all 9 clues<br>to unlock the final surprise! <b id="clueCount">1/9</b></div></div>
+  <div class="map-tagline">Explore the world,<br>collect clues,<br>solve puzzles,<br>unlock the final surprise... ♡</div>
+  <div class="floating-island island-a"></div><div class="floating-island island-b"></div><div class="floating-island island-c"></div><div class="floating-island island-d"></div><div class="floating-island island-e"></div>
+  <i class="waterfall wf1"></i><i class="waterfall wf2"></i><i class="waterfall wf3"></i>
+  <div class="castle-center"><div class="castle-art">🏰</div><div class="castle-caption">♛<br>10<br>Final Reveal</div></div>
+  <div class="map-nodes">
+   <button class="map-node done node-1" data-destination="opening"><span class="node-num">1</span><span class="node-name">The Opening</span><span class="node-icon">✓</span></button>
+   <button class="map-node current node-2" data-destination="map"><span class="node-num">2</span><span class="node-name">Mystery Map<br>(You are here)</span><span class="node-icon">📍</span></button>
+   <button class="map-node node-3" data-destination="evidence"><span class="node-num">3</span><span class="node-name">Evidence Room</span><span class="node-icon">🔎</span></button>
+   <button class="map-node locked node-4" data-destination="puzzle"><span class="node-num">4</span><span class="node-name">Puzzle Chamber</span><span class="node-icon">🧩</span></button>
+   <button class="map-node locked node-5" data-destination="game"><span class="node-num">5</span><span class="node-name">Mini Game</span><span class="node-icon">🎮</span></button>
+   <button class="map-node locked node-6" data-destination="roast"><span class="node-num">6</span><span class="node-name">Roast Room</span><span class="node-icon">😈</span></button>
+   <button class="map-node locked node-7" data-destination="memories"><span class="node-num">7</span><span class="node-name">Memory Vault</span><span class="node-icon">💌</span></button>
+   <button class="map-node locked node-8" data-destination="camera"><span class="node-num">8</span><span class="node-name">Camera Celebration</span><span class="node-icon">📸</span></button>
+   <button class="map-node locked node-9" data-destination="secret"><span class="node-num">9</span><span class="node-name">Secret Room</span><span class="node-icon">🔐</span></button>
+   <button class="map-node locked node-10" data-destination="final"><span class="node-num">10</span><span class="node-name">Final Reveal</span><span class="node-icon">🎂</span></button>
+  </div>
+  <div class="map-bottom"><button class="map-step-arrow" id="mapPrev" aria-label="Previous chapter">‹</button><button class="map-step done" data-step="1">1</button><button class="map-step active" data-step="2">2</button><button class="map-step " data-step="3">3</button><button class="map-step " data-step="4">4</button><button class="map-step " data-step="5">5</button><button class="map-step " data-step="6">6</button><button class="map-step " data-step="7">7</button><button class="map-step " data-step="8">8</button><button class="map-step " data-step="9">9</button><button class="map-step " data-step="10">10</button><button class="map-step-arrow" id="mapNext" aria-label="Next chapter">›</button></div>
+  <div class="map-toast" id="mapToast" role="status" aria-live="polite"></div>
+  <button class="chapter-btn secondary" id="backToOpening" style="position:absolute;z-index:8;left:14px;bottom:14px;padding:8px 12px;font-size:11px">← OPENING</button>
  </div>
- <div class="chapter-title">YOUR ADVENTURE STARTS HERE</div>
- <h2 class="chapter-heading">The Enchanted Map</h2>
- <p class="chapter-intro">Three mysterious places. Hidden clues scattered everywhere. And one birthday surprise waiting at the end. Where will you explore first?</p>
- <div class="map-board">
-  <button class="destination" data-destination="forest">
-   <span class="portal">🌙</span><strong>Moonlit Forest</strong><small>Find the first hidden clue</small>
-  </button>
-  <button class="destination" data-destination="castle">
-   <span class="portal">🏰</span><strong>Starlight Castle</strong><small>Unlock a sealed memory</small>
-  </button>
-  <button class="destination" data-destination="garden">
-   <span class="portal">🌸</span><strong>Roseglass Garden</strong><small>Discover a secret symbol</small>
-  </button>
- </div>
- <div class="map-progress" id="mapProgress">CLUES FOUND: 0 / 3 &nbsp; · &nbsp; SURPRISE LOCKED 🔒</div>
- <div class="chapter-bottom">
-  <button class="chapter-btn" id="exploreFirst">EXPLORE THE MOONLIT FOREST ↗</button>
-  <button class="chapter-btn secondary" id="backToOpening">← BACK TO OPENING</button>
- </div>
- <p class="chapter-note">Every clue brings you one step closer to Nisha's surprise.</p>
 </section>
 <div class="toast" id="status" role="status" aria-live="polite"></div>
 </main>
@@ -157,18 +210,40 @@ function showMap(){frame.style.display='none';chapterTwo.classList.add('active')
 function showOpening(){chapterTwo.classList.remove('active');frame.style.display='block';}
 document.getElementById('begin').addEventListener('click',showMap);
 document.getElementById('backToOpening').addEventListener('click',showOpening);
-const selected=new Set();
-const names={forest:'Moonlit Forest',castle:'Starlight Castle',garden:'Roseglass Garden'};
-function chooseDestination(id){
- selected.add(id);
- document.querySelectorAll('.destination').forEach(b=>{if(selected.has(b.dataset.destination)){b.style.borderColor='#ff8be7';b.style.background='linear-gradient(180deg,#512050,#24102f)';}});
- document.getElementById('mapProgress').textContent='CLUES FOUND: '+selected.size+' / 3  ·  '+(selected.size===3?'ALL PATHS DISCOVERED ✨':'SURPRISE LOCKED 🔒');
- document.getElementById('exploreFirst').textContent='CONTINUE: '+names[id].toUpperCase()+' ↗';
- status.textContent=selected.size===3?'All three destinations discovered! The next mission is ready to design.':'You discovered '+names[id]+'! A hidden clue has been marked on your map.';
- status.classList.add('show');
+const mapToast=document.getElementById('mapToast');
+let mapToastTimer;
+function mapMessage(message){mapToast.textContent=message;mapToast.classList.add('show');clearTimeout(mapToastTimer);mapToastTimer=setTimeout(()=>mapToast.classList.remove('show'),2600);}
+const destinations={
+ opening:'The opening cinematic is complete ✨',
+ map:'You are already exploring the Mystery Map.',
+ evidence:'Evidence Room selected. The next mission will be built here.',
+ puzzle:'Puzzle Chamber is locked. Collect clues to unlock it.',
+ game:'Mini Game is locked. Your adventure continues soon!',
+ roast:'Roast Room is locked. The friendly chaos comes later 😈',
+ memories:'Memory Vault is locked. A little nostalgia awaits 💌',
+ camera:'Camera Celebration is locked. Photo magic awaits 📸',
+ secret:'Secret Room is locked. Keep exploring 🔐',
+ final:'Final Reveal is locked. Find the nine clues first 🎂'
+};
+const completedSteps=new Set([1]);
+function selectNode(id){
+ const node=document.querySelector('[data-destination="'+id+'"]');
+ if(!node)return;
+ if(node.classList.contains('locked')){mapMessage(destinations[id]);return;}
+ document.querySelectorAll('.map-node').forEach(n=>n.classList.remove('current'));
+ node.classList.add('current');
+ mapMessage(destinations[id]);
 }
-document.querySelectorAll('.destination').forEach(b=>b.addEventListener('click',()=>chooseDestination(b.dataset.destination)));
-document.getElementById('exploreFirst').addEventListener('click',()=>chooseDestination('forest'));
+document.querySelectorAll('.map-node').forEach(n=>n.addEventListener('click',()=>selectNode(n.dataset.destination)));
+document.querySelectorAll('.map-step').forEach(b=>b.addEventListener('click',()=>{
+ const n=Number(b.dataset.step);
+ if(n>2){mapMessage(destinations[({3:'evidence',4:'puzzle',5:'game',6:'roast',7:'memories',8:'camera',9:'secret',10:'final'})[n]]);return;}
+ document.querySelectorAll('.map-step').forEach(x=>x.classList.remove('active'));
+ b.classList.add('active');
+ if(n===1)showOpening();else mapMessage('You are here: The Mystery Map.');
+}));
+document.getElementById('mapPrev').addEventListener('click',showOpening);
+document.getElementById('mapNext').addEventListener('click',()=>mapMessage('Next mission: Evidence Room. Coming up after this map.'));
 art.addEventListener('error',()=>{
  status.textContent='The image could not load. Check that 1000005863-1.png is in this folder.';
  status.classList.add('show');
