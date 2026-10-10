@@ -7,30 +7,45 @@
 <title>Nisha's 19th Birthday — The Birthday Quest</title>
 <style>
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#100719}
-.opening{position:relative;width:100%;height:100%;height:100dvh;display:grid;place-items:center;overflow:hidden;background:#100719}
-.art{display:block;width:100%;height:100%;object-fit:contain;object-position:center}
-.begin-hit{position:absolute;left:37.5%;top:81.5%;width:24%;height:11%;border:0;border-radius:18px;background:transparent;cursor:pointer;touch-action:manipulation}
+.opening{position:relative;width:100%;height:100%;height:100dvh;overflow:hidden;background:#100719}
+.art{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain;object-position:center}
+.begin-hit{position:absolute;left:0;top:0;width:1px;height:1px;border:0;border-radius:18px;background:transparent;cursor:pointer;touch-action:manipulation}
 .begin-hit:focus-visible{outline:3px solid #ffd4fb;outline-offset:4px;box-shadow:0 0 22px #ff38d7}
-.toast{position:absolute;left:50%;bottom:3%;transform:translate(-50%,12px);opacity:0;pointer-events:none;padding:12px 18px;border:1px solid #ff83e9;border-radius:10px;background:#170820f2;color:#fff1ff;font:500 15px system-ui,sans-serif;box-shadow:0 0 24px #ff38d755;transition:opacity .25s,transform .25s;text-align:center;width:max-content;max-width:90%}
+.toast{position:absolute;left:50%;bottom:3%;transform:translate(-50%,12px);opacity:0;pointer-events:none;padding:12px 18px;border:1px solid #ff83e9;border-radius:10px;background:#170820f2;color:#fff1ff;font:500 15px system-ui,sans-serif;box-shadow:0 0 24px #ff38d755;transition:opacity .25s,transform .25s;text-align:center;width:max-content;max-width:90%;z-index:2}
 .toast.show{opacity:1;transform:translate(-50%,0)}
-@media(max-aspect-ratio:4/5){.art{width:100%;height:100%;object-fit:cover;object-position:center}.begin-hit{left:35%;top:80%;width:31%;height:12%}}
 @media(prefers-reduced-motion:reduce){.toast{transition:none}}
 </style>
 </head>
 <body>
 <main class="opening" aria-label="Nisha's birthday opening screen">
-<img class="art" src="opening.jpg" alt="Nisha's 19th Birthday — The Opening Cinematic" fetchpriority="high">
+<img class="art" id="openingArt" src="1000005863-1.png" alt="Nisha's 19th Birthday — The Opening Cinematic" fetchpriority="high">
 <button class="begin-hit" id="begin" aria-label="Begin the quest" title="Begin the quest"></button>
 <div class="toast" id="status" role="status" aria-live="polite"></div>
 </main>
 <script>
+const art=document.getElementById('openingArt');
+const button=document.getElementById('begin');
 const status=document.getElementById('status');
-document.getElementById('begin').addEventListener('click',()=>{
- status.textContent='Quest accepted ✨ The next chapter will be added when you approve it.';
+function placeButton(){
+ const box=document.querySelector('.opening').getBoundingClientRect();
+ const iw=art.naturalWidth||1536, ih=art.naturalHeight||864;
+ const scale=Math.min(box.width/iw,box.height/ih);
+ const w=iw*scale,h=ih*scale;
+ const x=(box.width-w)/2,y=(box.height-h)/2;
+ button.style.left=(x+w*.365)+'px';
+ button.style.top=(y+h*.815)+'px';
+ button.style.width=(w*.255)+'px';
+ button.style.height=(h*.105)+'px';
+}
+art.addEventListener('load',placeButton);
+window.addEventListener('resize',placeButton);
+if(art.complete)placeButton();
+button.addEventListener('click',()=>{
+ status.textContent='Quest accepted ✨ Your adventure begins here.';
  status.classList.add('show');
 });
-document.querySelector('.art').addEventListener('error',()=>{
- status.textContent='Opening artwork not found. Add the exact image as new-birthday/opening.jpg.';
+art.addEventListener('error',()=>{
+ status.textContent='The image could not load. Check that 1000005863-1.png is in this folder.';
  status.classList.add('show');
 });
 </script>
