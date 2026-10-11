@@ -217,6 +217,82 @@
 @media(max-width:800px){.evidence-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.case-file{padding:16px}.case-file p{min-height:80px}}
 @media(max-width:520px){.evidence-shell{padding:14px}.evidence-grid{grid-template-columns:1fr;gap:12px}.case-file{padding:16px 18px}.case-file p{min-height:0}.evidence-heading{padding-top:32px}.evidence-status{gap:8px;font-size:9px}.evidence-footer{font-size:8px}.evidence-brand span{font-size:9px}}
 
+
+/* NISHA: THE GAME — retro arcade / PS2 boot sequence */
+.game-section{padding:0!important;overflow:auto!important;background:#080711;color:#f5f2ff;font-family:system-ui,Arial,sans-serif}
+.game-section.active{display:block!important}
+.game-shell{position:relative;isolation:isolate;min-height:100%;overflow:hidden;padding:clamp(13px,2.5vw,30px);background:radial-gradient(ellipse at 50% 12%,#32205a 0,#15132f 38%,#080711 82%);display:flex;flex-direction:column}
+.game-scanlines{position:absolute;inset:0;z-index:-1;pointer-events:none;background:repeating-linear-gradient(0deg,#0000 0 3px,#0007 4px 5px);opacity:.23}
+.game-noise{position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.22;background-image:radial-gradient(#c8a9ff 1px,transparent 1px);background-size:21px 21px;mask-image:linear-gradient(to bottom,#000,transparent 95%)}
+.game-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid #6850a4;padding-bottom:13px}
+.pixel-logo{font-weight:1000;letter-spacing:.09em;font-size:clamp(14px,2vw,22px);color:#fff;text-shadow:3px 3px 0 #8a39ff,-2px -2px 0 #ff43c6}
+.pixel-logo span{display:block;font-size:9px;letter-spacing:.26em;color:#bba8f7;text-shadow:none;margin-top:4px}
+.topbar-right{display:flex;align-items:center;gap:7px;flex-wrap:wrap;justify-content:flex-end}
+.save-status{font-size:9px;letter-spacing:.13em;color:#80ffd9;display:flex;align-items:center;gap:6px}.save-status i{width:6px;height:6px;background:#80ffd9;border-radius:50%;box-shadow:0 0 8px #80ffd9}
+.tiny-game-btn{border:1px solid #6552a0;background:#100d25;color:#e5d8ff;border-radius:4px;padding:8px 10px;font:800 9px ui-monospace,monospace;cursor:pointer}
+.game-screen{position:relative;display:none;flex:1;min-height:0;width:min(100%,1000px);margin:0 auto;padding:clamp(22px,4vh,44px) 0;animation:screenIn .45s steps(5,end)}
+.game-screen.active{display:flex;flex-direction:column;align-items:center;justify-content:center}
+@keyframes screenIn{from{opacity:0;transform:translateY(8px);filter:brightness(2)}to{opacity:1;transform:translateY(0);filter:brightness(1)}}
+.boot-orbit{width:clamp(120px,18vw,190px);aspect-ratio:1;position:relative;display:grid;place-items:center;margin:0 auto 22px}
+.boot-core{width:48%;height:48%;display:grid;place-items:center;border:3px solid #fff;background:linear-gradient(145deg,#ff43cb,#6a39ff);box-shadow:0 0 18px #ff43cb,0 0 65px #9a39ff;border-radius:50%;font:1000 clamp(30px,5vw,48px) ui-monospace,monospace;position:relative}
+.boot-core span{position:absolute;right:-12px;bottom:-5px;font-size:12px;color:#80ffd9;text-shadow:0 0 9px #80ffd9}
+.orbit-ring{position:absolute;inset:0;border:1px dashed #b7a0ff;border-radius:50%;animation:orbitSpin 9s linear infinite}.ring-b{inset:12%;border-style:solid;border-color:#ff70df88;animation-direction:reverse;animation-duration:6s}
+.boot-pixel{position:absolute;width:9px;height:9px;background:#80ffd9;box-shadow:0 0 12px #80ffd9;animation:pixelBlink 1.2s steps(2,end) infinite}.p1{top:8%;right:12%}.p2{bottom:12%;left:5%;background:#ff75df;box-shadow:0 0 12px #ff75df;animation-delay:.4s}.p3{right:0;bottom:33%;animation-delay:.8s}
+@keyframes orbitSpin{to{transform:rotate(360deg)}}@keyframes pixelBlink{50%{opacity:.15;transform:scale(.5)}}
+.boot-kicker,.screen-label{font:800 10px ui-monospace,monospace;letter-spacing:.25em;color:#80ffd9;text-align:center}
+.glitch-title{position:relative;font:1000 clamp(25px,5vw,58px) ui-monospace,monospace;letter-spacing:.02em;text-align:center;margin:14px 0;color:#fff;text-shadow:4px 0 #ff3fc8,-4px 0 #42e8ff,0 0 30px #ad56ff}
+.boot-copy{font:800 12px ui-monospace,monospace;letter-spacing:.13em;color:#e6d8ff;text-align:center}.loading-dots{animation:pixelBlink .6s steps(2,end) infinite}
+.loading-bar{width:min(360px,80%);height:8px;border:1px solid #8d76c9;padding:2px;margin:12px auto;background:#0a0918}.loading-bar i{display:block;width:100%;height:100%;background:linear-gradient(90deg,#45e8ff,#ff48d2);box-shadow:0 0 12px #ff48d2}
+.boot-small{font:9px ui-monospace,monospace;letter-spacing:.1em;color:#9d91bd;text-align:center;margin:15px 0 24px}
+.pixel-button{border:2px solid #c5b3ff;box-shadow:4px 4px 0 #6e38b7,0 0 25px #9d45ff30;background:#17102c;color:#fff;padding:15px 22px;min-height:49px;font:900 11px ui-monospace,monospace;letter-spacing:.1em;cursor:pointer;clip-path:polygon(0 0,calc(100% - 9px) 0,100% 9px,100% 100%,9px 100%,0 calc(100% - 9px));transition:transform .12s,filter .12s;touch-action:manipulation}
+.pixel-button:hover:not(:disabled){filter:brightness(1.3);transform:translate(-2px,-2px)}.pixel-button:active:not(:disabled){transform:translate(2px,2px);box-shadow:1px 1px 0 #6e38b7}.pixel-button:disabled{opacity:.35;cursor:not-allowed}
+.primary-button{background:linear-gradient(100deg,#6c2dba,#c42a9e);border-color:#ffb8ef;box-shadow:0 0 25px #f93bce55,4px 4px 0 #4c2482;min-width:210px}
+.screen-label{color:#ff80df}.pixel-heading{font:1000 clamp(25px,4.5vw,48px) ui-monospace,monospace;letter-spacing:-.04em;text-align:center;margin:10px 0;text-shadow:3px 3px 0 #7a37c9,0 0 22px #c139f155}
+.screen-subtitle{color:#bdb2d9;text-align:center;font-size:12px;line-height:1.6;margin:7px auto 22px;max-width:600px}
+.character-panel{width:min(100%,700px);display:grid;grid-template-columns:minmax(150px,.7fr) 1.3fr;gap:20px;border:1px solid #6952a0;background:#100d22d9;padding:clamp(15px,3vw,28px);box-shadow:inset 0 0 30px #7146c51b}
+.pixel-avatar{position:relative;min-height:230px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px dashed #6552a0;background:radial-gradient(circle,#453078,#17112c 70%);overflow:hidden}
+.avatar-crown{font-size:37px;color:#ffe77d;text-shadow:0 0 15px #ffdf6a;animation:floatTiny 2s ease-in-out infinite}.avatar-face{width:96px;height:96px;display:grid;place-items:center;margin:5px 0;background:#ff9bda;color:#421850;border:5px solid #ffe2fb;box-shadow:8px 8px 0 #7c38b3;font:1000 31px ui-monospace,monospace;image-rendering:pixelated}
+.avatar-name{font:1000 16px ui-monospace,monospace;letter-spacing:.3em;margin-top:16px;color:#fff;text-shadow:0 0 12px #ff4bc9}.avatar-spark{position:absolute;right:12%;top:18%;color:#80ffd9;font-size:20px;animation:pixelBlink 1s steps(2,end) infinite}
+@keyframes floatTiny{50%{transform:translateY(-5px)}}
+.stat-panel{display:flex;flex-direction:column;justify-content:center;gap:14px}.player-rank{display:flex;justify-content:space-between;color:#80ffd9;font:800 10px ui-monospace,monospace;letter-spacing:.1em;margin-bottom:3px}.player-rank span{color:#ff85e2}
+.stat-row{display:grid;grid-template-columns:100px 1fr 35px;gap:8px;align-items:center;font:800 9px ui-monospace,monospace;color:#d9caff}.stat-row b{text-align:right;color:#fff}
+.stat-bar{height:8px;background:#2a2245;border:1px solid #504171}.stat-bar i{display:block;height:100%;background:linear-gradient(90deg,#55e9ff,#b14cff,#ff54c9);box-shadow:0 0 8px #b14cff}
+.fake-warning{font:9px ui-monospace,monospace;color:#ffca7b;border-top:1px solid #55406f;padding-top:10px}
+.achievement-pop{margin:17px 0 19px;padding:10px 14px;border-left:3px solid #ffdd78;background:#2b221b;display:flex;flex-direction:column;gap:4px;opacity:0;transform:translateX(10px);animation:achievementSlide .5s .7s forwards}
+.achievement-pop span{font:800 8px ui-monospace,monospace;letter-spacing:.13em;color:#ffdd78}.achievement-pop b{font:900 10px ui-monospace,monospace;color:#fff}
+@keyframes achievementSlide{to{opacity:1;transform:translateX(0)}}
+.hud{width:100%;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font:800 9px ui-monospace,monospace;letter-spacing:.1em;color:#a99bd0;border-bottom:1px solid #544277;padding-bottom:12px}
+.lives{color:#ff62c8;letter-spacing:.2em}.lives.low{animation:pixelBlink .6s steps(2,end) infinite;color:#ff5a5a}
+.dungeon-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;width:100%}
+.enemy-card{min-width:0;display:flex;flex-direction:column;align-items:center;gap:9px;text-align:center;padding:12px 9px;border:1px solid #56477d;background:#131027;color:#f4eaff;cursor:pointer;transition:transform .15s,border-color .15s,background .15s}
+.enemy-card:hover:not(.defeated){transform:translateY(-4px);border-color:#ff78df}.enemy-card.defeated{border-color:#80ffd9;background:#102523;opacity:.65;cursor:default}.enemy-sprite{font-size:clamp(24px,4vw,43px);filter:drop-shadow(0 0 10px #a04dff);animation:floatTiny 2.2s ease-in-out infinite}.enemy-card b{font:900 9px ui-monospace,monospace;color:#ffb6ef;line-height:1.5}.enemy-card small{font-size:10px;line-height:1.5;color:#bdb1d6;flex:1}.enemy-hp{width:100%;font:800 8px ui-monospace,monospace;color:#ff8fca;text-align:left}.enemy-hp i{display:block;height:5px;margin-top:4px;background:#ff58c9;transition:width .2s;width:100%}
+.level-message{min-height:34px;margin:18px 0;text-align:center;color:#80ffd9;font:800 10px ui-monospace,monospace;letter-spacing:.04em}
+.boss-arena{position:relative;isolation:isolate;width:min(100%,550px);padding:24px;border:1px solid #a14bd0;background:radial-gradient(ellipse at 50% 35%,#46205f,#100c22 75%);text-align:center;overflow:hidden}
+.boss-aura{position:absolute;z-index:-1;inset:10% 20%;background:#b23cff;filter:blur(60px);opacity:.3;animation:auraPulse 2s ease-in-out infinite}
+@keyframes auraPulse{50%{opacity:.65;transform:scale(1.2)}}
+.boss-sprite{font-size:clamp(75px,12vw,125px);filter:drop-shadow(0 0 20px #ff42c8);animation:bossHover 1.4s ease-in-out infinite alternate;transition:filter .2s,transform .2s}
+@keyframes bossHover{to{transform:translateY(-8px) rotate(2deg)}}.boss-sprite.hit{filter:brightness(3) drop-shadow(0 0 35px #fff);transform:translateX(10px) rotate(10deg)}
+.boss-name{font:1000 17px ui-monospace,monospace;color:#ffb6ef;letter-spacing:.15em;margin:6px 0 20px}
+.boss-hp-label{display:flex;justify-content:space-between;font:800 9px ui-monospace,monospace;color:#e4d7ff;margin-bottom:6px}
+.boss-health{height:13px;padding:2px;border:1px solid #ff7cde;background:#210b26}.boss-health i{display:block;width:100%;height:100%;background:linear-gradient(90deg,#ff3f9e,#ff8a53);transition:width .25s}
+.boss-dialog{margin:18px 0 0;font:900 10px ui-monospace,monospace;color:#d6c7f2;min-height:30px}
+.attack-button{margin:18px 0;background:#5c163f;border-color:#ff83c8}
+.victory-stamp{font:1000 clamp(30px,7vw,74px) ui-monospace,monospace;color:#fff;text-shadow:4px 4px 0 #fb3acb,-4px -4px 0 #32dfff,0 0 35px #ff36ce;animation:victoryPulse 1s ease-in-out infinite alternate}
+@keyframes victoryPulse{to{transform:scale(1.04);filter:brightness(1.3)}}
+.victory-title{font-size:clamp(33px,6vw,64px);color:#ffe2fa}
+.victory-card{width:min(100%,650px);border:1px solid #8a6bcd;padding:clamp(20px,4vw,36px);background:#110d25eF;box-shadow:0 0 30px #b343ed22;text-align:center;position:relative}
+.victory-card:before{content:"";position:absolute;inset:8px;border:1px dashed #6852a0;pointer-events:none}
+.cake-pixel{font-size:45px;filter:drop-shadow(0 0 12px #ff63db);animation:floatTiny 2s ease-in-out infinite}.victory-kicker{font:800 9px ui-monospace,monospace;letter-spacing:.15em;color:#80ffd9;margin:10px 0}
+.victory-card h2{font:1000 clamp(19px,3vw,28px) ui-monospace,monospace;color:#ffb9ef;line-height:1.4}.victory-card p{color:#d4c7e7;line-height:1.75;font-size:13px}.friend-signoff{margin:20px 0 12px;font:900 13px ui-monospace,monospace;color:#fff;text-shadow:0 0 12px #ff4ecf}.platonic-stamp{display:inline-block;border:1px solid #6852a0;padding:7px 9px;font:800 8px ui-monospace,monospace;letter-spacing:.06em;color:#b4a5d8}
+.victory-confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden}.confetti-bit{position:absolute;top:-20px;width:8px;height:12px;background:var(--c);animation:confettiFall var(--d) linear infinite;animation-delay:var(--delay);left:var(--x)}
+@keyframes confettiFall{to{transform:translateY(115vh) rotate(700deg)}}
+.game-footer{display:flex;justify-content:space-between;gap:8px;border-top:1px solid #433461;padding-top:12px;font:800 8px ui-monospace,monospace;letter-spacing:.08em;color:#776c9d}
+.achievement-toast{position:fixed;z-index:20;right:20px;top:75px;max-width:min(340px,85vw);padding:13px 16px;border:1px solid #ffdb77;background:#2c211b;color:#fff2c4;font:900 10px ui-monospace,monospace;box-shadow:0 0 22px #ffdc7733;opacity:0;transform:translateY(-10px);transition:.3s;pointer-events:none}
+.achievement-toast.show{opacity:1;transform:translateY(0)}
+.konami-note{font:8px ui-monospace,monospace;color:#675a89;margin-top:12px;text-align:center}
+@media(max-width:650px){.game-shell{padding:12px}.save-status{display:none}.game-topbar{align-items:flex-start}.tiny-game-btn{padding:7px}.character-panel{grid-template-columns:1fr;gap:12px}.pixel-avatar{min-height:160px}.avatar-face{width:74px;height:74px}.dungeon-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.enemy-card:last-child{grid-column:1/-1}.enemy-card{min-height:145px}.game-screen{padding:25px 0}.stat-row{grid-template-columns:95px 1fr 35px}.victory-card p{font-size:12px}.hud{font-size:8px}}
+@media(prefers-reduced-motion:reduce){.game-screen,.orbit-ring,.boot-pixel,.avatar-crown,.avatar-spark,.enemy-sprite,.boss-aura,.boss-sprite,.victory-stamp,.cake-pixel,.confetti-bit{animation:none!important}}
+
 </style>
 </head>
 <body>
@@ -252,21 +328,44 @@
 <button class="begin-hit" id="begin" aria-label="Begin the quest" title="Begin the quest"></button>
 </div>
 
-<section class="chapter-two evidence-page" id="chapterTwo" aria-label="Evidence Room">
- <div class="evidence-shell">
-  <header class="evidence-header"><div class="evidence-brand">Nisha's Birthday Quest <span>CASE FILE 019</span></div><button class="evidence-back" id="backToOpening" type="button">← OPENING</button></header>
-  <div class="evidence-heading"><div class="evidence-kicker">MISSION 02 · CLASSIFIED</div><h1>THE EVIDENCE ROOM</h1><p>Six sealed files. Six answers. Every clue brings you closer to the birthday surprise.</p></div>
-  <div class="evidence-status"><span>CASE PROGRESS</span><div class="evidence-track"><i id="evidenceProgress"></i></div><b id="evidenceCount">0 / 6 FILES</b></div>
-  <div class="evidence-grid">
-   <article class="case-file" data-case="0"><div class="case-top"><span>FILE 01</span><span class="case-stamp">SEALED</span></div><div class="case-symbol">◐</div><h2>The Shadow</h2><p>I follow you everywhere in the light, but disappear when darkness takes over. What am I?</p><div class="case-answer"><input id="answer0" aria-label="Answer to file 1" autocomplete="off" placeholder="Enter your answer"><button data-check="0" type="button">DECODE</button></div><div class="case-result" id="result0" aria-live="polite"></div></article>
-   <article class="case-file" data-case="1"><div class="case-top"><span>FILE 02</span><span class="case-stamp">SEALED</span></div><div class="case-symbol">▣</div><h2>The Memory File</h2><p>I freeze one little moment in time, keeping a memory you can look at again and again. What am I?</p><div class="case-answer"><input id="answer1" aria-label="Answer to file 2" autocomplete="off" placeholder="Enter your answer"><button data-check="1" type="button">DECODE</button></div><div class="case-result" id="result1" aria-live="polite"></div></article>
-   <article class="case-file" data-case="2"><div class="case-top"><span>FILE 03</span><span class="case-stamp">SEALED</span></div><div class="case-symbol">◇</div><h2>The Silent Witness</h2><p>I copy every expression you make, but I never speak a single word. What am I?</p><div class="case-answer"><input id="answer2" aria-label="Answer to file 3" autocomplete="off" placeholder="Enter your answer"><button data-check="2" type="button">DECODE</button></div><div class="case-result" id="result2" aria-live="polite"></div></article>
-   <article class="case-file" data-case="3"><div class="case-top"><span>FILE 04</span><span class="case-stamp">SEALED</span></div><div class="case-symbol">⑲</div><h2>The Birthday Lock</h2><p>You reach this number once every year, and today it makes this quest extra special. What is it?</p><div class="case-answer"><input id="answer3" aria-label="Answer to file 4" autocomplete="off" placeholder="Enter your answer"><button data-check="3" type="button">DECODE</button></div><div class="case-result" id="result3" aria-live="polite"></div></article>
-   <article class="case-file" data-case="4"><div class="case-top"><span>FILE 05</span><span class="case-stamp">SEALED</span></div><div class="case-symbol">✉</div><h2>The Secret Messenger</h2><p>I carry words from one person to another. I can be hidden, heartfelt, or full of chaos. What am I?</p><div class="case-answer"><input id="answer4" aria-label="Answer to file 5" autocomplete="off" placeholder="Enter your answer"><button data-check="4" type="button">DECODE</button></div><div class="case-result" id="result4" aria-live="polite"></div></article>
-   <article class="case-file" data-case="5"><div class="case-top"><span>FILE 06</span><span class="case-stamp">SEALED</span></div><div class="case-symbol">♡</div><h2>The Final Key</h2><p>You cannot hold me in your hands, but I can turn an ordinary birthday wish into something meaningful. What am I?</p><div class="case-answer"><input id="answer5" aria-label="Answer to file 6" autocomplete="off" placeholder="Enter your answer"><button data-check="5" type="button">DECODE</button></div><div class="case-result" id="result5" aria-live="polite"></div></article>
+<section class="chapter-two game-section" id="chapterTwo" aria-label="Nisha The Game">
+ <div class="game-shell">
+  <div class="game-scanlines"></div><div class="game-noise"></div>
+  <header class="game-topbar"><span class="pixel-logo">NISHA<span>://THE GAME</span></span><div class="topbar-right"><span class="save-status"><i></i> PLAYER 001 · ONLINE</span><button id="soundToggle" class="tiny-game-btn" type="button">♫ SOUND: OFF</button><button id="backToOpening" class="tiny-game-btn" type="button">↩ EXIT</button></div></header>
+  <div class="game-screen active" id="screenBoot">
+   <div class="boot-orbit"><div class="orbit-ring ring-a"></div><div class="orbit-ring ring-b"></div><div class="boot-core">N<span>19</span></div><div class="boot-pixel p1"></div><div class="boot-pixel p2"></div><div class="boot-pixel p3"></div></div>
+   <div class="boot-kicker">NISHA ENTERTAINMENT SYSTEM</div><h1 class="glitch-title" data-text="NISHA OS v19.0">NISHA OS v19.0</h1><p class="boot-copy">INITIALIZING BIRTHDAY CHAOS<span class="loading-dots">...</span></p>
+   <div class="loading-bar"><i id="bootProgress"></i></div><p class="boot-small">DO NOT PANIC. THIS IS PROBABLY SAFE.</p>
+   <button class="pixel-button primary-button" id="bootStart" type="button">▶ PRESS START</button>
   </div>
-  <div class="evidence-final" id="evidenceFinal" hidden><div class="final-sigil">✦</div><h2>ALL FILES DECODED</h2><p>Detective Nisha, you've cracked every clue. The birthday surprise is getting closer. 💗</p><button id="replayEvidence" type="button">REVIEW THE FILES ↻</button></div>
-  <footer class="evidence-footer">NISHA · BIRTHDAY CASE NO. 019 <span>UNAUTHORIZED FUN IS ENCOURAGED</span></footer>
+  <div class="game-screen" id="screenCharacter">
+   <div class="screen-label">PLAYER SETUP // LEVEL 01</div><h1 class="pixel-heading">CHARACTER SELECT</h1><p class="screen-subtitle">One player detected. Questionable stats detected.</p>
+   <div class="character-panel"><div class="pixel-avatar"><div class="avatar-crown">♛</div><div class="avatar-face">:D</div><div class="avatar-spark">✦</div><div class="avatar-name">NISHA</div></div><div class="stat-panel"><div class="player-rank">PLAYER 001 <span>LV. 19</span></div><div class="stat-row"><span>CHAOS</span><div class="stat-bar"><i style="width:99%"></i></div><b>99</b></div><div class="stat-row"><span>SLEEP</span><div class="stat-bar"><i style="width:2%"></i></div><b>0</b></div><div class="stat-row"><span>REPLIES BACK</span><div class="stat-bar"><i style="width:12%"></i></div><b>12%</b></div><div class="stat-row"><span>DRAMA RESIST.</span><div class="stat-bar"><i style="width:83%"></i></div><b>83</b></div><div class="stat-row"><span>MAIN CHARACTER</span><div class="stat-bar"><i style="width:100%"></i></div><b>MAX</b></div><div class="fake-warning">⚠ STATS ARE 100% UNVERIFIED.</div></div></div>
+   <div class="achievement-pop" id="achievementPop"><span>🏆 ACHIEVEMENT UNLOCKED</span><b>SURVIVED 19 YEARS OF CHAOS</b></div><button class="pixel-button" id="toRoast" type="button">CONTINUE TO LEVEL 02 <span>→</span></button>
+  </div>
+  <div class="game-screen" id="screenRoast">
+   <div class="hud"><span>LEVEL 02 // ROAST DUNGEON</span><span class="lives" id="livesDisplay">♥ ♥ ♥</span><span id="roastScore">ENEMIES DEFEATED: 0/5</span></div>
+   <h1 class="pixel-heading">THE ROAST DUNGEON</h1><p class="screen-subtitle">Tap the enemies. Defeat the nonsense. Save the kingdom or whatever.</p>
+   <div class="dungeon-grid" id="dungeonGrid">
+    <button class="enemy-card" data-enemy="0" type="button"><span class="enemy-sprite">👾</span><b>THE PROCRASTINATOR</b><small>“I'll do it in 5 minutes.” — last seen 3 business days ago.</small><span class="enemy-hp">HP <i></i></span></button>
+    <button class="enemy-card" data-enemy="1" type="button"><span class="enemy-sprite">📱</span><b>THE SCROLL DEMON</b><small>Opened one app. Woke up in another calendar year.</small><span class="enemy-hp">HP <i></i></span></button>
+    <button class="enemy-card" data-enemy="2" type="button"><span class="enemy-sprite">🛌</span><b>THE SNOOZE BOSS</b><small>Five more minutes. A legendary lie.</small><span class="enemy-hp">HP <i></i></span></button>
+    <button class="enemy-card" data-enemy="3" type="button"><span class="enemy-sprite">🌀</span><b>THE OVERTHINKER</b><small>Replayed a conversation from 2019 in 4K.</small><span class="enemy-hp">HP <i></i></span></button>
+    <button class="enemy-card" data-enemy="4" type="button"><span class="enemy-sprite">🧦</span><b>THE MISSING SOCK</b><small>Its location remains classified by the universe.</small><span class="enemy-hp">HP <i></i></span></button>
+   </div>
+   <div class="level-message" id="roastMessage" aria-live="polite">CLICK AN ENEMY TO BONK IT. VERY SCIENTIFIC.</div><button class="pixel-button" id="toBoss" type="button" disabled>UNLOCK BOSS FIGHT <span>→</span></button>
+  </div>
+  <div class="game-screen" id="screenBoss">
+   <div class="screen-label">LEVEL 03 // FINAL ENCOUNTER</div><h1 class="pixel-heading boss-title">THE FINAL BOSS</h1><p class="screen-subtitle">A terrifying force. No known weaknesses. One birthday candle.</p>
+   <div class="boss-arena"><div class="boss-aura"></div><div class="boss-sprite" id="bossSprite">👹</div><div class="boss-name">BEING 19</div><div class="boss-hp-label"><span>BOSS HP</span><span id="bossHpText">100%</span></div><div class="boss-health"><i id="bossHealth"></i></div><div class="boss-dialog" id="bossDialog">“YOU HAVE UNLOCKED… RESPONSIBILITIES.”</div></div>
+   <button class="pixel-button attack-button" id="attackBoss" type="button">⚔ ATTACK WITH BIRTHDAY ENERGY</button><p class="screen-subtitle tiny-note">No actual responsibilities were harmed in this battle.</p>
+  </div>
+  <div class="game-screen" id="screenVictory">
+   <div class="victory-confetti" id="victoryConfetti"></div><div class="victory-stamp">★ YOU WIN ★</div><div class="screen-label">LEVEL COMPLETE // ALL ACHIEVEMENTS UNLOCKED</div><h1 class="pixel-heading victory-title">GG, NISHA!</h1><div class="victory-card"><div class="cake-pixel">🎂</div><div class="victory-kicker">PLAYER 001 HAS REACHED LEVEL 19</div><h2>HAPPY 19TH BIRTHDAY!</h2><p>Congratulations on unlocking a brand-new level of life. May this year bring you ridiculous amounts of laughter, lovely surprises, good people, and memories that make you smile long after the day is over.</p><p>Keep being wonderfully, unapologetically you. May your luck be legendary, your snacks never run out, your problems have low HP, and your next year be full of moments worth celebrating.</p><div class="friend-signoff">GG, Nisha. Have an absolutely iconic birthday. 💗</div><div class="platonic-stamp">FRIENDSHIP DLC · 100% WHOLESOME · ZERO ROMANCE PATCHES</div></div>
+   <button class="pixel-button" id="playAgain" type="button">↻ REPLAY THE CHAOS</button><div class="konami-note">Psst… try ↑ ↑ ↓ ↓ ← → ← → B A</div>
+  </div>
+  <div class="game-footer"><span>© NISHA OS v19.0</span><span id="footerMessage">PRESS START WHEN READY</span><span>NO SKILL REQUIRED</span></div>
+  <div class="achievement-toast" id="achievementToast" role="status" aria-live="polite"></div>
  </div>
 </section>
 <div class="toast" id="status" role="status" aria-live="polite"></div>
@@ -292,40 +391,50 @@ function addAtmosphere(){
 }
 addAtmosphere();
 const chapterTwo=document.getElementById('chapterTwo');
-function showEvidence(){frame.style.display='none';chapterTwo.classList.add('active');status.classList.remove('show');}
+const gameScreens=['screenBoot','screenCharacter','screenRoast','screenBoss','screenVictory'];
+let gameStarted=false, soundOn=false, lives=3, defeated=new Set(), bossHP=100, konamiBuffer=[], soundContext=null, toastTimer;
+function showGame(){frame.style.display='none';chapterTwo.classList.add('active');status.classList.remove('show');}
 function showOpening(){chapterTwo.classList.remove('active');frame.style.display='block';}
-document.getElementById('begin').addEventListener('click',showEvidence);
+function showScreen(id,label){gameScreens.forEach(s=>document.getElementById(s).classList.toggle('active',s===id));document.getElementById('footerMessage').textContent=label||'NISHA OS v19.0';}
+document.getElementById('begin').addEventListener('click',()=>{showGame();gameStarted=true;showScreen('screenBoot','SYSTEM BOOT COMPLETE');document.getElementById('bootProgress').style.width='100%';});
 document.getElementById('backToOpening').addEventListener('click',showOpening);
-const caseAnswers=['shadow','photograph','mirror','19','message','emotion'];
-const caseHints=['Think about what follows you in sunlight.','A picture captures the moment.','You see your reflection in it.','Try the number or the word nineteen.','A note or letter carries it.','A feeling that makes a wish meaningful.'];
-const solvedCases=new Set();
-function normalizeAnswer(value){return value.trim().toLowerCase().replace(/[.!?\s-]/g,'');}
-function checkCase(index){
- if(solvedCases.has(index))return;
- const input=document.getElementById('answer'+index),result=document.getElementById('result'+index),value=normalizeAnswer(input.value);
- const accepted=index===3?['19','nineteen'].includes(value):index===1?['photograph','photo','picture'].includes(value):value===caseAnswers[index];
- if(accepted){
-  solvedCases.add(index);
-  const card=document.querySelector('[data-case="'+index+'"]');
-  card.classList.add('solved');card.querySelector('.case-stamp').textContent='DECODED';
-  input.disabled=true;card.querySelector('[data-check="'+index+'"]').disabled=true;
-  result.textContent=['CLUE RECOVERED: SHADOW','CLUE RECOVERED: MEMORY','CLUE RECOVERED: REFLECTION','CLUE RECOVERED: NINETEEN','CLUE RECOVERED: MESSAGE','CLUE RECOVERED: HEART'][index];
-  document.getElementById('evidenceCount').textContent=solvedCases.size+' / 6 FILES';
-  document.getElementById('evidenceProgress').style.width=(solvedCases.size/6*100)+'%';
-  if(solvedCases.size===6)document.getElementById('evidenceFinal').hidden=false;
- }else{result.textContent='ACCESS DENIED — HINT: '+caseHints[index];}
+function beep(freq=440,duration=.07,type='square',volume=.035){
+ if(!soundOn)return;
+ try{soundContext=soundContext||new(window.AudioContext||window.webkitAudioContext)();const osc=soundContext.createOscillator(),gain=soundContext.createGain();osc.type=type;osc.frequency.value=freq;gain.gain.value=volume;gain.gain.exponentialRampToValueAtTime(.001,soundContext.currentTime+duration);osc.connect(gain);gain.connect(soundContext.destination);osc.start();osc.stop(soundContext.currentTime+duration);}catch(e){}
 }
-document.querySelectorAll('[data-check]').forEach(button=>button.addEventListener('click',()=>checkCase(Number(button.dataset.check))));
-document.querySelectorAll('.case-answer input').forEach((input,index)=>input.addEventListener('keydown',event=>{if(event.key==='Enter')checkCase(index)}));
-document.getElementById('replayEvidence').addEventListener('click',()=>{
- document.getElementById('evidenceFinal').hidden=true;solvedCases.clear();
- document.querySelectorAll('.case-file').forEach((card,index)=>{
-  card.classList.remove('solved');card.querySelector('.case-stamp').textContent='SEALED';
-  card.querySelector('input').disabled=false;card.querySelector('input').value='';
-  card.querySelector('[data-check]').disabled=false;document.getElementById('result'+index).textContent='';
- });
- document.getElementById('evidenceCount').textContent='0 / 6 FILES';document.getElementById('evidenceProgress').style.width='0%';
+document.getElementById('soundToggle').addEventListener('click',()=>{soundOn=!soundOn;document.getElementById('soundToggle').textContent=soundOn?'♫ SOUND: ON':'♫ SOUND: OFF';if(soundOn){beep(660,.08);setTimeout(()=>beep(880,.08),100);}});
+function achievement(message){const t=document.getElementById('achievementToast');t.textContent='★ ACHIEVEMENT UNLOCKED: '+message;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2500);beep(880,.12,'square',.045);setTimeout(()=>beep(1175,.18,'square',.04),100);}
+document.getElementById('bootStart').addEventListener('click',()=>{beep(520,.06);setTimeout(()=>beep(760,.09),80);showScreen('screenCharacter','PLAYER SELECTED: NISHA');achievement('SURVIVED 19 YEARS OF CHAOS');});
+document.getElementById('toRoast').addEventListener('click',()=>{showScreen('screenRoast','LEVEL 02: ROAST DUNGEON');beep(520,.08);});
+const roastLines=['BONK! Enemy has been sent to think about its life choices.','CRITICAL HIT! The audacity took 999 damage.','ENEMY DEFEATED. Absolutely no refunds.','Combo unlocked: professional nonsense destroyer.','A historic victory for pressing buttons.'];
+document.querySelectorAll('.enemy-card').forEach(card=>card.addEventListener('click',()=>{
+ const n=Number(card.dataset.enemy);if(defeated.has(n))return;
+ defeated.add(n);card.classList.add('defeated');card.querySelector('.enemy-hp i').style.width='0%';card.querySelector('.enemy-sprite').textContent='💥';
+ document.getElementById('roastScore').textContent='ENEMIES DEFEATED: '+defeated.size+'/5';
+ lives=Math.max(0,lives-1);const lifeText=document.getElementById('livesDisplay');lifeText.textContent='♥ '.repeat(lives)+'♡ '.repeat(3-lives);lifeText.classList.toggle('low',lives===1);
+ document.getElementById('roastMessage').textContent=roastLines[n];beep(220+n*70,.09,'square',.04);
+ if(defeated.size===5){document.getElementById('toBoss').disabled=false;achievement('BONKED FIVE (5) PROBLEMS');document.getElementById('roastMessage').textContent='DUNGEON CLEARED. HR WOULD LIKE A WORD.';}
+}));
+document.getElementById('toBoss').addEventListener('click',()=>{showScreen('screenBoss','FINAL BOSS ENCOUNTER');beep(140,.2,'sawtooth',.035);});
+const bossLines=['THE BOSS IS CONFUSED BY YOUR CONFIDENCE.','CRITICAL HIT: RESPONSIBILITY REPELLED.','THE BOSS HAS FILED A COMPLAINT.','HP LOW. BIRTHDAY ENERGY HIGH.','THE BOSS IS QUESTIONING ITS CAREER.'];
+let bossAttacks=0;
+document.getElementById('attackBoss').addEventListener('click',()=>{
+ if(bossHP<=0)return;
+ bossAttacks++;bossHP=Math.max(0,bossHP-25);const sprite=document.getElementById('bossSprite');sprite.classList.add('hit');setTimeout(()=>sprite.classList.remove('hit'),180);
+ document.getElementById('bossHealth').style.width=bossHP+'%';document.getElementById('bossHpText').textContent=bossHP+'%';
+ document.getElementById('bossDialog').textContent=bossHP===0?'BOSS DEFEATED. BIRTHDAY SECURED.':bossLines[(bossAttacks-1)%bossLines.length];
+ beep(bossHP===0?990:300+bossAttacks*90,.1,'square',.04);
+ if(bossHP===0){document.getElementById('attackBoss').textContent='✓ BOSS DEFEATED';document.getElementById('attackBoss').disabled=true;achievement('DEFEATED THE CONCEPT OF BEING 19');setTimeout(()=>{showScreen('screenVictory','GG NISHA — YOU WIN');makeConfetti();beep(660,.12);setTimeout(()=>beep(880,.12),130);setTimeout(()=>beep(1100,.2),260);},650);}
 });
+function makeConfetti(){const wrap=document.getElementById('victoryConfetti');wrap.innerHTML='';const colors=['#ff56c9','#7b61ff','#55e9ff','#ffdf78','#80ffd9'];for(let i=0;i<60;i++){const bit=document.createElement('i');bit.className='confetti-bit';bit.style.setProperty('--x',Math.random()*100+'%');bit.style.setProperty('--c',colors[i%colors.length]);bit.style.setProperty('--d',(3+Math.random()*4)+'s');bit.style.setProperty('--delay',(-Math.random()*6)+'s');wrap.appendChild(bit);}}
+document.getElementById('playAgain').addEventListener('click',()=>{
+ lives=3;defeated.clear();bossHP=100;bossAttacks=0;
+ document.querySelectorAll('.enemy-card').forEach(card=>{card.classList.remove('defeated');card.querySelector('.enemy-sprite').textContent=['👾','📱','🛌','🌀','🧦'][Number(card.dataset.enemy)];card.querySelector('.enemy-hp i').style.width='100%';});
+ document.getElementById('livesDisplay').textContent='♥ ♥ ♥';document.getElementById('livesDisplay').classList.remove('low');document.getElementById('roastScore').textContent='ENEMIES DEFEATED: 0/5';document.getElementById('roastMessage').textContent='CLICK AN ENEMY TO BONK IT. VERY SCIENTIFIC.';
+ document.getElementById('toBoss').disabled=true;document.getElementById('bossHealth').style.width='100%';document.getElementById('bossHpText').textContent='100%';document.getElementById('bossDialog').textContent='“YOU HAVE UNLOCKED… RESPONSIBILITIES.”';document.getElementById('attackBoss').disabled=false;document.getElementById('attackBoss').textContent='⚔ ATTACK WITH BIRTHDAY ENERGY';showScreen('screenBoot','PRESS START WHEN READY');document.getElementById('bootProgress').style.width='100%';
+});
+const konami=['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+window.addEventListener('keydown',event=>{konamiBuffer.push(event.key);konamiBuffer=konamiBuffer.slice(-10);if(konamiBuffer.map(k=>k.toLowerCase()).join('|')===konami.map(k=>k.toLowerCase()).join('|')){achievement('KONAMI CODE: ABSOLUTE LEGEND');document.getElementById('footerMessage').textContent='CHEAT CODE ACCEPTED · +999 STYLE POINTS';}});
 art.addEventListener('error',()=>{
  status.textContent='The image could not load. Check that 1000005863-1.png is in this folder.';
  status.classList.add('show');
