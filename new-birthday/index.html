@@ -146,6 +146,26 @@
 @media(max-width:650px){.map-art{width:150%;max-width:none;left:-25%}.castle-center{top:19%}.map-counter{max-width:58%;font-size:10px}.map-logo small{max-width:180px}}
 @media(prefers-reduced-motion:reduce){.map-firework,.map-stars circle,.map-waterfalls path,.grand-castle{animation:none!important}}
 
+
+/* Motion pass based on the user's reference video: restrained, layered, cinematic */
+.map-art{transform-origin:50% 45%;animation:mapCameraDrift 18s ease-in-out infinite alternate}
+.map-nebula{transform-origin:center;animation:nebulaBreathe 11s ease-in-out infinite alternate}
+.map-node.current .node-icon{animation:currentLevelPulse 1.65s ease-in-out infinite}
+.map-step.active{animation:stepPulse 1.65s ease-in-out infinite}
+.map-node:not(.locked) .node-icon{position:relative}
+.map-node:not(.locked) .node-icon:before{content:"";position:absolute;inset:-7px;border:1px solid #ff8fe8;border-radius:50%;opacity:0;animation:portalRing 2.6s ease-out infinite;pointer-events:none}
+.map-bottom{box-shadow:0 0 22px #e633d533,inset 0 0 24px #d64ae40b}
+.map-counter{animation:counterGlow 4s ease-in-out infinite}
+.map-scene:after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(110deg,transparent 30%,#ffd7fb08 47%,transparent 64%);background-size:230% 100%;animation:lightSweep 12s linear infinite}
+@keyframes mapCameraDrift{0%{transform:scale(1);filter:saturate(1)}100%{transform:scale(1.025);filter:saturate(1.12)}}
+@keyframes nebulaBreathe{0%{opacity:.7;transform:translate3d(-1%,0,0) scale(.98)}100%{opacity:1;transform:translate3d(1%,-1%,0) scale(1.04)}}
+@keyframes currentLevelPulse{0%,100%{filter:brightness(.95);transform:scale(.97);box-shadow:0 0 0 4px #ff4acb22,0 0 16px #ff4acb88}50%{filter:brightness(1.35);transform:scale(1.07);box-shadow:0 0 0 9px #ff4acb12,0 0 31px #ff4acbcc}}
+@keyframes stepPulse{0%,100%{box-shadow:0 0 12px #ff48d977;filter:brightness(1)}50%{box-shadow:0 0 25px #ff48d9,0 0 40px #ff48d966;filter:brightness(1.18)}}
+@keyframes portalRing{0%{transform:scale(.8);opacity:.65}100%{transform:scale(1.65);opacity:0}}
+@keyframes counterGlow{0%,100%{box-shadow:0 0 18px #e72bdb35}50%{box-shadow:0 0 28px #e72bdb70}}
+@keyframes lightSweep{0%{background-position:150% 0}100%{background-position:-150% 0}}
+@media(prefers-reduced-motion:reduce){.map-art,.map-nebula,.map-node.current .node-icon,.map-step.active,.map-counter,.map-scene:after,.map-node:not(.locked) .node-icon:before{animation:none!important}}
+
 </style>
 </head>
 <body>
