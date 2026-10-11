@@ -166,6 +166,22 @@
 @keyframes lightSweep{0%{background-position:150% 0}100%{background-position:-150% 0}}
 @media(prefers-reduced-motion:reduce){.map-art,.map-nebula,.map-node.current .node-icon,.map-step.active,.map-counter,.map-scene:after,.map-node:not(.locked) .node-icon:before{animation:none!important}}
 
+
+/* The user's actual 5-second map video is the map page */
+.video-map-page{padding:0!important;overflow:hidden;background:#070510}
+.video-map-page.active{display:flex!important;align-items:stretch;justify-content:stretch}
+.video-map-stage{position:relative;display:flex;width:100%;height:100%;min-height:100%;align-items:center;justify-content:center;overflow:hidden;background:#070510}
+.mystery-map-video{display:block;width:100%;height:100%;object-fit:contain;background:#070510}
+.video-map-controls{position:absolute;z-index:12;left:0;right:0;bottom:max(12px,env(safe-area-inset-bottom));display:flex;justify-content:space-between;gap:12px;padding:0 clamp(12px,2.5vw,30px);pointer-events:none}
+.video-control{pointer-events:auto;border:1px solid #f29be9;border-radius:999px;padding:10px 15px;background:#16091fdc;color:#fff1ff;font:600 12px system-ui,sans-serif;letter-spacing:.08em;box-shadow:0 0 18px #f43bd655;backdrop-filter:blur(8px);cursor:pointer}
+.video-control:active{transform:scale(.97)}
+.video-missing{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:28px;text-align:center;background:#100719;color:#ffeaff;font:16px system-ui,sans-serif}
+.video-missing[hidden]{display:none}
+.video-missing strong{font:700 25px Georgia,serif;color:#ffb3f1}
+.video-missing span{max-width:430px;line-height:1.5}
+.video-missing code{color:#ffc3f6}
+@media(max-width:650px){.mystery-map-video{width:100%;height:100%;object-fit:contain}.video-control{font-size:10px;padding:9px 12px}}
+
 </style>
 </head>
 <body>
@@ -201,82 +217,17 @@
 <button class="begin-hit" id="begin" aria-label="Begin the quest" title="Begin the quest"></button>
 </div>
 
-<section class="chapter-two" id="chapterTwo" aria-label="The mystery map">
- <div class="map-scene">
-  <div class="map-sky"></div><svg class="map-art" viewBox="0 0 1536 864" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-<defs>
- <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#070b25"/><stop offset=".48" stop-color="#30204f"/><stop offset="1" stop-color="#120c2b"/></linearGradient>
- <radialGradient id="moonGrad"><stop stop-color="#fff0ff"/><stop offset=".48" stop-color="#f6b8f1"/><stop offset=".8" stop-color="#ca73d7"/><stop offset="1" stop-color="#8853bc"/></radialGradient>
- <linearGradient id="islandTop" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#65417c"/><stop offset=".5" stop-color="#38274e"/><stop offset="1" stop-color="#19152f"/></linearGradient>
- <linearGradient id="rock" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#382b56"/><stop offset=".5" stop-color="#17162e"/><stop offset="1" stop-color="#070b1c"/></linearGradient>
- <linearGradient id="water" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#c3f7ff"/><stop offset=".3" stop-color="#55b9ff"/><stop offset="1" stop-color="#7c51ff" stop-opacity="0"/></linearGradient>
- <linearGradient id="bridge" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffe0fb"/><stop offset=".5" stop-color="#e879f9"/><stop offset="1" stop-color="#7b52ed"/></linearGradient>
- <filter id="glow"><feGaussianBlur stdDeviation="5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
- <filter id="softGlow"><feGaussianBlur stdDeviation="16"/></filter>
- <g id="tree"><path d="M0 0 L-3 -26 L3 -26 L0 0" fill="#20142f"/><path d="M0 -58 C-24 -40 -22 -21 0 -20 C20 -20 26 -40 0 -58Z" fill="#3b2854" stroke="#f45bd9" stroke-opacity=".5"/><path d="M0 -47 C-18 -35 -14 -25 0 -25 C15 -25 18 -36 0 -47Z" fill="#fa73e5" opacity=".65" filter="url(#glow)"/></g>
- <g id="window"><rect x="-5" y="-9" width="10" height="18" rx="4" fill="#ffb3f8" filter="url(#glow)"/></g>
- <g id="island"><path d="M-150 0 Q-120 -45 -55 -39 Q-10 -58 42 -36 Q115 -43 150 -3 L110 25 L73 37 L35 91 L0 44 L-36 76 L-65 34 L-117 27Z" fill="url(#rock)" stroke="#6f59a2" stroke-width="2"/><path d="M-150 0 Q-115 -42 -55 -39 Q0 -53 43 -36 Q115 -43 150 -3 Q96 8 55 3 Q0 19 -50 3Z" fill="url(#islandTop)" stroke="#e57be7" stroke-opacity=".7" stroke-width="2"/><path d="M-105 -8 Q-60 -31 -10 -21 T98 -10" fill="none" stroke="#ff8de7" stroke-width="2" opacity=".7"/><path d="M-10 19 L-2 76 M45 17 L34 53" stroke="#9c70f8" stroke-width="2" opacity=".65"/></g>
- <g id="firework"><path d="M0 0 L0 -55 M0 0 L39 -39 M0 0 L55 0 M0 0 L39 39 M0 0 L0 55 M0 0 L-39 39 M0 0 L-55 0 M0 0 L-39 -39 M0 0 L19 -52 M0 0 L52 -19 M0 0 L52 19 M0 0 L19 52 M0 0 L-19 52 M0 0 L-52 19 M0 0 L-52 -19 M0 0 L-19 -52" stroke="#ff9cf2" stroke-width="2" opacity=".9"/><circle r="5" fill="#fff1ff" filter="url(#glow)"/></g>
-</defs>
-<rect width="1536" height="864" fill="url(#skyGrad)"/>
-<g class="map-nebula"><ellipse cx="370" cy="270" rx="310" ry="160" fill="#b74dd5" opacity=".16" filter="url(#softGlow)"/><ellipse cx="1190" cy="300" rx="290" ry="180" fill="#4b78ef" opacity=".16" filter="url(#softGlow)"/><ellipse cx="770" cy="470" rx="420" ry="180" fill="#ff4fce" opacity=".08" filter="url(#softGlow)"/></g>
-<g class="map-stars" fill="#fff0ff"><circle cx="76" cy="90" r="2"/><circle cx="230" cy="175" r="2"/><circle cx="322" cy="64" r="2"/><circle cx="445" cy="123" r="1.8"/><circle cx="578" cy="58" r="2"/><circle cx="690" cy="175" r="2.5"/><circle cx="825" cy="58" r="2"/><circle cx="1020" cy="80" r="2"/><circle cx="1210" cy="155" r="2"/><circle cx="1390" cy="92" r="2"/><circle cx="1470" cy="250" r="2"/><circle cx="65" cy="430" r="2"/><circle cx="260" cy="360" r="2"/><circle cx="475" cy="340" r="2"/><circle cx="990" cy="375" r="2"/><circle cx="1345" cy="440" r="2"/><circle cx="1500" cy="530" r="2"/><circle cx="360" cy="585" r="2"/><circle cx="890" cy="650" r="2"/><circle cx="1170" cy="715" r="2"/></g>
-<circle cx="785" cy="218" r="146" fill="#fba3f2" opacity=".14" filter="url(#softGlow)"/><circle cx="785" cy="218" r="124" fill="url(#moonGrad)" stroke="#ffc7fa" stroke-width="3"/>
-<g fill="#c979d6" opacity=".25"><circle cx="742" cy="175" r="22"/><circle cx="816" cy="243" r="31"/><circle cx="756" cy="269" r="13"/><circle cx="830" cy="161" r="15"/></g>
-<!-- distant floating rock silhouettes -->
-<g opacity=".62"><path d="M480 296 l46 -23 44 17 -10 27 -26 30 -22 -21Z" fill="#211b3c"/><path d="M1115 320 l35 -20 43 13 -5 22 -31 24 -22 -17Z" fill="#211b3c"/><path d="M1280 220 l24 -16 31 11 -5 17 -20 17Z" fill="#211b3c"/></g>
-<!-- bridge network behind islands -->
-<g fill="none" stroke-linecap="round"><path d="M345 390 Q475 460 574 528" stroke="#170e2e" stroke-width="18"/><path d="M345 390 Q475 460 574 528" stroke="url(#bridge)" stroke-width="5" filter="url(#glow)"/><path d="M570 530 Q708 574 855 650" stroke="#170e2e" stroke-width="20"/><path d="M570 530 Q708 574 855 650" stroke="url(#bridge)" stroke-width="5" filter="url(#glow)"/><path d="M855 650 Q1010 574 1174 506" stroke="#170e2e" stroke-width="18"/><path d="M855 650 Q1010 574 1174 506" stroke="url(#bridge)" stroke-width="5" filter="url(#glow)"/><path d="M1174 506 Q1282 415 1370 340" stroke="#170e2e" stroke-width="18"/><path d="M1174 506 Q1282 415 1370 340" stroke="url(#bridge)" stroke-width="5" filter="url(#glow)"/></g>
-<!-- floating islands -->
-<g transform="translate(290 386) scale(.86)"><use href="#island"/><path d="M-70 -15 Q-30 -50 0 -35 Q35 -50 78 -14" fill="none" stroke="#ff9ded" stroke-width="4" filter="url(#glow)"/><use href="#tree" transform="translate(-65 -27) scale(.8)"/><use href="#tree" transform="translate(75 -25) scale(.7)"/></g>
-<g transform="translate(560 527) scale(1.08)"><use href="#island"/><path d="M-75 -8 Q0 -43 80 -8" fill="none" stroke="#ff8be9" stroke-width="5" filter="url(#glow)"/><use href="#tree" transform="translate(-70 -27) scale(.9)"/><use href="#tree" transform="translate(85 -27) scale(.8)"/><circle cy="-14" r="28" fill="none" stroke="#ff9aee" stroke-width="3" filter="url(#glow)"/><circle cy="-14" r="16" fill="none" stroke="#ffd6fb" stroke-width="2"/></g>
-<g transform="translate(856 650) scale(1.0)"><use href="#island"/><path d="M-70 -13 Q0 -44 78 -12" fill="none" stroke="#ff8be9" stroke-width="4" filter="url(#glow)"/><use href="#tree" transform="translate(-75 -28) scale(.7)"/><use href="#tree" transform="translate(78 -24) scale(.8)"/></g>
-<g transform="translate(1178 506) scale(.93)"><use href="#island"/><path d="M-75 -10 Q0 -42 75 -10" fill="none" stroke="#ff8be9" stroke-width="4" filter="url(#glow)"/><use href="#tree" transform="translate(-75 -25) scale(.8)"/><use href="#tree" transform="translate(78 -24) scale(.7)"/></g>
-<g transform="translate(1370 340) scale(.72)"><use href="#island"/><path d="M-70 -13 Q0 -40 70 -12" fill="none" stroke="#ff8be9" stroke-width="4" filter="url(#glow)"/><use href="#tree" transform="translate(-75 -25) scale(.8)"/></g>
-<!-- waterfall ribbons -->
-<g class="map-waterfalls" fill="none" stroke="url(#water)" stroke-width="9" stroke-linecap="round"><path d="M260 400 Q252 470 265 558"/><path d="M600 548 Q595 600 610 704"/><path d="M887 672 Q878 725 891 812"/><path d="M1204 526 Q1195 590 1208 676"/></g>
-<g fill="none" stroke="#a3eaff" stroke-width="2" opacity=".7"><path d="M254 418 Q250 480 260 550"/><path d="M593 559 Q590 620 601 694"/><path d="M880 685 Q875 738 884 801"/><path d="M1198 539 Q1192 600 1200 666"/></g>
-<!-- detailed central castle -->
-<g class="grand-castle" transform="translate(785 315)" stroke-linejoin="round">
- <ellipse cx="0" cy="24" rx="170" ry="30" fill="#f34ee0" opacity=".25" filter="url(#softGlow)"/>
- <path d="M-150 14 L-125 -42 L-96 14 L-72 -58 L-42 14 L0 -75 L42 14 L72 -58 L96 14 L125 -42 L150 14Z" fill="#22112f" stroke="#9f63d0" stroke-width="3"/>
- <rect x="-124" y="-10" width="248" height="94" rx="5" fill="#321544" stroke="#d779ef" stroke-width="3"/>
- <path d="M-124 -10 L-124 -45 L-94 -45 L-94 -10 L-65 -10 L-65 -57 L-35 -57 L-35 -10 L-12 -10 L-12 -75 L12 -75 L12 -10 L35 -10 L35 -57 L65 -57 L65 -10 L94 -10 L94 -45 L124 -45 L124 -10" fill="#3b174a" stroke="#ef9df7" stroke-width="3"/>
- <rect x="-31" y="-105" width="62" height="111" fill="#431750" stroke="#f1a2f7" stroke-width="3"/>
- <path d="M-39 -105 L0 -174 L39 -105Z" fill="#281039" stroke="#ff9cf0" stroke-width="3"/>
- <path d="M-15 -150 L0 -174 L15 -150" fill="none" stroke="#ffccfb" stroke-width="2"/>
- <path d="M-150 14 L-150 -40 L-130 -40 L-130 14 M130 14 L130 -40 L150 -40 L150 14" fill="#351447" stroke="#e991f4" stroke-width="3"/>
- <path d="M-166 -40 L-140 -86 L-114 -40Z M114 -40 L140 -86 L166 -40Z" fill="#2a113e" stroke="#ff8bed" stroke-width="3"/>
- <path d="M-145 -84 L-140 -109 L-135 -84 M135 -84 L140 -109 L145 -84" fill="#ff91ea" stroke="#ffd6fb" stroke-width="2"/>
- <g><use href="#window" transform="translate(-100 18)"/><use href="#window" transform="translate(-67 18)"/><use href="#window" transform="translate(-34 18)"/><use href="#window" transform="translate(34 18)"/><use href="#window" transform="translate(67 18)"/><use href="#window" transform="translate(100 18)"/><use href="#window" transform="translate(-84 -34)"/><use href="#window" transform="translate(84 -34)"/><use href="#window" transform="translate(0 -52)"/></g>
- <path d="M-23 84 L-23 47 Q0 14 23 47 L23 84Z" fill="#ff8be9" stroke="#ffc9fb" stroke-width="3" filter="url(#glow)"/>
- <path d="M-8 84 L-8 54 Q0 44 8 54 L8 84Z" fill="#fff1ff"/>
- <path d="M-24 -128 L0 -145 L24 -128 L18 -105 L0 -95 L-18 -105Z" fill="#ff69df" stroke="#fff0ff" stroke-width="2" filter="url(#glow)"/>
- <path d="M-11 -121 L-2 -111 L13 -130" fill="none" stroke="#fff" stroke-width="3"/>
-</g>
-<!-- fireworks -->
-<g class="map-firework" transform="translate(1270 170)"><use href="#firework"/></g><g class="map-firework firework-two" transform="translate(1380 215) scale(.7)"><use href="#firework"/></g><g class="map-firework firework-three" transform="translate(1110 140) scale(.55)"><use href="#firework"/></g>
-</svg>
-  <div class="map-header"><div class="map-logo">Nisha's<small>BIRTHDAY QUEST · THE MYSTERY MAP ♡</small></div><div class="map-counter">⭐ Collect all 9 clues<br>to unlock the final surprise! <b id="clueCount">1/9</b></div></div>
-  <div class="map-tagline">Explore the world,<br>collect clues,<br>solve puzzles,<br>unlock the final surprise... ♡</div>
-  
-  
-  <div class="castle-center"><div class="castle-caption">♛ &nbsp; 10<br>FINAL REVEAL</div></div>
-  <div class="map-nodes">
-   <button class="map-node done node-1" data-destination="opening"><span class="node-num">1</span><span class="node-name">The Opening</span><span class="node-icon">✓</span></button>
-   <button class="map-node current node-2" data-destination="map"><span class="node-num">2</span><span class="node-name">Mystery Map<br>(You are here)</span><span class="node-icon">📍</span></button>
-   <button class="map-node node-3" data-destination="evidence"><span class="node-num">3</span><span class="node-name">Evidence Room</span><span class="node-icon">🔎</span></button>
-   <button class="map-node locked node-4" data-destination="puzzle"><span class="node-num">4</span><span class="node-name">Puzzle Chamber</span><span class="node-icon">🧩</span></button>
-   <button class="map-node locked node-5" data-destination="game"><span class="node-num">5</span><span class="node-name">Mini Game</span><span class="node-icon">🎮</span></button>
-   <button class="map-node locked node-6" data-destination="roast"><span class="node-num">6</span><span class="node-name">Roast Room</span><span class="node-icon">😈</span></button>
-   <button class="map-node locked node-7" data-destination="memories"><span class="node-num">7</span><span class="node-name">Memory Vault</span><span class="node-icon">💌</span></button>
-   <button class="map-node locked node-8" data-destination="camera"><span class="node-num">8</span><span class="node-name">Camera Celebration</span><span class="node-icon">📸</span></button>
-   <button class="map-node locked node-9" data-destination="secret"><span class="node-num">9</span><span class="node-name">Secret Room</span><span class="node-icon">🔐</span></button>
-   <button class="map-node locked node-10" data-destination="final"><span class="node-num">10</span><span class="node-name">Final Reveal</span><span class="node-icon">🎂</span></button>
+<section class="chapter-two video-map-page" id="chapterTwo" aria-label="Nisha's animated mystery map">
+ <div class="video-map-stage">
+  <video id="mysteryMapVideo" class="mystery-map-video" src="birthday-map.mp4" autoplay muted loop playsinline preload="auto" aria-label="Animated mystery map for Nisha's birthday"></video>
+  <div class="video-missing" id="videoMissing" hidden>
+   <strong>Almost there!</strong>
+   <span>Upload your video into this folder as <code>birthday-map.mp4</code> to show it here.</span>
   </div>
-  <div class="map-bottom"><button class="map-step-arrow" id="mapPrev" aria-label="Previous chapter">‹</button><button class="map-step done" data-step="1">1</button><button class="map-step active" data-step="2">2</button><button class="map-step " data-step="3">3</button><button class="map-step " data-step="4">4</button><button class="map-step " data-step="5">5</button><button class="map-step " data-step="6">6</button><button class="map-step " data-step="7">7</button><button class="map-step " data-step="8">8</button><button class="map-step " data-step="9">9</button><button class="map-step " data-step="10">10</button><button class="map-step-arrow" id="mapNext" aria-label="Next chapter">›</button></div>
-  <div class="map-toast" id="mapToast" role="status" aria-live="polite"></div>
-  <button class="chapter-btn secondary" id="backToOpening" style="position:absolute;z-index:8;left:14px;bottom:14px;padding:8px 12px;font-size:11px">← OPENING</button>
+  <div class="video-map-controls">
+   <button class="video-control" id="mapSoundToggle" type="button" aria-label="Turn video sound on">🔇 SOUND OFF</button>
+   <button class="video-control" id="backToOpening" type="button">← OPENING</button>
+  </div>
  </div>
 </section>
 <div class="toast" id="status" role="status" aria-live="polite"></div>
@@ -302,44 +253,31 @@ function addAtmosphere(){
 }
 addAtmosphere();
 const chapterTwo=document.getElementById('chapterTwo');
-function showMap(){frame.style.display='none';chapterTwo.classList.add('active');status.classList.remove('show');}
-function showOpening(){chapterTwo.classList.remove('active');frame.style.display='block';}
+const mapVideo=document.getElementById('mysteryMapVideo');
+const videoMissing=document.getElementById('videoMissing');
+function showMap(){
+ frame.style.display='none';
+ chapterTwo.classList.add('active');
+ status.classList.remove('show');
+ if(mapVideo){mapVideo.currentTime=0;const playPromise=mapVideo.play();if(playPromise&&playPromise.catch)playPromise.catch(()=>{});}
+}
+function showOpening(){
+ chapterTwo.classList.remove('active');
+ frame.style.display='block';
+ if(mapVideo)mapVideo.pause();
+}
 document.getElementById('begin').addEventListener('click',showMap);
 document.getElementById('backToOpening').addEventListener('click',showOpening);
-const mapToast=document.getElementById('mapToast');
-let mapToastTimer;
-function mapMessage(message){mapToast.textContent=message;mapToast.classList.add('show');clearTimeout(mapToastTimer);mapToastTimer=setTimeout(()=>mapToast.classList.remove('show'),2600);}
-const destinations={
- opening:'The opening cinematic is complete ✨',
- map:'You are already exploring the Mystery Map.',
- evidence:'Evidence Room selected. The next mission will be built here.',
- puzzle:'Puzzle Chamber is locked. Collect clues to unlock it.',
- game:'Mini Game is locked. Your adventure continues soon!',
- roast:'Roast Room is locked. The friendly chaos comes later 😈',
- memories:'Memory Vault is locked. A little nostalgia awaits 💌',
- camera:'Camera Celebration is locked. Photo magic awaits 📸',
- secret:'Secret Room is locked. Keep exploring 🔐',
- final:'Final Reveal is locked. Find the nine clues first 🎂'
-};
-const completedSteps=new Set([1]);
-function selectNode(id){
- const node=document.querySelector('[data-destination="'+id+'"]');
- if(!node)return;
- if(node.classList.contains('locked')){mapMessage(destinations[id]);return;}
- document.querySelectorAll('.map-node').forEach(n=>n.classList.remove('current'));
- node.classList.add('current');
- mapMessage(destinations[id]);
+if(mapVideo){
+ mapVideo.addEventListener('error',()=>{videoMissing.hidden=false;});
+ document.getElementById('mapSoundToggle').addEventListener('click',()=>{
+  mapVideo.muted=!mapVideo.muted;
+  const b=document.getElementById('mapSoundToggle');
+  b.textContent=mapVideo.muted?'🔇 SOUND OFF':'🔊 SOUND ON';
+  b.setAttribute('aria-label',mapVideo.muted?'Turn video sound on':'Mute video sound');
+  if(!mapVideo.paused){const p=mapVideo.play();if(p&&p.catch)p.catch(()=>{});}
+ });
 }
-document.querySelectorAll('.map-node').forEach(n=>n.addEventListener('click',()=>selectNode(n.dataset.destination)));
-document.querySelectorAll('.map-step').forEach(b=>b.addEventListener('click',()=>{
- const n=Number(b.dataset.step);
- if(n>2){mapMessage(destinations[({3:'evidence',4:'puzzle',5:'game',6:'roast',7:'memories',8:'camera',9:'secret',10:'final'})[n]]);return;}
- document.querySelectorAll('.map-step').forEach(x=>x.classList.remove('active'));
- b.classList.add('active');
- if(n===1)showOpening();else mapMessage('You are here: The Mystery Map.');
-}));
-document.getElementById('mapPrev').addEventListener('click',showOpening);
-document.getElementById('mapNext').addEventListener('click',()=>mapMessage('Next mission: Evidence Room. Coming up after this map.'));
 art.addEventListener('error',()=>{
  status.textContent='The image could not load. Check that 1000005863-1.png is in this folder.';
  status.classList.add('show');
